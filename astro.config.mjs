@@ -13,6 +13,16 @@ export default defineConfig({
         github: 'https://github.com/easyinplay/harnessed',
       },
       customCss: ['./src/styles/starlight-theme.css'],
+      head: [
+        {
+          tag: 'script',
+          attrs: {
+            defer: true,
+            src: 'https://static.cloudflareinsights.com/beacon.min.js',
+            'data-cf-beacon': '{"token": "6ad50287ac284d61a6120de2b115be42"}',
+          },
+        },
+      ],
       defaultLocale: 'root',
       locales: {
         root: { label: 'English', lang: 'en' },
