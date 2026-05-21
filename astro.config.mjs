@@ -19,6 +19,11 @@ export default defineConfig({
       head: [
         {
           tag: 'script',
+          content:
+            "try{if(!localStorage.getItem('starlight-theme'))document.documentElement.dataset.theme='dark'}catch(e){}",
+        },
+        {
+          tag: 'script',
           attrs: {
             defer: true,
             src: 'https://static.cloudflareinsights.com/beacon.min.js',
