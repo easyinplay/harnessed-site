@@ -14,7 +14,7 @@ const stats = [
 
     <div class="mt-14 grid grid-cols-1 md:grid-cols-3 gap-6">
       {stats.map((stat) => (
-        <div class="bg-[#15151D] border border-violet-400/10 rounded-xl p-8 text-center">
+        <div data-fade class="bg-[#15151D] border border-violet-400/10 rounded-xl p-8 text-center">
           <div class="text-[40px] font-medium text-white">{stat.value}</div>
           <div class="text-zinc-400 text-sm mt-2">{stat.label}</div>
         </div>

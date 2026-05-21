@@ -22,3 +22,20 @@ summary::-webkit-details-marker {
 code {
   font-family: ui-monospace, SFMono-Regular, 'JetBrains Mono', Menlo, Consolas, monospace;
 }
+
+[data-fade] {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s cubic-bezier(0.21, 0.61, 0.35, 1), transform 0.7s cubic-bezier(0.21, 0.61, 0.35, 1);
+}
+[data-fade].in {
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-fade], [data-fade].in {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

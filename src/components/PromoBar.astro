@@ -1,0 +1,37 @@
+---
+const items = [
+  'v3.4.0 released — CLI i18n + universal locale discipline',
+  'New: 6-stage `/auto` pipeline with mandatory retro',
+  'Composing ECC · Superpowers · GSD · gstack',
+  'MIT licensed · Node 22+ · Cross-platform',
+  'Star us on GitHub →',
+]
+---
+
+<div class="sticky top-0 z-50 h-9 bg-[#15151D]/95 backdrop-blur border-b border-violet-400/10 overflow-hidden flex items-center">
+  <div class="promo-track flex items-center gap-0 whitespace-nowrap">
+    {[...items, ...items].map((item) => (
+      <span class="text-xs text-zinc-400 px-6">
+        <span class="text-violet-400/60 mr-3" aria-hidden="true">•</span>{item}
+      </span>
+    ))}
+  </div>
+</div>
+
+<style>
+  .promo-track {
+    animation: scroll-x 40s linear infinite;
+  }
+  .promo-track:hover {
+    animation-play-state: paused;
+  }
+  @keyframes scroll-x {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .promo-track {
+      animation: none;
+    }
+  }
+</style>

@@ -23,9 +23,25 @@ const { title, description } = Astro.props
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://harnessed.cc" />
+    <meta property="og:image" content="/og-image.svg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="/og-image.svg" />
     <link rel="icon" href="/favicon.svg" />
   </head>
   <body class="bg-[#0A0A0F] text-white font-sans antialiased min-h-screen">
     <slot />
+    <script is:inline>
+      (() => {
+        const io = new IntersectionObserver((entries) => {
+          for (const e of entries) {
+            if (e.isIntersecting) {
+              e.target.classList.add('in')
+              io.unobserve(e.target)
+            }
+          }
+        }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' })
+        document.querySelectorAll('[data-fade]').forEach(el => io.observe(el))
+      })()
+    </script>
   </body>
 </html>
