@@ -18,6 +18,7 @@ const zhHans: Dict = {
   hero: {
     versionPill: 'v3.4.0 · CLI 国际化 + GA',
     h1: 'AI 编程脚手架的包管理器',
+    positioning: '做 Claude Code 上 Harness Engineering 的最佳编排实践。',
     tagline:
       '在一份清单中编排 Skills · MCP · Workflows。省去手工拼装的痛苦 —— 一条命令安装经过验证的脚手架包。',
     ctaStart: '立即开始',

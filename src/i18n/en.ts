@@ -16,6 +16,7 @@ const en = {
   hero: {
     versionPill: 'v3.4.0 · CLI i18n + GA',
     h1: 'The package manager for AI coding harnesses',
+    positioning: 'Best-practice orchestration for Harness Engineering on Claude Code.',
     tagline:
       'Compose Skills · MCP · Workflows in one manifest. Skip the curation pain — install proven harness packs in a single command.',
     ctaStart: 'Get Started',
