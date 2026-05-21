@@ -12,6 +12,9 @@ export default defineConfig({
       social: {
         github: 'https://github.com/easyinplay/harnessed',
       },
+      components: {
+        SiteTitle: './src/components/starlight/SiteTitle.astro',
+      },
       customCss: ['./src/styles/starlight-theme.css'],
       head: [
         {
