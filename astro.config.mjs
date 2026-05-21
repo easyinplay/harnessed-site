@@ -3,8 +3,11 @@ import tailwind from '@astrojs/tailwind'
 import sitemap from '@astrojs/sitemap'
 import starlight from '@astrojs/starlight'
 
+import cloudflare from "@astrojs/cloudflare";
+
 export default defineConfig({
   site: 'https://harnessed.cc',
+
   integrations: [
     starlight({
       title: 'harnessed docs',
@@ -69,4 +72,7 @@ export default defineConfig({
     tailwind({ applyBaseStyles: false }),
     sitemap(),
   ],
+
+  output: "hybrid",
+  adapter: cloudflare()
 })
