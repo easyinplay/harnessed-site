@@ -1,0 +1,40 @@
+---
+import InstallCommand from './InstallCommand.astro'
+---
+
+<section class="h-screen min-h-[680px] flex items-center justify-center">
+  <div class="max-w-4xl text-center mx-auto px-6">
+    <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-violet-400/10 border border-violet-400/20 text-violet-300 text-xs">
+      v3.4.0 · CLI i18n + GA
+    </span>
+
+    <h1 class="mt-6 text-[44px] leading-[60px] font-medium text-white">
+      The package manager for AI coding harnesses
+    </h1>
+
+    <p class="mt-6 text-lg text-zinc-300 max-w-2xl mx-auto">
+      Compose Skills · MCP · Workflows in one manifest. Skip the curation pain — install proven harness packs in a single command.
+    </p>
+
+    <div class="mt-10">
+      <InstallCommand />
+    </div>
+
+    <div class="mt-8 flex gap-4 justify-center flex-wrap">
+      <a
+        href="#quickstart"
+        class="bg-violet-600 hover:bg-violet-500 text-white px-6 py-3 rounded-full font-medium transition-colors"
+      >
+        Get Started
+      </a>
+      <a
+        href="https://github.com/easyinplay/harnessed"
+        class="border border-violet-400/40 hover:bg-violet-400/10 text-zinc-200 px-6 py-3 rounded-full font-medium transition-colors"
+      >
+        View on GitHub
+      </a>
+    </div>
+
+    <p class="mt-6 text-zinc-500 text-sm">MIT · Node 22+ · Cross-platform</p>
+  </div>
+</section>

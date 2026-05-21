@@ -1,0 +1,54 @@
+---
+interface Props {
+  cmd?: string
+}
+
+const { cmd = 'npm install -g harnessed && harnessed setup' } = Astro.props
+const id = `install-${Math.random().toString(36).slice(2, 8)}`
+---
+
+<div class="bg-[#15151D] border border-violet-400/10 rounded-xl px-5 py-4 font-mono text-sm text-zinc-200 flex items-center justify-between gap-4 max-w-xl mx-auto">
+  <span>
+    <span class="text-violet-400 select-none">$ </span><span id={id}>{cmd}</span>
+  </span>
+  <button
+    class="copy-btn text-zinc-400 hover:text-violet-300 transition-colors flex-shrink-0"
+    data-target={id}
+    aria-label="Copy command"
+  >
+    <svg class="copy-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect x="5" y="5" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
+      <path d="M3 11V3.5A1.5 1.5 0 0 1 4.5 2H11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+    <svg class="check-icon hidden" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M3 8l3.5 3.5L13 4.5" stroke="#A78BFA" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('.copy-btn').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const targetId = btn.dataset.target
+      if (!targetId) return
+      const el = document.getElementById(targetId)
+      if (!el) return
+      const text = el.textContent ?? ''
+      try {
+        await navigator.clipboard.writeText(text)
+        const copyIcon = btn.querySelector<SVGElement>('.copy-icon')
+        const checkIcon = btn.querySelector<SVGElement>('.check-icon')
+        if (copyIcon && checkIcon) {
+          copyIcon.classList.add('hidden')
+          checkIcon.classList.remove('hidden')
+          setTimeout(() => {
+            copyIcon.classList.remove('hidden')
+            checkIcon.classList.add('hidden')
+          }, 1500)
+        }
+      } catch {
+        // clipboard write failed silently
+      }
+    })
+  })
+</script>

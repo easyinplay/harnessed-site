@@ -1,0 +1,56 @@
+---
+const rows = [
+  { cmd: '/auto', scope: 'super-master', caps: '6-stage pipeline' },
+  { cmd: '/research', scope: 'standalone', caps: 'tavily·exa·ctx7' },
+  { cmd: '/discuss', scope: 'stage gate', caps: 'strategic·phase·subtask' },
+  { cmd: '/plan', scope: 'stage gate', caps: 'architecture·phase' },
+  { cmd: '/task', scope: 'per-subtask', caps: 'clarify·code·test·deliver' },
+  { cmd: '/verify', scope: 'stage gate', caps: '7 sub conditional' },
+  { cmd: '/retro', scope: 'post-verify', caps: 'gstack·persist' },
+  { cmd: '/tdd', scope: 'discipline', caps: 'red-green-refactor' },
+  { cmd: '/ralph-loop', scope: 'wrapper', caps: 'completion-promise' },
+]
+---
+
+<section class="py-24">
+  <div class="max-w-6xl mx-auto px-6">
+    <h2 class="text-[32px] leading-[42px] font-medium text-white text-center">
+      25 composable workflows, ready to run
+    </h2>
+    <p class="mt-3 text-zinc-400 text-center">
+      From research to retro, each backed by a typed manifest.
+    </p>
+
+    <div class="mt-12 rounded-xl border border-violet-400/10 overflow-hidden">
+      <table class="w-full text-left border-collapse">
+        <thead>
+          <tr class="bg-[#15151D]">
+            <th class="text-zinc-300 text-sm font-medium px-5 py-3">Command</th>
+            <th class="text-zinc-300 text-sm font-medium px-5 py-3">Scope</th>
+            <th class="text-zinc-300 text-sm font-medium px-5 py-3">Capabilities</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((row) => (
+            <tr class="border-t border-violet-400/5 bg-[#0A0A0F]/50">
+              <td class="px-5 py-3 text-sm">
+                <code class="text-violet-300">{row.cmd}</code>
+              </td>
+              <td class="px-5 py-3 text-sm text-zinc-400">{row.scope}</td>
+              <td class="px-5 py-3 text-sm text-zinc-400">{row.caps}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="mt-6 text-center">
+      <a
+        href="https://github.com/easyinplay/harnessed"
+        class="text-violet-400 hover:text-violet-300 text-sm transition-colors inline-block"
+      >
+        View all 25 workflows on GitHub →
+      </a>
+    </div>
+  </div>
+</section>

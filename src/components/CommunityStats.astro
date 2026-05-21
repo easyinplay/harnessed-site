@@ -1,0 +1,47 @@
+---
+const stats = [
+  { value: '4+', label: 'Sister stacks composed (ECC · Superpowers · GSD · gstack)' },
+  { value: '25', label: 'Workflows shipped' },
+  { value: 'v3.4.0', label: 'Latest release · MIT' },
+]
+---
+
+<section class="py-24">
+  <div class="max-w-6xl mx-auto px-6">
+    <h2 class="text-[32px] leading-[42px] font-medium text-white text-center">
+      Join the harness ecosystem
+    </h2>
+
+    <div class="mt-14 grid grid-cols-1 md:grid-cols-3 gap-6">
+      {stats.map((stat) => (
+        <div class="bg-[#15151D] border border-violet-400/10 rounded-xl p-8 text-center">
+          <div class="text-[40px] font-medium text-white">{stat.value}</div>
+          <div class="text-zinc-400 text-sm mt-2">{stat.label}</div>
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-10 text-center">
+      <div class="inline-flex gap-4 flex-wrap justify-center">
+        <a
+          href="https://github.com/easyinplay/harnessed/discussions"
+          class="text-violet-400 hover:text-violet-300 text-sm transition-colors"
+        >
+          GitHub Discussions →
+        </a>
+        <a
+          href="https://github.com/easyinplay/harnessed/issues"
+          class="text-violet-400 hover:text-violet-300 text-sm transition-colors"
+        >
+          Issues →
+        </a>
+        <a
+          href="https://github.com/easyinplay/harnessed/releases"
+          class="text-violet-400 hover:text-violet-300 text-sm transition-colors"
+        >
+          Releases →
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

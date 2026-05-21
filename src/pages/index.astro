@@ -1,0 +1,29 @@
+---
+import Base from '../layouts/Base.astro'
+import Nav from '../components/Nav.astro'
+import Hero from '../components/Hero.astro'
+import WhyCards from '../components/WhyCards.astro'
+import WorkflowSection from '../components/WorkflowSection.astro'
+import WorkflowTable from '../components/WorkflowTable.astro'
+import Quickstart from '../components/Quickstart.astro'
+import CommunityStats from '../components/CommunityStats.astro'
+import FAQ from '../components/FAQ.astro'
+import Footer from '../components/Footer.astro'
+---
+
+<Base
+  title="harnessed — AI coding harness package manager"
+  description="Compose Skills, MCP, and Workflows in one manifest. Install proven harness packs in a single command."
+>
+  <Nav />
+  <main>
+    <Hero />
+    <WhyCards />
+    <WorkflowSection />
+    <WorkflowTable />
+    <Quickstart />
+    <CommunityStats />
+    <FAQ />
+  </main>
+  <Footer />
+</Base>
