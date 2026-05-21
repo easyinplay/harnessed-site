@@ -494,3 +494,15 @@ nav[aria-label='Breadcrumb'] a:hover {
   font-size: 0.75rem;
   font-weight: 500;
 }
+
+/* ─────────────────────────────────────────────────────────────
+   LAYOUT — center page within a max width
+   Pulls sidebar away from screen edge on wide displays,
+   matching docs.qoder.com rhythm. Header tracks the same width.
+   ───────────────────────────────────────────────────────────── */
+@media (min-width: 72em) {
+  .page {
+    max-width: 90rem; /* 1440px */
+    margin-inline: auto;
+  }
+}
