@@ -1,4 +1,13 @@
 ---
+import { t } from '../i18n'
+import type { Locale } from '../i18n'
+
+interface Props {
+  lang: Locale
+}
+
+const { lang } = Astro.props
+const dict = t(lang)
 ---
 
 <footer class="bg-[#0A0A0F] border-t border-violet-400/10 py-12">
@@ -10,33 +19,33 @@
           <span class="bg-violet-400 size-1.5 rounded-full inline-block"></span>
         </div>
         <p class="mt-3 text-zinc-500 text-sm">
-          AI coding harness package manager + composition orchestrator.
+          {dict.footer.tagline}
         </p>
       </div>
 
       <div>
-        <h3 class="text-white text-sm font-medium mb-3">Resources</h3>
+        <h3 class="text-white text-sm font-medium mb-3">{dict.footer.resources}</h3>
         <ul class="space-y-2">
-          <li><a href="https://github.com/easyinplay/harnessed" class="text-zinc-400 hover:text-violet-300 text-sm transition-colors">GitHub</a></li>
-          <li><a href="https://www.npmjs.com/package/harnessed" class="text-zinc-400 hover:text-violet-300 text-sm transition-colors">npm</a></li>
-          <li><a href="https://github.com/easyinplay/harnessed/releases" class="text-zinc-400 hover:text-violet-300 text-sm transition-colors">Changelog</a></li>
-          <li><a href="#" class="text-zinc-400 hover:text-violet-300 text-sm transition-colors">Docs</a></li>
+          <li><a href="https://github.com/easyinplay/harnessed" class="text-zinc-400 hover:text-violet-300 text-sm transition-colors">{dict.footer.links.github}</a></li>
+          <li><a href="https://www.npmjs.com/package/harnessed" class="text-zinc-400 hover:text-violet-300 text-sm transition-colors">{dict.footer.links.npm}</a></li>
+          <li><a href="https://github.com/easyinplay/harnessed/releases" class="text-zinc-400 hover:text-violet-300 text-sm transition-colors">{dict.footer.links.changelog}</a></li>
+          <li><a href="#" class="text-zinc-400 hover:text-violet-300 text-sm transition-colors">{dict.footer.links.docs}</a></li>
         </ul>
       </div>
 
       <div>
-        <h3 class="text-white text-sm font-medium mb-3">Community</h3>
+        <h3 class="text-white text-sm font-medium mb-3">{dict.footer.community}</h3>
         <ul class="space-y-2">
-          <li><a href="https://github.com/easyinplay/harnessed/discussions" class="text-zinc-400 hover:text-violet-300 text-sm transition-colors">Discussions</a></li>
-          <li><a href="https://github.com/easyinplay/harnessed/issues" class="text-zinc-400 hover:text-violet-300 text-sm transition-colors">Issues</a></li>
-          <li><a href="#" class="text-zinc-400 hover:text-violet-300 text-sm transition-colors">Twitter</a></li>
+          <li><a href="https://github.com/easyinplay/harnessed/discussions" class="text-zinc-400 hover:text-violet-300 text-sm transition-colors">{dict.footer.links.discussions}</a></li>
+          <li><a href="https://github.com/easyinplay/harnessed/issues" class="text-zinc-400 hover:text-violet-300 text-sm transition-colors">{dict.footer.links.issues}</a></li>
+          <li><a href="#" class="text-zinc-400 hover:text-violet-300 text-sm transition-colors">{dict.footer.links.twitter}</a></li>
         </ul>
       </div>
     </div>
 
     <div class="mt-12 pt-6 border-t border-violet-400/10 flex flex-col sm:flex-row justify-between items-center gap-4 text-zinc-500 text-xs">
-      <span>MIT License © 2026 easyinplay</span>
-      <span>English · 中文</span>
+      <span>{dict.footer.license}</span>
+      <span>{dict.footer.madewith}</span>
     </div>
   </div>
 </footer>

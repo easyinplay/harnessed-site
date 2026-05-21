@@ -1,35 +1,22 @@
 ---
-const faqs = [
-  {
-    q: 'What is harnessed?',
-    a: 'harnessed is the package manager and composition orchestrator for AI coding harnesses. It installs, composes, and runs workflows that combine Skills, MCP servers, and other harness packs through a typed manifest — without vendoring upstream code.',
-  },
-  {
-    q: 'Do I need to know Claude Code first?',
-    a: 'Yes — harnessed runs inside Claude Code. After `harnessed setup`, slash commands like `/auto` and `/discuss` become available. If you\'re new to Claude Code, see anthropic.com/claude/code.',
-  },
-  {
-    q: 'How does composition work without vendoring?',
-    a: 'Each harness pack ships a manifest that describes install steps, capability metadata, and integration points. harnessed reads these manifests, validates compatibility, and stitches the upstream tools together at runtime — so you always run the official upstream, never a stale fork.',
-  },
-  {
-    q: 'What\'s the difference between /auto and individual stage commands?',
-    a: '`/auto` runs the full 6-stage pipeline end-to-end with one prompt. Individual stage commands (`/discuss`, `/plan`, `/task`, `/verify`, etc.) give you fine-grained control when you only need part of the cadence.',
-  },
-  {
-    q: 'Can I write my own harness pack?',
-    a: 'Yes. The manifest schema is published (`harnessed schemas` exposes it). Author a manifest pointing at any installable upstream — npm package, git repo, custom skill — and harnessed will treat it as a first-class composable unit.',
-  },
-]
+import { t } from '../i18n'
+import type { Locale } from '../i18n'
+
+interface Props {
+  lang: Locale
+}
+
+const { lang } = Astro.props
+const dict = t(lang)
 ---
 
 <section data-fade class="py-24 bg-[#F8F8FB]">
   <div class="max-w-3xl mx-auto px-6">
-    <h2 class="text-[32px] font-medium text-center text-zinc-900">FAQ</h2>
-    <p class="text-zinc-500 text-center mt-3">Common questions, plain answers.</p>
+    <h2 class="text-[32px] font-medium text-center text-zinc-900">{dict.faq.heading}</h2>
+    <p class="text-zinc-500 text-center mt-3">{dict.faq.subheading}</p>
 
     <div class="mt-12 space-y-3">
-      {faqs.map((faq) => (
+      {dict.faq.items.map((faq) => (
         <details class="bg-white border border-zinc-200 rounded-xl px-6 group">
           <summary class="py-5 cursor-pointer text-zinc-900 font-medium flex justify-between items-center list-none">
             <span>{faq.q}</span>

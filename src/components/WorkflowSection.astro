@@ -1,21 +1,30 @@
 ---
-const stages = [
-  { num: '①', name: 'research', role: 'multi-source RAG', optional: true },
-  { num: '②', name: 'discuss', role: '3-layer gates', optional: false },
-  { num: '③', name: 'plan', role: 'task_plan.md', optional: false },
-  { num: '④', name: 'task', role: 'clarify·code·test·deliver', optional: false },
-  { num: '⑤', name: 'verify', role: '7 sub-checks', optional: false },
-  { num: '⑥', name: 'retro', role: 'lessons captured', optional: false },
-]
+import { t } from '../i18n'
+import type { Locale } from '../i18n'
+
+interface Props {
+  lang: Locale
+}
+
+const { lang } = Astro.props
+const dict = t(lang)
+
+const stageKeys = ['research', 'discuss', 'plan', 'task', 'verify', 'retro'] as const
+const stages = stageKeys.map((key, i) => ({
+  num: ['①', '②', '③', '④', '⑤', '⑥'][i],
+  name: dict.workflowSection.stages[key].name,
+  role: dict.workflowSection.stages[key].role,
+  optional: key === 'research',
+}))
 ---
 
 <section data-fade class="py-24 bg-[#0F0F15]">
   <div class="max-w-6xl mx-auto px-6">
     <h2 class="text-[32px] leading-[42px] font-medium text-white text-center">
-      One command. Six stages. Zero boilerplate.
+      {dict.workflowSection.heading}
     </h2>
     <p class="mt-3 text-zinc-400 text-center">
-      Each stage composes proven tools from across the AI coding harness ecosystem.
+      {dict.workflowSection.subheading}
     </p>
 
     <div class="mt-14 flex flex-col md:flex-row md:gap-3 gap-3">
@@ -25,7 +34,7 @@ const stages = [
             <span class="text-violet-400 text-xs">{stage.num}</span>
             <span class="text-zinc-200 text-sm font-medium">
               {stage.name}
-              {stage.optional && <span class="text-zinc-500 text-xs ml-1">(opt)</span>}
+              {stage.optional && <span class="text-zinc-500 text-xs ml-1">({dict.workflowSection.optional})</span>}
             </span>
             <span class="text-zinc-500 text-xs">{stage.role}</span>
           </div>

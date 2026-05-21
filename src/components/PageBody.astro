@@ -1,0 +1,32 @@
+---
+import PromoBar from './PromoBar.astro'
+import Nav from './Nav.astro'
+import Hero from './Hero.astro'
+import WhyCards from './WhyCards.astro'
+import WorkflowSection from './WorkflowSection.astro'
+import WorkflowTable from './WorkflowTable.astro'
+import Quickstart from './Quickstart.astro'
+import CommunityStats from './CommunityStats.astro'
+import FAQ from './FAQ.astro'
+import Footer from './Footer.astro'
+import type { Locale } from '../i18n'
+
+interface Props {
+  lang: Locale
+}
+
+const { lang } = Astro.props
+---
+
+<PromoBar lang={lang} />
+<Nav lang={lang} />
+<main>
+  <Hero lang={lang} />
+  <WhyCards lang={lang} />
+  <WorkflowSection lang={lang} />
+  <WorkflowTable lang={lang} />
+  <Quickstart lang={lang} />
+  <CommunityStats lang={lang} />
+  <FAQ lang={lang} />
+</main>
+<Footer lang={lang} />
