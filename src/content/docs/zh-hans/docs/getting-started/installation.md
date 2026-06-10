@@ -44,7 +44,7 @@ harnessed setup --user-lang en        # 强制使用英文
 harnessed setup --dry-run             # 预览将写入的内容，不修改磁盘
 ```
 
-完整参数列表请参阅 [CLI 命令](/zh-Hans/docs/reference/cli/)。
+完整参数列表请参阅 [CLI 命令](/zh-hans/docs/reference/cli/)。
 
 ## Windows 注意事项
 

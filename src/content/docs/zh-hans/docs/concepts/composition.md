@@ -56,4 +56,4 @@ harnessed 贡献决策（gate 路由、prompt 生成、进度 ledger）；实际
 
 这正是 harnessed 的 25 个工作流能够同时装配 ECC、Superpowers、GSD 和 gstack 的原因 —— 装配层抽象了各组件之间的接缝。
 
-完整的 25 个工作流及其上游依赖，请参阅[工作流参考](/zh-Hans/docs/reference/workflows/)。
+完整的 25 个工作流及其上游依赖，请参阅[工作流参考](/zh-hans/docs/reference/workflows/)。
