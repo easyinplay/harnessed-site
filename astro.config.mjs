@@ -34,34 +34,34 @@ export default defineConfig({
       defaultLocale: 'root',
       locales: {
         root: { label: 'English', lang: 'en' },
-        'zh-Hans': { label: '简体中文', lang: 'zh-Hans' },
+        'zh-hans': { label: '简体中文', lang: 'zh-Hans' },
       },
       sidebar: [
         {
           label: 'Getting started',
-          translations: { 'zh-Hans': '入门' },
+          translations: { 'zh-hans': '入门' },
           items: [
-            { label: 'Installation', slug: 'docs/getting-started/installation', translations: { 'zh-Hans': '安装' } },
-            { label: 'Quickstart', slug: 'docs/getting-started/quickstart', translations: { 'zh-Hans': '快速上手' } },
-            { label: 'Your first workflow', slug: 'docs/getting-started/first-workflow', translations: { 'zh-Hans': '第一个工作流' } },
+            { label: 'Installation', slug: 'docs/getting-started/installation', translations: { 'zh-hans': '安装' } },
+            { label: 'Quickstart', slug: 'docs/getting-started/quickstart', translations: { 'zh-hans': '快速上手' } },
+            { label: 'Your first workflow', slug: 'docs/getting-started/first-workflow', translations: { 'zh-hans': '第一个工作流' } },
           ],
         },
         {
           label: 'Concepts',
-          translations: { 'zh-Hans': '核心概念' },
+          translations: { 'zh-hans': '核心概念' },
           items: [
-            { label: 'Composition over vendoring', slug: 'docs/concepts/composition', translations: { 'zh-Hans': '装配主义' } },
-            { label: 'The 4-stage cadence', slug: 'docs/concepts/four-stage-cadence', translations: { 'zh-Hans': '四阶段节奏' } },
-            { label: 'Dogfood-first methodology', slug: 'docs/concepts/dogfood-first', translations: { 'zh-Hans': 'Dogfood 优先方法论' } },
+            { label: 'Composition over vendoring', slug: 'docs/concepts/composition', translations: { 'zh-hans': '装配主义' } },
+            { label: 'The 4-stage cadence', slug: 'docs/concepts/four-stage-cadence', translations: { 'zh-hans': '四阶段节奏' } },
+            { label: 'Dogfood-first methodology', slug: 'docs/concepts/dogfood-first', translations: { 'zh-hans': 'Dogfood 优先方法论' } },
           ],
         },
         {
           label: 'Reference',
-          translations: { 'zh-Hans': '参考' },
+          translations: { 'zh-hans': '参考' },
           items: [
-            { label: 'Workflow reference', slug: 'docs/reference/workflows', translations: { 'zh-Hans': '工作流参考' } },
-            { label: 'Manifest schema', slug: 'docs/reference/manifest-schema', translations: { 'zh-Hans': 'Manifest Schema' } },
-            { label: 'CLI commands', slug: 'docs/reference/cli', translations: { 'zh-Hans': 'CLI 命令' } },
+            { label: 'Workflow reference', slug: 'docs/reference/workflows', translations: { 'zh-hans': '工作流参考' } },
+            { label: 'Manifest schema', slug: 'docs/reference/manifest-schema', translations: { 'zh-hans': 'Manifest Schema' } },
+            { label: 'CLI commands', slug: 'docs/reference/cli', translations: { 'zh-hans': 'CLI 命令' } },
           ],
         },
       ],
