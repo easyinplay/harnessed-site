@@ -9,7 +9,7 @@ description: 60 秒内从安装到第一个工作流。
 npm install -g harnessed && harnessed setup
 ```
 
-全局安装 harnessed 并完成一键入门初始化：启用 Agent Teams、安装工作流 skills、处理基础清单。各步骤详情请参阅[安装](/docs/zh-Hans/getting-started/installation/)。
+全局安装 harnessed 并完成一键入门初始化：启用 Agent Teams、安装工作流 skills、处理基础清单。各步骤详情请参阅[安装](/zh-Hans/docs/getting-started/installation/)。
 
 ## 第二步 — 打开 Claude Code
 
@@ -44,4 +44,4 @@ npm install -g harnessed && harnessed setup
 
 `/auto` 持续运行所有阶段。如果某个阶段失败，harnessed 会停止，你可以用 `harnessed resume` 续跑。
 
-如需精细控制，可单独调用各阶段：`/discuss`、`/plan`、`/task`、`/verify`。动手实践请参阅[第一个工作流](/docs/zh-Hans/getting-started/first-workflow/)。
+如需精细控制，可单独调用各阶段：`/discuss`、`/plan`、`/task`、`/verify`。动手实践请参阅[第一个工作流](/zh-Hans/docs/getting-started/first-workflow/)。
