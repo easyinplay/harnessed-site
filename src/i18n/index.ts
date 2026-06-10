@@ -1,11 +1,11 @@
 import en from './en'
-import zh from './zh-Hans'
+import zh from './zh-hans'
 
-export const locales = ['en', 'zh-Hans'] as const
+export const locales = ['en', 'zh-hans'] as const
 export type Locale = (typeof locales)[number]
 export const defaultLocale: Locale = 'en'
 
-const dictionaries = { en, 'zh-Hans': zh } as const
+const dictionaries = { en, 'zh-hans': zh } as const
 
 export function t(locale: Locale) {
   return dictionaries[locale]
@@ -13,7 +13,7 @@ export function t(locale: Locale) {
 
 export function getLocaleFromUrl(url: URL): Locale {
   const seg = url.pathname.split('/').filter(Boolean)[0]
-  if (seg === 'zh-Hans') return 'zh-Hans'
+  if (seg === 'zh-hans') return 'zh-hans'
   return 'en'
 }
 

@@ -18,7 +18,7 @@ const currentLocale = getLocaleFromUrl(Astro.url)
       <span class="bg-violet-400 size-1.5 rounded-full inline-block"></span>
     </a>
     <nav class="flex items-center gap-6">
-      <a href={currentLocale === 'zh-Hans' ? '/docs/zh-hans/' : '/docs/'} class="text-sm text-zinc-400 hover:text-white transition-colors">{dict.nav.docs}</a>
+      <a href={currentLocale === 'zh-hans' ? '/zh-hans/docs/' : '/docs/'} class="text-sm text-zinc-400 hover:text-white transition-colors">{dict.nav.docs}</a>
       <a href="https://github.com/easyinplay/harnessed" class="text-sm text-zinc-400 hover:text-white transition-colors">{dict.nav.github}</a>
       <a href="https://www.npmjs.com/package/harnessed" class="text-sm text-zinc-400 hover:text-white transition-colors">{dict.nav.npm}</a>
       <span class="text-zinc-600 mx-1 select-none" aria-hidden="true">|</span>
@@ -26,9 +26,9 @@ const currentLocale = getLocaleFromUrl(Astro.url)
         <>
           <span class="text-sm text-white font-medium">EN</span>
           <a
-            href="/zh-Hans/"
+            href="/zh-hans/"
             class="text-sm text-zinc-400 hover:text-violet-300 transition-colors lang-switch"
-            data-locale="zh-Hans"
+            data-locale="zh-hans"
           >中文</a>
         </>
       ) : (

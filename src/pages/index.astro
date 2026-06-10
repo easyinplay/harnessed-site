@@ -14,7 +14,7 @@ import PageBody from '../components/PageBody.astro'
         if (document.cookie.includes('harnessed_lang=')) return
         var lang = (navigator.language || '').toLowerCase()
         if (lang.startsWith('zh')) {
-          location.replace('/zh-Hans/')
+          location.replace('/zh-hans/')
         }
       } catch (e) {}
     })()

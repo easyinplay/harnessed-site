@@ -12,7 +12,7 @@ interface Props {
 }
 
 const { title, description, lang } = Astro.props
-const htmlLang = lang === 'zh-Hans' ? 'zh-Hans' : 'en'
+const htmlLang = lang === 'zh-hans' ? 'zh-Hans' : 'en'
 ---
 
 <!doctype html>
@@ -31,7 +31,7 @@ const htmlLang = lang === 'zh-Hans' ? 'zh-Hans' : 'en'
     <meta name="twitter:image" content="/og-image.svg" />
     <link rel="icon" href="/favicon.svg" />
     <link rel="alternate" hreflang="en" href="https://harnessed.cc/" />
-    <link rel="alternate" hreflang="zh-Hans" href="https://harnessed.cc/zh-Hans/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://harnessed.cc/zh-hans/" />
     <link rel="alternate" hreflang="x-default" href="https://harnessed.cc/" />
   </head>
   <body class="bg-[#0A0A0F] text-white font-sans antialiased min-h-screen">
