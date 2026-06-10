@@ -17,7 +17,7 @@ schema_version: harnessed.workflow.v3
 interface Manifest {
   schema_version: 'harnessed.workflow.v3'
   name: string                    // unique pack identifier
-  version: string                 // semver (e.g. "3.4.0")
+  version: string                 // semver (e.g. "4.3.0")
   description: string             // one paragraph, used in `harnessed list`
   install?: InstallStep[]         // steps to install upstream dependencies
   capability?: Capability         // what this pack contributes

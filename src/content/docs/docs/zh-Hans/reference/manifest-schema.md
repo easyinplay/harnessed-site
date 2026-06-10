@@ -17,7 +17,7 @@ schema_version: harnessed.workflow.v3
 interface Manifest {
   schema_version: 'harnessed.workflow.v3'
   name: string                    // 唯一的包标识符
-  version: string                 // semver（如 "3.4.0"）
+  version: string                 // semver（如 "4.3.0"）
   description: string             // 一段话描述，用于 `harnessed list`
   install?: InstallStep[]         // 安装上游依赖的步骤
   capability?: Capability         // 此包贡献的能力

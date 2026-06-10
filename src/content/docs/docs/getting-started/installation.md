@@ -18,7 +18,7 @@ Verify the install:
 
 ```bash
 harnessed --version
-# → 3.4.0
+# → 4.3.0
 ```
 
 ## Run setup

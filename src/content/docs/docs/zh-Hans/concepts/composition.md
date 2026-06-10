@@ -45,12 +45,14 @@ capability:
 
 ## 装配 skills 的工作原理
 
-装配 skills 是 harnessed 内置的工作流 skills，充当指挥棒的角色。当你运行 `/discuss` 时，harnessed 的装配 skill 会：
+自 v4.0 起，harnessed 是 **orchestration brain + prompt library**（决策大脑 + prompt 库），不再是执行引擎。它不在自身进程内 spawn 工作流 —— 而是由 slash 命令体（`harnessed setup` 生成）指挥 Claude Code main session 去 spawn **CC-native subagent**，由三个秒级纯函数 CLI 驱动。当你运行 `/discuss` 时：
 
-1. 评估三个讨论关卡哪些应该触发（战略 / 阶段 / 子任务）
-2. 为每个触发的关卡生成对应的上游子工作流
-3. 协调输出并将制品持久化到 `.planning/`
-4. 返回统一结果，不暴露上游实现细节
+1. **Gate** —— `harnessed gates discuss --task "<spec>"` 返回三个讨论关卡哪些触发（战略 / 阶段 / 子任务），以及是否升级到 Agent Teams。
+2. **Prompt** —— 对每个触发的关卡，`harnessed prompt <sub> --json` 输出 spawn-ready prompt（role 主体 + checklist + 已应用 disciplines）。
+3. **Spawn** —— main session 用原生 `Task` spawn（外层套 ralph-loop），把任何 `STATUS: NEEDS_CLARIFICATION` 通过 `AskUserQuestion` 回流给你。
+4. **Checkpoint** —— `harnessed checkpoint complete <sub>` 把进度记录到 `.planning/`，使流程能在 compaction 后存活。
+
+harnessed 贡献决策（gate 路由、prompt 生成、进度 ledger）；实际的 spawn、Agent Teams 协调、澄清往返都由 main session 用 Claude Code 原生工具执行。（`harnessed run` 保留旧的进程内 spawn，仅用于 CI/headless。）
 
 这正是 harnessed 的 25 个工作流能够同时装配 ECC、Superpowers、GSD 和 gstack 的原因 —— 装配层抽象了各组件之间的接缝。
 

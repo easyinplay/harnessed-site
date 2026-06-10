@@ -18,7 +18,7 @@ npm install -g harnessed
 
 ```bash
 harnessed --version
-# → 3.4.0
+# → 4.3.0
 ```
 
 ## 运行初始化

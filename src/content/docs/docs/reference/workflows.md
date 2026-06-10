@@ -1,9 +1,9 @@
 ---
 title: Workflow reference
-description: All 25 composable workflows shipped with harnessed v3.4.0.
+description: All 25 composable workflows shipped with harnessed v4.3.0.
 ---
 
-harnessed v3.4.0 ships 25 namespace-layered workflows organized into one super-master, four stage masters, 18 sub-workflows, and two standalones.
+harnessed v4.3.0 ships 25 namespace-layered workflows organized into one super-master, four stage masters, 18 sub-workflows, and two standalones.
 
 ## Super-master
 
