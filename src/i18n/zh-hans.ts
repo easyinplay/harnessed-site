@@ -3,10 +3,10 @@ import type { Dict } from './en'
 const zhHans: Dict = {
   promoBar: {
     items: [
-      'v3.4.0 发布 —— CLI 国际化 + 通用语言规则',
-      '新功能：六阶段 `/auto` 流水线，强制 Retro',
+      'v4.3.0 发布 —— 跨脚手架生态装配 101 项 capability',
+      'Subagent → Agent Teams 自动路由，按子任务决策',
       '已装配 ECC · Superpowers · GSD · gstack',
-      'MIT 许可证 · Node 22+ · 跨平台',
+      'Apache-2.0 · Node 22+ · 跨平台',
       '在 GitHub 给我们加星 →',
     ],
   },
@@ -16,14 +16,15 @@ const zhHans: Dict = {
     npm: 'npm',
   },
   hero: {
-    versionPill: 'v3.4.0 · CLI 国际化 + GA',
+    versionPill: 'v4.3.0 · 装配 101 项 capability',
     h1: 'AI 编程脚手架的包管理器',
-    positioning: '做 Claude Code 上 Harness Engineering 的最佳编排实践。',
+    positioning:
+      'Claude Code 上 Harness Engineering 的可执行引擎 —— 把你 CLAUDE.md 的协作规则机器化为路由大脑。',
     tagline:
       '在一份清单中编排 Skills · MCP · Workflows。省去手工拼装的痛苦 —— 一条命令安装经过验证的脚手架包。',
     ctaStart: '立即开始',
     ctaGitHub: '在 GitHub 查看',
-    meta: 'MIT · Node 22+ · 跨平台',
+    meta: 'Apache-2.0 · Node 22+ · 跨平台',
   },
   whyCards: {
     heading: '为什么选择 harnessed',
@@ -41,6 +42,38 @@ const zhHans: Dict = {
       body: '每个工作流都用自身定义来验证。这是 harnessed 自己交付时所遵循的纪律。',
     },
   },
+  orchestration: {
+    heading: '并行度，按子任务自动决策',
+    subheading:
+      '`harnessed setup` 自动启用 Agent Teams。随后由路由关卡为每个子任务挑选执行档位 —— 无需手动 fan-out，不靠猜。',
+    tiers: [
+      {
+        tag: '降级',
+        name: '主 session',
+        cond: '< 20 行 · 单命令查询',
+        body: '琐碎任务内联执行。不 spawn，无 token 开销。',
+      },
+      {
+        tag: '默认',
+        name: 'Subagent fan-out',
+        cond: '≤ 3 并行 · 无需互通',
+        body: '独立的 research、verify、review 任务在隔离 context 中并行展开。',
+      },
+      {
+        tag: '升级',
+        name: 'Agent Teams',
+        cond: '5 触发器 · SendMessage',
+        body: '需对齐 contract、辩论对立假设、共享 task list 的 teammate 升级为真正的 team。',
+      },
+    ],
+    wrapper: {
+      label: '正交 wrapper',
+      name: 'ralph-loop',
+      body: '套在任意档位外层，守住 verbatim COMPLETE 完成承诺。',
+    },
+    footnote:
+      '12 道 judgment gate 把你 CLAUDE.md 的协作规则 —— 并行路由、TDD 触发、三层澄清 —— 从静态文档机器化为路由引擎。',
+  },
   workflowSection: {
     heading: '一条命令，六个阶段，零样板代码。',
     subheading: '每个阶段都从 AI 编程脚手架生态中装配经过验证的工具。',
@@ -55,7 +88,7 @@ const zhHans: Dict = {
     optional: '可选',
   },
   workflowTable: {
-    heading: '25 个可装配的工作流，开箱即用',
+    heading: '24 个可装配工作流，101 项 capability',
     subheading: '从 research 到 retro，每个都有类型化清单支撑。',
     colCommand: '命令',
     colScope: '范围',
@@ -71,7 +104,7 @@ const zhHans: Dict = {
       { cmd: '/tdd', scope: '纪律', caps: 'red-green-refactor' },
       { cmd: '/ralph-loop', scope: '包装器', caps: '完成承诺' },
     ],
-    githubLink: '在 GitHub 上查看全部 25 个工作流 →',
+    githubLink: '在 GitHub 上查看全部工作流 →',
   },
   quickstart: {
     heading: '60 秒上手',
@@ -100,9 +133,9 @@ const zhHans: Dict = {
   communityStats: {
     heading: '加入 harness 生态',
     stats: [
-      { value: '4+', label: '已装配的兄弟生态 (ECC · Superpowers · GSD · gstack)' },
-      { value: '25', label: '已发布工作流' },
-      { value: 'v3.4.0', label: '最新版本 · MIT' },
+      { value: '101', label: '已装配 capability (ECC · Superpowers · GSD · gstack)' },
+      { value: '24', label: '已发布工作流' },
+      { value: 'v4.3.0', label: '最新版本 · Apache-2.0' },
     ],
     links: {
       discussions: 'GitHub Discussions →',
@@ -131,6 +164,10 @@ const zhHans: Dict = {
         a: '`/auto` 用一个 prompt 端到端运行完整的六阶段流水线。单独的阶段命令（`/discuss`、`/plan`、`/task`、`/verify` 等）在你只需要部分节奏时提供精细控制。',
       },
       {
+        q: '它会自动 spawn subagent 吗？',
+        a: '`harnessed setup` 自动启用 Agent Teams，并由 parallelism gate 按子任务决策档位：琐碎任务留在主 session，独立任务以 subagent fan-out（≤ 3、隔离 context），需要互通的任务 —— 对齐 contract、辩论假设、共享 task list —— 升级为真正的 Agent Team。ralph-loop 可套在任意档位外层，守住 verbatim COMPLETE。',
+      },
+      {
         q: '可以写自己的 harness 包吗？',
         a: '可以。清单 schema 已公开发布（`harnessed schemas` 可查看）。编写一份指向任何可安装上游的清单 —— npm 包、git 仓库、自定义 skill —— harnessed 会将其视为一等可装配单元。',
       },
@@ -149,7 +186,7 @@ const zhHans: Dict = {
       issues: 'Issues',
       twitter: 'Twitter',
     },
-    license: 'MIT 许可证 © 2026 easyinplay',
+    license: 'Apache-2.0 许可证 © 2026 easyinplay',
     madewith: '以纪律打磨而成',
   },
 }

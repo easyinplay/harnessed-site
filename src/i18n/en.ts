@@ -1,10 +1,10 @@
 const en = {
   promoBar: {
     items: [
-      'v3.4.0 released — CLI i18n + universal locale discipline',
-      'New: 6-stage `/auto` pipeline with mandatory retro',
+      'v4.3.0 released — 101 capabilities composed across the harness ecosystem',
+      'Auto-routed subagents → Agent Teams, decided per subtask',
       'Composing ECC · Superpowers · GSD · gstack',
-      'MIT licensed · Node 22+ · Cross-platform',
+      'Apache-2.0 · Node 22+ · Cross-platform',
       'Star us on GitHub →',
     ],
   },
@@ -14,14 +14,15 @@ const en = {
     npm: 'npm',
   },
   hero: {
-    versionPill: 'v3.4.0 · CLI i18n + GA',
+    versionPill: 'v4.3.0 · 101 capabilities composed',
     h1: 'The package manager for AI coding harnesses',
-    positioning: 'Best-practice orchestration for Harness Engineering on Claude Code.',
+    positioning:
+      'The executable engine for Harness Engineering on Claude Code — your CLAUDE.md collaboration rules, mechanized into a routing brain.',
     tagline:
       'Compose Skills · MCP · Workflows in one manifest. Skip the curation pain — install proven harness packs in a single command.',
     ctaStart: 'Get Started',
     ctaGitHub: 'View on GitHub',
-    meta: 'MIT · Node 22+ · Cross-platform',
+    meta: 'Apache-2.0 · Node 22+ · Cross-platform',
   },
   whyCards: {
     heading: 'Why harnessed',
@@ -39,6 +40,38 @@ const en = {
       body: 'Every workflow is validated against its own definition. The same discipline that ships harnessed itself.',
     },
   },
+  orchestration: {
+    heading: 'Parallelism, decided per subtask',
+    subheading:
+      '`harnessed setup` auto-enables Agent Teams. A routing gate then picks the right execution tier for every subtask — no manual fan-out, no guesswork.',
+    tiers: [
+      {
+        tag: 'downgrade',
+        name: 'Main session',
+        cond: '< 20 lines · single query',
+        body: 'Trivial work stays inline. No spawn, no token overhead.',
+      },
+      {
+        tag: 'default',
+        name: 'Subagent fan-out',
+        cond: '≤ 3 parallel · no cross-talk',
+        body: 'Independent research, verify, and review tasks fan out in isolated context.',
+      },
+      {
+        tag: 'upgrade',
+        name: 'Agent Teams',
+        cond: '5 triggers · SendMessage',
+        body: 'Teammates that align a contract, debate hypotheses, or share a task list escalate to a real team.',
+      },
+    ],
+    wrapper: {
+      label: 'orthogonal wrapper',
+      name: 'ralph-loop',
+      body: 'Wraps any tier and holds it to a verbatim COMPLETE completion-promise.',
+    },
+    footnote:
+      '12 judgment gates mechanize your CLAUDE.md collaboration rules — parallelism, TDD triggers, three-layer clarification — turning static docs into a routing engine.',
+  },
   workflowSection: {
     heading: 'One command. Six stages. Zero boilerplate.',
     subheading: 'Each stage composes proven tools from across the AI coding harness ecosystem.',
@@ -53,7 +86,7 @@ const en = {
     optional: 'opt',
   },
   workflowTable: {
-    heading: '25 composable workflows, ready to run',
+    heading: '24 composable workflows, 101 capabilities',
     subheading: 'From research to retro, each backed by a typed manifest.',
     colCommand: 'Command',
     colScope: 'Scope',
@@ -69,7 +102,7 @@ const en = {
       { cmd: '/tdd', scope: 'discipline', caps: 'red-green-refactor' },
       { cmd: '/ralph-loop', scope: 'wrapper', caps: 'completion-promise' },
     ],
-    githubLink: 'View all 25 workflows on GitHub →',
+    githubLink: 'View all workflows on GitHub →',
   },
   quickstart: {
     heading: 'Get started in 60 seconds',
@@ -98,9 +131,9 @@ const en = {
   communityStats: {
     heading: 'Join the harness ecosystem',
     stats: [
-      { value: '4+', label: 'Sister stacks composed (ECC · Superpowers · GSD · gstack)' },
-      { value: '25', label: 'Workflows shipped' },
-      { value: 'v3.4.0', label: 'Latest release · MIT' },
+      { value: '101', label: 'Capabilities composed (ECC · Superpowers · GSD · gstack)' },
+      { value: '24', label: 'Workflows shipped' },
+      { value: 'v4.3.0', label: 'Latest release · Apache-2.0' },
     ],
     links: {
       discussions: 'GitHub Discussions →',
@@ -129,6 +162,10 @@ const en = {
         a: '`/auto` runs the full 6-stage pipeline end-to-end with one prompt. Individual stage commands (`/discuss`, `/plan`, `/task`, `/verify`, etc.) give you fine-grained control when you only need part of the cadence.',
       },
       {
+        q: 'Does it spawn subagents automatically?',
+        a: '`harnessed setup` auto-enables Agent Teams, and a parallelism gate decides the tier per subtask: trivial work stays in the main session, independent tasks fan out as subagents (≤ 3, isolated context), and work that needs cross-talk — contract alignment, hypothesis debate, shared task lists — escalates to a real Agent Team. ralph-loop can wrap any tier to hold it to a verbatim COMPLETE.',
+      },
+      {
         q: 'Can I write my own harness pack?',
         a: 'Yes. The manifest schema is published (`harnessed schemas` exposes it). Author a manifest pointing at any installable upstream — npm package, git repo, custom skill — and harnessed will treat it as a first-class composable unit.',
       },
@@ -147,7 +184,7 @@ const en = {
       issues: 'Issues',
       twitter: 'Twitter',
     },
-    license: 'MIT License © 2026 easyinplay',
+    license: 'Apache-2.0 License © 2026 easyinplay',
     madewith: 'Made with discipline',
   },
 }
