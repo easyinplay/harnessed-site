@@ -39,7 +39,7 @@ capability:
 
 **经过验证的装配。** `harnessed setup` 在安装前检查清单兼容性。冲突的能力声明会以错误形式暴露，而不是运行时惊喜。
 
-**编写自己的 pack。** 清单 schema 已公开发布 —— 运行 `harnessed schemas` 可在本地查看。将你的清单指向任何可安装的上游（npm 包、git 仓库、自定义 skill），harnessed 会将其视为一等可装配单元。
+**编写自己的 pack。** 清单 schema 发布在 repo 的 `schemas/manifest.v1.schema.json`（把 YAML language server 指向它即可内联验证）。将你的清单指向任何可安装的上游（npm 包、git 仓库、自定义 skill），harnessed 会将其视为一等可装配单元。
 
 **统一入口点。** 用户面对 `/discuss`、`/plan`、`/task`、`/verify`，无需学习每个上游的术语。装配 skill 负责在每个阶段路由到正确的上游工具。
 

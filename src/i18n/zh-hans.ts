@@ -171,7 +171,7 @@ const zhHans: Dict = {
       },
       {
         q: '可以写自己的 harness 包吗？',
-        a: '可以。清单 schema 已公开发布（`harnessed schemas` 可查看）。编写一份指向任何可安装上游的清单 —— npm 包、git 仓库、自定义 skill —— harnessed 会将其视为一等可装配单元。',
+        a: '可以。清单 schema 发布在 repo 的 `schemas/manifest.v1.schema.json`（把 YAML language server 指向它）。编写一份指向任何可安装上游的清单 —— npm 包、git 仓库、自定义 skill —— harnessed 会将其视为一等可装配单元。',
       },
     ],
   },

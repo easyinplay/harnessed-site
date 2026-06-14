@@ -19,7 +19,7 @@ The fix was promoted to P0 because it violated the trust contract: if harnessed 
 
 ## Practical implications
 
-**Schema changes are self-validating.** When harnessed adds a new field to the manifest schema, the next development cycle feeds harnessed its own manifests through `harnessed validate`. Any schema regression appears in the dogfood run before it reaches users.
+**Schema changes are self-validating.** When harnessed adds a new field to the manifest schema, the next development cycle validates harnessed's own manifests against it — automatically on `harnessed install` and in CI via `scripts/check-workflow-schema.mjs`. Any schema regression appears in the dogfood run before it reaches users.
 
 **New workflows are stress-tested first.** Before any workflow ships, it is exercised on the harnessed repository itself. The same codebase that defines the workflow serves as the test harness.
 

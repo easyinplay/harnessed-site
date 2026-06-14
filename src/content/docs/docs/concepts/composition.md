@@ -39,7 +39,7 @@ capability:
 
 **Validated composition.** `harnessed setup` checks manifest compatibility before installing. Conflicting capability declarations surface as errors, not runtime surprises.
 
-**Author your own pack.** The manifest schema is published — run `harnessed schemas` to dump it locally. Point your manifest at any installable upstream (npm package, git repo, custom skill) and harnessed treats it as a first-class composable unit.
+**Author your own pack.** The manifest schema is published in the repo at `schemas/manifest.v1.schema.json` (point your YAML language server at it for inline validation). Aim your manifest at any installable upstream (npm package, git repo, custom skill) and harnessed treats it as a first-class composable unit.
 
 **Unified entry point.** Users face `/discuss`, `/plan`, `/task`, `/verify` without learning each upstream's terminology. The composition skill handles routing to the right upstream tool for each stage.
 

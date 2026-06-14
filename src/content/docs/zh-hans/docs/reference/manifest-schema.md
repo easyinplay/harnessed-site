@@ -18,7 +18,7 @@ interface Manifest {
   schema_version: 'harnessed.workflow.v3'
   name: string                    // 唯一的包标识符
   version: string                 // semver（如 "4.3.0"）
-  description: string             // 一段话描述，用于 `harnessed list`
+  description: string             // 一段话描述
   install?: InstallStep[]         // 安装上游依赖的步骤
   capability?: Capability         // 此包贡献的能力
   delegates_to?: SubWorkflowRef[] // 用于编排器工作流
@@ -113,23 +113,15 @@ delegates_to:
 
 ## 验证
 
-清单在安装时和执行 `harnessed validate` 时通过 AJV + ajv-errors + ajv-formats 进行验证：
+清单在 `harnessed install` 时通过 AJV + ajv-errors + ajv-formats 自动验证（CI 中由 `scripts/check-workflow-schema.mjs` 验证）。无效清单在写入任何内容前就会被拒绝，并给出带行号的错误信息。
 
-```bash
-harnessed validate ./my-pack/workflow.yaml
-# → ✓ valid（或带行号的错误信息）
+## Schema 文件
+
+JSON Schema 发布在 repo 的 [`schemas/manifest.v1.schema.json`](https://github.com/easyinplay/harnessed/blob/main/schemas/manifest.v1.schema.json)，并随 npm 包发布于 `node_modules/harnessed/dist/schemas/`。把编辑器的 YAML language server 指向它即可获得内联验证：
+
+```yaml
+# yaml-language-server: $schema=../../schemas/manifest.v1.schema.json
 ```
-
-## 本地查看 Schema
-
-```bash
-harnessed schemas
-# 将完整 JSON Schema 输出到 stdout
-# 可管道写入文件供 IDE 集成：
-harnessed schemas > workflow-schema.json
-```
-
-Schema 文件同时随 npm 包发布，位于 `node_modules/harnessed/schemas/workflow.schema.json`。
 
 ## 最小清单示例
 

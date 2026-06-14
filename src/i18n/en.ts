@@ -169,7 +169,7 @@ const en = {
       },
       {
         q: 'Can I write my own harness pack?',
-        a: 'Yes. The manifest schema is published (`harnessed schemas` exposes it). Author a manifest pointing at any installable upstream — npm package, git repo, custom skill — and harnessed will treat it as a first-class composable unit.',
+        a: 'Yes. The manifest schema is published in the repo at `schemas/manifest.v1.schema.json` (point your YAML language server at it). Author a manifest pointing at any installable upstream — npm package, git repo, custom skill — and harnessed will treat it as a first-class composable unit.',
       },
     ],
   },

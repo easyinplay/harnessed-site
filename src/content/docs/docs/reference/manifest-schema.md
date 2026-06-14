@@ -18,7 +18,7 @@ interface Manifest {
   schema_version: 'harnessed.workflow.v3'
   name: string                    // unique pack identifier
   version: string                 // semver (e.g. "4.3.0")
-  description: string             // one paragraph, used in `harnessed list`
+  description: string             // one paragraph description
   install?: InstallStep[]         // steps to install upstream dependencies
   capability?: Capability         // what this pack contributes
   delegates_to?: SubWorkflowRef[] // for orchestrator workflows
@@ -113,23 +113,15 @@ delegates_to:
 
 ## Validation
 
-Manifests are validated with AJV + ajv-errors + ajv-formats on install and at `harnessed validate`:
+Manifests are validated with AJV + ajv-errors + ajv-formats automatically on `harnessed install` (and in CI via `scripts/check-workflow-schema.mjs`). An invalid manifest is rejected with error messages and line numbers before anything is written.
 
-```bash
-harnessed validate ./my-pack/workflow.yaml
-# → ✓ valid  (or error messages with line numbers)
+## The schema file
+
+The JSON Schema is published in the repo at [`schemas/manifest.v1.schema.json`](https://github.com/easyinplay/harnessed/blob/main/schemas/manifest.v1.schema.json) and shipped inside the npm package at `node_modules/harnessed/dist/schemas/`. Point your editor's YAML language server at it for inline validation:
+
+```yaml
+# yaml-language-server: $schema=../../schemas/manifest.v1.schema.json
 ```
-
-## Dump the schema locally
-
-```bash
-harnessed schemas
-# Prints the full JSON Schema to stdout.
-# Pipe to a file for IDE integration:
-harnessed schemas > workflow-schema.json
-```
-
-The schema file is also published as part of the npm package at `node_modules/harnessed/schemas/workflow.schema.json`.
 
 ## Example: minimal pack manifest
 
