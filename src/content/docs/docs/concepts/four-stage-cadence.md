@@ -1,11 +1,11 @@
 ---
-title: The 4-stage cadence
-description: Discuss → Plan → Task → Verify, with optional Research and mandatory Retro.
+title: The 5-stage cadence
+description: Discuss → Plan → Task → Verify → Ship, with optional Research and Retro.
 ---
 
-The 4-stage cadence is harnessed's core methodology: every feature, bug fix, or refactor moves through the same four stages in sequence. Two companion stages bookend the main loop.
+The 5-stage cadence is harnessed's core methodology: every feature, bug fix, or refactor moves through the same five stages in sequence — **Discuss → Plan → Task → Verify → Ship** — closed by an automatic **Learn** loop. Two companion stages (Research, Retro) bookend the main loop.
 
-## The six stages
+## The stages
 
 | # | Stage | Slash command | Mode |
 |---|-------|---------------|------|
@@ -14,7 +14,10 @@ The 4-stage cadence is harnessed's core methodology: every feature, bug fix, or 
 | 2 | **Plan** | `/plan` | Mandatory |
 | 3 | **Task** | `/task` | Mandatory |
 | 4 | **Verify** | `/verify` | Mandatory |
-| 5 | **Retro** | `/retro` | Mandatory after `/auto`, optional standalone |
+| 5 | **Ship** | `/ship` | Explicit — release stage (user-triggered) |
+| — | **Retro** | `/retro` | Mandatory after `/auto`, optional standalone |
+
+**Learning is automatic, not a stage.** Every completed workflow appends its failure/loop/reject signals to `.planning/LEARNINGS.md`; the inject hook surfaces relevant learnings into the next session. This is always-on and **not** gated on the optional Retro.
 
 ### Research (optional)
 
@@ -48,11 +51,15 @@ Each gate declares transparently when it fires and when it skips.
 
 ### Verify — 7 conditional sub-checks
 
-`/verify` dispatches sub-checks based on what changed. Always runs: `verify-progress` (UAT + state sync), `verify-code-review` (multi-agent parallel), `verify-simplify` (final cleanup). Conditional: paranoid review, QA, security, design.
+`/verify` dispatches sub-checks based on what changed. Always runs: `verify-progress` (UAT + state sync), `verify-code-review` (multi-agent parallel), `verify-simplify` (final cleanup). Conditional: paranoid review, QA, security, design, multispec.
+
+### Ship — release stage
+
+`/ship` is the 5th stage, after Verify. It runs `harnessed release-preflight` (a read-only release-readiness gate — `CHANGELOG [Unreleased]`/version/git-clean/tag-absent), then delegates PR + deploy to gstack `/ship`. The **deploy boundary is tag-ready**: the stage never pushes, publishes, or creates a tag — the actual `npm publish` + GitHub release happen in `publish.yml` CI on tag push (with explicit approval). "PR ready ≠ release ready."
 
 ### Retro
 
-gstack `/retro` captures milestone lessons, decisions made, and surprises. In `/auto` this is mandatory. Run standalone at any milestone close.
+gstack `/retro` captures milestone lessons, decisions made, and surprises. In `/auto` this is mandatory. Run standalone at any milestone close. (Distinct from the always-on Learn loop above.)
 
 ## Flow diagram
 
@@ -74,20 +81,25 @@ graph TD
   subgraph V[④ Verify]
     VP[progress] & VC[code-review] & VPa[paranoid] & VQ[qa] & VS[security] & VD[design] & VSi[simplify]
   end
-  RT([⑤ retro — mandatory in /auto]):::optional
-  RS --> D --> P --> T --> V --> RT
+  subgraph S[⑤ Ship]
+    SP[ship-preflight]
+  end
+  RT([retro — optional]):::optional
+  RS --> D --> P --> T --> V --> S --> RT
+  S == "🔁 learnings → next cycle" ==> D
   classDef optional stroke-dasharray:5 5
 ```
 
 ## Running with `/auto` vs individual stages
 
-`/auto` chains all 6 stages automatically. Individual stage commands give you entry points at any stage:
+`/auto` chains the core dev stages automatically (research conditional → discuss → plan → task → verify → retro). **Ship is explicit** — `/auto` does not auto-release; you run `/ship` when a milestone is ready to cut. Individual stage commands give you entry points at any stage:
 
 ```
 /discuss "add rate limiter"     # run only discuss
 /plan "rate limiter"            # run only plan (assumes discuss done)
 /task "implement middleware"    # run only task
 /verify "rate limiter feature"  # run only verify
+/ship                           # run only ship (release-preflight → tag-ready)
 ```
 
 Surgical sub-workflow invocation skips the master entirely:

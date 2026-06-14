@@ -31,6 +31,6 @@ When you run `/auto` on your project, you are running the same pipeline that shi
 
 - Regressions surface during development, not in user reports
 - Edge cases in multi-agent coordination get exercised on every harnessed release
-- The 4-stage cadence is battle-tested against a real, actively maintained codebase
+- The 5-stage cadence is battle-tested against a real, actively maintained codebase
 
 The methodology is described in [docs/WORKFLOW.md](https://github.com/easyinplay/harnessed/blob/main/docs/WORKFLOW.md) in the harnessed repository.

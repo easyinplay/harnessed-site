@@ -3,7 +3,7 @@ import type { Dict } from './en'
 const zhHans: Dict = {
   promoBar: {
     items: [
-      'v4.3.0 发布 —— 跨脚手架生态装配 101 项 capability',
+      'v4.5.0 发布 —— 跨 session 学习回环 + Ship 阶段 + per-repo workflows',
       'Subagent → Agent Teams 自动路由，按子任务决策',
       '已装配 ECC · Superpowers · GSD · gstack',
       'Apache-2.0 · Node 22+ · 跨平台',
@@ -16,7 +16,7 @@ const zhHans: Dict = {
     npm: 'npm',
   },
   hero: {
-    versionPill: 'v4.3.0 · 装配 101 项 capability',
+    versionPill: 'v4.5.0 · 装配 100+ 项 capability',
     h1: 'AI 编程脚手架的包管理器',
     positioning:
       'Claude Code 上 Harness Engineering 的可执行引擎 —— 把你 CLAUDE.md 的协作规则机器化为路由大脑。',
@@ -34,8 +34,8 @@ const zhHans: Dict = {
       body: '不复制上游代码。在清单中描述安装与检查，把 ECC、Superpowers、GSD、gstack 装配成一个可运行的工作流。',
     },
     card2: {
-      title: '内置四阶段节奏',
-      body: 'Discuss → Plan → Task → Verify，可选 Research，强制 Retro。或运行 `/auto` 一键跑完整流程。',
+      title: '内置五阶段节奏',
+      body: 'Discuss → Plan → Task → Verify → Ship，可选 Research 与 Retro，外加自动学习回环。或运行 `/auto` 一键跑完整流程。',
     },
     card3: {
       title: 'Dogfood 优先方法论',
@@ -75,7 +75,7 @@ const zhHans: Dict = {
       '12 道 judgment gate 把你 CLAUDE.md 的协作规则 —— 并行路由、TDD 触发、三层澄清 —— 从静态文档机器化为路由引擎。',
   },
   workflowSection: {
-    heading: '一条命令，六个阶段，零样板代码。',
+    heading: '一条命令，五个阶段，零样板代码。',
     subheading: '每个阶段都从 AI 编程脚手架生态中装配经过验证的工具。',
     stages: {
       research: { name: 'research', role: '多源 RAG' },
@@ -83,13 +83,14 @@ const zhHans: Dict = {
       plan: { name: 'plan', role: 'task_plan.md' },
       task: { name: 'task', role: '澄清·编码·测试·交付' },
       verify: { name: 'verify', role: '七项子检查' },
+      ship: { name: 'ship', role: 'release-preflight → tag-ready' },
       retro: { name: 'retro', role: '沉淀经验' },
     },
     optional: '可选',
   },
   workflowTable: {
-    heading: '24 个可装配工作流，101 项 capability',
-    subheading: '从 research 到 retro，每个都有类型化清单支撑。',
+    heading: '27 个可装配工作流，100+ 项 capability',
+    subheading: '从 research 到 ship，每个都有类型化清单支撑。',
     colCommand: '命令',
     colScope: '范围',
     colCaps: '能力',
@@ -100,7 +101,8 @@ const zhHans: Dict = {
       { cmd: '/plan', scope: '阶段关卡', caps: '架构·阶段' },
       { cmd: '/task', scope: '子任务级', caps: '澄清·编码·测试·交付' },
       { cmd: '/verify', scope: '阶段关卡', caps: '七项条件检查' },
-      { cmd: '/retro', scope: '验证后', caps: 'gstack·持久化' },
+      { cmd: '/ship', scope: '阶段关卡', caps: 'release-preflight·gstack-ship' },
+      { cmd: '/retro', scope: 'ship 之后', caps: 'gstack·持久化' },
       { cmd: '/tdd', scope: '纪律', caps: 'red-green-refactor' },
       { cmd: '/ralph-loop', scope: '包装器', caps: '完成承诺' },
     ],
@@ -133,9 +135,9 @@ const zhHans: Dict = {
   communityStats: {
     heading: '加入 harness 生态',
     stats: [
-      { value: '101', label: '已装配 capability (ECC · Superpowers · GSD · gstack)' },
-      { value: '24', label: '已发布工作流' },
-      { value: 'v4.3.0', label: '最新版本 · Apache-2.0' },
+      { value: '100+', label: '已装配 capability (ECC · Superpowers · GSD · gstack)' },
+      { value: '27', label: '已发布工作流' },
+      { value: 'v4.5.0', label: '最新版本 · Apache-2.0' },
     ],
     links: {
       discussions: 'GitHub Discussions →',

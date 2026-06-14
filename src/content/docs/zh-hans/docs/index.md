@@ -12,7 +12,7 @@ harnessed 是 AI 编程脚手架的包管理器与装配编排器。它通过类
 - **[安装](/zh-hans/docs/getting-started/installation/)** — 30 秒内安装 harnessed 并完成初始化
 - **[快速上手](/zh-hans/docs/getting-started/quickstart/)** — 60 秒内从安装到第一个工作流
 - **[装配主义概念](/zh-hans/docs/concepts/composition/)** — harnessed 如何在不 fork 上游的情况下装配工具
-- **[工作流参考](/zh-hans/docs/reference/workflows/)** — v4.3.0 附带的全部 25 个可装配工作流
+- **[工作流参考](/zh-hans/docs/reference/workflows/)** — v4.5.0 附带的全部 27 个可装配工作流
 
 ## harnessed 的差异化优势
 
@@ -20,7 +20,7 @@ harnessed 是 AI 编程脚手架的包管理器与装配编排器。它通过类
 
 **装配主义，而非 vendoring。** 每个脚手架包提供一份清单。harnessed 读取清单、验证兼容性，并在运行时将上游工具拼接在一起。你始终运行的是官方上游版本，而不是陈旧的 fork。
 
-**内置四阶段节奏。** Discuss → Plan → Task → Verify，可选 Research，强制 Retro。或运行 `/auto` 一条命令跑完完整的六阶段流水线。
+**内置五阶段节奏。** Discuss → Plan → Task → Verify → Ship，可选 Research 与 Retro，外加自动学习回环。或运行 `/auto` 一条命令跑完完整的六阶段流水线（research → retro；Ship 为显式）。
 
 **Dogfood 优先方法论。** 每个工作流都用自身定义来验证 —— 这是 harnessed 自己交付时所遵循的纪律。
 

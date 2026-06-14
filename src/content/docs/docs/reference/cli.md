@@ -104,7 +104,7 @@ harnessed run <master> --task "<spec>"
 
 ## `harnessed doctor`
 
-Diagnose the local harnessed + Claude Code install — checks skills, manifests, settings, env vars, and upstream availability.
+Diagnose the local harnessed + Claude Code install — a 14-check health report (Node, MCP scope/availability, jq, Windows bash, origin, gstack prefix, deprecations, token budget, Agent Teams env, planning-with-files, mattpocock-skills, CodeGraph, and update-available).
 
 ```bash
 harnessed doctor
@@ -113,43 +113,81 @@ harnessed doctor --json   # machine-readable report
 
 ---
 
-## `harnessed list`
+## `harnessed update`
 
-List installed packs and their contributed workflows.
+Keep harnessed (and, optionally, its upstream plugins) up to date. The 14th doctor check also surfaces "update available X→Y" passively.
 
 ```bash
-harnessed list
+harnessed update                    # self-update: npm i -g harnessed@latest + CHANGELOG + restart hint
+harnessed update --check            # report installed/latest version, do not install
+harnessed update --upstreams        # also re-run the base manifests to upgrade upstream plugins
+harnessed update --migration-report # read-only inventory of stale harnessed state (deletes nothing)
 ```
 
-Outputs a table of installed packs with name, version, description, and capability summary (skills + workflows contributed).
+Network access is fail-soft — an unreachable npm never errors.
 
 ---
 
-## `harnessed schemas`
+## `harnessed release-preflight`
 
-Dump the workflow and manifest JSON schemas to stdout.
+The Ship-stage gate. A **read-only** release-readiness check — exits 1 if the repo is not ready to tag a release. Mutates nothing (publish happens in CI on tag push).
 
 ```bash
-harnessed schemas
-# → prints full JSON Schema
+harnessed release-preflight
+```
 
-harnessed schemas > workflow-schema.json
-# → write to file for IDE integration
+Checks: `CHANGELOG.md` `[Unreleased]` (or a `[<version>]` section) is non-empty, `package.json` has a valid version, the working tree is clean (tracked changes), and a `v<version>` tag does not already exist.
+
+---
+
+## `harnessed compact`
+
+Summarize+evict resolved sub-progress ledger entries to free context on long tasks. **G6-safe**: entries with `fail_count > 0` are never evicted, so the break-loop signal survives.
+
+```bash
+harnessed compact                                  # manual compaction
+harnessed checkpoint complete <sub> --tokens <n>   # auto-triggers when the token count crosses the threshold
 ```
 
 ---
 
-## `harnessed validate <path>`
+## `harnessed workflows`
 
-Validate a manifest file against the `harnessed.workflow.v3` schema.
+List in-flight workflows — one per repo (harnessed keys checkpoint state by repo root, so concurrent projects no longer clobber each other).
 
 ```bash
-harnessed validate ./my-pack/workflow.yaml
-# → ✓ valid
-# or: ✗ invalid — with error messages and line numbers
+harnessed workflows
 ```
 
-Returns exit code `0` on valid, `1` on invalid.
+---
+
+## `harnessed learn`
+
+Append a prose learning to the current repo's `.planning/LEARNINGS.md`. Completed workflows also append their failure/loop/reject signals automatically; the inject hook surfaces relevant learnings into the next session.
+
+```bash
+harnessed learn "avoid retrying the migration blindly — it needs a fresh snapshot first"
+```
+
+---
+
+## `harnessed next`
+
+Print the deterministic next-step contract for the active workflow.
+
+```bash
+harnessed next   # → NEXT: auto <sub> | manual <sub> | done
+```
+
+---
+
+## `harnessed reject <sub>`
+
+Mark a sub-workflow as user-rejected — a terminal status distinct from `failed` (which drives break-loop retry logic).
+
+```bash
+harnessed reject <sub>
+```
 
 ---
 

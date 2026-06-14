@@ -1,7 +1,7 @@
 const en = {
   promoBar: {
     items: [
-      'v4.3.0 released — 101 capabilities composed across the harness ecosystem',
+      'v4.5.0 released — cross-session learning loop + Ship stage + per-repo workflows',
       'Auto-routed subagents → Agent Teams, decided per subtask',
       'Composing ECC · Superpowers · GSD · gstack',
       'Apache-2.0 · Node 22+ · Cross-platform',
@@ -14,7 +14,7 @@ const en = {
     npm: 'npm',
   },
   hero: {
-    versionPill: 'v4.3.0 · 101 capabilities composed',
+    versionPill: 'v4.5.0 · 100+ capabilities composed',
     h1: 'The package manager for AI coding harnesses',
     positioning:
       'The executable engine for Harness Engineering on Claude Code — your CLAUDE.md collaboration rules, mechanized into a routing brain.',
@@ -32,8 +32,8 @@ const en = {
       body: "Don't fork upstream. Describe install + check in a manifest. Compose ECC, Superpowers, GSD, and gstack into one runnable workflow.",
     },
     card2: {
-      title: '4-stage cadence built-in',
-      body: 'Discuss → Plan → Task → Verify, with optional Research and mandatory Retro. Or run `/auto` for the full pipeline.',
+      title: '5-stage cadence built-in',
+      body: 'Discuss → Plan → Task → Verify → Ship, with optional Research and Retro, plus an automatic learning loop. Or run `/auto` for the full pipeline.',
     },
     card3: {
       title: 'Dogfood-first methodology',
@@ -73,7 +73,7 @@ const en = {
       '12 judgment gates mechanize your CLAUDE.md collaboration rules — parallelism, TDD triggers, three-layer clarification — turning static docs into a routing engine.',
   },
   workflowSection: {
-    heading: 'One command. Six stages. Zero boilerplate.',
+    heading: 'One command. Five stages. Zero boilerplate.',
     subheading: 'Each stage composes proven tools from across the AI coding harness ecosystem.',
     stages: {
       research: { name: 'research', role: 'multi-source RAG' },
@@ -81,13 +81,14 @@ const en = {
       plan: { name: 'plan', role: 'task_plan.md' },
       task: { name: 'task', role: 'clarify·code·test·deliver' },
       verify: { name: 'verify', role: '7 sub-checks' },
+      ship: { name: 'ship', role: 'release-preflight → tag-ready' },
       retro: { name: 'retro', role: 'lessons captured' },
     },
     optional: 'opt',
   },
   workflowTable: {
-    heading: '24 composable workflows, 101 capabilities',
-    subheading: 'From research to retro, each backed by a typed manifest.',
+    heading: '27 composable workflows, 100+ capabilities',
+    subheading: 'From research to ship, each backed by a typed manifest.',
     colCommand: 'Command',
     colScope: 'Scope',
     colCaps: 'Capabilities',
@@ -98,7 +99,8 @@ const en = {
       { cmd: '/plan', scope: 'stage gate', caps: 'architecture·phase' },
       { cmd: '/task', scope: 'per-subtask', caps: 'clarify·code·test·deliver' },
       { cmd: '/verify', scope: 'stage gate', caps: '7 sub conditional' },
-      { cmd: '/retro', scope: 'post-verify', caps: 'gstack·persist' },
+      { cmd: '/ship', scope: 'stage gate', caps: 'release-preflight·gstack-ship' },
+      { cmd: '/retro', scope: 'post-ship', caps: 'gstack·persist' },
       { cmd: '/tdd', scope: 'discipline', caps: 'red-green-refactor' },
       { cmd: '/ralph-loop', scope: 'wrapper', caps: 'completion-promise' },
     ],
@@ -131,9 +133,9 @@ const en = {
   communityStats: {
     heading: 'Join the harness ecosystem',
     stats: [
-      { value: '101', label: 'Capabilities composed (ECC · Superpowers · GSD · gstack)' },
-      { value: '24', label: 'Workflows shipped' },
-      { value: 'v4.3.0', label: 'Latest release · Apache-2.0' },
+      { value: '100+', label: 'Capabilities composed (ECC · Superpowers · GSD · gstack)' },
+      { value: '27', label: 'Workflows shipped' },
+      { value: 'v4.5.0', label: 'Latest release · Apache-2.0' },
     ],
     links: {
       discussions: 'GitHub Discussions →',

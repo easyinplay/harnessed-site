@@ -1,9 +1,9 @@
 ---
 title: Workflow reference
-description: All 25 composable workflows shipped with harnessed v4.3.0.
+description: All 27 composable workflows shipped with harnessed v4.5.0.
 ---
 
-harnessed v4.3.0 ships 25 namespace-layered workflows organized into one super-master, four stage masters, 18 sub-workflows, and two standalones.
+harnessed v4.5.0 ships 27 namespace-layered workflows organized into one super-master, five stage masters (Discuss · Plan · Task · Verify · Ship), 19 sub-workflows, and two standalones.
 
 ## Super-master
 
@@ -58,6 +58,13 @@ harnessed v4.3.0 ships 25 namespace-layered workflows organized into one super-m
 | `/verify-design` | sub-workflow | Design system consistency via gstack `/design-review` + ui-ux-pro-max + frontend-design. Fires when design changes present. |
 | `/verify-simplify` | sub-workflow | Final simplification pass via `code-simplifier`. Always runs last. |
 | `/verify-multispec` | sub-workflow | 4-specialist Agent Team Pattern C — mutual SendMessage cross-examination. Escalation path for critical releases / large refactor PRs. |
+
+## Ship (Stage ⑤)
+
+| Command | Scope | Capabilities |
+|---------|-------|-------------|
+| `/ship` | stage master | Release stage after Verify. Runs the preflight gate, then delegates PR/deploy to gstack `/ship`. Deploy boundary = tag-ready; the actual publish happens in `publish.yml` CI on tag push. |
+| `/ship-preflight` | sub-workflow | Runs `harnessed release-preflight` — a read-only gate (CHANGELOG `[Unreleased]` / version / git-clean / tag-absent). Blocks shipping on any failure. |
 
 ## Discipline wrappers
 

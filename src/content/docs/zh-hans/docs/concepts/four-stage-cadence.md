@@ -1,11 +1,11 @@
 ---
-title: 四阶段节奏
-description: Discuss → Plan → Task → Verify，可选 Research，强制 Retro。
+title: 五阶段节奏
+description: Discuss → Plan → Task → Verify → Ship，可选 Research 与 Retro。
 ---
 
-四阶段节奏是 harnessed 的核心方法论：每个功能、bug 修复或重构都按相同的四个阶段依次推进。两个伴生阶段分别位于主循环的两端。
+五阶段节奏是 harnessed 的核心方法论：每个功能、bug 修复或重构都按相同的五个阶段依次推进 —— **Discuss → Plan → Task → Verify → Ship** —— 由自动的 **Learn** 回环闭合。两个伴生阶段（Research、Retro）分别位于主循环两端。
 
-## 六个阶段
+## 阶段
 
 | # | 阶段 | 斜杠命令 | 模式 |
 |---|------|----------|------|
@@ -14,7 +14,10 @@ description: Discuss → Plan → Task → Verify，可选 Research，强制 Ret
 | 2 | **Plan** | `/plan` | 必须 |
 | 3 | **Task** | `/task` | 必须 |
 | 4 | **Verify** | `/verify` | 必须 |
-| 5 | **Retro** | `/retro` | `/auto` 中强制，单独调用可选 |
+| 5 | **Ship** | `/ship` | 显式 —— 发布阶段（用户触发） |
+| — | **Retro** | `/retro` | `/auto` 中强制，单独调用可选 |
+
+**学习是自动的，不是一个阶段。** 每个完成的 workflow 把其 failure/loop/reject 信号追加到 `.planning/LEARNINGS.md`；inject hook 把相关 learnings 注入下个 session。这是 always-on 的，**不**依赖可选的 Retro。
 
 ### Research（可选）
 
@@ -48,11 +51,15 @@ description: Discuss → Plan → Task → Verify，可选 Research，强制 Ret
 
 ### Verify —— 7 项条件子检查
 
-`/verify` 根据变更内容派发子检查。始终运行：`verify-progress`（UAT + 状态同步）、`verify-code-review`（多 agent 并行）、`verify-simplify`（最终清理）。条件运行：偏执审查、QA、安全、设计。
+`/verify` 根据变更内容派发子检查。始终运行：`verify-progress`（UAT + 状态同步）、`verify-code-review`（多 agent 并行）、`verify-simplify`（最终清理）。条件运行：偏执审查、QA、安全、设计、multispec。
+
+### Ship —— 发布阶段
+
+`/ship` 是第 5 个阶段，在 Verify 之后。它先跑 `harnessed release-preflight`（只读发布就绪门 —— `CHANGELOG [Unreleased]`/version/git-clean/tag-absent），再把 PR + deploy 委派给 gstack `/ship`。**deploy 边界 = tag-ready**：本阶段不 push、不 publish、不创建 tag —— 实际 `npm publish` + GitHub release 由 `publish.yml` CI 在 tag push 时执行（需显式批准）。"PR ready ≠ release ready"。
 
 ### Retro
 
-gstack `/retro` 沉淀里程碑经验教训、决策记录和意外发现。在 `/auto` 中强制运行。可在任意里程碑结束时单独调用。
+gstack `/retro` 沉淀里程碑经验教训、决策记录和意外发现。在 `/auto` 中强制运行。可在任意里程碑结束时单独调用。（与上面 always-on 的 Learn 回环不同。）
 
 ## 流程图
 
@@ -74,20 +81,25 @@ graph TD
   subgraph V[④ Verify]
     VP[进度] & VC[代码审查] & VPa[偏执审查] & VQ[QA] & VS[安全] & VD[设计] & VSi[简化]
   end
-  RT([⑤ retro — /auto 中强制]):::optional
-  RS --> D --> P --> T --> V --> RT
+  subgraph S[⑤ Ship]
+    SP[ship-preflight]
+  end
+  RT([retro — 可选]):::optional
+  RS --> D --> P --> T --> V --> S --> RT
+  S == "🔁 learnings → 下个 cycle" ==> D
   classDef optional stroke-dasharray:5 5
 ```
 
 ## `/auto` 与单独阶段命令
 
-`/auto` 自动串联全部六个阶段。单独的阶段命令让你可以从任意阶段切入：
+`/auto` 自动串联核心开发阶段（research 条件 → discuss → plan → task → verify → retro）。**Ship 是显式的** —— `/auto` 不自动发版；里程碑准备好切版时你自己跑 `/ship`。单独的阶段命令让你可以从任意阶段切入：
 
 ```
 /discuss "添加限速中间件"     # 仅运行 discuss
 /plan "限速中间件"            # 仅运行 plan（假设 discuss 已完成）
 /task "实现中间件"            # 仅运行 task
 /verify "限速中间件功能"      # 仅运行 verify
+/ship                        # 仅运行 ship（release-preflight → tag-ready）
 ```
 
 外科手术式子工作流调用完全跳过主控：

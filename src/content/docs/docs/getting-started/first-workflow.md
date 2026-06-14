@@ -3,7 +3,7 @@ title: Your first workflow
 description: Walk through a real /discuss → /plan → /task → /verify cycle.
 ---
 
-This tutorial walks through the 4-stage cadence manually using a realistic example: **"Add a rate limiter to our Express API — 100 req/min per IP, Redis-backed."**
+This tutorial walks through the 5-stage cadence manually using a realistic example: **"Add a rate limiter to our Express API — 100 req/min per IP, Redis-backed."**
 
 ## Stage 1 — Discuss
 
@@ -80,4 +80,4 @@ This tutorial walks through the 4-stage cadence manually using a realistic examp
 
 After Verify completes, run `/retro` to close the milestone and capture lessons. If you ran `/auto` these stages would have chained automatically — see [Quickstart](/docs/getting-started/quickstart/) for the one-command path.
 
-For the architecture behind each stage, read [The 4-stage cadence](/docs/concepts/four-stage-cadence/).
+For the architecture behind each stage, read [The 5-stage cadence](/docs/concepts/four-stage-cadence/).

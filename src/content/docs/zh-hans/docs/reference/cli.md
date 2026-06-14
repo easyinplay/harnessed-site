@@ -104,7 +104,7 @@ harnessed run <master> --task "<spec>"
 
 ## `harnessed doctor`
 
-诊断本地 harnessed + Claude Code 安装 —— 检查 skills、manifests、settings、环境变量与上游可用性。
+诊断本地 harnessed + Claude Code 安装 —— 14 项健康检查（Node、MCP scope/可用性、jq、Windows bash、origin、gstack prefix、deprecations、token budget、Agent Teams env、planning-with-files、mattpocock-skills、CodeGraph、update-available）。
 
 ```bash
 harnessed doctor
@@ -113,43 +113,81 @@ harnessed doctor --json   # 机器可读报告
 
 ---
 
-## `harnessed list`
+## `harnessed update`
 
-列出已安装的包及其贡献的工作流。
+保持 harnessed（及可选的上游插件）最新。第 14 项 doctor check 也会被动提示 "update available X→Y"。
 
 ```bash
-harnessed list
+harnessed update                    # 自升级：npm i -g harnessed@latest + CHANGELOG + 重启提示
+harnessed update --check            # 只报告 installed/latest 版本，不安装
+harnessed update --upstreams        # 额外重跑 base manifests 升级上游插件
+harnessed update --migration-report # 只读盘点 stale harnessed 状态（不删除任何东西）
 ```
 
-输出已安装包的表格，包含名称、版本、描述和能力摘要（贡献的 skills + 工作流）。
+网络访问 fail-soft —— npm 不可达时绝不报错。
 
 ---
 
-## `harnessed schemas`
+## `harnessed release-preflight`
 
-将工作流和清单 JSON Schema 输出到 stdout。
+Ship 阶段的门。**只读**的发布就绪检查 —— repo 未就绪发版则 exit 1。不改任何东西（实际 publish 由 CI 在 tag push 时执行）。
 
 ```bash
-harnessed schemas
-# → 打印完整 JSON Schema
+harnessed release-preflight
+```
 
-harnessed schemas > workflow-schema.json
-# → 写入文件供 IDE 集成
+检查项：`CHANGELOG.md` 的 `[Unreleased]`（或 `[<version>]` 段）非空、`package.json` 有合法 version、工作树干净（tracked 改动）、`v<version>` tag 尚未存在。
+
+---
+
+## `harnessed compact`
+
+总结+驱逐已解决的 sub-progress ledger 条目，为长任务释放上下文。**G6-safe**：`fail_count > 0` 的条目永不驱逐，break-loop 信号得以保留。
+
+```bash
+harnessed compact                                  # 手动 compaction
+harnessed checkpoint complete <sub> --tokens <n>   # token 数越过阈值时自动触发
 ```
 
 ---
 
-## `harnessed validate <path>`
+## `harnessed workflows`
 
-对照 `harnessed.workflow.v3` schema 验证清单文件。
+列出在飞的 workflow —— 每个 repo 一个（harnessed 按 repo root 给 checkpoint 状态分槽，并行项目不再互相覆盖）。
 
 ```bash
-harnessed validate ./my-pack/workflow.yaml
-# → ✓ valid
-# 或：✗ invalid —— 带行号的错误信息
+harnessed workflows
 ```
 
-有效返回退出码 `0`，无效返回 `1`。
+---
+
+## `harnessed learn`
+
+向当前 repo 的 `.planning/LEARNINGS.md` 追加一条 prose learning。完成的 workflow 也会自动追加其 failure/loop/reject 信号；inject hook 把相关 learnings 注入下个 session。
+
+```bash
+harnessed learn "别盲目重试迁移 —— 它需要先拿一个干净快照"
+```
+
+---
+
+## `harnessed next`
+
+打印当前 workflow 的确定性 next-step 契约。
+
+```bash
+harnessed next   # → NEXT: auto <sub> | manual <sub> | done
+```
+
+---
+
+## `harnessed reject <sub>`
+
+把某个 sub-workflow 标记为用户拒绝 —— 终态，区别于 `failed`（`failed` 驱动 break-loop 重试逻辑）。
+
+```bash
+harnessed reject <sub>
+```
 
 ---
 

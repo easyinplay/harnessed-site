@@ -9,12 +9,12 @@ interface Props {
 const { lang } = Astro.props
 const dict = t(lang)
 
-const stageKeys = ['research', 'discuss', 'plan', 'task', 'verify', 'retro'] as const
+const stageKeys = ['research', 'discuss', 'plan', 'task', 'verify', 'ship', 'retro'] as const
 const stages = stageKeys.map((key, i) => ({
-  num: ['①', '②', '③', '④', '⑤', '⑥'][i],
+  num: ['①', '②', '③', '④', '⑤', '⑥', '⑦'][i],
   name: dict.workflowSection.stages[key].name,
   role: dict.workflowSection.stages[key].role,
-  optional: key === 'research',
+  optional: key === 'research' || key === 'retro',
 }))
 ---
 
