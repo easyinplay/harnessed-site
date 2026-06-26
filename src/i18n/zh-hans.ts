@@ -128,7 +128,7 @@ const zhHans: Dict = {
         num: '3',
         title: '装配',
         cmd: '/auto research a new feature',
-        caption: '在 Claude Code 中运行，六阶段流水线自动接管。',
+        caption: '在你的 AI 编程 agent 中运行，六阶段流水线自动接管。',
       },
     ],
   },
@@ -154,8 +154,8 @@ const zhHans: Dict = {
         a: 'harnessed 是 AI 编程脚手架的包管理器与装配编排器。它通过类型化清单安装、装配并运行整合了 Skills、MCP 服务器及其他脚手架包的工作流 —— 无需 vendor 上游代码。',
       },
       {
-        q: '需要先熟悉 Claude Code 吗？',
-        a: '需要 —— harnessed 在 Claude Code 内运行。执行 `harnessed setup` 后，`/auto`、`/discuss` 等斜杠命令即可使用。如果你刚接触 Claude Code，请访问 anthropic.com/claude/code。',
+        q: '它在哪个 AI 编程 agent 里运行？',
+        a: 'harnessed 在 AI 编程 agent 内运行。Claude Code 是主要目标 —— 执行 `harnessed setup` 后，`/auto`、`/discuss` 等斜杠命令即可使用（刚接触 Claude Code？访问 anthropic.com/claude/code）。Codex 等其他 harness 通过跨 harness 平台层支持。',
       },
       {
         q: '不 vendor 上游怎么做装配？',

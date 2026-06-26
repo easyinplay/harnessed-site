@@ -1,9 +1,9 @@
 ---
 title: Workflow reference
-description: All 27 composable workflows shipped with harnessed v4.5.0.
+description: All 27 composable workflows shipped with harnessed v4.9.1.
 ---
 
-harnessed v4.5.0 ships 27 namespace-layered workflows organized into one super-master, five stage masters (Discuss · Plan · Task · Verify · Ship), 19 sub-workflows, and two standalones.
+harnessed v4.9.1 ships 27 namespace-layered workflows organized into one super-master, five stage masters (Discuss · Plan · Task · Verify · Ship), 19 sub-workflows, and two standalones.
 
 ## Super-master
 

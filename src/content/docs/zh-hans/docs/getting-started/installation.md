@@ -6,7 +6,7 @@ description: 30 秒内安装 harnessed 并完成初始化。
 ## 前提条件
 
 - **Node.js 22+** — harnessed 使用 ESM，需要 Node 22 或更高版本
-- **Claude Code** — harnessed 在 Claude Code 内运行，请先从 [anthropic.com/claude/code](https://anthropic.com/claude/code) 安装
+- **一个 AI 编程 agent** — harnessed 在其内运行。Claude Code 是主要目标（先从 [anthropic.com/claude/code](https://anthropic.com/claude/code) 安装）；Codex 等其他 harness 通过跨 harness 平台层支持
 
 ## 安装
 

@@ -126,7 +126,7 @@ const en = {
         num: '3',
         title: 'Compose',
         cmd: '/auto research a new feature',
-        caption: 'Run inside Claude Code. The 6-stage pipeline takes over.',
+        caption: 'Run inside your AI coding agent. The 6-stage pipeline takes over.',
       },
     ],
   },
@@ -152,8 +152,8 @@ const en = {
         a: 'harnessed is the package manager and composition orchestrator for AI coding harnesses. It installs, composes, and runs workflows that combine Skills, MCP servers, and other harness packs through a typed manifest — without vendoring upstream code.',
       },
       {
-        q: 'Do I need to know Claude Code first?',
-        a: "Yes — harnessed runs inside Claude Code. After `harnessed setup`, slash commands like `/auto` and `/discuss` become available. If you're new to Claude Code, see anthropic.com/claude/code.",
+        q: 'Which AI coding agent does it run in?',
+        a: "harnessed runs inside an AI coding agent. Claude Code is the primary target — after `harnessed setup`, slash commands like `/auto` and `/discuss` become available (new to Claude Code? see anthropic.com/claude/code). Codex and other harnesses are supported via the cross-harness platform layer.",
       },
       {
         q: 'How does composition work without vendoring?',

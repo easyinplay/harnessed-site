@@ -1,9 +1,9 @@
 ---
 title: 工作流参考
-description: harnessed v4.5.0 附带的全部 27 个可装配工作流。
+description: harnessed v4.9.1 附带的全部 27 个可装配工作流。
 ---
 
-harnessed v4.5.0 提供 27 个按命名空间分层的工作流：一个超级主控、五个阶段主控（Discuss · Plan · Task · Verify · Ship）、19 个子工作流和两个独立工作流。
+harnessed v4.9.1 提供 27 个按命名空间分层的工作流：一个超级主控、五个阶段主控（Discuss · Plan · Task · Verify · Ship）、19 个子工作流和两个独立工作流。
 
 ## 超级主控
 

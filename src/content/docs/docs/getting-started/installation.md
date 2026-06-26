@@ -6,7 +6,7 @@ description: Install harnessed and run setup in 30 seconds.
 ## Prerequisites
 
 - **Node.js 22+** — harnessed uses ESM and requires Node 22 or newer
-- **Claude Code** — harnessed runs inside Claude Code; install it first from [anthropic.com/claude/code](https://anthropic.com/claude/code)
+- **An AI coding agent** — harnessed runs inside one. Claude Code is the primary target (install it from [anthropic.com/claude/code](https://anthropic.com/claude/code)); Codex and other harnesses are supported via the cross-harness platform layer
 
 ## Install
 
