@@ -19,9 +19,9 @@ const zhHans: Dict = {
     versionPill: 'v4.9.1 · 装配 100+ 项 capability',
     h1: 'AI 编程脚手架的包管理器',
     positioning:
-      'Claude Code 上 Harness Engineering 的可执行引擎 —— 把你 CLAUDE.md 的协作规则机器化为路由大脑。',
+      '不止是包管理器,更是装配编排器 —— 把市面上最优秀的开源生态组件,用「三层栈」协作方法论编排成一个可执行的 engine。',
     tagline:
-      '在一份清单中编排 Skills · MCP · Workflows。省去手工拼装的痛苦 —— 一条命令安装经过验证的脚手架包。',
+      'gstack 决策 · GSD 项目经理 · superpowers 资深工程师 · karpathy 心法 · mattpocock 招式 · ECC 黑客松冠军配置 —— 一条命令装配就位。',
     ctaStart: '立即开始',
     ctaGitHub: '在 GitHub 查看',
     meta: 'Apache-2.0 · Node 22+ · 跨平台',
@@ -72,7 +72,7 @@ const zhHans: Dict = {
       body: '套在任意档位外层，守住 verbatim COMPLETE 完成承诺。',
     },
     footnote:
-      '12 道 judgment gate 把你 CLAUDE.md 的协作规则 —— 并行路由、TDD 触发、三层澄清 —— 从静态文档机器化为路由引擎。',
+      '12 道 judgment gate 把你的 AI 协作规则 —— 并行路由、TDD 触发、三层澄清 —— 从静态约定机器化为路由引擎。',
   },
   workflowSection: {
     heading: '一条命令，五个阶段，零样板代码。',

@@ -17,9 +17,9 @@ const en = {
     versionPill: 'v4.9.1 · 100+ capabilities composed',
     h1: 'The package manager for AI coding harnesses',
     positioning:
-      'The executable engine for Harness Engineering on Claude Code — your CLAUDE.md collaboration rules, mechanized into a routing brain.',
+      'More than a package manager — a composition orchestrator. It assembles the best of the open-source ecosystem into one executable engine, wired by a three-layer collaboration methodology.',
     tagline:
-      'Compose Skills · MCP · Workflows in one manifest. Skip the curation pain — install proven harness packs in a single command.',
+      'gstack for decisions · GSD as project manager · superpowers senior engineering · karpathy mindset · mattpocock moves · ECC hackathon-grade config — composed in a single command.',
     ctaStart: 'Get Started',
     ctaGitHub: 'View on GitHub',
     meta: 'Apache-2.0 · Node 22+ · Cross-platform',
@@ -70,7 +70,7 @@ const en = {
       body: 'Wraps any tier and holds it to a verbatim COMPLETE completion-promise.',
     },
     footnote:
-      '12 judgment gates mechanize your CLAUDE.md collaboration rules — parallelism, TDD triggers, three-layer clarification — turning static docs into a routing engine.',
+      '12 judgment gates mechanize your AI-collaboration rules — parallelism, TDD triggers, three-layer clarification — turning static conventions into a routing engine.',
   },
   workflowSection: {
     heading: 'One command. Five stages. Zero boilerplate.',
