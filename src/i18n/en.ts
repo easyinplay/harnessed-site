@@ -1,7 +1,7 @@
 const en = {
   promoBar: {
     items: [
-      'v4.5.0 released — cross-session learning loop + Ship stage + per-repo workflows',
+      'v4.9.1 — CC-native /auto orchestration · session-scoped workflow state · Codex + zh-Hans i18n',
       'Auto-routed subagents → Agent Teams, decided per subtask',
       'Composing ECC · Superpowers · GSD · gstack',
       'Apache-2.0 · Node 22+ · Cross-platform',
@@ -14,7 +14,7 @@ const en = {
     npm: 'npm',
   },
   hero: {
-    versionPill: 'v4.5.0 · 100+ capabilities composed',
+    versionPill: 'v4.9.1 · 100+ capabilities composed',
     h1: 'The package manager for AI coding harnesses',
     positioning:
       'The executable engine for Harness Engineering on Claude Code — your CLAUDE.md collaboration rules, mechanized into a routing brain.',
@@ -135,7 +135,7 @@ const en = {
     stats: [
       { value: '100+', label: 'Capabilities composed (ECC · Superpowers · GSD · gstack)' },
       { value: '27', label: 'Workflows shipped' },
-      { value: 'v4.5.0', label: 'Latest release · Apache-2.0' },
+      { value: 'v4.9.1', label: 'Latest release · Apache-2.0' },
     ],
     links: {
       discussions: 'GitHub Discussions →',

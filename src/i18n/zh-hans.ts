@@ -3,7 +3,7 @@ import type { Dict } from './en'
 const zhHans: Dict = {
   promoBar: {
     items: [
-      'v4.5.0 发布 —— 跨 session 学习回环 + Ship 阶段 + per-repo workflows',
+      'v4.9.1 —— CC-native /auto 编排 · 会话级 workflow 状态 · Codex + 简中 i18n',
       'Subagent → Agent Teams 自动路由，按子任务决策',
       '已装配 ECC · Superpowers · GSD · gstack',
       'Apache-2.0 · Node 22+ · 跨平台',
@@ -16,7 +16,7 @@ const zhHans: Dict = {
     npm: 'npm',
   },
   hero: {
-    versionPill: 'v4.5.0 · 装配 100+ 项 capability',
+    versionPill: 'v4.9.1 · 装配 100+ 项 capability',
     h1: 'AI 编程脚手架的包管理器',
     positioning:
       'Claude Code 上 Harness Engineering 的可执行引擎 —— 把你 CLAUDE.md 的协作规则机器化为路由大脑。',
@@ -137,7 +137,7 @@ const zhHans: Dict = {
     stats: [
       { value: '100+', label: '已装配 capability (ECC · Superpowers · GSD · gstack)' },
       { value: '27', label: '已发布工作流' },
-      { value: 'v4.5.0', label: '最新版本 · Apache-2.0' },
+      { value: 'v4.9.1', label: '最新版本 · Apache-2.0' },
     ],
     links: {
       discussions: 'GitHub Discussions →',
