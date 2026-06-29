@@ -1,0 +1,97 @@
+---
+import { t } from '../i18n'
+import type { Locale } from '../i18n'
+
+interface Props {
+  lang: Locale
+}
+
+const { lang } = Astro.props
+const dict = t(lang)
+const { heading, subheading, colLayer, colQuestion, colComposed, layers, nested, intersections, crossCutting, runtime } =
+  dict.threeLayerStack
+---
+
+<section data-fade class="py-24 bg-[#0F0F15]">
+  <div class="max-w-6xl mx-auto px-6">
+    <h2 class="text-[32px] leading-[42px] font-medium text-white text-center">{heading}</h2>
+    <p class="mt-3 text-zinc-400 text-center max-w-3xl mx-auto leading-relaxed">{subheading}</p>
+
+    <!-- triple-loop table: ① Behavior / ② Spec / ③ Implementation -->
+    <div class="mt-14 flex flex-col gap-3">
+      <!-- header row (md+) -->
+      <div class="hidden md:grid grid-cols-[180px_1fr_1.4fr] gap-4 px-6 text-[11px] uppercase tracking-wide text-zinc-500">
+        <span>{colLayer}</span>
+        <span>{colQuestion}</span>
+        <span>{colComposed}</span>
+      </div>
+      {
+        layers.map((layer) => (
+          <div class="rounded-xl bg-[#15151D] border border-violet-400/10 hover:border-violet-400/30 transition-colors p-6 md:grid md:grid-cols-[180px_1fr_1.4fr] md:gap-4 md:items-center">
+            <div class="flex items-center gap-3">
+              <span class="text-violet-400/40 text-2xl font-mono leading-none">{layer.num}</span>
+              <div class="flex flex-col">
+                <span class="text-white font-medium leading-snug">{layer.name}</span>
+                <span class="self-start mt-1 text-[11px] uppercase tracking-wide px-2 py-0.5 rounded-full bg-violet-400/15 text-violet-300">
+                  {layer.loop}
+                </span>
+              </div>
+            </div>
+            <p class="mt-4 md:mt-0 text-zinc-300 text-sm leading-relaxed">{layer.question}</p>
+            <p class="mt-3 md:mt-0 text-violet-400/70 text-xs font-mono leading-relaxed">{layer.composed}</p>
+          </div>
+        ))
+      }
+    </div>
+
+    <!-- nested lenses + go-back band -->
+    <div
+      class="mt-3 rounded-xl border border-dashed border-violet-400/25 bg-[#15151D]/50 px-6 py-5 flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-4"
+    >
+      <span class="text-[11px] uppercase tracking-wide px-2 py-0.5 rounded-full bg-zinc-700/30 text-zinc-400 flex-shrink-0">
+        {nested.label}
+      </span>
+      <p class="text-zinc-400 text-sm leading-relaxed">{nested.body}</p>
+    </div>
+
+    <!-- component intersections + cross-cutting disciplines -->
+    <div class="mt-3 grid grid-cols-1 md:grid-cols-2 gap-3">
+      <div class="rounded-xl bg-[#15151D] border border-violet-400/10 p-6">
+        <h3 class="text-[16px] font-medium text-white">{intersections.label}</h3>
+        <p class="mt-1 text-zinc-500 text-sm leading-relaxed">{intersections.body}</p>
+        <ul class="mt-4 flex flex-col gap-2.5">
+          {
+            intersections.items.map((item) => (
+              <li class="text-sm leading-relaxed">
+                <span class="text-violet-300 font-mono">{item.name}</span>
+                <span class="text-zinc-400"> {item.body}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+      <div class="rounded-xl bg-[#15151D] border border-violet-400/10 p-6">
+        <h3 class="text-[16px] font-medium text-white">{crossCutting.label}</h3>
+        <p class="mt-1 text-zinc-500 text-sm leading-relaxed">{crossCutting.body}</p>
+        <ul class="mt-4 flex flex-col gap-2.5">
+          {
+            crossCutting.items.map((item) => (
+              <li class="text-sm leading-relaxed">
+                <span class="text-violet-300 font-mono">{item.name}</span>
+                <span class="text-zinc-400"> {item.body}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+
+    <!-- runtime mapping -->
+    <div class="mt-3 rounded-xl bg-[#1A1622] border border-violet-400/40 shadow-[0_0_0_1px_rgba(167,139,250,0.15)] px-6 py-5 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+      <span class="text-[11px] uppercase tracking-wide px-2 py-0.5 rounded-full bg-violet-400/15 text-violet-300 flex-shrink-0">
+        {runtime.label}
+      </span>
+      <p class="text-zinc-300 text-sm leading-relaxed">{runtime.body}</p>
+    </div>
+  </div>
+</section>

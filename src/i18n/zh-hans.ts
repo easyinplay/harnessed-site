@@ -19,7 +19,7 @@ const zhHans: Dict = {
     versionPill: 'v4.9.1 · 装配 100+ 项 capability',
     h1: 'AI 编程脚手架的包管理器',
     positioning:
-      '不止是包管理器,更是装配编排器 —— 把市面上最优秀的开源生态组件,用「三层栈」协作方法论编排成一个可执行的 engine。',
+      '不止是包管理器,更是装配编排器 —— 把市面上最优秀的开源生态组件,用「三层栈」(BDD → SDD → TDD) 方法论编排成一个可执行的 engine。',
     tagline:
       'gstack 决策 · GSD 项目经理 · superpowers 资深工程师 · karpathy 心法 · mattpocock 招式 · ECC 黑客松冠军配置 —— 一条命令装配就位。',
     ctaStart: '立即开始',
@@ -40,6 +40,62 @@ const zhHans: Dict = {
     card3: {
       title: 'Dogfood 优先方法论',
       body: '每个工作流都用自身定义来验证。这是 harnessed 自己交付时所遵循的纪律。',
+    },
+  },
+  threeLayerStack: {
+    heading: '三个嵌套回环，而非三个阶段',
+    subheading:
+      '三层栈不是 harnessed 自创的 —— 它是软件工程公认的 BDD → SDD → TDD 嵌套。三个 loop，各自回答一个不同的问题。harnessed 把开源生态组合进每个 loop —— 而这些组件部分交集，这正是装配编排器需要仲裁的地方。',
+    colLayer: '层 / Loop',
+    colQuestion: '回答的问题',
+    colComposed: '由哪些组件组合（彼此交集）',
+    layers: [
+      {
+        num: '①',
+        name: 'Behavior',
+        loop: 'BDD',
+        question: '做什么，以及怎样算做完。',
+        composed: 'gstack /office-hours governance · GSD discuss · superpowers brainstorming → acceptance criteria',
+      },
+      {
+        num: '②',
+        name: 'Spec',
+        loop: 'SDD',
+        question: '怎样组织结构。',
+        composed: 'GSD plan-phase → requirements / design / tasks · contracts（Spec Kit / ECC patterns）',
+      },
+      {
+        num: '③',
+        name: 'Implementation',
+        loop: 'TDD',
+        question: '它是否真的能跑通。',
+        composed: 'superpowers TDD red-green · subagent execution · GSD verify-work · ralph-loop completion',
+      },
+    ],
+    nested: {
+      label: 'Nested lenses',
+      body: '这些 loop 是嵌套的镜头（nested lenses），不是阶段。Cucumber 的 BDD-outer + TDD-inner 双环，在 GenAI 时代外扩出一个 SDD spec 环 → 三层回环（triple-loop）。harnessed 是这个 triple-loop 的 linear-cadence 实现 —— 完整的 routed graph 是它的演进方向。默认遍历是 outer → inner；今天真正 ship 的回转边有 3 条：Verify → Task（失败的检查把工作打回）、subagent 撞灰区时的 STATUS: NEEDS_CLARIFICATION、以及每个 shipped cycle 的 learnings 喂回下一轮 Discuss。更细粒度的结构化回转 —— contract 矛盾路由回 Spec、需求歧义回 Behavior —— 属于 roadmap，尚未 ship。',
+    },
+    intersections: {
+      label: '组件交集',
+      body: '交集正是重点 —— 它就是装配编排器要仲裁的对象。',
+      items: [
+        { name: 'GSD', body: '是 backbone，贯穿全部三个环 —— discuss、plan、verify。' },
+        { name: 'gstack', body: '横跨 Behavior + Review。' },
+        { name: 'superpowers', body: '横跨 Behavior（brainstorm）+ Implementation（TDD）。' },
+      ],
+    },
+    crossCutting: {
+      label: '横切 disciplines',
+      body: '两个 discipline 贯穿每一层。',
+      items: [
+        { name: 'karpathy principles', body: 'how to code —— 最小可行改动、外科手术式编辑。' },
+        { name: 'mattpocock moves', body: '按需召唤的工具，看场景取用。' },
+      ],
+    },
+    runtime: {
+      label: '映射到 runtime',
+      body: 'Discuss = Behavior · Plan = Spec · Build = Implementation · Verify + Ship 以 evidence gate 收尾闭环。',
     },
   },
   orchestration: {

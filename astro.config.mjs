@@ -51,6 +51,7 @@ export default defineConfig({
           translations: { 'zh-Hans': '核心概念' },
           items: [
             { label: 'Composition over vendoring', slug: 'docs/concepts/composition', translations: { 'zh-Hans': '装配主义' } },
+            { label: 'The three-layer stack', slug: 'docs/concepts/three-layer-stack', translations: { 'zh-Hans': '三层栈' } },
             { label: 'The 4-stage cadence', slug: 'docs/concepts/four-stage-cadence', translations: { 'zh-Hans': '四阶段节奏' } },
             { label: 'Dogfood-first methodology', slug: 'docs/concepts/dogfood-first', translations: { 'zh-Hans': 'Dogfood 优先方法论' } },
           ],

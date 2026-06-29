@@ -17,7 +17,7 @@ const en = {
     versionPill: 'v4.9.1 · 100+ capabilities composed',
     h1: 'The package manager for AI coding harnesses',
     positioning:
-      'More than a package manager — a composition orchestrator. It assembles the best of the open-source ecosystem into one executable engine, wired by a three-layer collaboration methodology.',
+      'More than a package manager — a composition orchestrator. It assembles the best of the open-source ecosystem into one executable engine, wired by the three-layer BDD → SDD → TDD methodology.',
     tagline:
       'gstack for decisions · GSD as project manager · superpowers senior engineering · karpathy mindset · mattpocock moves · ECC hackathon-grade config — composed in a single command.',
     ctaStart: 'Get Started',
@@ -38,6 +38,62 @@ const en = {
     card3: {
       title: 'Dogfood-first methodology',
       body: 'Every workflow is validated against its own definition. The same discipline that ships harnessed itself.',
+    },
+  },
+  threeLayerStack: {
+    heading: 'Three nested loops, not three phases',
+    subheading:
+      "The three-layer stack isn't ours — it's the established BDD → SDD → TDD nesting from software engineering. Three loops, each answering a different question. harnessed composes the open-source ecosystem into each loop — and the components partially overlap, which is exactly what a composition orchestrator has to arbitrate.",
+    colLayer: 'Layer / Loop',
+    colQuestion: 'Question it answers',
+    colComposed: 'Composed from (overlapping)',
+    layers: [
+      {
+        num: '①',
+        name: 'Behavior',
+        loop: 'BDD',
+        question: 'What to build, and how we know it is done.',
+        composed: 'gstack /office-hours governance · GSD discuss · superpowers brainstorming → acceptance criteria',
+      },
+      {
+        num: '②',
+        name: 'Spec',
+        loop: 'SDD',
+        question: 'How it is structured.',
+        composed: 'GSD plan-phase → requirements / design / tasks · contracts (Spec Kit / ECC patterns)',
+      },
+      {
+        num: '③',
+        name: 'Implementation',
+        loop: 'TDD',
+        question: 'Does it actually work.',
+        composed: 'superpowers TDD red-green · subagent execution · GSD verify-work · ralph-loop completion',
+      },
+    ],
+    nested: {
+      label: 'Nested lenses',
+      body: "The loops are nested lenses, not phases. Cucumber's BDD-outer + TDD-inner double-loop, extended in the GenAI era with an SDD spec ring → a triple-loop. harnessed is the linear-cadence realization of this triple-loop — the full routed graph is its evolution path. The default traversal is outer → inner; three feedback edges ship today: Verify → Task (a failed check pushes work back), a subagent's STATUS: NEEDS_CLARIFICATION on a gray area, and each shipped cycle's learnings feeding the next Discuss. Finer-grained structured returns — a contract contradiction routing to Spec, a requirement ambiguity to Behavior — are on the roadmap, not yet shipped.",
+    },
+    intersections: {
+      label: 'Components intersect',
+      body: 'The overlap is the point — it is what the composition orchestrator arbitrates.',
+      items: [
+        { name: 'GSD', body: 'is the backbone, threading all three rings — discuss, plan, verify.' },
+        { name: 'gstack', body: 'spans Behavior + Review.' },
+        { name: 'superpowers', body: 'spans Behavior (brainstorm) + Implementation (TDD).' },
+      ],
+    },
+    crossCutting: {
+      label: 'Cross-cutting disciplines',
+      body: 'Two disciplines run through every layer.',
+      items: [
+        { name: 'karpathy principles', body: 'how to code — smallest viable change, surgical edits.' },
+        { name: 'mattpocock moves', body: 'on-demand tools, summoned per situation.' },
+      ],
+    },
+    runtime: {
+      label: 'Mapped to the runtime',
+      body: 'Discuss = Behavior · Plan = Spec · Build = Implementation · Verify + Ship close the loop with evidence gates.',
     },
   },
   orchestration: {
