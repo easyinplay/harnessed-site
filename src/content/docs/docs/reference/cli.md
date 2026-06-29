@@ -173,11 +173,49 @@ harnessed learn "avoid retrying the migration blindly — it needs a fresh snaps
 
 ## `harnessed next`
 
-Print the deterministic next-step contract for the active workflow.
+Print the deterministic next-step contract — read-only, no state mutation. Two layers:
+
+1. **Mid-flight workflow** (a sub is still pending) → the intra-workflow contract `NEXT: auto <sub> | manual <sub> | done` (exit `0`, unchanged).
+2. **Subs all resolved** → falls through to **cross-unit forward continuation** (v4.10): derives the next work unit (next phase / task) from the `.planning/` disk SoT and prints `NEXT: advance | blocked | done`.
 
 ```bash
-harnessed next   # → NEXT: auto <sub> | manual <sub> | done
+harnessed next
+# mid-flight:   NEXT: auto <sub>
+# fall-through: NEXT: advance
+#               UNIT: phase 16 'rate limiter'
+#               HINT: run /auto (or harnessed advance) to start it — 2 phases remain
 ```
+
+**Cross-unit exit codes:** `0` = advance (next unit available) · `2` = done (all phases complete) · `10` = blocked (human decision needed).
+
+---
+
+## `harnessed advance`
+
+Advance to the next work unit derived from the `.planning/` disk SoT — **print-only**. It prints the next phase/task and the command to run (e.g. `→ run /auto "..."`) but does **not** seed state or spawn anything; the main session runs the emitted command itself, keeping clarification round-trips and Agent Teams reachable.
+
+```bash
+harnessed advance
+# ADVANCE: advance
+# UNIT: phase 16 'rate limiter'
+# → run /auto "phase 16 'rate limiter'"
+```
+
+**Advance-gate.** `advance` refuses to step past an earlier *incomplete* phase (the "comet" gate): if the derived next phase orders before the workflow pointer, or a failed sub blocks the ledger, it exits non-zero **without** printing a run command. Pass `--force` to override — this records an audit note in the output and proceeds.
+
+```bash
+harnessed advance --force   # override the gate (audit note recorded)
+```
+
+**Driver loop.** `--json` emits a machine-readable `{ next, unit, hint }` so a shell loop can chain phases hands-free — the loop stops on any non-zero exit (done / blocked / gate-reject):
+
+```bash
+while harnessed advance --json; do : ; done
+```
+
+**Exit codes:** `0` = advance · `2` = done (all phases complete) · `10` = blocked · `11` = gate-reject (earlier phase incomplete; use `--force`) · `1` = error.
+
+**Design — derive, don't queue.** "Next" is always derived from disk, never from a stored queue. A phase counts complete when every `NN-*-PLAN.md` has a matching `NN-*-SUMMARY.md` (artifact-derived, so already-shipped phases are skipped naturally). Insert a phase mid-flight (edit `ROADMAP.md` or add `phases/16.1-*/`) and the next `advance` picks it up automatically. Phase-level continuation is the shipped floor; task-level resolution is resolver-ready but not yet wired to the CLI.
 
 ---
 

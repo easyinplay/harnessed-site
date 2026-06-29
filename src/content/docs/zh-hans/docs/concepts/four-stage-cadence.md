@@ -102,6 +102,8 @@ graph TD
 /ship                        # 仅运行 ship（release-preflight → tag-ready）
 ```
 
+跨*多个* phase 时，`harnessed advance` 从 `.planning/` 磁盘状态派生下一个 phase 并打印该跑的命令 —— 于是一个 driver loop 可以 hands-free 串联多个 phase（`while harnessed advance --json; do : ; done`），当更早的 phase 未完成时在 advance-gate 处停下。详见 [CLI 参考](../../reference/cli/) 的 `harnessed advance` 条目。
+
 外科手术式子工作流调用完全跳过主控：
 
 ```

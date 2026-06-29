@@ -45,7 +45,7 @@ const zhHans: Dict = {
   threeLayerStack: {
     heading: '三个嵌套回环，而非三个阶段',
     subheading:
-      '三层栈不是 harnessed 自创的 —— 它是软件工程公认的 BDD → SDD → TDD 嵌套。三个 loop，各自回答一个不同的问题。harnessed 把开源生态组合进每个 loop —— 而这些组件部分交集，这正是装配编排器需要仲裁的地方。',
+      'harnessed 的三层栈方案是软件工程上 BDD → SDD → TDD 三者的嵌套实现。三个 loop，各自回答一个不同的问题。harnessed 把开源生态组合进每个 loop —— 而这些组件部分交集，这正是装配编排器需要仲裁的地方。',
     colLayer: '层 / Loop',
     colQuestion: '回答的问题',
     colComposed: '由哪些组件组合（彼此交集）',

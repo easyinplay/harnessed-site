@@ -102,6 +102,8 @@ graph TD
 /ship                           # run only ship (release-preflight → tag-ready)
 ```
 
+Across *multiple* phases, `harnessed advance` derives the next phase from `.planning/` disk state and prints the command to run — so a driver loop chains phases hands-free (`while harnessed advance --json; do : ; done`), stopping at the advance-gate when an earlier phase is left incomplete. See the `harnessed advance` entry in the [CLI reference](../../reference/cli/).
+
 Surgical sub-workflow invocation skips the master entirely:
 
 ```

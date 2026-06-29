@@ -173,11 +173,49 @@ harnessed learn "别盲目重试迁移 —— 它需要先拿一个干净快照"
 
 ## `harnessed next`
 
-打印当前 workflow 的确定性 next-step 契约。
+打印确定性的 next-step 契约 —— 只读，不修改状态。两层：
+
+1. **workflow 在飞**（仍有 sub 待处理）→ 沿用 workflow 内契约 `NEXT: auto <sub> | manual <sub> | done`（exit `0`，不变）。
+2. **subs 全部 resolved** → fall-through 到**跨 unit 横向续作**（v4.10）：从 `.planning/` 磁盘 SoT 派生下一个 work unit（下一 phase / task），打印 `NEXT: advance | blocked | done`。
 
 ```bash
-harnessed next   # → NEXT: auto <sub> | manual <sub> | done
+harnessed next
+# 在飞：        NEXT: auto <sub>
+# fall-through: NEXT: advance
+#               UNIT: phase 16 'rate limiter'
+#               HINT: run /auto (or harnessed advance) to start it — 2 phases remain
 ```
+
+**跨 unit 退出码：** `0` = advance（有下一个 unit）· `2` = done（所有 phase 完成）· `10` = blocked（需人工决策）。
+
+---
+
+## `harnessed advance`
+
+推进到从 `.planning/` 磁盘 SoT 派生的下一个 work unit —— **print-only（只打印）**。它打印下一个 phase/task 以及该跑的命令（如 `→ run /auto "..."`），但**不** seed 状态、**不** spawn；由 main session 自己跑打印出来的命令，从而保留澄清往返与 Agent Teams。
+
+```bash
+harnessed advance
+# ADVANCE: advance
+# UNIT: phase 16 'rate limiter'
+# → run /auto "phase 16 'rate limiter'"
+```
+
+**advance-gate。** `advance` 拒绝越过更早的*未完成* phase（"comet" gate）：若派生出的下一个 phase 排序早于 workflow pointer，或有失败的 sub 阻塞 ledger，它会非零退出且**不**打印 run 命令。加 `--force` 覆盖 —— 会在输出里记一条 audit note 然后继续。
+
+```bash
+harnessed advance --force   # 覆盖 gate（记录 audit note）
+```
+
+**driver loop。** `--json` 输出机器可读的 `{ next, unit, hint }`，让 shell 循环 hands-free 串联多个 phase —— 循环在任何非零退出时停止（done / blocked / gate-reject）：
+
+```bash
+while harnessed advance --json; do : ; done
+```
+
+**退出码：** `0` = advance · `2` = done（所有 phase 完成）· `10` = blocked · `11` = gate-reject（更早的 phase 未完成；用 `--force`）· `1` = error。
+
+**设计 —— 从磁盘派生，不维护队列。** “下一个”始终从磁盘派生，绝不来自存储的队列。一个 phase 算完成 ⇔ 每个 `NN-*-PLAN.md` 都有匹配的 `NN-*-SUMMARY.md`（artifact-derived，所以已 ship 的 phase 天然被跳过）。中途插入 phase（改 `ROADMAP.md` 或加 `phases/16.1-*/`），下一次 `advance` 自动捡起。phase 级续作是 shipped floor；task 级 resolution 已 resolver-ready 但尚未接到 CLI。
 
 ---
 

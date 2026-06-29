@@ -3,7 +3,7 @@ title: The three-layer stack
 description: BDD → SDD → TDD as three nested feedback loops, each composed from the open-source ecosystem.
 ---
 
-The three-layer stack is harnessed's theory of *why* the cadence is shaped the way it is. It isn't a harnessed invention — it's the established **BDD → SDD → TDD** nesting from software engineering: three nested feedback loops, each answering a different question. harnessed's contribution is to **compose** the open-source ecosystem into each loop — and because the upstream components *partially overlap*, arbitrating that overlap is exactly the job of a composition orchestrator.
+The three-layer stack is harnessed's theory of *why* the cadence is shaped the way it is. It is harnessed's implementation of software engineering's established **BDD → SDD → TDD** nesting: three nested feedback loops, each answering a different question. harnessed's contribution is to **compose** the open-source ecosystem into each loop — and because the upstream components *partially overlap*, arbitrating that overlap is exactly the job of a composition orchestrator.
 
 ## The three loops
 

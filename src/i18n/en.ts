@@ -43,7 +43,7 @@ const en = {
   threeLayerStack: {
     heading: 'Three nested loops, not three phases',
     subheading:
-      "The three-layer stack isn't ours — it's the established BDD → SDD → TDD nesting from software engineering. Three loops, each answering a different question. harnessed composes the open-source ecosystem into each loop — and the components partially overlap, which is exactly what a composition orchestrator has to arbitrate.",
+      "harnessed's three-layer stack is a software-engineering implementation of the established BDD → SDD → TDD nesting. Three loops, each answering a different question. harnessed composes the open-source ecosystem into each loop — and the components partially overlap, which is exactly what a composition orchestrator has to arbitrate.",
     colLayer: 'Layer / Loop',
     colQuestion: 'Question it answers',
     colComposed: 'Composed from (overlapping)',
