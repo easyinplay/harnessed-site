@@ -1,9 +1,9 @@
 ---
 title: Workflow reference
-description: All 27 composable workflows shipped with harnessed v4.9.1.
+description: All 29 composable workflows shipped with harnessed v4.12.0.
 ---
 
-harnessed v4.9.1 ships 27 namespace-layered workflows organized into one super-master, five stage masters (Discuss · Plan · Task · Verify · Ship), 19 sub-workflows, and two standalones.
+harnessed v4.12.0 ships 29 namespace-layered workflows organized into one super-master, five stage masters (Discuss · Plan · Task · Verify · Ship), 21 sub-workflows, and two standalones.
 
 ## Super-master
 
@@ -55,7 +55,9 @@ harnessed v4.9.1 ships 27 namespace-layered workflows organized into one super-m
 | `/verify-paranoid` | sub-workflow | Paranoid Staff Engineer review via gstack `/review`. Mandatory pre-PR for critical modules. |
 | `/verify-qa` | sub-workflow | End-to-end QA via gstack `/qa` + playwright-cli / `@playwright/test`. Fires when UI changes present. |
 | `/verify-security` | sub-workflow | OWASP / auth / secrets check via gstack `/cso`. Fires when auth or secrets touched. |
-| `/verify-design` | sub-workflow | Design system consistency via gstack `/design-review` + ui-ux-pro-max + frontend-design. Fires when design changes present. |
+| `/verify-design` | sub-workflow | Design system consistency via gstack `/design-review` + ui-ux-pro-max + design-taste-frontend. Fires when design changes present. |
+| `/verify-eval-review` | sub-workflow | AI phase eval coverage audit via GSD `/gsd-eval-review`. Fires when the phase has an AI/LLM phase (pairs with plan-side gsd-ai-integration-phase). |
+| `/verify-validate-phase` | sub-workflow | Nyquist requirement→test coverage backfill via GSD `/gsd-validate-phase`. Fires when a coverage audit is required. |
 | `/verify-simplify` | sub-workflow | Final simplification pass via `code-simplifier`. Always runs last. |
 | `/verify-multispec` | sub-workflow | 4-specialist Agent Team Pattern C — mutual SendMessage cross-examination. Escalation path for critical releases / large refactor PRs. |
 
