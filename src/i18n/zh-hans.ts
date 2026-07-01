@@ -21,7 +21,7 @@ const zhHans: Dict = {
     positioning:
       '不止是包管理器,更是装配编排器 —— 把市面上最优秀的开源生态组件,用「三层栈」(BDD → SDD → TDD) 方法论编排成一个可执行的 engine。',
     tagline:
-      'harnessed 是 orchestration brain + prompt library，通过三个秒级纯函数 CLI 驱动 native subagent spawn —— harnessed gates（哪些子工作流触发）、harnessed prompt（子工作流的 spawn-ready prompt）、harnessed checkpoint（记录进度）。所有特性一个命令搞定——',
+      'harnessed 是 orchestration brain + prompt library，通过三个秒级纯函数 CLI 驱动 native subagent spawn —— harnessed gates（哪些子工作流触发）、harnessed prompt（子工作流的 spawn-ready prompt）、harnessed checkpoint（记录进度）。',
     ctaStart: '立即开始',
     ctaGitHub: '在 GitHub 查看',
     meta: 'Apache-2.0 · Node 22+ · 跨平台',

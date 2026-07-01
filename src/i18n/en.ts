@@ -19,7 +19,7 @@ const en = {
     positioning:
       'More than a package manager — a composition orchestrator. It assembles the best of the open-source ecosystem into one executable engine, wired by the three-layer BDD → SDD → TDD methodology.',
     tagline:
-      'harnessed is an orchestration brain + prompt library, driving native subagent spawn through three fast, pure-function CLIs — `harnessed gates` (which sub-workflows fire), `harnessed prompt` (spawn-ready prompt for a sub), and `harnessed checkpoint` (record progress). Every capability, one command —',
+      'harnessed is an orchestration brain + prompt library, driving native subagent spawn through three fast, pure-function CLIs — `harnessed gates` (which sub-workflows fire), `harnessed prompt` (spawn-ready prompt for a sub), and `harnessed checkpoint` (record progress).',
     ctaStart: 'Get Started',
     ctaGitHub: 'View on GitHub',
     meta: 'Apache-2.0 · Node 22+ · Cross-platform',
