@@ -88,4 +88,4 @@ flowchart LR
 
 After Verify completes, run `/retro` to close the milestone and capture lessons. If you ran `/auto` these stages would have chained automatically — see [Quickstart](/docs/getting-started/quickstart/) for the one-command path.
 
-For the architecture behind each stage, read [The 5-stage cadence](/docs/concepts/four-stage-cadence/).
+For the architecture behind each stage, read [The 5-stage cadence](/docs/concepts/five-stage-cadence/).

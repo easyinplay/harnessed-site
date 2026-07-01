@@ -6,6 +6,11 @@ import mermaid from 'astro-mermaid'
 
 export default defineConfig({
   site: 'https://harnessed.cc',
+  // Preserve old four-stage-cadence URLs after the five-stage rename (avoid 404 / broken bookmarks).
+  redirects: {
+    '/docs/concepts/four-stage-cadence': '/docs/concepts/five-stage-cadence',
+    '/zh-hans/docs/concepts/four-stage-cadence': '/zh-hans/docs/concepts/five-stage-cadence',
+  },
   integrations: [
     // astro-mermaid must precede starlight so it transforms ```mermaid fences
     // into client-rendered diagrams before expressive-code claims them.
@@ -56,7 +61,7 @@ export default defineConfig({
           items: [
             { label: 'Composition over vendoring', slug: 'docs/concepts/composition', translations: { 'zh-Hans': '装配主义' } },
             { label: 'The three-layer stack', slug: 'docs/concepts/three-layer-stack', translations: { 'zh-Hans': '三层栈' } },
-            { label: 'The 4-stage cadence', slug: 'docs/concepts/four-stage-cadence', translations: { 'zh-Hans': '四阶段节奏' } },
+            { label: 'The 5-stage cadence', slug: 'docs/concepts/five-stage-cadence', translations: { 'zh-Hans': '五阶段节奏' } },
             { label: 'Dogfood-first methodology', slug: 'docs/concepts/dogfood-first', translations: { 'zh-Hans': 'Dogfood 优先方法论' } },
           ],
         },

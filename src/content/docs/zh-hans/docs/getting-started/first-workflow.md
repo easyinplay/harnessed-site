@@ -88,4 +88,4 @@ flowchart LR
 
 Verify 完成后，运行 `/retro` 关闭里程碑并沉淀经验教训。如果使用 `/auto`，这些阶段会自动串联 —— 一键命令路径请参阅[快速上手](/zh-hans/docs/getting-started/quickstart/)。
 
-每个阶段背后的架构原理，请阅读[五阶段节奏](/zh-hans/docs/concepts/four-stage-cadence/)。
+每个阶段背后的架构原理，请阅读[五阶段节奏](/zh-hans/docs/concepts/five-stage-cadence/)。

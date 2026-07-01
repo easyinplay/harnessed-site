@@ -120,7 +120,7 @@ Without arbitration these overlaps would double-fire or contradict each other. T
 
 ## Theory vs. runtime
 
-The three-layer stack is the *theory*. The [5-stage cadence](/docs/concepts/four-stage-cadence/) is how that theory runs at the command line:
+The three-layer stack is the *theory*. The [5-stage cadence](/docs/concepts/five-stage-cadence/) is how that theory runs at the command line:
 
 | Loop (theory) | Runtime stage |
 |---------------|---------------|

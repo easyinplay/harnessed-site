@@ -120,7 +120,7 @@ graph TD
 
 ## 理论 vs. runtime
 
-三层栈是*理论*。[5 阶段节奏](/zh-hans/docs/concepts/four-stage-cadence/) 是这套理论在命令行的运行方式：
+三层栈是*理论*。[5 阶段节奏](/zh-hans/docs/concepts/five-stage-cadence/) 是这套理论在命令行的运行方式：
 
 | Loop（理论） | runtime 阶段 |
 |--------------|--------------|
