@@ -22,6 +22,15 @@ export default defineConfig({
       customCss: ['./src/styles/starlight-theme.css'],
       head: [
         {
+          // Client-side locale auto-detect for docs pages (a static site can't read
+          // Accept-Language server-side). Zh-preferring browsers land on /zh-hans/*.
+          // Respects the manual choice (harnessed_lang cookie set by the Nav switcher)
+          // and never loops (already-zh paths return early). Runs before paint.
+          tag: 'script',
+          content:
+            "(function(){try{if(document.cookie.indexOf('harnessed_lang=')>-1)return;var p=location.pathname;if(p.indexOf('/zh-hans')===0)return;if((navigator.language||'').toLowerCase().indexOf('zh')===0){location.replace('/zh-hans'+p+location.search+location.hash)}}catch(e){}})();",
+        },
+        {
           tag: 'script',
           content:
             "try{if(!localStorage.getItem('starlight-theme'))document.documentElement.dataset.theme='dark'}catch(e){}",
