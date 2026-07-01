@@ -21,7 +21,7 @@ const zhHans: Dict = {
     positioning:
       '不止是包管理器,更是装配编排器 —— 把市面上最优秀的开源生态组件,用「三层栈」(BDD → SDD → TDD) 方法论编排成一个可执行的 engine。',
     tagline:
-      'gstack 决策 · GSD 项目经理 · superpowers 资深工程师 · karpathy 心法 · mattpocock 招式 · ECC 黑客松冠军配置 —— 一条命令装配就位。',
+      'harnessed 是 orchestration brain + prompt library（决策大脑 + prompt 库），不是执行引擎。slash 命令体（由 harnessed setup 生成）通过三个秒级纯函数 CLI 驱动 CC-native subagent spawn —— harnessed gates（哪些子工作流触发）、harnessed prompt（子工作流的 spawn-ready prompt）、harnessed checkpoint（记录进度）。实际的 spawn、Agent Teams、ralph-loop、澄清往返都由 Claude Code main session 用原生工具执行。harnessed run 仅保留给 CI/headless 场景。',
     ctaStart: '立即开始',
     ctaGitHub: '在 GitHub 查看',
     meta: 'Apache-2.0 · Node 22+ · 跨平台',
@@ -31,11 +31,11 @@ const zhHans: Dict = {
     subheading: '三个贯穿所有工作流的核心理念。',
     card1: {
       title: '装配主义，而非 vendoring',
-      body: '不复制上游代码。在清单中描述安装与检查，把 ECC、Superpowers、GSD、gstack 装配成一个可运行的工作流。',
+      body: '不复制上游代码。在清单中描述安装与检查，harnessed 把开源社区最优秀的组件（Superpowers、GSD、gstack、ECC 等）装配成一个可运行的工作流 —— 永远运行上游最新版，无痛享用：只要更新即可享用最新版。',
     },
     card2: {
       title: '内置五阶段节奏',
-      body: 'Discuss → Plan → Task → Verify → Ship，可选 Research 与 Retro，外加自动学习回环。或运行 `/auto` 一键跑完整流程。',
+      body: 'Discuss → Plan → Task → Verify → Ship，可选 Research 与 Retro，已为你组合进每个 loop，外加自动的 Learn 学习回环闭合。或运行 `/auto` 一键跑完整流程。',
     },
     card3: {
       title: 'Dogfood 优先方法论',

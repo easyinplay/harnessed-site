@@ -6,11 +6,6 @@ import mermaid from 'astro-mermaid'
 
 export default defineConfig({
   site: 'https://harnessed.cc',
-  // Preserve old four-stage-cadence URLs after the five-stage rename (avoid 404 / broken bookmarks).
-  redirects: {
-    '/docs/concepts/four-stage-cadence': '/docs/concepts/five-stage-cadence',
-    '/zh-hans/docs/concepts/four-stage-cadence': '/zh-hans/docs/concepts/five-stage-cadence',
-  },
   integrations: [
     // astro-mermaid must precede starlight so it transforms ```mermaid fences
     // into client-rendered diagrams before expressive-code claims them.
