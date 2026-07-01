@@ -5,6 +5,23 @@ description: harnessed 全部 CLI 子命令与参数。
 
 > **v4.0 执行模型。** harnessed 是 *orchestration brain + prompt library*（决策大脑 + prompt 库），不是执行引擎。slash 命令体（由 `harnessed setup` 生成）通过三个秒级纯函数 CLI 驱动 **CC-native subagent spawn** —— `harnessed gates`（哪些子工作流触发）、`harnessed prompt`（子工作流的 spawn-ready prompt）、`harnessed checkpoint`（记录进度）。实际的 spawn、Agent Teams、ralph-loop、澄清往返都由 Claude Code main session 用原生工具执行。`harnessed run` 仅保留给 CI/headless 场景。
 
+## `harnessed`（you-are-here 仪表盘）
+
+**不带任何参数**跑 `harnessed` 打印 you-are-here 仪表盘 —— 在活跃 workflow 中重新定位最快的方式（comet `/comet` 的类比，v8.0 引入）。
+
+```bash
+harnessed          # 人类可读的 you-are-here + 下一步 仪表盘
+harnessed --json   # 机器可读的结构化对象
+```
+
+它自动检测当前 repo 的活跃 workflow，打印当前 phase、每个子工作流的状态，以及单行确定性契约 `NEXT: auto | manual | done` 加一条 run 提示（如 `→ run: harnessed prompt <sub>`）。没有活跃 workflow 时打印指向 `harnessed setup` 的入门提示。
+
+**只读** —— 不 spawn、不改状态 / git / remote；始终 exit `0`。只有裸 `harnessed`（或 `harnessed --json`，可带 `--lang`）会分派仪表盘；任何子命令、`--help`、`--version` 或未知词都 fall through 到正常命令解析（所以 `harnessed bogus` 仍然报错）。
+
+`--json` 字段：`active`、`phase`、`status`、`started_at`、`next`、`sub`、`hint`、`sub_progress`。
+
+---
+
 ## `harnessed setup`
 
 一键入门初始化 —— 将工作流 skills 和基础清单安装到 `~/.claude/`。
@@ -40,6 +57,69 @@ harnessed install <pack>
 ```
 
 解析包清单，对照 schema 验证，然后按顺序执行每个 `install` 步骤。目前支持从本地路径和 git URL 进行引导安装；npm registry 包发现功能已在规划中。
+
+---
+
+## `harnessed install-base`
+
+一键安装整个 base profile —— `manifests/tools/*.yaml` 和 `manifests/skill-packs/*.yaml` 下的每个清单，按排序顺序。它是独立子命令（而非 `install` 上的 `--base` flag），因此不会与单包 gate 冲突。
+
+```bash
+harnessed install-base                   # 立即应用（默认）
+harnessed install-base --dry-run         # 仅预览 —— 不修改磁盘
+harnessed install-base --non-interactive # 跳过所有提示（CI / 脚本）
+```
+
+打印统计：`installed / already-installed / skipped (user-aborted) / failed`。
+
+**退出码：** `0` = 至少安装了一个且无失败 · `1` = 有一个或多个失败 · `2` = 没有安装任何东西（全部 already-installed 或被中止）。
+
+---
+
+## `harnessed research`
+
+跑 research workflow —— search 类别子路由 → subagent spawn → verbatim `COMPLETE`。是 `workflows/research/workflow.yaml` 的薄别名。
+
+```bash
+harnessed research --query "compare Postgres vs SQLite for this use case"
+harnessed research --query "..." --dry-run          # 预览解析出的 workflow + gate context（JSON）
+harnessed research --query "..." --model sonnet      # subagent model：haiku | sonnet | opus
+harnessed research --query "..." --non-interactive   # 跳过所有提示（CI / 脚本）
+```
+
+| 参数 | 说明 |
+|------|------|
+| `--query <text>` | research prompt（**必填**）|
+| `--dry-run` | 仅预览 —— 打印 `{ workflow, yamlPath, gateContext }` envelope，不 spawn |
+| `--model <model>` | subagent model：`haiku` \| `sonnet` \| `opus` |
+| `--non-interactive` | 跳过所有提示（CI / 脚本）|
+
+**退出码：** `0` = workflow 完成 · `1` = workflow 运行时失败 · `2` = 用法错误（缺 `--query` 或找不到 workflow yaml）。
+
+---
+
+## `harnessed manifest-add <upstream>`
+
+在 **EE-5 5 问 merge gate** 后加一个新的上游适配器 —— 五个交互式提问，强制在把新上游接入装配前做一次深思熟虑的决策（是不是可复用 surface、名字是否 fit、与现有组件是否 overlap、是 import 概念还是 import 别人的产品身份、user 不知 upstream 还能否理解）。五问全部必须非空回答。
+
+```bash
+harnessed manifest-add https://github.com/owner/repo.git
+harnessed manifest-add <upstream> --category tools    # skill-packs（默认）| tools
+harnessed manifest-add <upstream> --name myadapter    # 默认取 <upstream> basename
+harnessed manifest-add <upstream> --dry-run           # 预览 —— 打印答案，不写入
+harnessed manifest-add <upstream> --non-interactive   # CI：WARN-only dry-run，什么都不写
+```
+
+成功时把答案写入 `manifests/<category>/<name>.ee5-answers.json`。
+
+| 参数 | 说明 |
+|------|------|
+| `--category <cat>` | 清单类别：`skill-packs`（默认）\| `tools` |
+| `--name <name>` | 短适配器名（默认取 `<upstream>` basename）|
+| `--dry-run` | 仅预览 —— 打印答案 JSON，不写入 |
+| `--non-interactive` | CI / 脚本 —— WARN-only，什么都不写 |
+
+**退出码：** `0` = gate 通过（写入或预览）· `1` = 有答案留空。
 
 ---
 
@@ -171,6 +251,18 @@ harnessed learn "别盲目重试迁移 —— 它需要先拿一个干净快照"
 
 ---
 
+## `harnessed retro`
+
+重置 retro-cadence 提醒。`/retro` 是 gstack skill，harnessed 观察不到，所以跑完它之后，调 `harnessed retro --done` 把每个 repo 的 phase 计数器归零并清除 `RETRO-DUE` inject 提醒。
+
+```bash
+harnessed retro --done   # 重置 phase 计数器 + 清除 RETRO-DUE 提醒
+```
+
+不带 `--done` 时它什么都不做并 exit `1`（`nothing to do — pass --done after running /retro`）。
+
+---
+
 ## `harnessed next`
 
 打印确定性的 next-step 契约 —— 只读，不修改状态。两层：
@@ -259,6 +351,23 @@ harnessed status --recover
 
 ---
 
+## `harnessed audit`
+
+对 `manifests/tools/` 和 `manifests/skill-packs/` 下的清单做二线自一致性审计。这是纵深防御的一道 pass，抓 Ajv schema 抓不到的 schema drift、占位值和篡改。
+
+```bash
+harnessed audit                 # 清单 + 运行时两层
+harnessed audit --skip-runtime  # 仅清单层检查（离线 / 未初始化）
+```
+
+**清单层：** repository URL 形状（`https://…​.git`）、`signed_by` 占位值（`unsigned` / `todo` / `tbd` / …）、以及移动 `git_ref`（`HEAD` / `main` / `master` —— 属 *error*：应 pin 到 SHA 或 tag）。**运行时层**（`--skip-runtime` 跳过）：origin-URL 篡改、`install.cmd` shell 注入 + npm 包交叉核对、provenance gate。打印逐清单的 `✓ / ⚠ / ✗` 报告和 finding 统计。
+
+**退出码：** `0` = 无 error 级 finding（允许 warning）· `1` = 有一个或多个 error。
+
+> **`audit` vs `audit-log`** —— `audit` *校验清单文件*的完整性；`audit-log`（下面）*查询*已经发生过的路由/安装*日志*。两者关注点不同。
+
+---
+
 ## `harnessed audit-log`
 
 查看路由/安装审计日志 —— 哪些 gate 触发、哪些包安装、何时。
@@ -268,6 +377,18 @@ harnessed audit-log                    # 人类可读 5 列表格
 harnessed audit-log --filter <pack>    # 按包/事件过滤
 harnessed audit-log --json             # 完整 12 字段记录
 ```
+
+---
+
+## `harnessed backup list`
+
+列出 `.harnessed-backup/` 下的每个备份快照 —— 每个快照一行，含时间戳、来源清单和文件数。从每个快照的 `metadata.json` 读取。
+
+```bash
+harnessed backup list
+```
+
+与 `harnessed gc`（删除旧快照）和 `harnessed rollback`（从选定时间戳恢复）互为姊妹。
 
 ---
 
@@ -295,7 +416,7 @@ harnessed rollback
 
 ```bash
 harnessed --version
-# → 4.3.0
+# → 4.12.0
 ```
 
 ---
