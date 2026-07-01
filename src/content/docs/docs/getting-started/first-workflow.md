@@ -5,6 +5,14 @@ description: Walk through a real /discuss → /plan → /task → /verify cycle.
 
 This tutorial walks through the 5-stage cadence manually using a realistic example: **"Add a rate limiter to our Express API — 100 req/min per IP, Redis-backed."**
 
+Your first `/auto` run walks all five stages end-to-end:
+
+```mermaid
+flowchart LR
+  D["① Discuss"] --> P["② Plan"] --> T["③ Task"] --> V["④ Verify"] --> S["⑤ Ship"]
+  V -. "fail / gap" .-> T
+```
+
 ## Stage 1 — Discuss
 
 ```

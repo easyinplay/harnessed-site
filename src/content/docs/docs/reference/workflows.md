@@ -5,6 +5,21 @@ description: All 28 composable workflows shipped with harnessed v4.12.0.
 
 harnessed v4.12.0 ships 28 namespace-layered workflows organized into one super-master, five stage masters (Discuss · Plan · Task · Verify · Ship), 20 sub-workflows, and two standalones.
 
+The 28 workflows — one super-master fanning out to five stage masters and their subs, plus two standalones:
+
+```mermaid
+flowchart TD
+  AUTO["/auto — super-master<br/>one-shot across all stages"]
+  AUTO --> DIS["① /discuss · 3 subs"]
+  AUTO --> PLA["② /plan · 2 subs"]
+  AUTO --> TAS["③ /task · 4 subs"]
+  AUTO --> VER["④ /verify · 10 subs"]
+  AUTO --> SHI["⑤ /ship · 1 sub"]
+  STA["standalones · /research · /retro"]
+  DIS -.- STA
+  SHI -.- STA
+```
+
 ## Super-master
 
 | Command | Scope | Capabilities |

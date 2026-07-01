@@ -15,6 +15,16 @@ harnessed never copies upstream code. Instead, each harness pack ships a **manif
 
 At runtime, harnessed reads these manifests, validates compatibility, and orchestrates the upstream tools via composition skills. You always run the official upstream binary — harnessed just coordinates the handoffs.
 
+Assembly, not vendoring — manifests describe, the composition skill orchestrates:
+
+```mermaid
+flowchart LR
+  MA["manifest<br/>describe install / check"] --> U["upstream agents<br/>gstack · GSD · superpowers · …"]
+  U --> CS["composition skill<br/>orchestrate + arbitrate overlap"]
+  CS --> W["executable 5-stage workflow"]
+  U -. "upgrade = re-install (never vendored)" .-> MA
+```
+
 Example manifest (abbreviated):
 
 ```yaml
@@ -54,6 +64,6 @@ Since v4.0, harnessed is an **orchestration brain + prompt library**, not an exe
 
 harnessed contributes the decisions (gate routing, prompt generation, progress ledger); the main session does the actual spawning, Agent Teams coordination, and clarification round-trips with native Claude Code tools. (`harnessed run` keeps the old in-process spawn for CI/headless only.)
 
-This is why the 25 workflows in harnessed can compose ECC, Superpowers, GSD, and gstack simultaneously — the composition layer abstracts the seams.
+This is why the 28 workflows in harnessed can compose ECC, Superpowers, GSD, and gstack simultaneously — the composition layer abstracts the seams.
 
-See [Workflow reference](/docs/reference/workflows/) for all 25 workflows and their upstream dependencies.
+See [Workflow reference](/docs/reference/workflows/) for all 28 workflows and their upstream dependencies.

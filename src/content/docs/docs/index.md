@@ -7,6 +7,21 @@ harnessed is the package manager and composition orchestrator for AI coding harn
 
 If you're building with Claude Code, harnessed wires together the best open-source components — ECC, Superpowers, GSD, gstack — into a unified, runnable workflow via a single command.
 
+The operating loop — five stages closed by an always-on Learn cycle:
+
+```mermaid
+flowchart LR
+  R(["⓪ Research<br/>(optional)"]):::opt --> D
+  D(["① Discuss<br/>3-layer clarify"]) --> P(["② Plan<br/>persist spec + tasks"])
+  P --> T(["③ Task<br/>TDD build + checkpoint"])
+  T --> V(["④ Verify<br/>independent review + evidence gate"])
+  V --> S(["⑤ Ship<br/>release-preflight → tag-ready"])
+  S -. "milestone summary" .-> RT(["Retro<br/>(optional)"]):::opt
+  V -. "fail / gap" .-> T
+  S == "Learn — captured → injected next cycle" ==> D
+  classDef opt stroke-dasharray:5,opacity:0.8
+```
+
 ## Where to start
 
 - **[Installation](/docs/getting-started/installation/)** — install harnessed and run setup in 30 seconds

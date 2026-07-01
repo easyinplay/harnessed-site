@@ -5,6 +5,17 @@ description: harnessed 全部 CLI 子命令与参数。
 
 > **v4.0 执行模型。** harnessed 是 *orchestration brain + prompt library*（决策大脑 + prompt 库），不是执行引擎。slash 命令体（由 `harnessed setup` 生成）通过三个秒级纯函数 CLI 驱动 **CC-native subagent spawn** —— `harnessed gates`（哪些子工作流触发）、`harnessed prompt`（子工作流的 spawn-ready prompt）、`harnessed checkpoint`（记录进度）。实际的 spawn、Agent Teams、ralph-loop、澄清往返都由 Claude Code main session 用原生工具执行。`harnessed run` 仅保留给 CI/headless 场景。
 
+三个 orchestration CLI 如何驱动 CC-native spawn：
+
+```mermaid
+flowchart LR
+  M["CC main session<br/>slash-command body"] --> G["harnessed gates<br/>which subs fire"]
+  G --> P["harnessed prompt<br/>spawn-ready prompt"]
+  P --> S["native Task/Agent spawn<br/>wrapped in ralph-loop"]
+  S --> C["harnessed checkpoint<br/>record progress"]
+  C -. "status --recover after compaction" .-> M
+```
+
 ## `harnessed`（you-are-here 仪表盘）
 
 **不带任何参数**跑 `harnessed` 打印 you-are-here 仪表盘 —— 在活跃 workflow 中重新定位最快的方式（comet `/comet` 的类比，v8.0 引入）。

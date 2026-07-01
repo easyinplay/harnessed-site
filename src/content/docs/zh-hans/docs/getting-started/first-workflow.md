@@ -5,6 +5,14 @@ description: 完整体验 /discuss → /plan → /task → /verify → /ship 五
 
 本教程通过一个真实示例，逐步演示五阶段节奏：**"给我们的 Express API 添加限速中间件 —— 每 IP 每分钟 100 次请求，Redis 后端。"**
 
+你的第一次 `/auto` 会端到端走完五个 stage：
+
+```mermaid
+flowchart LR
+  D["① Discuss"] --> P["② Plan"] --> T["③ Task"] --> V["④ Verify"] --> S["⑤ Ship"]
+  V -. "fail / gap" .-> T
+```
+
 ## 阶段一 — Discuss
 
 ```

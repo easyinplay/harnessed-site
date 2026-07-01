@@ -5,6 +5,21 @@ description: harnessed v4.12.0 附带的全部 28 个可装配工作流。
 
 harnessed v4.12.0 提供 28 个按命名空间分层的工作流：一个超级主控、五个阶段主控（Discuss · Plan · Task · Verify · Ship）、20 个子工作流和两个独立工作流。
 
+28 个工作流 —— 一个超级主控扇出到五个 stage 主控及其 sub，外加两个独立工作流：
+
+```mermaid
+flowchart TD
+  AUTO["/auto — super-master<br/>one-shot across all stages"]
+  AUTO --> DIS["① /discuss · 3 subs"]
+  AUTO --> PLA["② /plan · 2 subs"]
+  AUTO --> TAS["③ /task · 4 subs"]
+  AUTO --> VER["④ /verify · 10 subs"]
+  AUTO --> SHI["⑤ /ship · 1 sub"]
+  STA["standalones · /research · /retro"]
+  DIS -.- STA
+  SHI -.- STA
+```
+
 ## 超级主控
 
 | 命令 | 范围 | 能力 |

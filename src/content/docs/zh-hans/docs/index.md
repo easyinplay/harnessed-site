@@ -7,6 +7,21 @@ harnessed 是 AI 编程脚手架的包管理器与装配编排器。它通过类
 
 如果你在使用 Claude Code，harnessed 会将最优秀的开源组件 —— ECC、Superpowers、GSD、gstack —— 通过一条命令串联成统一的可运行工作流。
 
+运转循环 —— 五个 stage 由一个 always-on 的 Learn 循环闭合：
+
+```mermaid
+flowchart LR
+  R(["⓪ Research<br/>(optional)"]):::opt --> D
+  D(["① Discuss<br/>3-layer clarify"]) --> P(["② Plan<br/>persist spec + tasks"])
+  P --> T(["③ Task<br/>TDD build + checkpoint"])
+  T --> V(["④ Verify<br/>independent review + evidence gate"])
+  V --> S(["⑤ Ship<br/>release-preflight → tag-ready"])
+  S -. "milestone summary" .-> RT(["Retro<br/>(optional)"]):::opt
+  V -. "fail / gap" .-> T
+  S == "Learn — captured → injected next cycle" ==> D
+  classDef opt stroke-dasharray:5,opacity:0.8
+```
+
 ## 从哪里开始
 
 - **[安装](/zh-hans/docs/getting-started/installation/)** — 30 秒内安装 harnessed 并完成初始化
