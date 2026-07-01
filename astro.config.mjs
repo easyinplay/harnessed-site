@@ -2,10 +2,14 @@ import { defineConfig } from 'astro/config'
 import tailwind from '@astrojs/tailwind'
 import sitemap from '@astrojs/sitemap'
 import starlight from '@astrojs/starlight'
+import mermaid from 'astro-mermaid'
 
 export default defineConfig({
   site: 'https://harnessed.cc',
   integrations: [
+    // astro-mermaid must precede starlight so it transforms ```mermaid fences
+    // into client-rendered diagrams before expressive-code claims them.
+    mermaid({ theme: 'default', autoTheme: true }),
     starlight({
       title: 'harnessed docs',
       logo: { src: './public/favicon.svg' },
