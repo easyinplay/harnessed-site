@@ -12,7 +12,7 @@ If you're building with Claude Code, harnessed wires together the best open-sour
 - **[Installation](/docs/getting-started/installation/)** — install harnessed and run setup in 30 seconds
 - **[Quickstart](/docs/getting-started/quickstart/)** — from install to first workflow in 60 seconds
 - **[Composition concept](/docs/concepts/composition/)** — how harnessed composes upstream tools without forking them
-- **[Workflow reference](/docs/reference/workflows/)** — all 29 composable workflows shipped with v4.12.0
+- **[Workflow reference](/docs/reference/workflows/)** — all 28 composable workflows shipped with v4.12.0
 
 ## What makes harnessed different
 
