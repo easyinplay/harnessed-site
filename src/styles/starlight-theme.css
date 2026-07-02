@@ -55,20 +55,34 @@
   --sl-shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.6);
 }
 
-/* ── Light mode overrides (acceptable fallback) ── */
-[data-theme='light'] {
-  --sl-color-accent-low: #ede9fe;
+/* ── Dark-only safety net ──
+   Docs are forced dark (head script + ThemeSelect override). If anything
+   still lands on data-theme='light', mirror the dark tokens so the page
+   never flips to Starlight's default light/blue look. The :root prefix
+   out-specifies Starlight's own :root[data-theme='light'] block. */
+:root[data-theme='light'] {
+  --sl-color-accent-low: #2e1065;
   --sl-color-accent: #7c3aed;
-  --sl-color-accent-high: #4c1d95;
-  --sl-color-bg: #ffffff;
-  --sl-color-bg-nav: rgba(255, 255, 255, 0.92);
-  --sl-color-bg-sidebar: #fafaf9;
-  --sl-color-bg-inline-code: rgba(124, 58, 237, 0.08);
-  --sl-color-bg-accent: rgba(124, 58, 237, 0.08);
-  --sl-color-text: #18181b;
-  --sl-color-hairline: rgba(124, 58, 237, 0.15);
-  --sl-color-hairline-light: rgba(124, 58, 237, 0.25);
-  --sl-color-hairline-shade: rgba(124, 58, 237, 0.06);
+  --sl-color-accent-high: #c4b5fd;
+  --sl-color-white: #ffffff;
+  --sl-color-gray-1: #e4e4e7;
+  --sl-color-gray-2: #a1a1aa;
+  --sl-color-gray-3: #71717a;
+  --sl-color-gray-4: #52525b;
+  --sl-color-gray-5: #27272a;
+  --sl-color-gray-6: #15151d;
+  --sl-color-black: #0a0a0f;
+  --sl-color-bg: #0a0a0f;
+  --sl-color-bg-nav: rgba(10, 10, 15, 0.85);
+  --sl-color-bg-sidebar: #0a0a0f;
+  --sl-color-bg-inline-code: rgba(124, 58, 237, 0.12);
+  --sl-color-bg-accent: rgba(124, 58, 237, 0.12);
+  --sl-color-text: #e4e4e7;
+  --sl-color-text-accent: #c4b5fd;
+  --sl-color-text-invert: #0a0a0f;
+  --sl-color-hairline: rgba(167, 139, 250, 0.1);
+  --sl-color-hairline-light: rgba(167, 139, 250, 0.18);
+  --sl-color-hairline-shade: rgba(167, 139, 250, 0.05);
 }
 
 /* ─────────────────────────────────────────────────────────────

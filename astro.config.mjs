@@ -18,6 +18,8 @@ export default defineConfig({
       },
       components: {
         SiteTitle: './src/components/starlight/SiteTitle.astro',
+        // Docs are dark-only to match the marketing landing; hide the toggle.
+        ThemeSelect: './src/components/starlight/ThemeSelect.astro',
       },
       customCss: ['./src/styles/starlight-theme.css'],
       head: [
@@ -31,9 +33,12 @@ export default defineConfig({
             "(function(){try{if(document.cookie.indexOf('harnessed_lang=')>-1)return;var p=location.pathname;if(p.indexOf('/zh-hans')===0)return;if((navigator.language||'').toLowerCase().indexOf('zh')===0){location.replace('/zh-hans'+p+location.search+location.hash)}}catch(e){}})();",
         },
         {
+          // Force dark theme: the landing page is dark-only, so docs must be too.
+          // Writing localStorage covers Starlight's ThemeProvider running after us;
+          // setting dataset.theme covers it having already run. Either order → dark.
           tag: 'script',
           content:
-            "try{if(!localStorage.getItem('starlight-theme'))document.documentElement.dataset.theme='dark'}catch(e){}",
+            "try{localStorage.setItem('starlight-theme','dark');document.documentElement.dataset.theme='dark'}catch(e){}",
         },
         {
           tag: 'script',
