@@ -4,8 +4,11 @@ import sitemap from '@astrojs/sitemap'
 import starlight from '@astrojs/starlight'
 import mermaid from 'astro-mermaid'
 
+import cloudflare from "@astrojs/cloudflare";
+
 export default defineConfig({
   site: 'https://harnessed.cc',
+
   integrations: [
     // astro-mermaid must precede starlight so it transforms ```mermaid fences
     // into client-rendered diagrams before expressive-code claims them.
@@ -90,4 +93,7 @@ export default defineConfig({
     tailwind({ applyBaseStyles: false }),
     sitemap(),
   ],
+
+  output: "hybrid",
+  adapter: cloudflare()
 })
