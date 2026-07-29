@@ -143,7 +143,7 @@ harnessed uninstall <pack>   # remove a single pack (runs its manifest uninstall
 harnessed uninstall          # remove harnessed's own skills/manifests from ~/.claude/
 ```
 
-Runs the manifest's declared `uninstall` command and cleanup paths. The no-arg unified uninstall reverses `harnessed setup`.
+For the three install methods that place skills on disk (`npm-cli`, `git-clone-with-setup`, `npx-skill-installer`), uninstall executes the manifest's **declared `spec.uninstall` contract**: it runs the declared `cmd` (fail-soft — a non-zero exit or missing shell warns and continues), then removes each `cleanup_paths` entry with an idempotent force-rm **constrained to `$HOME`** (a path escaping the home subtree hard-fails). Methods that do settings/plugin/MCP surgery (`cc-hook-add`, `cc-plugin-marketplace`, `mcp-*-add`) keep their per-method reversers. The no-arg unified uninstall reverses `harnessed setup`.
 
 ---
 
@@ -156,7 +156,7 @@ These three pure-function CLIs are what the generated slash-command bodies call 
 Evaluate which sub-workflows fire for a master orchestrator (`discuss` / `plan` / `task` / `verify` / `auto`) given a task spec.
 
 ```bash
-harnessed gates plan --task "add OAuth login" --skip-sub clarify
+harnessed gates plan --task "add OAuth login" --skip-sub discuss
 # → JSON: { fire: [{ sub, order, mode }], skip: [...], parallelism: { escalate_to_teams } }
 ```
 
@@ -206,14 +206,22 @@ harnessed doctor --json   # machine-readable report
 
 ## `harnessed update`
 
-Keep harnessed (and, optionally, its upstream plugins) up to date. The 14th doctor check also surfaces "update available X→Y" passively.
+Keep harnessed (and, optionally, its upstream plugins) up to date. The 14th doctor check also surfaces "update available X→Y" passively. `update` is dual-channel — it detects how harnessed was installed and picks the matching flow.
 
 ```bash
-harnessed update                    # self-update: npm i -g harnessed@latest + CHANGELOG + restart hint
-harnessed update --check            # report installed/latest version, do not install
-harnessed update --upstreams        # also re-run the base manifests to upgrade upstream plugins
-harnessed update --migration-report # read-only inventory of stale harnessed state (deletes nothing)
+harnessed update                      # self-update + top CHANGELOG section + restart hint
+harnessed update --check              # report installed/latest version, do not install
+harnessed update --dry-run            # preview what the update would do — no writes
+harnessed update --upstreams          # also re-run the base manifests to upgrade upstream plugins
+harnessed update --migration-report   # read-only inventory of stale harnessed state (deletes nothing)
+harnessed update --rollback [version] # compiled binary only — restore a banked previous version
 ```
+
+**npm channel** — runs `npm i -g harnessed@latest`, prints the top CHANGELOG section, and reminds you to restart Claude Code.
+
+**Compiled-binary channel** (one-line installer) — downloads the platform asset from GitHub releases, verifies the `.sha256` checksum **and its ed25519 signature** (`<asset>.sha256.sig`, a release contract since v4.32.19 — a missing or invalid signature is a hard error and the current binary is left untouched), then swaps the binary atomically. The replaced version is banked to `bin-backup/` for rollback.
+
+**`--rollback [version]`** (compiled binary only) — atomically restores a previous version from `bin-backup/`: newest banked version by default, or pass a version to pick one (unknown versions get an error listing what's available). The current binary is banked back first, so a rollback is itself reversible. On npm installs it exits with a pointer to `npm i -g harnessed@<version>` instead.
 
 Network access is fail-soft — an unreachable npm never errors.
 
@@ -427,7 +435,7 @@ harnessed rollback
 
 ```bash
 harnessed --version
-# → 4.12.0
+# → 4.32.20
 ```
 
 ---

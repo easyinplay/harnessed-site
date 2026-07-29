@@ -18,8 +18,30 @@ Verify the install:
 
 ```bash
 harnessed --version
-# → 4.3.0
+# → 4.32.20
 ```
+
+## Standalone binary (no Node.js)
+
+No Node.js? Install the self-contained single-file binary instead — per-platform, self-updates via `harnessed update`:
+
+**macOS / Linux**
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/easyinplay/harnessed/main/install.sh | bash
+```
+
+Installs to `~/.local/bin/harnessed`. PATH is never auto-edited on unix — if `~/.local/bin` is not on your PATH, the installer prints the exact per-shell snippet to add.
+
+**Windows (PowerShell)**
+
+```powershell
+irm https://raw.githubusercontent.com/easyinplay/harnessed/main/install.ps1 | iex
+```
+
+Installs to `%LOCALAPPDATA%\harnessed\bin\harnessed.exe`. Interactive sessions get a consent prompt before an idempotent user-scope PATH append; non-interactive runs print a manual instruction instead.
+
+Both installers download the platform asset from GitHub releases and verify its `.sha256` checksum. The binary and npm channels run the same CLI — everything below applies unchanged. See [`harnessed update`](/docs/reference/cli/#harnessed-update) for how the binary self-updates (ed25519-signed) and rolls back.
 
 ## Run setup
 

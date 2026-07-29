@@ -18,8 +18,30 @@ npm install -g harnessed
 
 ```bash
 harnessed --version
-# → 4.3.0
+# → 4.32.20
 ```
+
+## 单文件二进制(无需 Node.js)
+
+没有 Node.js?可改装自包含的单文件二进制 —— 按平台分发,通过 `harnessed update` 自更新:
+
+**macOS / Linux**
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/easyinplay/harnessed/main/install.sh | bash
+```
+
+安装到 `~/.local/bin/harnessed`。unix 上绝不自动改 PATH —— 若 `~/.local/bin` 不在 PATH 中,安装器会打印对应 shell 的精确添加片段。
+
+**Windows (PowerShell)**
+
+```powershell
+irm https://raw.githubusercontent.com/easyinplay/harnessed/main/install.ps1 | iex
+```
+
+安装到 `%LOCALAPPDATA%\harnessed\bin\harnessed.exe`。交互式会话在幂等的用户级 PATH 追加前会先征得同意;非交互(CI / 管道)则打印手动操作说明。
+
+两个安装器均从 GitHub releases 下载平台资产并校验其 `.sha256`。二进制与 npm 通道运行同一套 CLI —— 下文全部内容同样适用。二进制如何自更新(ed25519 签名)与回滚,见 [`harnessed update`](/zh-hans/docs/reference/cli/#harnessed-update)。
 
 ## 运行初始化
 

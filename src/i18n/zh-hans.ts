@@ -3,7 +3,7 @@ import type { Dict } from './en'
 const zhHans: Dict = {
   promoBar: {
     items: [
-      'v4.9.1 —— CC-native /auto 编排 · 会话级 workflow 状态 · Codex + 简中 i18n',
+      'v4.32.20 —— 双通道分发(npm + 单文件二进制)· ed25519 签名自更新与回滚 · 编排回归 trap 套件',
       'Subagent → Agent Teams 自动路由，按子任务决策',
       '已装配 ECC · Superpowers · GSD · gstack',
       'Apache-2.0 · Node 22+ · 跨平台',
@@ -16,7 +16,7 @@ const zhHans: Dict = {
     npm: 'npm',
   },
   hero: {
-    versionPill: 'v4.9.1 · 装配 100+ 项 capability',
+    versionPill: 'v4.32.20 · 装配 100+ 项 capability',
     h1: 'AI 编程脚手架的包管理器',
     positioning:
       '不止是包管理器,更是装配编排器 —— 把市面上最优秀的开源生态组件,用「三层栈」(BDD → SDD → TDD) 方法论编排成一个可执行的 engine。',
@@ -192,8 +192,8 @@ const zhHans: Dict = {
     heading: '加入 harness 生态',
     stats: [
       { value: '100+', label: '已装配 capability (ECC · Superpowers · GSD · gstack)' },
-      { value: '27', label: '已发布工作流' },
-      { value: 'v4.9.1', label: '最新版本 · Apache-2.0' },
+      { value: '28', label: '已发布工作流' },
+      { value: 'v4.32.20', label: '最新版本 · Apache-2.0' },
     ],
     links: {
       discussions: 'GitHub Discussions →',

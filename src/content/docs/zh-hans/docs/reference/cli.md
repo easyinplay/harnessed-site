@@ -143,7 +143,7 @@ harnessed uninstall <pack>   # 移除单个包（执行其清单的 uninstall �
 harnessed uninstall          # 从 ~/.claude/ 移除 harnessed 自身的 skills/manifests
 ```
 
-执行清单声明的 `uninstall` 命令与 cleanup 路径。不带参数的统一卸载会逆转 `harnessed setup`。
+对三个把 skill 装到磁盘的安装方法（`npm-cli`、`git-clone-with-setup`、`npx-skill-installer`），uninstall 执行清单**声明的 `spec.uninstall` 契约**：先运行声明的 `cmd`（fail-soft —— 非零退出或缺 shell 仅警告并继续），再对每个 `cleanup_paths` 条目做幂等 force-rm，且**约束在 `$HOME` 内**（越出 home 子树的路径 hard-fail）。做 settings/plugin/MCP 手术的方法（`cc-hook-add`、`cc-plugin-marketplace`、`mcp-*-add`）保留各自的 per-method 卸载器。不带参数的统一卸载会逆转 `harnessed setup`。
 
 ---
 
@@ -156,7 +156,7 @@ harnessed uninstall          # 从 ~/.claude/ 移除 harnessed 自身的 skills/
 针对某个 master orchestrator（`discuss` / `plan` / `task` / `verify` / `auto`）和任务 spec，评估哪些子工作流触发。
 
 ```bash
-harnessed gates plan --task "add OAuth login" --skip-sub clarify
+harnessed gates plan --task "add OAuth login" --skip-sub discuss
 # → JSON: { fire: [{ sub, order, mode }], skip: [...], parallelism: { escalate_to_teams } }
 ```
 
@@ -206,14 +206,22 @@ harnessed doctor --json   # 机器可读报告
 
 ## `harnessed update`
 
-保持 harnessed（及可选的上游插件）最新。第 14 项 doctor check 也会被动提示 "update available X→Y"。
+保持 harnessed（及可选的上游插件）最新。第 14 项 doctor check 也会被动提示 "update available X→Y"。`update` 是双通道的 —— 自动检测 harnessed 的安装方式并走对应流程。
 
 ```bash
-harnessed update                    # 自升级：npm i -g harnessed@latest + CHANGELOG + 重启提示
-harnessed update --check            # 只报告 installed/latest 版本，不安装
-harnessed update --upstreams        # 额外重跑 base manifests 升级上游插件
-harnessed update --migration-report # 只读盘点 stale harnessed 状态（不删除任何东西）
+harnessed update                      # 自升级 + CHANGELOG 顶部小节 + 重启提示
+harnessed update --check              # 只报告 installed/latest 版本，不安装
+harnessed update --dry-run            # 预览将执行的更新动作 —— 不写任何东西
+harnessed update --upstreams          # 额外重跑 base manifests 升级上游插件
+harnessed update --migration-report   # 只读盘点 stale harnessed 状态（不删除任何东西）
+harnessed update --rollback [version] # 仅 compiled 二进制 —— 恢复 bin-backup/ 中留存的旧版
 ```
+
+**npm 通道** —— 执行 `npm i -g harnessed@latest`，打印 CHANGELOG 顶部小节，并提醒重启 Claude Code。
+
+**Compiled 二进制通道**（一行安装器）—— 从 GitHub releases 下载平台资产，校验 `.sha256` 校验和**及其 ed25519 签名**（`<asset>.sha256.sig`，自 v4.32.19 起为发布契约 —— 签名缺失或验签失败均为 hard error，当前二进制原封不动），随后原子换入新二进制；被换下的旧版存入 `bin-backup/` 以供回滚。
+
+**`--rollback [version]`**（仅 compiled 二进制）—— 从 `bin-backup/` 原子恢复旧版：缺省取最新留存版本，也可指定版本（未知版本报错并列出可用版本）。当前二进制会先存回 bin-backup，因此回滚本身可逆。npm 安装模式下会拒绝并导向 `npm i -g harnessed@<version>`。
 
 网络访问 fail-soft —— npm 不可达时绝不报错。
 
@@ -427,7 +435,7 @@ harnessed rollback
 
 ```bash
 harnessed --version
-# → 4.12.0
+# → 4.32.20
 ```
 
 ---
