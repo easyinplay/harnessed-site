@@ -1,6 +1,6 @@
 # task_plan — harnessed-site 工具链升级 + docs 多语言
 
-状态：执行中
+状态：三个 Phase 全部完成
 更新：2026-08-26
 
 ## 目标
@@ -34,12 +34,12 @@
 
 原验收标准：121 页构建通过、零 console error、暗色主题与 violet accent 未走样、mermaid 图正常渲染、语言切换与 hreflang 不变。
 
-## Phase 2 — Vite+ 接入
+## Phase 2 — Vite+ 接入 ✅ 2026-08-27
 
-- [ ] 2.1 安装 `vp`（Windows：`irm https://vite.plus/ps1 | iex`）
-- [ ] 2.2 `vp migrate --no-interactive`
-- [ ] 2.3 `vp install` / `vp check` / `vp run build` 逐条验证
-- [ ] 2.4 **部署兼容**：保留 package.json 的 `build: astro build`，确保 Cloudflare Pages 构建命令无需装 vp
+- [x] 2.1 安装 `vp`（Windows：`irm https://vite.plus/ps1 | iex`）
+- [x] 2.2 `vp migrate --no-interactive`
+- [x] 2.3 `vp install` / `vp check` / `vp run build` 逐条验证
+- [x] 2.4 **部署兼容**：保留 package.json 的 `build: astro build`，确保 Cloudflare Pages 构建命令无需装 vp
 
 风险：`vp build` 跑原生 Vite 构建，不能替代 `astro build`；本项目只能用 `vp run build` 转发。
 
