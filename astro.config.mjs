@@ -1,5 +1,5 @@
 import { defineConfig } from 'astro/config'
-import tailwind from '@astrojs/tailwind'
+import tailwindcss from '@tailwindcss/vite'
 import sitemap from '@astrojs/sitemap'
 import starlight from '@astrojs/starlight'
 import mermaid from 'astro-mermaid'
@@ -177,9 +177,9 @@ export default defineConfig({
     starlight({
       title: 'harnessed docs',
       logo: { src: './public/favicon.svg' },
-      social: {
-        github: 'https://github.com/easyinplay/harnessed',
-      },
+      social: [
+        { icon: 'github', label: 'GitHub', href: 'https://github.com/easyinplay/harnessed' },
+      ],
       components: {
         SiteTitle: './src/components/starlight/SiteTitle.astro',
         // Sun/moon single-button toggle (qoder style) instead of the default select.
@@ -247,7 +247,11 @@ export default defineConfig({
         },
       ],
     }),
-    tailwind({ applyBaseStyles: false }),
     sitemap(),
   ],
+  // Tailwind 4 has no Astro integration — it ships as a Vite plugin, and the
+  // theme lives in src/styles/global.css (@theme) rather than a JS config.
+  vite: {
+    plugins: [tailwindcss()],
+  },
 })

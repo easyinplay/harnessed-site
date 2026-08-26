@@ -21,16 +21,18 @@
 | tailwindcss | 3.4.19 | 4.x | 改用 @tailwindcss/vite@4.3.3（peer vite ^8 ✓） |
 | @astrojs/starlight-tailwind | 无 | 5.0.0 | peer starlight >=0.38 + tailwindcss ^4 |
 
-## Phase 1 — Astro 7 + Tailwind 4
+## Phase 1 — Astro 7 + Tailwind 4 ✅ 2026-08-26
 
-- [ ] 1.1 升级依赖，移除 `@astrojs/tailwind`，新增 `@tailwindcss/vite`、`@astrojs/starlight-tailwind`、`@mermaid-js/layout-elk`
-- [ ] 1.2 内容集合迁移：`src/content/config.ts` → `src/content.config.ts`，改用 Starlight `docsLoader`
-- [ ] 1.3 Tailwind CSS-first：`tailwind.config.mjs` 的 theme.extend 迁进 `global.css` 的 `@theme`，删除旧配置文件
-- [ ] 1.4 `astro.config.mjs`：`tailwind()` integration 换成 `vite.plugins: [tailwindcss()]`
-- [ ] 1.5 修 Starlight 0.29 → 0.41 的 API 漂移（`social` 由对象改为数组等）
-- [ ] 1.6 验收：`astro build` 绿 + agent-browser 首页/docs 双主题视觉冒烟
+- [x] 1.1 升级依赖，移除 `@astrojs/tailwind`，新增 `@tailwindcss/vite`、`@astrojs/starlight-tailwind`、`@mermaid-js/layout-elk`
+- [x] 1.2 内容集合迁移：`src/content/config.ts` → `src/content.config.ts`，改用 Starlight `docsLoader`
+- [x] 1.3 Tailwind CSS-first：`tailwind.config.mjs` 的 theme.extend 迁进 `global.css` 的 `@theme`，删除旧配置文件
+- [x] 1.4 `astro.config.mjs`：`tailwind()` integration 换成 `vite.plugins: [tailwindcss()]`
+- [x] 1.5 修 Starlight 0.29 → 0.41 的 API 漂移（`social` 由对象改为数组等）
+- [x] 1.6 验收：`astro build` 绿 + agent-browser 首页/docs 双主题视觉冒烟
 
-验收标准：121 页构建通过、零 console error、暗色主题与 violet accent 未走样、mermaid 图正常渲染、语言切换与 hreflang 不变。
+验收结果：121 页构建通过（astro 7.2.7 / vite 8.0.13 / tailwind 4.3.3），首页与 docs 零 console error，暗色主题与 --sl-color-accent #7c3aed 未走样，mermaid SVG 正常，日文 docs 侧边栏与 UI 字符串本地化正确、正文按预期回退英文。
+
+原验收标准：121 页构建通过、零 console error、暗色主题与 violet accent 未走样、mermaid 图正常渲染、语言切换与 hreflang 不变。
 
 ## Phase 2 — Vite+ 接入
 
