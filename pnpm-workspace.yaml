@@ -1,0 +1,19 @@
+# pnpm 11 ships a non-zero minimumReleaseAge by default, which rejects the
+# astro / starlight / sharp releases this project deliberately upgraded to.
+# Scoped to this repo only — it does not relax the policy anywhere else.
+minimumReleaseAge: 0
+onlyBuiltDependencies:
+  - esbuild
+  - sharp
+catalog:
+  vite: npm:@voidzero-dev/vite-plus-core@0.3.0
+  vite-plus: 0.3.0
+overrides:
+  vite@*: "catalog:"
+peerDependencyRules:
+  allowAny:
+    - vite
+  allowedVersions:
+    vite: "*"
+allowBuilds:
+  esbuild: set this to true or false

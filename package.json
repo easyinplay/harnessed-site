@@ -24,12 +24,9 @@
   "devDependencies": {
     "@types/node": "^22.19.19",
     "playwright": "^1.60.0",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "vite": "catalog:",
+    "vite-plus": "catalog:"
   },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "esbuild",
-      "sharp"
-    ]
-  }
+  "packageManager": "pnpm@11.24.0"
 }
