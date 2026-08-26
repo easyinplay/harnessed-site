@@ -3,7 +3,7 @@ title: คำสั่ง CLI
 description: subcommand และแฟล็กทั้งหมดของ CLI harnessed
 ---
 
-> **โมเดลการทำงานของ v4.0** harnessed คือ *orchestration brain + คลัง prompt* ไม่ใช่เอนจินรันงาน ส่วนเนื้อของคำสั่งสแลช (สร้างโดย `harnessed setup`) ขับ **การ spawn CC-native subagent** ผ่าน CLI ฟังก์ชันบริสุทธิ์ที่เร็วสามตัว — `harnessed gates` (subworkflow ตัวใดถูกกระตุ้น), `harnessed prompt` (prompt พร้อม spawn ของ subworkflow) และ `harnessed checkpoint` (บันทึกความคืบหน้า) ส่วนการ spawn จริง, Agent Teams, ralph-loop และการวนถามเพื่อความชัดเจน เป็นงานของ main session ของ Claude Code ด้วยเครื่องมือเนทีฟ `harnessed run` เหลือไว้สำหรับ CI/headless เท่านั้น
+> **โมเดลการทำงานของ v4.0** harnessed คือ _orchestration brain + คลัง prompt_ ไม่ใช่เอนจินรันงาน ส่วนเนื้อของคำสั่งสแลช (สร้างโดย `harnessed setup`) ขับ **การ spawn CC-native subagent** ผ่าน CLI ฟังก์ชันบริสุทธิ์ที่เร็วสามตัว — `harnessed gates` (subworkflow ตัวใดถูกกระตุ้น), `harnessed prompt` (prompt พร้อม spawn ของ subworkflow) และ `harnessed checkpoint` (บันทึกความคืบหน้า) ส่วนการ spawn จริง, Agent Teams, ralph-loop และการวนถามเพื่อความชัดเจน เป็นงานของ main session ของ Claude Code ด้วยเครื่องมือเนทีฟ `harnessed run` เหลือไว้สำหรับ CI/headless เท่านั้น
 
 CLI orchestration สามตัวขับการ spawn CC-native อย่างไร:
 
@@ -50,10 +50,10 @@ harnessed setup [ตัวเลือก]
 
 **แฟล็ก:**
 
-| แฟล็ก | คำอธิบาย |
-|-------|---------|
+| แฟล็ก                | คำอธิบาย                                                           |
+| -------------------- | ------------------------------------------------------------------ |
 | `--user-lang <code>` | เขียนทับ locale ที่ตรวจพบ รับค่า `en`, `zh-Hans`, `zh-CN`, `zh-TW` |
-| `--dry-run` | ดูตัวอย่างเท่านั้น — พิมพ์สิ่งที่จะเขียน ไม่แตะดิสก์ |
+| `--dry-run`          | ดูตัวอย่างเท่านั้น — พิมพ์สิ่งที่จะเขียน ไม่แตะดิสก์               |
 
 **รหัสออก:** `0` = สำเร็จ, `1` = ข้อผิดพลาดของระบบไฟล์, `2` = ไม่พบ workflow ที่มี SKILL.md
 
@@ -98,12 +98,12 @@ harnessed research --query "..." --model sonnet      # model ของ subagent:
 harnessed research --query "..." --non-interactive   # ข้ามทุกคำถาม (CI / สคริปต์)
 ```
 
-| แฟล็ก | คำอธิบาย |
-|-------|---------|
-| `--query <text>` | prompt สำหรับ research (**จำเป็น**) |
-| `--dry-run` | ดูตัวอย่างเท่านั้น — พิมพ์ `{ workflow, yamlPath, gateContext }` และไม่ spawn |
-| `--model <model>` | model ของ subagent: `haiku` \| `sonnet` \| `opus` |
-| `--non-interactive` | ข้ามทุกคำถาม (CI / สคริปต์) |
+| แฟล็ก               | คำอธิบาย                                                                      |
+| ------------------- | ----------------------------------------------------------------------------- |
+| `--query <text>`    | prompt สำหรับ research (**จำเป็น**)                                           |
+| `--dry-run`         | ดูตัวอย่างเท่านั้น — พิมพ์ `{ workflow, yamlPath, gateContext }` และไม่ spawn |
+| `--model <model>`   | model ของ subagent: `haiku` \| `sonnet` \| `opus`                             |
+| `--non-interactive` | ข้ามทุกคำถาม (CI / สคริปต์)                                                   |
 
 **รหัสออก:** `0` = workflow เสร็จ · `1` = workflow ล้มเหลวตอนรัน · `2` = ใช้คำสั่งผิด (ขาด `--query` หรือหา yaml ของ workflow ไม่เจอ)
 
@@ -123,12 +123,12 @@ harnessed manifest-add <upstream> --non-interactive   # CI: dry-run แบบ WA
 
 เมื่อสำเร็จจะเขียนคำตอบลง `manifests/<category>/<name>.ee5-answers.json`
 
-| แฟล็ก | คำอธิบาย |
-|-------|---------|
-| `--category <cat>` | หมวดของ manifest: `skill-packs` (ค่าเริ่มต้น) \| `tools` |
-| `--name <name>` | ชื่อ adapter แบบสั้น (ค่าเริ่มต้นใช้ basename ของ `<upstream>`) |
-| `--dry-run` | ดูตัวอย่างเท่านั้น — พิมพ์ JSON คำตอบ ไม่เขียน |
-| `--non-interactive` | CI / สคริปต์ — WARN อย่างเดียว ไม่เขียนอะไร |
+| แฟล็ก               | คำอธิบาย                                                        |
+| ------------------- | --------------------------------------------------------------- |
+| `--category <cat>`  | หมวดของ manifest: `skill-packs` (ค่าเริ่มต้น) \| `tools`        |
+| `--name <name>`     | ชื่อ adapter แบบสั้น (ค่าเริ่มต้นใช้ basename ของ `<upstream>`) |
+| `--dry-run`         | ดูตัวอย่างเท่านั้น — พิมพ์ JSON คำตอบ ไม่เขียน                  |
+| `--non-interactive` | CI / สคริปต์ — WARN อย่างเดียว ไม่เขียนอะไร                     |
 
 **รหัสออก:** `0` = ผ่านด่าน (เขียนแล้วหรือดูตัวอย่าง) · `1` = มีคำตอบเว้นว่าง
 
@@ -312,7 +312,7 @@ harnessed advance
 # → run /auto "phase 16 'rate limiter'"
 ```
 
-**advance-gate** `advance` ปฏิเสธการกระโดดข้าม phase ก่อนหน้าที่ *ยังไม่เสร็จ* (ด่าน "comet"): ถ้า phase ถัดไปที่อนุมานได้ถูกจัดลำดับก่อนตัวชี้ของ workflow หรือมี sub ที่ล้มเหลวขวาง ledger อยู่ มันจะออกด้วยรหัสที่ไม่ใช่ศูนย์และ **ไม่** พิมพ์คำสั่งให้รัน ใช้ `--force` เพื่อเขียนทับ — มันจะบันทึกหมายเหตุตรวจสอบไว้ในผลลัพธ์แล้วไปต่อ
+**advance-gate** `advance` ปฏิเสธการกระโดดข้าม phase ก่อนหน้าที่ _ยังไม่เสร็จ_ (ด่าน "comet"): ถ้า phase ถัดไปที่อนุมานได้ถูกจัดลำดับก่อนตัวชี้ของ workflow หรือมี sub ที่ล้มเหลวขวาง ledger อยู่ มันจะออกด้วยรหัสที่ไม่ใช่ศูนย์และ **ไม่** พิมพ์คำสั่งให้รัน ใช้ `--force` เพื่อเขียนทับ — มันจะบันทึกหมายเหตุตรวจสอบไว้ในผลลัพธ์แล้วไปต่อ
 
 ```bash
 harnessed advance --force   # เขียนทับด่าน (บันทึกหมายเหตุตรวจสอบ)
@@ -379,11 +379,11 @@ harnessed audit                 # ทั้งชั้น manifest และ ru
 harnessed audit --skip-runtime  # เฉพาะชั้น manifest (ออฟไลน์ / ยังไม่ได้เริ่มต้น)
 ```
 
-**ชั้น manifest:** รูปแบบ URL ของ repository (`https://…​.git`), ค่าตัวยึดตำแหน่งใน `signed_by` (`unsigned` / `todo` / `tbd` / …) และ `git_ref` ที่ขยับได้ (`HEAD` / `main` / `master` — ถือเป็น *error*: ควร pin ไว้ที่ SHA หรือ tag) **ชั้น runtime** (ข้ามด้วย `--skip-runtime`): การแก้ origin-URL, การฉีด shell ใน `install.cmd` + การตรวจไขว้แพ็กเกจ npm, ด่าน provenance พิมพ์รายงาน `✓ / ⚠ / ✗` รายไฟล์ manifest พร้อมยอดรวมสิ่งที่พบ
+**ชั้น manifest:** รูปแบบ URL ของ repository (`https://…​.git`), ค่าตัวยึดตำแหน่งใน `signed_by` (`unsigned` / `todo` / `tbd` / …) และ `git_ref` ที่ขยับได้ (`HEAD` / `main` / `master` — ถือเป็น _error_: ควร pin ไว้ที่ SHA หรือ tag) **ชั้น runtime** (ข้ามด้วย `--skip-runtime`): การแก้ origin-URL, การฉีด shell ใน `install.cmd` + การตรวจไขว้แพ็กเกจ npm, ด่าน provenance พิมพ์รายงาน `✓ / ⚠ / ✗` รายไฟล์ manifest พร้อมยอดรวมสิ่งที่พบ
 
 **รหัสออก:** `0` = ไม่มีสิ่งที่พบระดับ error (มี warning ได้) · `1` = มี error หนึ่งรายการขึ้นไป
 
-> **`audit` กับ `audit-log`** — `audit` *ตรวจความสมบูรณ์ของไฟล์ manifest* ส่วน `audit-log` (ด้านล่าง) *สอบถามบันทึก* ของการส่งต่อ/การติดตั้งที่เกิดขึ้นแล้ว คนละเรื่องกัน
+> **`audit` กับ `audit-log`** — `audit` _ตรวจความสมบูรณ์ของไฟล์ manifest_ ส่วน `audit-log` (ด้านล่าง) _สอบถามบันทึก_ ของการส่งต่อ/การติดตั้งที่เกิดขึ้นแล้ว คนละเรื่องกัน
 
 ---
 
@@ -451,9 +451,9 @@ harnessed <command> --help   # ความช่วยเหลือราย�
 
 ## แฟล็กระดับ global
 
-| แฟล็ก | คำอธิบาย |
-|-------|---------|
-| `--version` | พิมพ์เวอร์ชันแล้วออก |
-| `--help` | พิมพ์ความช่วยเหลือแล้วออก |
+| แฟล็ก       | คำอธิบาย                  |
+| ----------- | ------------------------- |
+| `--version` | พิมพ์เวอร์ชันแล้วออก      |
+| `--help`    | พิมพ์ความช่วยเหลือแล้วออก |
 
 ซอร์สโค้ดอยู่ที่ `src/cli.ts` และ `src/cli/` ใน [repo ของ harnessed](https://github.com/easyinplay/harnessed/tree/main/src/cli)

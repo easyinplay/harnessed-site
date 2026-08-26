@@ -15,15 +15,15 @@ schema_version: harnessed.workflow.v3
 
 ```typescript
 interface Manifest {
-  schema_version: 'harnessed.workflow.v3'
-  name: string                    // unique pack identifier
-  version: string                 // semver (e.g. "4.3.0")
-  description: string             // one paragraph description
-  install?: InstallStep[]         // steps to install upstream dependencies
-  capability?: Capability         // what this pack contributes
-  delegates_to?: SubWorkflowRef[] // for orchestrator workflows
-  disciplines_applied?: string[]  // cross-cutting rules (e.g. "karpathy")
-  tools_available?: string[]      // tools this workflow can call
+  schema_version: "harnessed.workflow.v3";
+  name: string; // unique pack identifier
+  version: string; // semver (e.g. "4.3.0")
+  description: string; // one paragraph description
+  install?: InstallStep[]; // steps to install upstream dependencies
+  capability?: Capability; // what this pack contributes
+  delegates_to?: SubWorkflowRef[]; // for orchestrator workflows
+  disciplines_applied?: string[]; // cross-cutting rules (e.g. "karpathy")
+  tools_available?: string[]; // tools this workflow can call
 }
 ```
 
@@ -31,9 +31,9 @@ interface Manifest {
 
 ```typescript
 type InstallStep =
-  | { npm: string }               // npm install -g <package>
-  | { git: string }               // git clone <url>
-  | { script: string }            // run arbitrary shell command
+  | { npm: string } // npm install -g <package>
+  | { git: string } // git clone <url>
+  | { script: string }; // run arbitrary shell command
 ```
 
 Example:
@@ -50,9 +50,9 @@ install:
 
 ```typescript
 interface Capability {
-  skills?: string[]    // slash-command skills contributed
-  workflows?: string[] // workflow names contributed
-  mcp?: string[]       // MCP server names registered
+  skills?: string[]; // slash-command skills contributed
+  workflows?: string[]; // workflow names contributed
+  mcp?: string[]; // MCP server names registered
 }
 ```
 
@@ -79,10 +79,10 @@ For master and super-master workflows that spawn sub-workflows:
 
 ```typescript
 interface SubWorkflowRef {
-  name: string    // sub-workflow name
-  order: number   // execution order (0-indexed)
-  mode: 'serial' | 'parallel'
-  gate?: string   // judgment key that must be true for this sub to fire
+  name: string; // sub-workflow name
+  order: number; // execution order (0-indexed)
+  mode: "serial" | "parallel";
+  gate?: string; // judgment key that must be true for this sub to fire
 }
 ```
 

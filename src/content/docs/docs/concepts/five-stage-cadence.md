@@ -7,15 +7,15 @@ The 5-stage cadence is harnessed's core methodology: every feature, bug fix, or 
 
 ## The stages
 
-| # | Stage | Slash command | Mode |
-|---|-------|---------------|------|
-| 0 | **Research** | `/research` | Optional — fires when understanding is unclear |
-| 1 | **Discuss** | `/discuss` | Mandatory |
-| 2 | **Plan** | `/plan` | Mandatory |
-| 3 | **Task** | `/task` | Mandatory |
-| 4 | **Verify** | `/verify` | Mandatory |
-| 5 | **Ship** | `/ship` | Explicit — release stage (user-triggered) |
-| — | **Retro** | `/retro` | Mandatory after `/auto`, optional standalone |
+| #   | Stage        | Slash command | Mode                                           |
+| --- | ------------ | ------------- | ---------------------------------------------- |
+| 0   | **Research** | `/research`   | Optional — fires when understanding is unclear |
+| 1   | **Discuss**  | `/discuss`    | Mandatory                                      |
+| 2   | **Plan**     | `/plan`       | Mandatory                                      |
+| 3   | **Task**     | `/task`       | Mandatory                                      |
+| 4   | **Verify**   | `/verify`     | Mandatory                                      |
+| 5   | **Ship**     | `/ship`       | Explicit — release stage (user-triggered)      |
+| —   | **Retro**    | `/retro`      | Mandatory after `/auto`, optional standalone   |
 
 **Learning is automatic, not a stage.** Every completed workflow appends its failure/loop/reject signals to `.planning/LEARNINGS.md`; the inject hook surfaces relevant learnings into the next session. This is always-on and **not** gated on the optional Retro.
 
@@ -102,7 +102,7 @@ graph TD
 /ship                           # run only ship (release-preflight → tag-ready)
 ```
 
-Across *multiple* phases, `harnessed advance` derives the next phase from `.planning/` disk state and prints the command to run — so a driver loop chains phases hands-free (`while harnessed advance --json; do : ; done`), stopping at the advance-gate when an earlier phase is left incomplete. See the `harnessed advance` entry in the [CLI reference](../../reference/cli/).
+Across _multiple_ phases, `harnessed advance` derives the next phase from `.planning/` disk state and prints the command to run — so a driver loop chains phases hands-free (`while harnessed advance --json; do : ; done`), stopping at the advance-gate when an earlier phase is left incomplete. See the `harnessed advance` entry in the [CLI reference](../../reference/cli/).
 
 Surgical sub-workflow invocation skips the master entirely:
 

@@ -3,15 +3,15 @@ title: Ngăn xếp ba tầng
 description: BDD → SDD → TDD như ba vòng phản hồi lồng nhau, mỗi vòng được kết hợp từ hệ sinh thái mã nguồn mở.
 ---
 
-Ngăn xếp ba tầng là lý thuyết của harnessed về việc *tại sao* nhịp làm việc lại có hình dạng như vậy. Đây là bản hiện thực hóa về mặt kỹ thuật phần mềm của cấu trúc lồng nhau đã được thừa nhận **BDD → SDD → TDD**: ba vòng phản hồi lồng nhau, mỗi vòng trả lời một câu hỏi khác nhau. Đóng góp của harnessed là **kết hợp** hệ sinh thái mã nguồn mở vào từng vòng — và vì các thành phần upstream *chồng lấn một phần*, việc phân xử phần chồng lấn đó chính là công việc của một orchestrator kết hợp.
+Ngăn xếp ba tầng là lý thuyết của harnessed về việc _tại sao_ nhịp làm việc lại có hình dạng như vậy. Đây là bản hiện thực hóa về mặt kỹ thuật phần mềm của cấu trúc lồng nhau đã được thừa nhận **BDD → SDD → TDD**: ba vòng phản hồi lồng nhau, mỗi vòng trả lời một câu hỏi khác nhau. Đóng góp của harnessed là **kết hợp** hệ sinh thái mã nguồn mở vào từng vòng — và vì các thành phần upstream _chồng lấn một phần_, việc phân xử phần chồng lấn đó chính là công việc của một orchestrator kết hợp.
 
 ## Ba vòng lặp
 
-| Tầng | Loop | Câu hỏi nó trả lời | Kết hợp từ (có chồng lấn) |
-|------|------|--------------------|---------------------------|
-| **① Behavior** | BDD | Xây *cái gì*, và làm sao biết đã xong | gstack `/office-hours` governance · GSD discuss · superpowers brainstorming → acceptance criteria |
-| **② Spec** | SDD | Cấu trúc *ra sao* | GSD plan-phase → requirements / design / tasks · contracts (Spec Kit / ECC patterns) |
-| **③ Implementation** | TDD | Nó có thực sự *chạy được* không | superpowers TDD red-green · subagent execution · GSD verify-work · ralph-loop completion |
+| Tầng                 | Loop | Câu hỏi nó trả lời                    | Kết hợp từ (có chồng lấn)                                                                         |
+| -------------------- | ---- | ------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| **① Behavior**       | BDD  | Xây _cái gì_, và làm sao biết đã xong | gstack `/office-hours` governance · GSD discuss · superpowers brainstorming → acceptance criteria |
+| **② Spec**           | SDD  | Cấu trúc _ra sao_                     | GSD plan-phase → requirements / design / tasks · contracts (Spec Kit / ECC patterns)              |
+| **③ Implementation** | TDD  | Nó có thực sự _chạy được_ không       | superpowers TDD red-green · subagent execution · GSD verify-work · ralph-loop completion          |
 
 **Các vòng lặp là những thấu kính lồng nhau, không phải giai đoạn.** Cucumber phổ biến vòng lặp đôi BDD-ngoài + TDD-trong: một scenario thất bại mở vòng ngoài, và bạn đẩy nó tới xanh qua nhiều chu trình red-green TDD bên trong. Kỷ nguyên GenAI thêm một vòng ở giữa — vòng **spec** tường minh của SDD nằm giữa Behavior và Implementation, bởi agent cần một contract đã đóng băng để thực thi. Đó là **triple-loop** ở trên.
 
@@ -21,30 +21,30 @@ Mỗi vòng chia thành các nút, và mỗi nút cho biết nó được kết 
 
 ### ① Behavior (BDD)
 
-| Nút | Vai trò | Kết hợp từ |
-|-----|---------|------------|
-| **Clarify** | Chốt *xây cái gì* + phơi bày điểm mơ hồ | gstack `/office-hours` + GSD discuss + superpowers brainstorming |
-| **Scenario** | Chuyển ý định thành acceptance criteria | GSD phase success criteria |
+| Nút          | Vai trò                                 | Kết hợp từ                                                       |
+| ------------ | --------------------------------------- | ---------------------------------------------------------------- |
+| **Clarify**  | Chốt _xây cái gì_ + phơi bày điểm mơ hồ | gstack `/office-hours` + GSD discuss + superpowers brainstorming |
+| **Scenario** | Chuyển ý định thành acceptance criteria | GSD phase success criteria                                       |
 
 Vòng ngoài còn mở cho tới khi acceptance criteria của scenario được viết ra. Định nghĩa "xong" được quyết ở đây — trước mọi cấu trúc hay dòng code nào.
 
 ### ② Spec (SDD)
 
-| Nút | Vai trò | Kết hợp từ |
-|-----|---------|------------|
-| **Spec** | requirements + design | GSD plan-phase + bộ ba Spec Kit (requirements / design / tasks) |
-| **Plan** | tasks + DAG phụ thuộc | GSD `PLAN.md` + phân rã của ECC |
-| **Contract** | giao diện đã đóng băng | quy ước contract |
+| Nút          | Vai trò                | Kết hợp từ                                                      |
+| ------------ | ---------------------- | --------------------------------------------------------------- |
+| **Spec**     | requirements + design  | GSD plan-phase + bộ ba Spec Kit (requirements / design / tasks) |
+| **Plan**     | tasks + DAG phụ thuộc  | GSD `PLAN.md` + phân rã của ECC                                 |
+| **Contract** | giao diện đã đóng băng | quy ước contract                                                |
 
 Vòng giữa chuyển "cái gì" thành cấu trúc chạy được. Điều kiện thoát của nó là một **contract đã đóng băng** — giao diện mà vòng implementation sẽ viết test đối chiếu.
 
 ### ③ Implementation (TDD)
 
-| Nút | Vai trò | Kết hợp từ |
-|-----|---------|------------|
-| **Test-first** | test thất bại (red gate) | superpowers TDD |
-| **Implement** | đẩy tới xanh | subagent execution |
-| **Verify** | refactor + hoàn tất theo task | GSD verify-work + ralph-loop completion |
+| Nút            | Vai trò                       | Kết hợp từ                              |
+| -------------- | ----------------------------- | --------------------------------------- |
+| **Test-first** | test thất bại (red gate)      | superpowers TDD                         |
+| **Implement**  | đẩy tới xanh                  | subagent execution                      |
+| **Verify**     | refactor + hoàn tất theo task | GSD verify-work + ralph-loop completion |
 
 Vòng trong chính là chu trình kinh điển red → green → refactor, chạy một lượt cho mỗi task cho tới khi mọi contract được thỏa mãn.
 
@@ -52,14 +52,14 @@ Vòng trong chính là chu trình kinh điển red → green → refactor, chạ
 
 Hai mối quan tâm nằm ngoài bất kỳ vòng đơn lẻ nào:
 
-| Mối quan tâm | Vai trò | Kết hợp từ |
-|--------------|---------|------------|
-| **Review** | gate chất lượng + bảo mật | gstack `/review` + `/cso` |
-| **Ship** | sẵn sàng phát hành + bàn giao | `release-preflight` + gstack `/ship` |
+| Mối quan tâm | Vai trò                       | Kết hợp từ                           |
+| ------------ | ----------------------------- | ------------------------------------ |
+| **Review**   | gate chất lượng + bảo mật     | gstack `/review` + `/cso`            |
+| **Ship**     | sẵn sàng phát hành + bàn giao | `release-preflight` + gstack `/ship` |
 
-Ngoài ra, hai **discipline** chạy xuyên *mọi* tầng:
+Ngoài ra, hai **discipline** chạy xuyên _mọi_ tầng:
 
-- **karpathy principles** — *how* to code: thay đổi khả thi nhỏ nhất, chỉnh sửa như phẫu thuật, simplicity first.
+- **karpathy principles** — _how_ to code: thay đổi khả thi nhỏ nhất, chỉnh sửa như phẫu thuật, simplicity first.
 - **mattpocock moves** — công cụ theo yêu cầu (`/zoom-out`, `/diagnose`, `/grill-with-docs`), triệu hồi tùy tình huống.
 
 ## Quay lui (GoBack)
@@ -100,7 +100,7 @@ Nhịp tuyến tính hiện tại có ba cạnh quay lui đang sống:
 
 ### Roadmap (chưa phát hành)
 
-Các đường quay lui có cấu trúc mịn hơn — định tuyến khoảng trống *thẳng* về vòng nắm câu trả lời — là hướng tiến hóa, không phải hành vi hiện tại:
+Các đường quay lui có cấu trúc mịn hơn — định tuyến khoảng trống _thẳng_ về vòng nắm câu trả lời — là hướng tiến hóa, không phải hành vi hiện tại:
 
 - **Mâu thuẫn contract** (implementation không thỏa mãn nổi một giao diện đã đóng băng) → định tuyến về **Spec**.
 - **Yêu cầu mơ hồ** (contract tự nó nhất quán nhưng behavior còn thiếu đặc tả) → định tuyến về **Behavior**.
@@ -120,13 +120,13 @@ Không có phân xử, những chỗ giao này sẽ kích hoạt trùng lặp ho
 
 ## Lý thuyết vs. runtime
 
-Ngăn xếp ba tầng là *lý thuyết*. [Nhịp 5 giai đoạn](/vi/docs/concepts/five-stage-cadence/) là cách lý thuyết đó vận hành trên dòng lệnh:
+Ngăn xếp ba tầng là _lý thuyết_. [Nhịp 5 giai đoạn](/vi/docs/concepts/five-stage-cadence/) là cách lý thuyết đó vận hành trên dòng lệnh:
 
-| Loop (lý thuyết) | Giai đoạn runtime |
-|------------------|-------------------|
-| ① Behavior | **Discuss** |
-| ② Spec | **Plan** |
-| ③ Implementation | **Build** (Task) |
-| Xuyên suốt | **Verify + Ship** (evidence gate) |
+| Loop (lý thuyết) | Giai đoạn runtime                 |
+| ---------------- | --------------------------------- |
+| ① Behavior       | **Discuss**                       |
+| ② Spec           | **Plan**                          |
+| ③ Implementation | **Build** (Task)                  |
+| Xuyên suốt       | **Verify + Ship** (evidence gate) |
 
-Về việc các công cụ upstream được ghép lại *ra sao* mà không cần fork, xem [Kết hợp thay vì vendoring](/vi/docs/concepts/composition/).
+Về việc các công cụ upstream được ghép lại _ra sao_ mà không cần fork, xem [Kết hợp thay vì vendoring](/vi/docs/concepts/composition/).

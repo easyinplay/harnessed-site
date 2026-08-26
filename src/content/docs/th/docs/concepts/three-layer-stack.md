@@ -3,15 +3,15 @@ title: สแตกสามชั้น
 description: BDD → SDD → TDD เป็นวงป้อนกลับสามวงซ้อนกัน แต่ละวงประกอบขึ้นจากระบบนิเวศโอเพนซอร์ส
 ---
 
-สแตกสามชั้นคือทฤษฎีของ harnessed ว่า *ทำไม* จังหวะการทำงานจึงหน้าตาแบบนี้ มันคือการนำโครงสร้างซ้อน **BDD → SDD → TDD** ที่เป็นที่ยอมรับแล้วมาทำให้เป็นจริงในเชิงวิศวกรรมซอฟต์แวร์: วงป้อนกลับสามวงซ้อนกัน แต่ละวงตอบคำถามคนละข้อ สิ่งที่ harnessed เพิ่มเข้ามาคือการ **ประกอบ** ระบบนิเวศโอเพนซอร์สเข้าไปในแต่ละวง — และเพราะส่วนประกอบ upstream *ทับซ้อนกันบางส่วน* การตัดสินเรื่องการทับซ้อนนั้นจึงเป็นงานของ orchestrator การประกอบโดยตรง
+สแตกสามชั้นคือทฤษฎีของ harnessed ว่า _ทำไม_ จังหวะการทำงานจึงหน้าตาแบบนี้ มันคือการนำโครงสร้างซ้อน **BDD → SDD → TDD** ที่เป็นที่ยอมรับแล้วมาทำให้เป็นจริงในเชิงวิศวกรรมซอฟต์แวร์: วงป้อนกลับสามวงซ้อนกัน แต่ละวงตอบคำถามคนละข้อ สิ่งที่ harnessed เพิ่มเข้ามาคือการ **ประกอบ** ระบบนิเวศโอเพนซอร์สเข้าไปในแต่ละวง — และเพราะส่วนประกอบ upstream _ทับซ้อนกันบางส่วน_ การตัดสินเรื่องการทับซ้อนนั้นจึงเป็นงานของ orchestrator การประกอบโดยตรง
 
 ## สามวง
 
-| ชั้น | Loop | คำถามที่มันตอบ | ประกอบจาก (มีการทับซ้อน) |
-|------|------|----------------|--------------------------|
-| **① Behavior** | BDD | จะสร้าง *อะไร* และรู้ได้อย่างไรว่าเสร็จ | gstack `/office-hours` governance · GSD discuss · superpowers brainstorming → acceptance criteria |
-| **② Spec** | SDD | โครงสร้าง *เป็นอย่างไร* | GSD plan-phase → requirements / design / tasks · contracts (Spec Kit / ECC patterns) |
-| **③ Implementation** | TDD | มัน *ทำงานได้จริง* หรือไม่ | superpowers TDD red-green · subagent execution · GSD verify-work · ralph-loop completion |
+| ชั้น                 | Loop | คำถามที่มันตอบ                          | ประกอบจาก (มีการทับซ้อน)                                                                          |
+| -------------------- | ---- | --------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| **① Behavior**       | BDD  | จะสร้าง _อะไร_ และรู้ได้อย่างไรว่าเสร็จ | gstack `/office-hours` governance · GSD discuss · superpowers brainstorming → acceptance criteria |
+| **② Spec**           | SDD  | โครงสร้าง _เป็นอย่างไร_                 | GSD plan-phase → requirements / design / tasks · contracts (Spec Kit / ECC patterns)              |
+| **③ Implementation** | TDD  | มัน _ทำงานได้จริง_ หรือไม่              | superpowers TDD red-green · subagent execution · GSD verify-work · ralph-loop completion          |
 
 **วงเหล่านี้คือเลนส์ซ้อนกัน ไม่ใช่ขั้นตอน** Cucumber ทำให้วงคู่ BDD-นอก + TDD-ใน เป็นที่รู้จัก: scenario ที่ล้มเหลวจะเปิดวงนอก แล้วคุณดันมันไปสู่สีเขียวผ่านวง red-green TDD ด้านในหลายรอบ ยุค GenAI เพิ่มวงตรงกลางเข้ามา — วง **spec** ของ SDD ที่อยู่ระหว่าง Behavior กับ Implementation อย่างชัดเจน เพราะ agent ต้องมี contract ที่ถูกแช่แข็งจึงจะทำงานได้ นั่นจึงกลายเป็น **triple-loop** ข้างบน
 
@@ -21,30 +21,30 @@ description: BDD → SDD → TDD เป็นวงป้อนกลับส�
 
 ### ① Behavior (BDD)
 
-| โหนด | บทบาท | ประกอบจาก |
-|------|-------|-----------|
-| **Clarify** | ตรึงว่าจะสร้าง *อะไร* + เปิดจุดกำกวม | gstack `/office-hours` + GSD discuss + superpowers brainstorming |
-| **Scenario** | แปลงเจตนาเป็น acceptance criteria | GSD phase success criteria |
+| โหนด         | บทบาท                                | ประกอบจาก                                                        |
+| ------------ | ------------------------------------ | ---------------------------------------------------------------- |
+| **Clarify**  | ตรึงว่าจะสร้าง _อะไร_ + เปิดจุดกำกวม | gstack `/office-hours` + GSD discuss + superpowers brainstorming |
+| **Scenario** | แปลงเจตนาเป็น acceptance criteria    | GSD phase success criteria                                       |
 
 วงนอกจะเปิดค้างไว้จนกว่า acceptance criteria ของ scenario จะถูกเขียนออกมา นิยามของคำว่า "เสร็จ" ถูกตัดสินตรงนี้ — ก่อนโครงสร้างหรือโค้ดใด ๆ
 
 ### ② Spec (SDD)
 
-| โหนด | บทบาท | ประกอบจาก |
-|------|-------|-----------|
-| **Spec** | requirements + design | GSD plan-phase + ชุดสามของ Spec Kit (requirements / design / tasks) |
-| **Plan** | tasks + DAG ของการพึ่งพา | GSD `PLAN.md` + การแตกงานของ ECC |
-| **Contract** | อินเทอร์เฟซถูกแช่แข็ง | ธรรมเนียมของ contract |
+| โหนด         | บทบาท                    | ประกอบจาก                                                           |
+| ------------ | ------------------------ | ------------------------------------------------------------------- |
+| **Spec**     | requirements + design    | GSD plan-phase + ชุดสามของ Spec Kit (requirements / design / tasks) |
+| **Plan**     | tasks + DAG ของการพึ่งพา | GSD `PLAN.md` + การแตกงานของ ECC                                    |
+| **Contract** | อินเทอร์เฟซถูกแช่แข็ง    | ธรรมเนียมของ contract                                               |
 
 วงกลางแปลง "อะไร" ให้เป็นโครงสร้างที่รันได้ เงื่อนไขออกของมันคือ **contract ที่ถูกแช่แข็ง** — อินเทอร์เฟซที่วง implementation จะเขียนเทสต์เทียบกับมัน
 
 ### ③ Implementation (TDD)
 
-| โหนด | บทบาท | ประกอบจาก |
-|------|-------|-----------|
-| **Test-first** | เทสต์ที่ล้มเหลว (red gate) | superpowers TDD |
-| **Implement** | ดันไปสู่สีเขียว | subagent execution |
-| **Verify** | refactor + จบงานรายชิ้น | GSD verify-work + ralph-loop completion |
+| โหนด           | บทบาท                      | ประกอบจาก                               |
+| -------------- | -------------------------- | --------------------------------------- |
+| **Test-first** | เทสต์ที่ล้มเหลว (red gate) | superpowers TDD                         |
+| **Implement**  | ดันไปสู่สีเขียว            | subagent execution                      |
+| **Verify**     | refactor + จบงานรายชิ้น    | GSD verify-work + ralph-loop completion |
 
 วงในคือวง red → green → refactor แบบคลาสสิก วนหนึ่งรอบต่อหนึ่ง task จนกว่าทุก contract จะได้รับการตอบสนอง
 
@@ -52,14 +52,14 @@ description: BDD → SDD → TDD เป็นวงป้อนกลับส�
 
 สองเรื่องอยู่นอกวงใดวงหนึ่งโดยเฉพาะ:
 
-| เรื่อง | บทบาท | ประกอบจาก |
-|-------|-------|-----------|
-| **Review** | ด่านคุณภาพ + ความปลอดภัย | gstack `/review` + `/cso` |
-| **Ship** | ความพร้อมปล่อยรุ่น + การส่งมอบ | `release-preflight` + gstack `/ship` |
+| เรื่อง     | บทบาท                          | ประกอบจาก                            |
+| ---------- | ------------------------------ | ------------------------------------ |
+| **Review** | ด่านคุณภาพ + ความปลอดภัย       | gstack `/review` + `/cso`            |
+| **Ship**   | ความพร้อมปล่อยรุ่น + การส่งมอบ | `release-preflight` + gstack `/ship` |
 
-นอกจากนี้ยังมีสอง **discipline** ที่พาดผ่าน *ทุก* ชั้น:
+นอกจากนี้ยังมีสอง **discipline** ที่พาดผ่าน _ทุก_ ชั้น:
 
-- **karpathy principles** — *how* to code: เปลี่ยนให้น้อยที่สุดเท่าที่ใช้ได้ แก้แบบผ่าตัด simplicity first
+- **karpathy principles** — _how_ to code: เปลี่ยนให้น้อยที่สุดเท่าที่ใช้ได้ แก้แบบผ่าตัด simplicity first
 - **mattpocock moves** — เครื่องมือแบบเรียกใช้ตามต้องการ (`/zoom-out`, `/diagnose`, `/grill-with-docs`) เรียกตามสถานการณ์
 
 ## การย้อนกลับ (GoBack)
@@ -100,7 +100,7 @@ graph TD
 
 ### Roadmap (ยังไม่ปล่อย)
 
-การย้อนกลับเชิงโครงสร้างที่ละเอียดกว่านี้ — ส่งช่องว่าง *ตรง* ไปยังวงที่ถือคำตอบ — คือทิศทางวิวัฒนาการ ไม่ใช่พฤติกรรมปัจจุบัน:
+การย้อนกลับเชิงโครงสร้างที่ละเอียดกว่านี้ — ส่งช่องว่าง _ตรง_ ไปยังวงที่ถือคำตอบ — คือทิศทางวิวัฒนาการ ไม่ใช่พฤติกรรมปัจจุบัน:
 
 - **contract ขัดแย้ง** (implementation ทำตามอินเทอร์เฟซที่แช่แข็งไว้ไม่ได้) → ส่งกลับ **Spec**
 - **ความต้องการกำกวม** (contract สอดคล้องในตัวเอง แต่ behavior ยังระบุไม่พอ) → ส่งกลับ **Behavior**
@@ -120,13 +120,13 @@ graph TD
 
 ## ทฤษฎี vs. runtime
 
-สแตกสามชั้นคือ *ทฤษฎี* ส่วน [จังหวะ 5 ขั้น](/th/docs/concepts/five-stage-cadence/) คือวิธีที่ทฤษฎีนั้นทำงานจริงบนบรรทัดคำสั่ง:
+สแตกสามชั้นคือ _ทฤษฎี_ ส่วน [จังหวะ 5 ขั้น](/th/docs/concepts/five-stage-cadence/) คือวิธีที่ทฤษฎีนั้นทำงานจริงบนบรรทัดคำสั่ง:
 
-| Loop (ทฤษฎี) | ขั้นใน runtime |
-|--------------|----------------|
-| ① Behavior | **Discuss** |
-| ② Spec | **Plan** |
-| ③ Implementation | **Build** (Task) |
-| ตัดขวางทุกชั้น | **Verify + Ship** (evidence gate) |
+| Loop (ทฤษฎี)     | ขั้นใน runtime                    |
+| ---------------- | --------------------------------- |
+| ① Behavior       | **Discuss**                       |
+| ② Spec           | **Plan**                          |
+| ③ Implementation | **Build** (Task)                  |
+| ตัดขวางทุกชั้น   | **Verify + Ship** (evidence gate) |
 
-เรื่องที่ว่าเครื่องมือ upstream ถูกเย็บเข้าด้วยกัน *อย่างไร* โดยไม่ต้อง fork ดูได้ที่ [ประกอบแทน vendoring](/th/docs/concepts/composition/)
+เรื่องที่ว่าเครื่องมือ upstream ถูกเย็บเข้าด้วยกัน _อย่างไร_ โดยไม่ต้อง fork ดูได้ที่ [ประกอบแทน vendoring](/th/docs/concepts/composition/)

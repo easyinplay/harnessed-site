@@ -15,15 +15,15 @@ schema_version: harnessed.workflow.v3
 
 ```typescript
 interface Manifest {
-  schema_version: 'harnessed.workflow.v3'
-  name: string                    // 一意なパック識別子
-  version: string                 // semver（例 "4.3.0"）
-  description: string             // 一段落の説明
-  install?: InstallStep[]         // upstream 依存をインストールする手順
-  capability?: Capability         // このパックが提供する capability
-  delegates_to?: SubWorkflowRef[] // オーケストレーターワークフロー用
-  disciplines_applied?: string[]  // 横断的な規則（例 "karpathy"）
-  tools_available?: string[]      // このワークフローが呼べるツール
+  schema_version: "harnessed.workflow.v3";
+  name: string; // 一意なパック識別子
+  version: string; // semver（例 "4.3.0"）
+  description: string; // 一段落の説明
+  install?: InstallStep[]; // upstream 依存をインストールする手順
+  capability?: Capability; // このパックが提供する capability
+  delegates_to?: SubWorkflowRef[]; // オーケストレーターワークフロー用
+  disciplines_applied?: string[]; // 横断的な規則（例 "karpathy"）
+  tools_available?: string[]; // このワークフローが呼べるツール
 }
 ```
 
@@ -31,9 +31,9 @@ interface Manifest {
 
 ```typescript
 type InstallStep =
-  | { npm: string }               // npm install -g <package>
-  | { git: string }               // git clone <url>
-  | { script: string }            // 任意の shell コマンドを実行
+  | { npm: string } // npm install -g <package>
+  | { git: string } // git clone <url>
+  | { script: string }; // 任意の shell コマンドを実行
 ```
 
 例：
@@ -50,9 +50,9 @@ install:
 
 ```typescript
 interface Capability {
-  skills?: string[]    // 提供するスラッシュコマンド skills
-  workflows?: string[] // 提供するワークフロー名
-  mcp?: string[]       // 登録する MCP サーバー名
+  skills?: string[]; // 提供するスラッシュコマンド skills
+  workflows?: string[]; // 提供するワークフロー名
+  mcp?: string[]; // 登録する MCP サーバー名
 }
 ```
 
@@ -79,10 +79,10 @@ capability:
 
 ```typescript
 interface SubWorkflowRef {
-  name: string    // サブワークフロー名
-  order: number   // 実行順（0 始まり）
-  mode: 'serial' | 'parallel'
-  gate?: string   // このサブワークフローが発火するために true でなければならない判断キー
+  name: string; // サブワークフロー名
+  order: number; // 実行順（0 始まり）
+  mode: "serial" | "parallel";
+  gate?: string; // このサブワークフローが発火するために true でなければならない判断キー
 }
 ```
 

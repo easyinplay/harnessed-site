@@ -3,7 +3,7 @@ title: Comandos da CLI
 description: Todos os subcomandos e flags da CLI do harnessed.
 ---
 
-> **Modelo de execução v4.0.** O harnessed é um *orchestration brain + biblioteca de prompts*, não um motor de execução. O corpo do comando de barra (gerado por `harnessed setup`) dirige o **spawn de subagents CC-native** por meio de três CLIs puras e rápidas — `harnessed gates` (quais subworkflows disparam), `harnessed prompt` (prompt pronto para spawn de um subworkflow) e `harnessed checkpoint` (registro de progresso). O spawn em si, Agent Teams, ralph-loop e as idas e vindas de esclarecimento ficam com a sessão principal do Claude Code, usando ferramentas nativas. `harnessed run` permanece apenas para CI/headless.
+> **Modelo de execução v4.0.** O harnessed é um _orchestration brain + biblioteca de prompts_, não um motor de execução. O corpo do comando de barra (gerado por `harnessed setup`) dirige o **spawn de subagents CC-native** por meio de três CLIs puras e rápidas — `harnessed gates` (quais subworkflows disparam), `harnessed prompt` (prompt pronto para spawn de um subworkflow) e `harnessed checkpoint` (registro de progresso). O spawn em si, Agent Teams, ralph-loop e as idas e vindas de esclarecimento ficam com a sessão principal do Claude Code, usando ferramentas nativas. `harnessed run` permanece apenas para CI/headless.
 
 Como as três CLIs de orquestração dirigem o spawn CC-native:
 
@@ -50,10 +50,10 @@ harnessed setup [opções]
 
 **Flags:**
 
-| Flag | Descrição |
-|------|-----------|
+| Flag                 | Descrição                                                                |
+| -------------------- | ------------------------------------------------------------------------ |
 | `--user-lang <code>` | Sobrescreve o locale detectado. Aceita `en`, `zh-Hans`, `zh-CN`, `zh-TW` |
-| `--dry-run` | Apenas prévia — imprime o que seria escrito, sem alterar o disco |
+| `--dry-run`          | Apenas prévia — imprime o que seria escrito, sem alterar o disco         |
 
 **Códigos de saída:** `0` = sucesso, `1` = erro de sistema de arquivos, `2` = nenhum workflow com SKILL.md encontrado.
 
@@ -98,12 +98,12 @@ harnessed research --query "..." --model sonnet      # model do subagent: haiku 
 harnessed research --query "..." --non-interactive   # pula todos os prompts (CI / scripts)
 ```
 
-| Flag | Descrição |
-|------|-----------|
-| `--query <text>` | prompt de research (**obrigatório**) |
-| `--dry-run` | Apenas prévia — imprime `{ workflow, yamlPath, gateContext }` e não faz spawn |
-| `--model <model>` | model do subagent: `haiku` \| `sonnet` \| `opus` |
-| `--non-interactive` | Pula todos os prompts (CI / scripts) |
+| Flag                | Descrição                                                                     |
+| ------------------- | ----------------------------------------------------------------------------- |
+| `--query <text>`    | prompt de research (**obrigatório**)                                          |
+| `--dry-run`         | Apenas prévia — imprime `{ workflow, yamlPath, gateContext }` e não faz spawn |
+| `--model <model>`   | model do subagent: `haiku` \| `sonnet` \| `opus`                              |
+| `--non-interactive` | Pula todos os prompts (CI / scripts)                                          |
 
 **Códigos de saída:** `0` = workflow concluído · `1` = falha em runtime do workflow · `2` = erro de uso (falta `--query` ou o yaml do workflow não foi encontrado).
 
@@ -123,12 +123,12 @@ harnessed manifest-add <upstream> --non-interactive   # CI: dry-run só com WARN
 
 Em caso de sucesso, grava as respostas em `manifests/<category>/<name>.ee5-answers.json`.
 
-| Flag | Descrição |
-|------|-----------|
-| `--category <cat>` | Categoria do manifesto: `skill-packs` (padrão) \| `tools` |
-| `--name <name>` | Nome curto do adaptador (padrão: basename do `<upstream>`) |
-| `--dry-run` | Apenas prévia — imprime o JSON de respostas, não grava |
-| `--non-interactive` | CI / scripts — só WARN, não grava nada |
+| Flag                | Descrição                                                  |
+| ------------------- | ---------------------------------------------------------- |
+| `--category <cat>`  | Categoria do manifesto: `skill-packs` (padrão) \| `tools`  |
+| `--name <name>`     | Nome curto do adaptador (padrão: basename do `<upstream>`) |
+| `--dry-run`         | Apenas prévia — imprime o JSON de respostas, não grava     |
+| `--non-interactive` | CI / scripts — só WARN, não grava nada                     |
 
 **Códigos de saída:** `0` = gate aprovado (gravado ou em prévia) · `1` = alguma resposta em branco.
 
@@ -312,7 +312,7 @@ harnessed advance
 # → run /auto "phase 16 'rate limiter'"
 ```
 
-**advance-gate.** O `advance` se recusa a pular fases anteriores *incompletas* (o gate "comet"): se a próxima fase derivada estiver ordenada antes do ponteiro do workflow, ou se um sub que falhou estiver travando o ledger, ele sai com código diferente de zero e **não** imprime o comando. Use `--force` para sobrescrever — ele registra uma nota de auditoria na saída e segue.
+**advance-gate.** O `advance` se recusa a pular fases anteriores _incompletas_ (o gate "comet"): se a próxima fase derivada estiver ordenada antes do ponteiro do workflow, ou se um sub que falhou estiver travando o ledger, ele sai com código diferente de zero e **não** imprime o comando. Use `--force` para sobrescrever — ele registra uma nota de auditoria na saída e segue.
 
 ```bash
 harnessed advance --force   # sobrescreve o gate (registra nota de auditoria)
@@ -379,11 +379,11 @@ harnessed audit                 # camadas de manifesto + runtime
 harnessed audit --skip-runtime  # só a camada de manifesto (offline / não inicializado)
 ```
 
-**Camada de manifesto:** formato da URL de repositório (`https://…​.git`), valores de placeholder em `signed_by` (`unsigned` / `todo` / `tbd` / …) e `git_ref` móvel (`HEAD` / `main` / `master` — isso é *error*: deve ser pinado em SHA ou tag). **Camada de runtime** (pulada com `--skip-runtime`): adulteração da URL de origin, injeção de shell em `install.cmd` + verificação cruzada de pacotes npm, gate de proveniência. Imprime um relatório `✓ / ⚠ / ✗` por manifesto e a contagem de findings.
+**Camada de manifesto:** formato da URL de repositório (`https://…​.git`), valores de placeholder em `signed_by` (`unsigned` / `todo` / `tbd` / …) e `git_ref` móvel (`HEAD` / `main` / `master` — isso é _error_: deve ser pinado em SHA ou tag). **Camada de runtime** (pulada com `--skip-runtime`): adulteração da URL de origin, injeção de shell em `install.cmd` + verificação cruzada de pacotes npm, gate de proveniência. Imprime um relatório `✓ / ⚠ / ✗` por manifesto e a contagem de findings.
 
 **Códigos de saída:** `0` = nenhum finding de nível error (warnings permitidos) · `1` = um ou mais errors.
 
-> **`audit` vs. `audit-log`** — `audit` *valida a integridade dos arquivos de manifesto*; `audit-log` (abaixo) *consulta o registro* de roteamentos/instalações que já aconteceram. São preocupações diferentes.
+> **`audit` vs. `audit-log`** — `audit` _valida a integridade dos arquivos de manifesto_; `audit-log` (abaixo) _consulta o registro_ de roteamentos/instalações que já aconteceram. São preocupações diferentes.
 
 ---
 
@@ -451,9 +451,9 @@ harnessed <command> --help   # ajuda por comando
 
 ## Flags globais
 
-| Flag | Descrição |
-|------|-----------|
+| Flag        | Descrição              |
+| ----------- | ---------------------- |
 | `--version` | Imprime a versão e sai |
-| `--help` | Imprime a ajuda e sai |
+| `--help`    | Imprime a ajuda e sai  |
 
 O código-fonte está em `src/cli.ts` e `src/cli/` no [repositório do harnessed](https://github.com/easyinplay/harnessed/tree/main/src/cli).

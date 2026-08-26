@@ -3,15 +3,15 @@ title: Üç katmanlı yığın
 description: BDD → SDD → TDD; her biri açık kaynak ekosistemden birleştirilen üç iç içe geri besleme döngüsü.
 ---
 
-Üç katmanlı yığın, harnessed’ın ritminin *neden* bu biçimde olduğuna dair teorisidir. Yerleşik **BDD → SDD → TDD** iç içeliğinin yazılım mühendisliği uygulamasıdır: üç iç içe geri besleme döngüsü, her biri farklı bir soruya yanıt verir. harnessed’ın katkısı, açık kaynak ekosistemi her döngünün içine **birleştirmektir** — ve upstream bileşenler *kısmen örtüştüğü* için, bu örtüşmeyi hakemlik etmek tam olarak bir kompozisyon orkestratörünün işidir.
+Üç katmanlı yığın, harnessed’ın ritminin _neden_ bu biçimde olduğuna dair teorisidir. Yerleşik **BDD → SDD → TDD** iç içeliğinin yazılım mühendisliği uygulamasıdır: üç iç içe geri besleme döngüsü, her biri farklı bir soruya yanıt verir. harnessed’ın katkısı, açık kaynak ekosistemi her döngünün içine **birleştirmektir** — ve upstream bileşenler _kısmen örtüştüğü_ için, bu örtüşmeyi hakemlik etmek tam olarak bir kompozisyon orkestratörünün işidir.
 
 ## Üç döngü
 
-| Katman | Loop | Yanıtladığı soru | Neyden birleştirildi (örtüşen) |
-|--------|------|------------------|--------------------------------|
-| **① Behavior** | BDD | *Ne* inşa edilecek ve bittiğini nasıl anlarız | gstack `/office-hours` governance · GSD discuss · superpowers brainstorming → acceptance criteria |
-| **② Spec** | SDD | *Nasıl* yapılandırıldı | GSD plan-phase → requirements / design / tasks · contracts (Spec Kit / ECC patterns) |
-| **③ Implementation** | TDD | Gerçekten *çalışıyor mu* | superpowers TDD red-green · subagent execution · GSD verify-work · ralph-loop completion |
+| Katman               | Loop | Yanıtladığı soru                              | Neyden birleştirildi (örtüşen)                                                                    |
+| -------------------- | ---- | --------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| **① Behavior**       | BDD  | _Ne_ inşa edilecek ve bittiğini nasıl anlarız | gstack `/office-hours` governance · GSD discuss · superpowers brainstorming → acceptance criteria |
+| **② Spec**           | SDD  | _Nasıl_ yapılandırıldı                        | GSD plan-phase → requirements / design / tasks · contracts (Spec Kit / ECC patterns)              |
+| **③ Implementation** | TDD  | Gerçekten _çalışıyor mu_                      | superpowers TDD red-green · subagent execution · GSD verify-work · ralph-loop completion          |
 
 **Döngüler aşama değil, iç içe merceklerdir.** Cucumber, BDD-dış + TDD-iç çift döngüsünü yaygınlaştırdı: başarısız bir scenario dış döngüyü açar, siz de birden çok iç red-green TDD döngüsüyle onu yeşile sürersiniz. GenAI çağı araya bir halka ekledi — Behavior ile Implementation arasında açık bir SDD **spec** halkası, çünkü agent’ların yürütmek için dondurulmuş bir contract’a ihtiyacı var. Böylece yukarıdaki **triple-loop** oluşur.
 
@@ -21,30 +21,30 @@ Her döngü düğümlere ayrılır ve her düğüm hangi açık kaynak bileşen(
 
 ### ① Behavior (BDD)
 
-| Düğüm | Rol | Neyden birleştirildi |
-|-------|-----|----------------------|
-| **Clarify** | *Ne* inşa edileceğini sabitle + belirsizlikleri açığa çıkar | gstack `/office-hours` + GSD discuss + superpowers brainstorming |
-| **Scenario** | Niyeti acceptance criteria’ya çevir | GSD phase success criteria |
+| Düğüm        | Rol                                                         | Neyden birleştirildi                                             |
+| ------------ | ----------------------------------------------------------- | ---------------------------------------------------------------- |
+| **Clarify**  | _Ne_ inşa edileceğini sabitle + belirsizlikleri açığa çıkar | gstack `/office-hours` + GSD discuss + superpowers brainstorming |
+| **Scenario** | Niyeti acceptance criteria’ya çevir                         | GSD phase success criteria                                       |
 
 Dış döngü, scenario’nun acceptance criteria’sı yazılana kadar açık kalır. "Bitti" tanımı burada kararlaştırılır — herhangi bir yapıdan ya da koddan önce.
 
 ### ② Spec (SDD)
 
-| Düğüm | Rol | Neyden birleştirildi |
-|-------|-----|----------------------|
-| **Spec** | requirements + design | GSD plan-phase + Spec Kit üçlüsü (requirements / design / tasks) |
-| **Plan** | tasks + bağımlılık DAG’ı | GSD `PLAN.md` + ECC ayrıştırması |
-| **Contract** | arayüz dondurulmuş | contract gelenekleri |
+| Düğüm        | Rol                      | Neyden birleştirildi                                             |
+| ------------ | ------------------------ | ---------------------------------------------------------------- |
+| **Spec**     | requirements + design    | GSD plan-phase + Spec Kit üçlüsü (requirements / design / tasks) |
+| **Plan**     | tasks + bağımlılık DAG’ı | GSD `PLAN.md` + ECC ayrıştırması                                 |
+| **Contract** | arayüz dondurulmuş       | contract gelenekleri                                             |
 
 Orta halka "ne"yi yürütülebilir yapıya çevirir. Çıkış koşulu **dondurulmuş bir contract**’tır — implementation döngüsünün karşısında test yazacağı arayüz.
 
 ### ③ Implementation (TDD)
 
-| Düğüm | Rol | Neyden birleştirildi |
-|-------|-----|----------------------|
-| **Test-first** | başarısız test (red gate) | superpowers TDD |
-| **Implement** | yeşile sür | subagent execution |
-| **Verify** | refactor + görev bazında tamamlama | GSD verify-work + ralph-loop completion |
+| Düğüm          | Rol                                | Neyden birleştirildi                    |
+| -------------- | ---------------------------------- | --------------------------------------- |
+| **Test-first** | başarısız test (red gate)          | superpowers TDD                         |
+| **Implement**  | yeşile sür                         | subagent execution                      |
+| **Verify**     | refactor + görev bazında tamamlama | GSD verify-work + ralph-loop completion |
 
 İç halka klasik red → green → refactor döngüsüdür; tüm contract’lar karşılanana kadar her görev için bir tur döner.
 
@@ -52,14 +52,14 @@ Orta halka "ne"yi yürütülebilir yapıya çevirir. Çıkış koşulu **donduru
 
 İki konu herhangi bir tek döngünün dışında kalır:
 
-| Konu | Rol | Neyden birleştirildi |
-|------|-----|----------------------|
-| **Review** | kalite + güvenlik kapıları | gstack `/review` + `/cso` |
-| **Ship** | yayın hazırlığı + teslim | `release-preflight` + gstack `/ship` |
+| Konu       | Rol                        | Neyden birleştirildi                 |
+| ---------- | -------------------------- | ------------------------------------ |
+| **Review** | kalite + güvenlik kapıları | gstack `/review` + `/cso`            |
+| **Ship**   | yayın hazırlığı + teslim   | `release-preflight` + gstack `/ship` |
 
-Ayrıca iki **discipline** *her* katmandan geçer:
+Ayrıca iki **discipline** _her_ katmandan geçer:
 
-- **karpathy principles** — *how* to code: mümkün olan en küçük değişiklik, cerrahi düzenlemeler, simplicity first.
+- **karpathy principles** — _how_ to code: mümkün olan en küçük değişiklik, cerrahi düzenlemeler, simplicity first.
 - **mattpocock moves** — talep üzerine araçlar (`/zoom-out`, `/diagnose`, `/grill-with-docs`), duruma göre çağrılır.
 
 ## Geri dönüşler (GoBack)
@@ -100,7 +100,7 @@ Mevcut linear cadence’te üç canlı geri dönüş kenarı var:
 
 ### Roadmap (henüz yayında değil)
 
-Daha ince taneli yapısal geri dönüşler — gap’i yanıtın sahibi olan halkaya *doğrudan* yönlendirmek — mevcut davranış değil, evrim yönüdür:
+Daha ince taneli yapısal geri dönüşler — gap’i yanıtın sahibi olan halkaya _doğrudan_ yönlendirmek — mevcut davranış değil, evrim yönüdür:
 
 - **Contract çelişkisi** (implementation dondurulmuş bir arayüzü karşılayamıyor) → **Spec**’e geri yönlendir.
 - **Gereksinim belirsizliği** (contract kendi içinde tutarlı ama behavior eksik tanımlı) → **Behavior**’a geri yönlendir.
@@ -120,13 +120,13 @@ Hakemlik olmadan bu kesişmeler ya mükerrer tetiklenir ya da birbiriyle çeliş
 
 ## Teori vs. runtime
 
-Üç katmanlı yığın *teoridir*. [5 aşamalı ritim](/tr/docs/concepts/five-stage-cadence/) ise bu teorinin komut satırında çalışma biçimidir:
+Üç katmanlı yığın _teoridir_. [5 aşamalı ritim](/tr/docs/concepts/five-stage-cadence/) ise bu teorinin komut satırında çalışma biçimidir:
 
-| Loop (teori) | runtime aşaması |
-|--------------|-----------------|
-| ① Behavior | **Discuss** |
-| ② Spec | **Plan** |
-| ③ Implementation | **Build** (Task) |
-| Kesişen konular | **Verify + Ship** (evidence gate) |
+| Loop (teori)     | runtime aşaması                   |
+| ---------------- | --------------------------------- |
+| ① Behavior       | **Discuss**                       |
+| ② Spec           | **Plan**                          |
+| ③ Implementation | **Build** (Task)                  |
+| Kesişen konular  | **Verify + Ship** (evidence gate) |
 
-Upstream araçların fork edilmeden *nasıl* birbirine dikildiğini görmek için [Vendoring yerine kompozisyon](/tr/docs/concepts/composition/) yazısına bakın.
+Upstream araçların fork edilmeden _nasıl_ birbirine dikildiğini görmek için [Vendoring yerine kompozisyon](/tr/docs/concepts/composition/) yazısına bakın.

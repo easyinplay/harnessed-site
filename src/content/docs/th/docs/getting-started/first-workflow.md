@@ -61,15 +61,15 @@ flowchart LR
 
 `/verify` แจกจ่ายการตรวจย่อยได้สูงสุด 7 รายการตามสิ่งที่เปลี่ยนไป:
 
-| การตรวจ | ทำงานเมื่อ |
-|---------|-----------|
-| `verify-progress` | เสมอ (การยอมรับ UAT + ซิงก์สถานะ) |
-| `verify-code-review` | เสมอ (fan-out ขนานหลาย agent) |
-| `verify-paranoid` | โมดูลสำคัญ หรือก่อนเปิด PR |
-| `verify-qa` | มีการเปลี่ยน UI |
-| `verify-security` | แตะ auth หรือ secret |
-| `verify-design` | มีการเปลี่ยนดีไซน์ |
-| `verify-simplify` | เสมอและเป็นตัวสุดท้าย (ตัดตรรกะซ้ำซ้อน) |
+| การตรวจ              | ทำงานเมื่อ                              |
+| -------------------- | --------------------------------------- |
+| `verify-progress`    | เสมอ (การยอมรับ UAT + ซิงก์สถานะ)       |
+| `verify-code-review` | เสมอ (fan-out ขนานหลาย agent)           |
+| `verify-paranoid`    | โมดูลสำคัญ หรือก่อนเปิด PR              |
+| `verify-qa`          | มีการเปลี่ยน UI                         |
+| `verify-security`    | แตะ auth หรือ secret                    |
+| `verify-design`      | มีการเปลี่ยนดีไซน์                      |
+| `verify-simplify`    | เสมอและเป็นตัวสุดท้าย (ตัดตรรกะซ้ำซ้อน) |
 
 ## สิ่งที่ถูกบันทึกไว้ใน `.planning/`
 

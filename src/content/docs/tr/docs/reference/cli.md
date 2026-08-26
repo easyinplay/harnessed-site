@@ -50,10 +50,10 @@ harnessed setup [seçenekler]
 
 **Bayraklar:**
 
-| Bayrak | Açıklama |
-|--------|----------|
+| Bayrak               | Açıklama                                                                             |
+| -------------------- | ------------------------------------------------------------------------------------ |
 | `--user-lang <code>` | Algılanan yerel ayarı geçersiz kılar. `en`, `zh-Hans`, `zh-CN`, `zh-TW` kabul edilir |
-| `--dry-run` | Yalnızca önizleme — yazılacakları gösterir, diski değiştirmez |
+| `--dry-run`          | Yalnızca önizleme — yazılacakları gösterir, diski değiştirmez                        |
 
 **Çıkış kodları:** `0` = başarılı, `1` = dosya sistemi hatası, `2` = SKILL.md içeren iş akışı bulunamadı.
 
@@ -98,12 +98,12 @@ harnessed research --query "..." --model sonnet      # subagent model: haiku | s
 harnessed research --query "..." --non-interactive   # tüm istemleri atla (CI / betikler)
 ```
 
-| Bayrak | Açıklama |
-|--------|----------|
-| `--query <text>` | research prompt’u (**zorunlu**) |
-| `--dry-run` | Yalnızca önizleme — `{ workflow, yamlPath, gateContext }` yazdırır, spawn etmez |
-| `--model <model>` | subagent model: `haiku` \| `sonnet` \| `opus` |
-| `--non-interactive` | Tüm istemleri atla (CI / betikler) |
+| Bayrak              | Açıklama                                                                        |
+| ------------------- | ------------------------------------------------------------------------------- |
+| `--query <text>`    | research prompt’u (**zorunlu**)                                                 |
+| `--dry-run`         | Yalnızca önizleme — `{ workflow, yamlPath, gateContext }` yazdırır, spawn etmez |
+| `--model <model>`   | subagent model: `haiku` \| `sonnet` \| `opus`                                   |
+| `--non-interactive` | Tüm istemleri atla (CI / betikler)                                              |
 
 **Çıkış kodları:** `0` = workflow tamamlandı · `1` = workflow runtime hatası · `2` = kullanım hatası (`--query` eksik ya da workflow yaml bulunamadı).
 
@@ -123,12 +123,12 @@ harnessed manifest-add <upstream> --non-interactive   # CI: yalnızca WARN dry-r
 
 Başarılı olursa yanıtları `manifests/<category>/<name>.ee5-answers.json` dosyasına yazar.
 
-| Bayrak | Açıklama |
-|--------|----------|
-| `--category <cat>` | Manifest kategorisi: `skill-packs` (varsayılan) \| `tools` |
-| `--name <name>` | Kısa adaptör adı (varsayılan: `<upstream>` basename) |
-| `--dry-run` | Yalnızca önizleme — yanıt JSON’unu yazdırır, kaydetmez |
-| `--non-interactive` | CI / betikler — yalnızca WARN, hiçbir şey yazmaz |
+| Bayrak              | Açıklama                                                   |
+| ------------------- | ---------------------------------------------------------- |
+| `--category <cat>`  | Manifest kategorisi: `skill-packs` (varsayılan) \| `tools` |
+| `--name <name>`     | Kısa adaptör adı (varsayılan: `<upstream>` basename)       |
+| `--dry-run`         | Yalnızca önizleme — yanıt JSON’unu yazdırır, kaydetmez     |
+| `--non-interactive` | CI / betikler — yalnızca WARN, hiçbir şey yazmaz           |
 
 **Çıkış kodları:** `0` = kapı geçti (yazıldı ya da önizlendi) · `1` = boş bırakılmış yanıt var.
 
@@ -312,7 +312,7 @@ harnessed advance
 # → run /auto "phase 16 'rate limiter'"
 ```
 
-**advance-gate.** `advance`, önceki *tamamlanmamış* bir phase’in üzerinden atlamayı reddeder ("comet" kapısı): türetilen sonraki phase, workflow pointer’ından önce sıralanıyorsa ya da başarısız bir sub ledger’ı tıkıyorsa, sıfır olmayan bir kodla çıkar ve çalıştırma komutunu **yazdırmaz**. `--force` ile geçersiz kılın — çıktıya bir denetim notu düşer ve devam eder.
+**advance-gate.** `advance`, önceki _tamamlanmamış_ bir phase’in üzerinden atlamayı reddeder ("comet" kapısı): türetilen sonraki phase, workflow pointer’ından önce sıralanıyorsa ya da başarısız bir sub ledger’ı tıkıyorsa, sıfır olmayan bir kodla çıkar ve çalıştırma komutunu **yazdırmaz**. `--force` ile geçersiz kılın — çıktıya bir denetim notu düşer ve devam eder.
 
 ```bash
 harnessed advance --force   # kapıyı geçersiz kıl (denetim notu kaydeder)
@@ -379,11 +379,11 @@ harnessed audit                 # manifest + runtime katmanları
 harnessed audit --skip-runtime  # yalnızca manifest katmanı (çevrimdışı / başlatılmamış)
 ```
 
-**Manifest katmanı:** repository URL biçimi (`https://…​.git`), `signed_by` yer tutucu değerleri (`unsigned` / `todo` / `tbd` / …) ve hareketli `git_ref` (`HEAD` / `main` / `master` — bu bir *error*’dur: SHA ya da tag’e pinlenmeli). **Runtime katmanı** (`--skip-runtime` ile atlanır): origin-URL kurcalaması, `install.cmd` shell enjeksiyonu + npm paketi çapraz kontrolü, provenance kapısı. Manifest başına `✓ / ⚠ / ✗` raporu ve finding sayımı yazdırır.
+**Manifest katmanı:** repository URL biçimi (`https://…​.git`), `signed_by` yer tutucu değerleri (`unsigned` / `todo` / `tbd` / …) ve hareketli `git_ref` (`HEAD` / `main` / `master` — bu bir _error_’dur: SHA ya da tag’e pinlenmeli). **Runtime katmanı** (`--skip-runtime` ile atlanır): origin-URL kurcalaması, `install.cmd` shell enjeksiyonu + npm paketi çapraz kontrolü, provenance kapısı. Manifest başına `✓ / ⚠ / ✗` raporu ve finding sayımı yazdırır.
 
 **Çıkış kodları:** `0` = error düzeyinde finding yok (warning’lere izin verilir) · `1` = bir veya daha fazla error.
 
-> **`audit` ile `audit-log`** — `audit`, *manifest dosyalarının* bütünlüğünü doğrular; `audit-log` (aşağıda) ise gerçekleşmiş yönlendirme/kurulum *kayıtlarını* sorgular. Farklı konulardır.
+> **`audit` ile `audit-log`** — `audit`, _manifest dosyalarının_ bütünlüğünü doğrular; `audit-log` (aşağıda) ise gerçekleşmiş yönlendirme/kurulum _kayıtlarını_ sorgular. Farklı konulardır.
 
 ---
 
@@ -451,9 +451,9 @@ harnessed <command> --help   # komut başına yardım
 
 ## Global bayraklar
 
-| Bayrak | Açıklama |
-|--------|----------|
-| `--version` | Sürümü yazdırır ve çıkar |
-| `--help` | Yardımı yazdırır ve çıkar |
+| Bayrak      | Açıklama                  |
+| ----------- | ------------------------- |
+| `--version` | Sürümü yazdırır ve çıkar  |
+| `--help`    | Yardımı yazdırır ve çıkar |
 
 Kaynak kod, [harnessed deposunda](https://github.com/easyinplay/harnessed/tree/main/src/cli) `src/cli.ts` ve `src/cli/` altındadır.

@@ -61,15 +61,15 @@ flowchart LR
 
 `/verify`는 변경 내용에 따라 최대 7가지 하위 검사를 배분합니다:
 
-| 검사 | 발동 조건 |
-|------|----------|
-| `verify-progress` | 항상(UAT 인수 + 상태 동기화) |
+| 검사                 | 발동 조건                     |
+| -------------------- | ----------------------------- |
+| `verify-progress`    | 항상(UAT 인수 + 상태 동기화)  |
 | `verify-code-review` | 항상(다중 agent 병렬 fan-out) |
-| `verify-paranoid` | 핵심 모듈이거나 PR 직전 |
-| `verify-qa` | UI 변경이 있음 |
-| `verify-security` | 인증이나 시크릿을 건드림 |
-| `verify-design` | 디자인 변경이 있음 |
-| `verify-simplify` | 항상 마지막(중복 로직 제거) |
+| `verify-paranoid`    | 핵심 모듈이거나 PR 직전       |
+| `verify-qa`          | UI 변경이 있음                |
+| `verify-security`    | 인증이나 시크릿을 건드림      |
+| `verify-design`      | 디자인 변경이 있음            |
+| `verify-simplify`    | 항상 마지막(중복 로직 제거)   |
 
 ## `.planning/`에 영속화되는 산출물
 

@@ -61,15 +61,15 @@ flowchart LR
 
 `/verify` distribui até 7 subverificações conforme o que mudou:
 
-| Verificação | Dispara quando |
-|-------------|----------------|
-| `verify-progress` | sempre (aceite de UAT + sincronização de estado) |
-| `verify-code-review` | sempre (fan-out paralelo multi-agent) |
-| `verify-paranoid` | módulo crítico ou pré-PR |
-| `verify-qa` | há mudanças de UI |
-| `verify-security` | auth ou segredos foram tocados |
-| `verify-design` | há mudanças de design |
-| `verify-simplify` | sempre por último (remove lógica redundante) |
+| Verificação          | Dispara quando                                   |
+| -------------------- | ------------------------------------------------ |
+| `verify-progress`    | sempre (aceite de UAT + sincronização de estado) |
+| `verify-code-review` | sempre (fan-out paralelo multi-agent)            |
+| `verify-paranoid`    | módulo crítico ou pré-PR                         |
+| `verify-qa`          | há mudanças de UI                                |
+| `verify-security`    | auth ou segredos foram tocados                   |
+| `verify-design`      | há mudanças de design                            |
+| `verify-simplify`    | sempre por último (remove lógica redundante)     |
 
 ## Artefatos persistidos em `.planning/`
 

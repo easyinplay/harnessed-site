@@ -7,15 +7,15 @@ description: Discuss → Plan → Task → Verify → Ship，可选 Research 与
 
 ## 阶段
 
-| # | 阶段 | 斜杠命令 | 模式 |
-|---|------|----------|------|
-| 0 | **Research** | `/research` | 可选 —— 当理解不清晰时触发 |
-| 1 | **Discuss** | `/discuss` | 必须 |
-| 2 | **Plan** | `/plan` | 必须 |
-| 3 | **Task** | `/task` | 必须 |
-| 4 | **Verify** | `/verify` | 必须 |
-| 5 | **Ship** | `/ship` | 显式 —— 发布阶段（用户触发） |
-| — | **Retro** | `/retro` | `/auto` 中强制，单独调用可选 |
+| #   | 阶段         | 斜杠命令    | 模式                         |
+| --- | ------------ | ----------- | ---------------------------- |
+| 0   | **Research** | `/research` | 可选 —— 当理解不清晰时触发   |
+| 1   | **Discuss**  | `/discuss`  | 必须                         |
+| 2   | **Plan**     | `/plan`     | 必须                         |
+| 3   | **Task**     | `/task`     | 必须                         |
+| 4   | **Verify**   | `/verify`   | 必须                         |
+| 5   | **Ship**     | `/ship`     | 显式 —— 发布阶段（用户触发） |
+| —   | **Retro**    | `/retro`    | `/auto` 中强制，单独调用可选 |
 
 **学习是自动的，不是一个阶段。** 每个完成的 workflow 把其 failure/loop/reject 信号追加到 `.planning/LEARNINGS.md`；inject hook 把相关 learnings 注入下个 session。这是 always-on 的，**不**依赖可选的 Retro。
 

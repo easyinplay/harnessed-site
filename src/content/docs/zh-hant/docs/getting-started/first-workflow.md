@@ -61,15 +61,15 @@ flowchart LR
 
 `/verify` 依變更內容派送最多 7 項子檢查：
 
-| 檢查項 | 觸發條件 |
-|--------|---------|
-| `verify-progress` | 一律執行（UAT 驗收 + 狀態同步） |
+| 檢查項               | 觸發條件                          |
+| -------------------- | --------------------------------- |
+| `verify-progress`    | 一律執行（UAT 驗收 + 狀態同步）   |
 | `verify-code-review` | 一律執行（多 agent 平行 fan-out） |
-| `verify-paranoid` | 關鍵模組或 PR 前 |
-| `verify-qa` | 有 UI 變更 |
-| `verify-security` | 涉及認證或密鑰 |
-| `verify-design` | 有設計變更 |
-| `verify-simplify` | 一律最後執行（移除冗餘邏輯） |
+| `verify-paranoid`    | 關鍵模組或 PR 前                  |
+| `verify-qa`          | 有 UI 變更                        |
+| `verify-security`    | 涉及認證或密鑰                    |
+| `verify-design`      | 有設計變更                        |
+| `verify-simplify`    | 一律最後執行（移除冗餘邏輯）      |
 
 ## 持久化到 `.planning/` 的產物
 

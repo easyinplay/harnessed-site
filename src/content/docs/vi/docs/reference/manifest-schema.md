@@ -15,15 +15,15 @@ schema_version: harnessed.workflow.v3
 
 ```typescript
 interface Manifest {
-  schema_version: 'harnessed.workflow.v3'
-  name: string                    // định danh duy nhất của pack
-  version: string                 // semver (ví dụ "4.3.0")
-  description: string             // mô tả một đoạn
-  install?: InstallStep[]         // các bước cài phụ thuộc upstream
-  capability?: Capability         // capability mà pack này đóng góp
-  delegates_to?: SubWorkflowRef[] // dành cho workflow orchestrator
-  disciplines_applied?: string[]  // quy tắc xuyên suốt (ví dụ "karpathy")
-  tools_available?: string[]      // công cụ mà workflow này có thể gọi
+  schema_version: "harnessed.workflow.v3";
+  name: string; // định danh duy nhất của pack
+  version: string; // semver (ví dụ "4.3.0")
+  description: string; // mô tả một đoạn
+  install?: InstallStep[]; // các bước cài phụ thuộc upstream
+  capability?: Capability; // capability mà pack này đóng góp
+  delegates_to?: SubWorkflowRef[]; // dành cho workflow orchestrator
+  disciplines_applied?: string[]; // quy tắc xuyên suốt (ví dụ "karpathy")
+  tools_available?: string[]; // công cụ mà workflow này có thể gọi
 }
 ```
 
@@ -31,9 +31,9 @@ interface Manifest {
 
 ```typescript
 type InstallStep =
-  | { npm: string }               // npm install -g <package>
-  | { git: string }               // git clone <url>
-  | { script: string }            // chạy một lệnh shell tùy ý
+  | { npm: string } // npm install -g <package>
+  | { git: string } // git clone <url>
+  | { script: string }; // chạy một lệnh shell tùy ý
 ```
 
 Ví dụ:
@@ -50,9 +50,9 @@ install:
 
 ```typescript
 interface Capability {
-  skills?: string[]    // skills lệnh gạch chéo được đóng góp
-  workflows?: string[] // tên workflow được đóng góp
-  mcp?: string[]       // tên MCP server được đăng ký
+  skills?: string[]; // skills lệnh gạch chéo được đóng góp
+  workflows?: string[]; // tên workflow được đóng góp
+  mcp?: string[]; // tên MCP server được đăng ký
 }
 ```
 
@@ -79,10 +79,10 @@ Dành cho workflow master và super-master có spawn subworkflow:
 
 ```typescript
 interface SubWorkflowRef {
-  name: string    // tên subworkflow
-  order: number   // thứ tự thực thi (bắt đầu từ 0)
-  mode: 'serial' | 'parallel'
-  gate?: string   // khóa phán quyết phải là true thì subworkflow này mới kích hoạt
+  name: string; // tên subworkflow
+  order: number; // thứ tự thực thi (bắt đầu từ 0)
+  mode: "serial" | "parallel";
+  gate?: string; // khóa phán quyết phải là true thì subworkflow này mới kích hoạt
 }
 ```
 

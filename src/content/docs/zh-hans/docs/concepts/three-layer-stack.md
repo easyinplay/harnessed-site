@@ -7,11 +7,11 @@ description: BDD → SDD → TDD 三个嵌套反馈回环，每个都由开源�
 
 ## 三个回环
 
-| 层 | Loop | 回答的问题 | 由哪些组件组合（彼此交集） |
-|----|------|-----------|----------------------------|
-| **① Behavior** | BDD | 做*什么*，以及怎样算做完 | gstack `/office-hours` governance · GSD discuss · superpowers brainstorming → acceptance criteria |
-| **② Spec** | SDD | *怎样*组织结构 | GSD plan-phase → requirements / design / tasks · contracts（Spec Kit / ECC patterns） |
-| **③ Implementation** | TDD | 它是否真的能*跑通* | superpowers TDD red-green · subagent execution · GSD verify-work · ralph-loop completion |
+| 层                   | Loop | 回答的问题               | 由哪些组件组合（彼此交集）                                                                        |
+| -------------------- | ---- | ------------------------ | ------------------------------------------------------------------------------------------------- |
+| **① Behavior**       | BDD  | 做*什么*，以及怎样算做完 | gstack `/office-hours` governance · GSD discuss · superpowers brainstorming → acceptance criteria |
+| **② Spec**           | SDD  | *怎样*组织结构           | GSD plan-phase → requirements / design / tasks · contracts（Spec Kit / ECC patterns）             |
+| **③ Implementation** | TDD  | 它是否真的能*跑通*       | superpowers TDD red-green · subagent execution · GSD verify-work · ralph-loop completion          |
 
 **loop 是嵌套的镜头（nested lenses），不是阶段。** Cucumber 推广了 BDD-outer + TDD-inner 双环：一个 failing scenario 打开外环，你通过多个内层 red-green TDD 循环把它驱动到绿。GenAI 时代加了一个中间环 —— Behavior 与 Implementation 之间显式的 SDD **spec** 环，因为 agent 需要一个 frozen contract 来执行。于是构成上面的**三层回环（triple-loop）**。
 
@@ -21,30 +21,30 @@ description: BDD → SDD → TDD 三个嵌套反馈回环，每个都由开源�
 
 ### ① Behavior (BDD)
 
-| 节点 | 作用 | 由哪些组件组合 |
-|------|------|----------------|
-| **Clarify** | 锁定*做什么* + 暴露歧义 | gstack `/office-hours` + GSD discuss + superpowers brainstorming |
-| **Scenario** | 把意图转成 acceptance criteria | GSD phase success criteria |
+| 节点         | 作用                           | 由哪些组件组合                                                   |
+| ------------ | ------------------------------ | ---------------------------------------------------------------- |
+| **Clarify**  | 锁定*做什么* + 暴露歧义        | gstack `/office-hours` + GSD discuss + superpowers brainstorming |
+| **Scenario** | 把意图转成 acceptance criteria | GSD phase success criteria                                       |
 
 外环在 scenario 的 acceptance criteria 写出来之前一直敞开。「做完」的定义在这里确定 —— 早于任何结构或代码。
 
 ### ② Spec (SDD)
 
-| 节点 | 作用 | 由哪些组件组合 |
-|------|------|----------------|
-| **Spec** | requirements + design | GSD plan-phase + Spec Kit 三件套（requirements / design / tasks） |
-| **Plan** | tasks + 依赖 DAG | GSD `PLAN.md` + ECC 分解 |
-| **Contract** | 接口 frozen | contract 惯例 |
+| 节点         | 作用                  | 由哪些组件组合                                                    |
+| ------------ | --------------------- | ----------------------------------------------------------------- |
+| **Spec**     | requirements + design | GSD plan-phase + Spec Kit 三件套（requirements / design / tasks） |
+| **Plan**     | tasks + 依赖 DAG      | GSD `PLAN.md` + ECC 分解                                          |
+| **Contract** | 接口 frozen           | contract 惯例                                                     |
 
 中间环把「做什么」转换成可执行的结构。它的退出条件是一个 **frozen contract** —— implementation 环将据此编写测试的接口。
 
 ### ③ Implementation (TDD)
 
-| 节点 | 作用 | 由哪些组件组合 |
-|------|------|----------------|
-| **Test-first** | failing test（red gate） | superpowers TDD |
-| **Implement** | 驱动到 green | subagent execution |
-| **Verify** | refactor + 逐任务完成 | GSD verify-work + ralph-loop completion |
+| 节点           | 作用                     | 由哪些组件组合                          |
+| -------------- | ------------------------ | --------------------------------------- |
+| **Test-first** | failing test（red gate） | superpowers TDD                         |
+| **Implement**  | 驱动到 green             | subagent execution                      |
+| **Verify**     | refactor + 逐任务完成    | GSD verify-work + ralph-loop completion |
 
 内环就是经典的 red → green → refactor 循环，每个 task 跑一遍，直到所有 contract 都被满足。
 
@@ -52,14 +52,14 @@ description: BDD → SDD → TDD 三个嵌套反馈回环，每个都由开源�
 
 两个关注点位于任何单一 loop 之外：
 
-| 关注点 | 作用 | 由哪些组件组合 |
-|--------|------|----------------|
-| **Review** | 质量 + 安全关卡 | gstack `/review` + `/cso` |
-| **Ship** | 发布就绪 + 交付 | `release-preflight` + gstack `/ship` |
+| 关注点     | 作用            | 由哪些组件组合                       |
+| ---------- | --------------- | ------------------------------------ |
+| **Review** | 质量 + 安全关卡 | gstack `/review` + `/cso`            |
+| **Ship**   | 发布就绪 + 交付 | `release-preflight` + gstack `/ship` |
 
 另有两个 **discipline** 贯穿*每一*层：
 
-- **karpathy principles** —— *how* to code：最小可行改动、外科手术式编辑、simplicity first。
+- **karpathy principles** —— _how_ to code：最小可行改动、外科手术式编辑、simplicity first。
 - **mattpocock moves** —— 按需召唤的工具（`/zoom-out`、`/diagnose`、`/grill-with-docs`），看场景取用。
 
 ## 回转（GoBack）
@@ -122,11 +122,11 @@ graph TD
 
 三层栈是*理论*。[5 阶段节奏](/zh-hans/docs/concepts/five-stage-cadence/) 是这套理论在命令行的运行方式：
 
-| Loop（理论） | runtime 阶段 |
-|--------------|--------------|
-| ① Behavior | **Discuss** |
-| ② Spec | **Plan** |
-| ③ Implementation | **Build**（Task） |
-| Cross-cutting | **Verify + Ship**（evidence gate） |
+| Loop（理论）     | runtime 阶段                       |
+| ---------------- | ---------------------------------- |
+| ① Behavior       | **Discuss**                        |
+| ② Spec           | **Plan**                           |
+| ③ Implementation | **Build**（Task）                  |
+| Cross-cutting    | **Verify + Ship**（evidence gate） |
 
 关于上游工具*如何*在不 fork 的前提下拼接，参阅 [装配主义，而非 vendoring](/zh-hans/docs/concepts/composition/)。

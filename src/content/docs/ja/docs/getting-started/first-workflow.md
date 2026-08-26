@@ -61,15 +61,15 @@ flowchart LR
 
 `/verify` は変更内容に応じて最大 7 つのサブチェックを振り分けます：
 
-| チェック | 発火条件 |
-|----------|---------|
-| `verify-progress` | 常時（UAT 受け入れ + 状態同期） |
+| チェック             | 発火条件                          |
+| -------------------- | --------------------------------- |
+| `verify-progress`    | 常時（UAT 受け入れ + 状態同期）   |
 | `verify-code-review` | 常時（マルチ agent 並列 fan-out） |
-| `verify-paranoid` | 重要モジュール、または PR 前 |
-| `verify-qa` | UI 変更がある |
-| `verify-security` | 認証やシークレットに触れた |
-| `verify-design` | デザイン変更がある |
-| `verify-simplify` | 常に最後（冗長なロジックを除去） |
+| `verify-paranoid`    | 重要モジュール、または PR 前      |
+| `verify-qa`          | UI 変更がある                     |
+| `verify-security`    | 認証やシークレットに触れた        |
+| `verify-design`      | デザイン変更がある                |
+| `verify-simplify`    | 常に最後（冗長なロジックを除去）  |
 
 ## `.planning/` に永続化される成果物
 

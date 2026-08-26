@@ -33,14 +33,14 @@ Ou comece com um requisito concreto:
 
 `/auto` é o comando super-master do harnessed. Ele roda o pipeline completo de 6 estágios:
 
-| Estágio | O que faz |
-|---------|-----------|
-| **① Research** (condicional) | Investigação multifonte via Tavily, Exa, ctx7 — dispara se você responder "não" à checagem de entendimento |
-| **② Discuss** | Gates de esclarecimento em 3 camadas: escopo estratégico, decisões de fase, ambiguidade de subtarefa |
-| **③ Plan** | Revisão de arquitetura (condicional) + persiste `task_plan.md` e `progress.md` em `.planning/` |
-| **④ Task** | Loop serial por subtarefa: esclarecer → codar → testar → entregar, com TDD na lógica central |
-| **⑤ Verify** | 7 subverificações condicionais: progresso, code review, revisão paranoica, QA, segurança, design, simplificação |
-| **⑥ Retro** | Resumo obrigatório do marco — lições registradas, decisões documentadas |
+| Estágio                      | O que faz                                                                                                       |
+| ---------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| **① Research** (condicional) | Investigação multifonte via Tavily, Exa, ctx7 — dispara se você responder "não" à checagem de entendimento      |
+| **② Discuss**                | Gates de esclarecimento em 3 camadas: escopo estratégico, decisões de fase, ambiguidade de subtarefa            |
+| **③ Plan**                   | Revisão de arquitetura (condicional) + persiste `task_plan.md` e `progress.md` em `.planning/`                  |
+| **④ Task**                   | Loop serial por subtarefa: esclarecer → codar → testar → entregar, com TDD na lógica central                    |
+| **⑤ Verify**                 | 7 subverificações condicionais: progresso, code review, revisão paranoica, QA, segurança, design, simplificação |
+| **⑥ Retro**                  | Resumo obrigatório do marco — lições registradas, decisões documentadas                                         |
 
 `/auto` roda todos os estágios de forma contínua. Se um estágio falhar, o harnessed para e você retoma com `harnessed resume`.
 

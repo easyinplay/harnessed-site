@@ -15,15 +15,15 @@ schema_version: harnessed.workflow.v3
 
 ```typescript
 interface Manifest {
-  schema_version: 'harnessed.workflow.v3'
-  name: string                    // 고유한 팩 식별자
-  version: string                 // semver(예: "4.3.0")
-  description: string             // 한 문단 설명
-  install?: InstallStep[]         // upstream 의존성 설치 단계
-  capability?: Capability         // 이 팩이 제공하는 capability
-  delegates_to?: SubWorkflowRef[] // 오케스트레이터 워크플로용
-  disciplines_applied?: string[]  // 횡단 규칙(예: "karpathy")
-  tools_available?: string[]      // 이 워크플로가 호출할 수 있는 도구
+  schema_version: "harnessed.workflow.v3";
+  name: string; // 고유한 팩 식별자
+  version: string; // semver(예: "4.3.0")
+  description: string; // 한 문단 설명
+  install?: InstallStep[]; // upstream 의존성 설치 단계
+  capability?: Capability; // 이 팩이 제공하는 capability
+  delegates_to?: SubWorkflowRef[]; // 오케스트레이터 워크플로용
+  disciplines_applied?: string[]; // 횡단 규칙(예: "karpathy")
+  tools_available?: string[]; // 이 워크플로가 호출할 수 있는 도구
 }
 ```
 
@@ -31,9 +31,9 @@ interface Manifest {
 
 ```typescript
 type InstallStep =
-  | { npm: string }               // npm install -g <package>
-  | { git: string }               // git clone <url>
-  | { script: string }            // 임의의 shell 명령 실행
+  | { npm: string } // npm install -g <package>
+  | { git: string } // git clone <url>
+  | { script: string }; // 임의의 shell 명령 실행
 ```
 
 예:
@@ -50,9 +50,9 @@ install:
 
 ```typescript
 interface Capability {
-  skills?: string[]    // 제공하는 슬래시 명령 skills
-  workflows?: string[] // 제공하는 워크플로 이름
-  mcp?: string[]       // 등록하는 MCP 서버 이름
+  skills?: string[]; // 제공하는 슬래시 명령 skills
+  workflows?: string[]; // 제공하는 워크플로 이름
+  mcp?: string[]; // 등록하는 MCP 서버 이름
 }
 ```
 
@@ -79,10 +79,10 @@ capability:
 
 ```typescript
 interface SubWorkflowRef {
-  name: string    // 서브워크플로 이름
-  order: number   // 실행 순서(0부터)
-  mode: 'serial' | 'parallel'
-  gate?: string   // 이 서브워크플로가 발동하려면 true여야 하는 판단 키
+  name: string; // 서브워크플로 이름
+  order: number; // 실행 순서(0부터)
+  mode: "serial" | "parallel";
+  gate?: string; // 이 서브워크플로가 발동하려면 true여야 하는 판단 키
 }
 ```
 

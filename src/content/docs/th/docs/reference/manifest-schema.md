@@ -15,15 +15,15 @@ schema_version: harnessed.workflow.v3
 
 ```typescript
 interface Manifest {
-  schema_version: 'harnessed.workflow.v3'
-  name: string                    // ตัวระบุ pack ที่ไม่ซ้ำ
-  version: string                 // semver (เช่น "4.3.0")
-  description: string             // คำอธิบายหนึ่งย่อหน้า
-  install?: InstallStep[]         // ขั้นตอนติดตั้งการพึ่งพา upstream
-  capability?: Capability         // capability ที่ pack นี้มอบให้
-  delegates_to?: SubWorkflowRef[] // สำหรับ workflow ที่เป็น orchestrator
-  disciplines_applied?: string[]  // กฎที่ตัดขวาง (เช่น "karpathy")
-  tools_available?: string[]      // เครื่องมือที่ workflow นี้เรียกได้
+  schema_version: "harnessed.workflow.v3";
+  name: string; // ตัวระบุ pack ที่ไม่ซ้ำ
+  version: string; // semver (เช่น "4.3.0")
+  description: string; // คำอธิบายหนึ่งย่อหน้า
+  install?: InstallStep[]; // ขั้นตอนติดตั้งการพึ่งพา upstream
+  capability?: Capability; // capability ที่ pack นี้มอบให้
+  delegates_to?: SubWorkflowRef[]; // สำหรับ workflow ที่เป็น orchestrator
+  disciplines_applied?: string[]; // กฎที่ตัดขวาง (เช่น "karpathy")
+  tools_available?: string[]; // เครื่องมือที่ workflow นี้เรียกได้
 }
 ```
 
@@ -31,9 +31,9 @@ interface Manifest {
 
 ```typescript
 type InstallStep =
-  | { npm: string }               // npm install -g <package>
-  | { git: string }               // git clone <url>
-  | { script: string }            // รันคำสั่ง shell ใดก็ได้
+  | { npm: string } // npm install -g <package>
+  | { git: string } // git clone <url>
+  | { script: string }; // รันคำสั่ง shell ใดก็ได้
 ```
 
 ตัวอย่าง:
@@ -50,9 +50,9 @@ install:
 
 ```typescript
 interface Capability {
-  skills?: string[]    // skills แบบคำสั่งสแลชที่มอบให้
-  workflows?: string[] // ชื่อ workflow ที่มอบให้
-  mcp?: string[]       // ชื่อ MCP server ที่ลงทะเบียน
+  skills?: string[]; // skills แบบคำสั่งสแลชที่มอบให้
+  workflows?: string[]; // ชื่อ workflow ที่มอบให้
+  mcp?: string[]; // ชื่อ MCP server ที่ลงทะเบียน
 }
 ```
 
@@ -79,10 +79,10 @@ capability:
 
 ```typescript
 interface SubWorkflowRef {
-  name: string    // ชื่อ subworkflow
-  order: number   // ลำดับการรัน (เริ่มจาก 0)
-  mode: 'serial' | 'parallel'
-  gate?: string   // คีย์การตัดสินที่ต้องเป็น true เพื่อให้ subworkflow นี้ทำงาน
+  name: string; // ชื่อ subworkflow
+  order: number; // ลำดับการรัน (เริ่มจาก 0)
+  mode: "serial" | "parallel";
+  gate?: string; // คีย์การตัดสินที่ต้องเป็น true เพื่อให้ subworkflow นี้ทำงาน
 }
 ```
 

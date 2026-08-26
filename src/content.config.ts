@@ -1,6 +1,6 @@
-import { defineCollection } from 'astro:content'
-import { docsLoader, i18nLoader } from '@astrojs/starlight/loaders'
-import { docsSchema, i18nSchema } from '@astrojs/starlight/schema'
+import { defineCollection } from "astro:content";
+import { docsLoader, i18nLoader } from "@astrojs/starlight/loaders";
+import { docsSchema, i18nSchema } from "@astrojs/starlight/schema";
 
 export const collections = {
   docs: defineCollection({ loader: docsLoader(), schema: docsSchema() }),
@@ -8,4 +8,4 @@ export const collections = {
   // not the script tags this site uses (zh-Hans / zh-Hant), so those two locales
   // would fall back to English chrome. src/content/i18n/*.json supplies them.
   i18n: defineCollection({ loader: i18nLoader(), schema: i18nSchema() }),
-}
+};

@@ -3,15 +3,15 @@ title: 3계층 스택
 description: BDD → SDD → TDD 세 개의 중첩 피드백 루프, 각각이 오픈소스 생태계로 조합된다.
 ---
 
-3계층 스택은 harnessed의 리듬이 *왜* 이런 모양인지를 설명하는 이론입니다. 이는 확립된 **BDD → SDD → TDD** 중첩 구조를 소프트웨어 엔지니어링으로 구현한 것으로, 세 개의 중첩 피드백 루프가 각기 다른 질문에 답합니다. harnessed의 기여는 오픈소스 생태계를 각 루프에 **조합**하는 것입니다 —— 그리고 upstream 구성 요소들이 *부분적으로 겹치기* 때문에, 그 겹침을 중재하는 것이 바로 조합 오케스트레이터의 본분입니다.
+3계층 스택은 harnessed의 리듬이 _왜_ 이런 모양인지를 설명하는 이론입니다. 이는 확립된 **BDD → SDD → TDD** 중첩 구조를 소프트웨어 엔지니어링으로 구현한 것으로, 세 개의 중첩 피드백 루프가 각기 다른 질문에 답합니다. harnessed의 기여는 오픈소스 생태계를 각 루프에 **조합**하는 것입니다 —— 그리고 upstream 구성 요소들이 _부분적으로 겹치기_ 때문에, 그 겹침을 중재하는 것이 바로 조합 오케스트레이터의 본분입니다.
 
 ## 세 개의 루프
 
-| 계층 | Loop | 답하는 질문 | 조합 대상(겹침 있음) |
-|------|------|-------------|----------------------|
-| **① Behavior** | BDD | *무엇을* 만들 것인가, 무엇으로 완료를 판단하는가 | gstack `/office-hours` governance · GSD discuss · superpowers brainstorming → acceptance criteria |
-| **② Spec** | SDD | *어떻게* 구조화할 것인가 | GSD plan-phase → requirements / design / tasks · contracts(Spec Kit / ECC patterns) |
-| **③ Implementation** | TDD | 실제로 *동작하는가* | superpowers TDD red-green · subagent execution · GSD verify-work · ralph-loop completion |
+| 계층                 | Loop | 답하는 질문                                      | 조합 대상(겹침 있음)                                                                              |
+| -------------------- | ---- | ------------------------------------------------ | ------------------------------------------------------------------------------------------------- |
+| **① Behavior**       | BDD  | _무엇을_ 만들 것인가, 무엇으로 완료를 판단하는가 | gstack `/office-hours` governance · GSD discuss · superpowers brainstorming → acceptance criteria |
+| **② Spec**           | SDD  | _어떻게_ 구조화할 것인가                         | GSD plan-phase → requirements / design / tasks · contracts(Spec Kit / ECC patterns)               |
+| **③ Implementation** | TDD  | 실제로 _동작하는가_                              | superpowers TDD red-green · subagent execution · GSD verify-work · ralph-loop completion          |
 
 **루프는 단계가 아니라 중첩된 렌즈(nested lenses)입니다.** Cucumber는 BDD-outer + TDD-inner 이중 루프를 널리 퍼뜨렸습니다: failing scenario가 바깥 루프를 열고, 여러 번의 안쪽 red-green TDD 사이클로 그것을 녹색까지 밀어붙입니다. GenAI 시대는 그 사이에 고리를 하나 더했습니다 —— Behavior와 Implementation 사이의 명시적 SDD **spec** 고리인데, agent가 실행하려면 frozen contract가 필요하기 때문입니다. 이렇게 위의 **triple-loop**가 만들어집니다.
 
@@ -21,30 +21,30 @@ description: BDD → SDD → TDD 세 개의 중첩 피드백 루프, 각각이 �
 
 ### ① Behavior (BDD)
 
-| 노드 | 역할 | 조합 대상 |
-|------|------|-----------|
-| **Clarify** | *무엇을* 만들지 확정하고 모호함을 드러냄 | gstack `/office-hours` + GSD discuss + superpowers brainstorming |
-| **Scenario** | 의도를 acceptance criteria로 전환 | GSD phase success criteria |
+| 노드         | 역할                                     | 조합 대상                                                        |
+| ------------ | ---------------------------------------- | ---------------------------------------------------------------- |
+| **Clarify**  | _무엇을_ 만들지 확정하고 모호함을 드러냄 | gstack `/office-hours` + GSD discuss + superpowers brainstorming |
+| **Scenario** | 의도를 acceptance criteria로 전환        | GSD phase success criteria                                       |
 
 바깥 루프는 scenario의 acceptance criteria가 쓰일 때까지 열려 있습니다. "완료"의 정의가 여기서 결정됩니다 —— 어떤 구조나 코드보다 먼저.
 
 ### ② Spec (SDD)
 
-| 노드 | 역할 | 조합 대상 |
-|------|------|-----------|
-| **Spec** | requirements + design | GSD plan-phase + Spec Kit 3종(requirements / design / tasks) |
-| **Plan** | tasks + 의존 DAG | GSD `PLAN.md` + ECC 분해 |
-| **Contract** | 인터페이스 frozen | contract 관례 |
+| 노드         | 역할                  | 조합 대상                                                    |
+| ------------ | --------------------- | ------------------------------------------------------------ |
+| **Spec**     | requirements + design | GSD plan-phase + Spec Kit 3종(requirements / design / tasks) |
+| **Plan**     | tasks + 의존 DAG      | GSD `PLAN.md` + ECC 분해                                     |
+| **Contract** | 인터페이스 frozen     | contract 관례                                                |
 
 가운데 고리는 "무엇을"을 실행 가능한 구조로 바꿉니다. 그 종료 조건은 **frozen contract** —— implementation 루프가 그에 맞춰 테스트를 작성할 인터페이스입니다.
 
 ### ③ Implementation (TDD)
 
-| 노드 | 역할 | 조합 대상 |
-|------|------|-----------|
-| **Test-first** | failing test(red gate) | superpowers TDD |
-| **Implement** | green까지 밀어붙임 | subagent execution |
-| **Verify** | refactor + 태스크 단위 완료 | GSD verify-work + ralph-loop completion |
+| 노드           | 역할                        | 조합 대상                               |
+| -------------- | --------------------------- | --------------------------------------- |
+| **Test-first** | failing test(red gate)      | superpowers TDD                         |
+| **Implement**  | green까지 밀어붙임          | subagent execution                      |
+| **Verify**     | refactor + 태스크 단위 완료 | GSD verify-work + ralph-loop completion |
 
 안쪽 고리는 고전적인 red → green → refactor 사이클 그대로이며, 모든 contract가 충족될 때까지 태스크마다 한 바퀴 돕니다.
 
@@ -52,14 +52,14 @@ description: BDD → SDD → TDD 세 개의 중첩 피드백 루프, 각각이 �
 
 두 관심사는 어느 단일 루프에도 속하지 않습니다:
 
-| 관심사 | 역할 | 조합 대상 |
-|--------|------|-----------|
-| **Review** | 품질 + 보안 게이트 | gstack `/review` + `/cso` |
-| **Ship** | 릴리스 준비 + 전달 | `release-preflight` + gstack `/ship` |
+| 관심사     | 역할               | 조합 대상                            |
+| ---------- | ------------------ | ------------------------------------ |
+| **Review** | 품질 + 보안 게이트 | gstack `/review` + `/cso`            |
+| **Ship**   | 릴리스 준비 + 전달 | `release-preflight` + gstack `/ship` |
 
-여기에 두 개의 **discipline**이 *모든* 계층을 관통합니다:
+여기에 두 개의 **discipline**이 _모든_ 계층을 관통합니다:
 
-- **karpathy principles** —— *how* to code: 가장 작은 실행 가능한 변경, 외과적 편집, simplicity first.
+- **karpathy principles** —— _how_ to code: 가장 작은 실행 가능한 변경, 외과적 편집, simplicity first.
 - **mattpocock moves** —— 온디맨드 도구(`/zoom-out`, `/diagnose`, `/grill-with-docs`)를 상황에 따라 호출.
 
 ## 되돌아가기(GoBack)
@@ -100,7 +100,7 @@ graph TD
 
 ### Roadmap(미출시)
 
-더 세밀한 구조적 되돌림 —— gap을 답을 가진 고리로 *직접* 라우팅하는 것 —— 은 현재 동작이 아니라 진화 방향입니다:
+더 세밀한 구조적 되돌림 —— gap을 답을 가진 고리로 _직접_ 라우팅하는 것 —— 은 현재 동작이 아니라 진화 방향입니다:
 
 - **contract 모순**(implementation이 frozen 인터페이스를 만족시키지 못함) → **Spec**으로 라우팅.
 - **요구사항 모호성**(contract는 자체로 일관되지만 behavior가 덜 규정됨) → **Behavior**로 라우팅.
@@ -122,11 +122,11 @@ graph TD
 
 3계층 스택은 *이론*입니다. [5단계 리듬](/ko/docs/concepts/five-stage-cadence/)은 그 이론이 명령줄에서 돌아가는 방식입니다:
 
-| Loop(이론) | runtime 단계 |
-|------------|--------------|
-| ① Behavior | **Discuss** |
-| ② Spec | **Plan** |
-| ③ Implementation | **Build**(Task) |
-| Cross-cutting | **Verify + Ship**(evidence gate) |
+| Loop(이론)       | runtime 단계                     |
+| ---------------- | -------------------------------- |
+| ① Behavior       | **Discuss**                      |
+| ② Spec           | **Plan**                         |
+| ③ Implementation | **Build**(Task)                  |
+| Cross-cutting    | **Verify + Ship**(evidence gate) |
 
-upstream 도구를 fork하지 않고 *어떻게* 이어 붙이는지는 [vendoring 대신 조합](/ko/docs/concepts/composition/)을 참고하세요.
+upstream 도구를 fork하지 않고 _어떻게_ 이어 붙이는지는 [vendoring 대신 조합](/ko/docs/concepts/composition/)을 참고하세요.

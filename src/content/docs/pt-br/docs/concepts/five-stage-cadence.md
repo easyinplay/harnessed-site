@@ -7,15 +7,15 @@ A cadência de 5 estágios é a metodologia central do harnessed: cada funcional
 
 ## Os estágios
 
-| # | Estágio | Comando de barra | Modo |
-|---|---------|------------------|------|
-| 0 | **Research** | `/research` | opcional — dispara quando o entendimento está incompleto |
-| 1 | **Discuss** | `/discuss` | obrigatório |
-| 2 | **Plan** | `/plan` | obrigatório |
-| 3 | **Task** | `/task` | obrigatório |
-| 4 | **Verify** | `/verify` | obrigatório |
-| 5 | **Ship** | `/ship` | explícito — estágio de release (disparado pelo usuário) |
-| — | **Retro** | `/retro` | obrigatório no `/auto`, opcional quando chamado sozinho |
+| #   | Estágio      | Comando de barra | Modo                                                     |
+| --- | ------------ | ---------------- | -------------------------------------------------------- |
+| 0   | **Research** | `/research`      | opcional — dispara quando o entendimento está incompleto |
+| 1   | **Discuss**  | `/discuss`       | obrigatório                                              |
+| 2   | **Plan**     | `/plan`          | obrigatório                                              |
+| 3   | **Task**     | `/task`          | obrigatório                                              |
+| 4   | **Verify**   | `/verify`        | obrigatório                                              |
+| 5   | **Ship**     | `/ship`          | explícito — estágio de release (disparado pelo usuário)  |
+| —   | **Retro**    | `/retro`         | obrigatório no `/auto`, opcional quando chamado sozinho  |
 
 **O aprendizado é automático, não um estágio.** Cada workflow concluído acrescenta seus sinais de failure/loop/reject a `.planning/LEARNINGS.md`; o inject hook injeta os learnings relevantes na próxima sessão. Isso é sempre ativo e **não** depende do Retro opcional.
 
@@ -102,7 +102,7 @@ graph TD
 /ship                               # roda só ship (release-preflight → tag-ready)
 ```
 
-Ao atravessar *várias* fases, `harnessed advance` deriva a próxima fase do estado em disco de `.planning/` e imprime o comando a rodar — assim um driver loop pode encadear várias fases sem intervenção (`while harnessed advance --json; do : ; done`), parando no advance-gate quando uma fase anterior está incompleta. Veja a entrada `harnessed advance` na [Referência da CLI](../../reference/cli/).
+Ao atravessar _várias_ fases, `harnessed advance` deriva a próxima fase do estado em disco de `.planning/` e imprime o comando a rodar — assim um driver loop pode encadear várias fases sem intervenção (`while harnessed advance --json; do : ; done`), parando no advance-gate quando uma fase anterior está incompleta. Veja a entrada `harnessed advance` na [Referência da CLI](../../reference/cli/).
 
 Chamadas cirúrgicas de subworkflow pulam o master por completo:
 

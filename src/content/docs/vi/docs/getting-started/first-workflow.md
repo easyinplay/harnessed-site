@@ -61,15 +61,15 @@ flowchart LR
 
 `/verify` phân phát tối đa 7 kiểm tra con tùy theo những gì đã thay đổi:
 
-| Kiểm tra | Kích hoạt khi |
-|----------|---------------|
-| `verify-progress` | luôn luôn (nghiệm thu UAT + đồng bộ trạng thái) |
-| `verify-code-review` | luôn luôn (fan-out đa agent song song) |
-| `verify-paranoid` | module trọng yếu hoặc trước PR |
-| `verify-qa` | có thay đổi UI |
-| `verify-security` | có động đến auth hoặc secret |
-| `verify-design` | có thay đổi thiết kế |
-| `verify-simplify` | luôn chạy cuối (loại bỏ logic dư thừa) |
+| Kiểm tra             | Kích hoạt khi                                   |
+| -------------------- | ----------------------------------------------- |
+| `verify-progress`    | luôn luôn (nghiệm thu UAT + đồng bộ trạng thái) |
+| `verify-code-review` | luôn luôn (fan-out đa agent song song)          |
+| `verify-paranoid`    | module trọng yếu hoặc trước PR                  |
+| `verify-qa`          | có thay đổi UI                                  |
+| `verify-security`    | có động đến auth hoặc secret                    |
+| `verify-design`      | có thay đổi thiết kế                            |
+| `verify-simplify`    | luôn chạy cuối (loại bỏ logic dư thừa)          |
 
 ## Sản phẩm được lưu trong `.planning/`
 

@@ -3,7 +3,7 @@ title: CLI コマンド
 description: harnessed のすべての CLI サブコマンドとフラグ。
 ---
 
-> **v4.0 の実行モデル。** harnessed は実行エンジンではなく *orchestration brain + prompt library*（判断の頭脳 + prompt ライブラリ）です。`harnessed setup` が生成するスラッシュコマンドの本体が、3 つの高速な純関数 CLI —— `harnessed gates`（どのサブワークフローが発火するか）、`harnessed prompt`（サブワークフローの spawn-ready prompt）、`harnessed checkpoint`（進捗の記録）—— を通じて **CC-native subagent spawn** を駆動します。実際の spawn、Agent Teams、ralph-loop、明確化の往復は Claude Code の main session がネイティブツールで実行します。`harnessed run` は CI／headless 専用に残されています。
+> **v4.0 の実行モデル。** harnessed は実行エンジンではなく _orchestration brain + prompt library_（判断の頭脳 + prompt ライブラリ）です。`harnessed setup` が生成するスラッシュコマンドの本体が、3 つの高速な純関数 CLI —— `harnessed gates`（どのサブワークフローが発火するか）、`harnessed prompt`（サブワークフローの spawn-ready prompt）、`harnessed checkpoint`（進捗の記録）—— を通じて **CC-native subagent spawn** を駆動します。実際の spawn、Agent Teams、ralph-loop、明確化の往復は Claude Code の main session がネイティブツールで実行します。`harnessed run` は CI／headless 専用に残されています。
 
 3 つの orchestration CLI が CC-native spawn を駆動する流れ：
 
@@ -50,10 +50,10 @@ harnessed setup [オプション]
 
 **フラグ：**
 
-| フラグ | 説明 |
-|--------|------|
+| フラグ               | 説明                                                                     |
+| -------------------- | ------------------------------------------------------------------------ |
 | `--user-lang <code>` | 検出したロケールを上書き。`en`、`zh-Hans`、`zh-CN`、`zh-TW` を受け付ける |
-| `--dry-run` | プレビューのみ —— 書き込む内容を表示し、ディスクは変更しない |
+| `--dry-run`          | プレビューのみ —— 書き込む内容を表示し、ディスクは変更しない             |
 
 **終了コード：** `0` = 成功、`1` = ファイルシステムエラー、`2` = SKILL.md を持つワークフローが見つからない。
 
@@ -98,12 +98,12 @@ harnessed research --query "..." --model sonnet      # subagent の model：haik
 harnessed research --query "..." --non-interactive   # すべてのプロンプトをスキップ（CI／スクリプト）
 ```
 
-| フラグ | 説明 |
-|--------|------|
-| `--query <text>` | research の prompt（**必須**）|
-| `--dry-run` | プレビューのみ —— `{ workflow, yamlPath, gateContext }` を表示し spawn しない |
-| `--model <model>` | subagent の model：`haiku` \| `sonnet` \| `opus` |
-| `--non-interactive` | すべてのプロンプトをスキップ（CI／スクリプト）|
+| フラグ              | 説明                                                                          |
+| ------------------- | ----------------------------------------------------------------------------- |
+| `--query <text>`    | research の prompt（**必須**）                                                |
+| `--dry-run`         | プレビューのみ —— `{ workflow, yamlPath, gateContext }` を表示し spawn しない |
+| `--model <model>`   | subagent の model：`haiku` \| `sonnet` \| `opus`                              |
+| `--non-interactive` | すべてのプロンプトをスキップ（CI／スクリプト）                                |
 
 **終了コード：** `0` = workflow 完了 · `1` = workflow 実行時の失敗 · `2` = 使い方の誤り（`--query` 欠落、または workflow yaml が見つからない）。
 
@@ -123,12 +123,12 @@ harnessed manifest-add <upstream> --non-interactive   # CI：WARN のみの dry-
 
 成功すると回答を `manifests/<category>/<name>.ee5-answers.json` に書き込みます。
 
-| フラグ | 説明 |
-|--------|------|
-| `--category <cat>` | マニフェストのカテゴリ：`skill-packs`（既定）\| `tools` |
-| `--name <name>` | 短いアダプター名（既定は `<upstream>` の basename）|
-| `--dry-run` | プレビューのみ —— 回答 JSON を表示し書き込まない |
-| `--non-interactive` | CI／スクリプト —— WARN のみ、何も書かない |
+| フラグ              | 説明                                                    |
+| ------------------- | ------------------------------------------------------- |
+| `--category <cat>`  | マニフェストのカテゴリ：`skill-packs`（既定）\| `tools` |
+| `--name <name>`     | 短いアダプター名（既定は `<upstream>` の basename）     |
+| `--dry-run`         | プレビューのみ —— 回答 JSON を表示し書き込まない        |
+| `--non-interactive` | CI／スクリプト —— WARN のみ、何も書かない               |
 
 **終了コード：** `0` = ゲート通過（書き込みまたはプレビュー）· `1` = 空の回答がある。
 
@@ -379,7 +379,7 @@ harnessed audit                 # マニフェスト + runtime の 2 層
 harnessed audit --skip-runtime  # マニフェスト層のみ（オフライン／未初期化）
 ```
 
-**マニフェスト層：** repository URL の形（`https://…​.git`）、`signed_by` のプレースホルダー値（`unsigned` / `todo` / `tbd` / …）、および動く `git_ref`（`HEAD` / `main` / `master` —— これは *error*：SHA かタグに pin すべき）。**runtime 層**（`--skip-runtime` でスキップ）：origin-URL の改ざん、`install.cmd` の shell インジェクション + npm パッケージのクロスチェック、provenance ゲート。マニフェストごとの `✓ / ⚠ / ✗` レポートと finding の集計を表示します。
+**マニフェスト層：** repository URL の形（`https://…​.git`）、`signed_by` のプレースホルダー値（`unsigned` / `todo` / `tbd` / …）、および動く `git_ref`（`HEAD` / `main` / `master` —— これは _error_：SHA かタグに pin すべき）。**runtime 層**（`--skip-runtime` でスキップ）：origin-URL の改ざん、`install.cmd` の shell インジェクション + npm パッケージのクロスチェック、provenance ゲート。マニフェストごとの `✓ / ⚠ / ✗` レポートと finding の集計を表示します。
 
 **終了コード：** `0` = error レベルの finding なし（warning は可）· `1` = 1 つ以上の error。
 
@@ -451,9 +451,9 @@ harnessed <command> --help   # コマンドごとのヘルプ
 
 ## グローバルフラグ
 
-| フラグ | 説明 |
-|--------|------|
+| フラグ      | 説明                     |
+| ----------- | ------------------------ |
 | `--version` | バージョンを表示して終了 |
-| `--help` | ヘルプを表示して終了 |
+| `--help`    | ヘルプを表示して終了     |
 
 ソースは [harnessed リポジトリ](https://github.com/easyinplay/harnessed/tree/main/src/cli) の `src/cli.ts` と `src/cli/` にあります。

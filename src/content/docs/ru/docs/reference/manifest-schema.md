@@ -15,15 +15,15 @@ schema_version: harnessed.workflow.v3
 
 ```typescript
 interface Manifest {
-  schema_version: 'harnessed.workflow.v3'
-  name: string                    // уникальный идентификатор пака
-  version: string                 // semver (например, "4.3.0")
-  description: string             // описание в один абзац
-  install?: InstallStep[]         // шаги установки upstream-зависимостей
-  capability?: Capability         // capability, которые даёт этот пак
-  delegates_to?: SubWorkflowRef[] // для оркестрирующих workflow
-  disciplines_applied?: string[]  // сквозные правила (например, "karpathy")
-  tools_available?: string[]      // инструменты, доступные этому workflow
+  schema_version: "harnessed.workflow.v3";
+  name: string; // уникальный идентификатор пака
+  version: string; // semver (например, "4.3.0")
+  description: string; // описание в один абзац
+  install?: InstallStep[]; // шаги установки upstream-зависимостей
+  capability?: Capability; // capability, которые даёт этот пак
+  delegates_to?: SubWorkflowRef[]; // для оркестрирующих workflow
+  disciplines_applied?: string[]; // сквозные правила (например, "karpathy")
+  tools_available?: string[]; // инструменты, доступные этому workflow
 }
 ```
 
@@ -31,9 +31,9 @@ interface Manifest {
 
 ```typescript
 type InstallStep =
-  | { npm: string }               // npm install -g <package>
-  | { git: string }               // git clone <url>
-  | { script: string }            // выполнить произвольную shell-команду
+  | { npm: string } // npm install -g <package>
+  | { git: string } // git clone <url>
+  | { script: string }; // выполнить произвольную shell-команду
 ```
 
 Пример:
@@ -50,9 +50,9 @@ install:
 
 ```typescript
 interface Capability {
-  skills?: string[]    // предоставляемые slash-команды skills
-  workflows?: string[] // предоставляемые имена workflow
-  mcp?: string[]       // регистрируемые имена MCP-серверов
+  skills?: string[]; // предоставляемые slash-команды skills
+  workflows?: string[]; // предоставляемые имена workflow
+  mcp?: string[]; // регистрируемые имена MCP-серверов
 }
 ```
 
@@ -79,10 +79,10 @@ capability:
 
 ```typescript
 interface SubWorkflowRef {
-  name: string    // имя подworkflow
-  order: number   // порядок выполнения (с 0)
-  mode: 'serial' | 'parallel'
-  gate?: string   // ключ решения, который должен быть true, чтобы подworkflow сработал
+  name: string; // имя подworkflow
+  order: number; // порядок выполнения (с 0)
+  mode: "serial" | "parallel";
+  gate?: string; // ключ решения, который должен быть true, чтобы подworkflow сработал
 }
 ```
 

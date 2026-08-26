@@ -7,15 +7,15 @@ description: Discuss → Plan → Task → Verify → Ship, 선택 단계인 Res
 
 ## 단계
 
-| # | 단계 | 슬래시 명령 | 모드 |
-|---|------|------------|------|
-| 0 | **Research** | `/research` | 선택 —— 이해가 불충분할 때 발동 |
-| 1 | **Discuss** | `/discuss` | 필수 |
-| 2 | **Plan** | `/plan` | 필수 |
-| 3 | **Task** | `/task` | 필수 |
-| 4 | **Verify** | `/verify` | 필수 |
-| 5 | **Ship** | `/ship` | 명시적 —— 릴리스 단계(사용자가 발동) |
-| — | **Retro** | `/retro` | `/auto`에서는 필수, 단독 호출 시 선택 |
+| #   | 단계         | 슬래시 명령 | 모드                                  |
+| --- | ------------ | ----------- | ------------------------------------- |
+| 0   | **Research** | `/research` | 선택 —— 이해가 불충분할 때 발동       |
+| 1   | **Discuss**  | `/discuss`  | 필수                                  |
+| 2   | **Plan**     | `/plan`     | 필수                                  |
+| 3   | **Task**     | `/task`     | 필수                                  |
+| 4   | **Verify**   | `/verify`   | 필수                                  |
+| 5   | **Ship**     | `/ship`     | 명시적 —— 릴리스 단계(사용자가 발동)  |
+| —   | **Retro**    | `/retro`    | `/auto`에서는 필수, 단독 호출 시 선택 |
 
 **학습은 단계가 아니라 자동입니다.** 완료된 각 workflow는 자신의 failure/loop/reject 신호를 `.planning/LEARNINGS.md`에 덧붙이고, inject hook이 관련 learnings를 다음 session에 주입합니다. 이는 always-on이며 선택 단계인 Retro에 **의존하지 않습니다**.
 
@@ -102,7 +102,7 @@ graph TD
 /ship                          # ship만 실행(release-preflight → tag-ready)
 ```
 
-*여러* phase를 넘나들 때는 `harnessed advance`가 `.planning/`의 디스크 상태에서 다음 phase를 유도하고 실행할 명령을 출력합니다 —— 그래서 driver loop가 여러 phase를 hands-free로 이어 붙일 수 있고(`while harnessed advance --json; do : ; done`), 앞선 phase가 미완이면 advance-gate에서 멈춥니다. 자세한 내용은 [CLI 레퍼런스](../../reference/cli/)의 `harnessed advance` 항목을 보세요.
+_여러_ phase를 넘나들 때는 `harnessed advance`가 `.planning/`의 디스크 상태에서 다음 phase를 유도하고 실행할 명령을 출력합니다 —— 그래서 driver loop가 여러 phase를 hands-free로 이어 붙일 수 있고(`while harnessed advance --json; do : ; done`), 앞선 phase가 미완이면 advance-gate에서 멈춥니다. 자세한 내용은 [CLI 레퍼런스](../../reference/cli/)의 `harnessed advance` 항목을 보세요.
 
 외과적인 서브워크플로 호출은 master를 완전히 건너뜁니다:
 

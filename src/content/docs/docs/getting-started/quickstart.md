@@ -33,14 +33,14 @@ Or start with a concrete requirement:
 
 `/auto` is harnessed's super-master command. It runs the full 6-stage pipeline:
 
-| Stage | What it does |
-|-------|-------------|
+| Stage                        | What it does                                                                                           |
+| ---------------------------- | ------------------------------------------------------------------------------------------------------ |
 | **① Research** (conditional) | Multi-source investigation via Tavily, Exa, ctx7 — fires if you answer "no" to the understanding check |
-| **② Discuss** | 3-layer clarification gates: strategic scope, phase decisions, subtask ambiguity |
-| **③ Plan** | Architecture review (conditional) + persists `task_plan.md` and `progress.md` in `.planning/` |
-| **④ Task** | Per-subtask serial loop: clarify → code → test → deliver, with TDD on core logic |
-| **⑤ Verify** | 7 conditional sub-checks: progress, code review, paranoid review, QA, security, design, simplify |
-| **⑥ Retro** | Mandatory milestone summary — lessons captured, decisions recorded |
+| **② Discuss**                | 3-layer clarification gates: strategic scope, phase decisions, subtask ambiguity                       |
+| **③ Plan**                   | Architecture review (conditional) + persists `task_plan.md` and `progress.md` in `.planning/`          |
+| **④ Task**                   | Per-subtask serial loop: clarify → code → test → deliver, with TDD on core logic                       |
+| **⑤ Verify**                 | 7 conditional sub-checks: progress, code review, paranoid review, QA, security, design, simplify       |
+| **⑥ Retro**                  | Mandatory milestone summary — lessons captured, decisions recorded                                     |
 
 `/auto` runs all stages continuously. If a stage fails, harnessed stops and you can resume with `harnessed resume`.
 

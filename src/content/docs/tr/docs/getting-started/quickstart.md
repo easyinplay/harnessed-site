@@ -33,14 +33,14 @@ Ya da somut bir gereksinimle başlayın:
 
 `/auto`, harnessed’ın super-master komutudur. 6 aşamalı hattın tamamını çalıştırır:
 
-| Aşama | Ne yapar |
-|-------|----------|
+| Aşama                    | Ne yapar                                                                                                    |
+| ------------------------ | ----------------------------------------------------------------------------------------------------------- |
 | **① Research** (koşullu) | Tavily, Exa, ctx7 üzerinden çok kaynaklı araştırma — anlama kontrolüne "hayır" yanıtı verirseniz tetiklenir |
-| **② Discuss** | 3 katmanlı netleştirme kapıları: stratejik kapsam, faz kararları, alt görev belirsizliği |
-| **③ Plan** | Mimari inceleme (koşullu) + `.planning/` altına `task_plan.md` ve `progress.md` kalıcılaştırma |
-| **④ Task** | Alt görev başına sıralı döngü: netleştir → kodla → test et → teslim et, çekirdek mantıkta TDD ile |
-| **⑤ Verify** | 7 koşullu alt kontrol: ilerleme, kod incelemesi, paranoyak inceleme, QA, güvenlik, tasarım, sadeleştirme |
-| **⑥ Retro** | Zorunlu kilometre taşı özeti — dersler kaydedilir, kararlar belgelenir |
+| **② Discuss**            | 3 katmanlı netleştirme kapıları: stratejik kapsam, faz kararları, alt görev belirsizliği                    |
+| **③ Plan**               | Mimari inceleme (koşullu) + `.planning/` altına `task_plan.md` ve `progress.md` kalıcılaştırma              |
+| **④ Task**               | Alt görev başına sıralı döngü: netleştir → kodla → test et → teslim et, çekirdek mantıkta TDD ile           |
+| **⑤ Verify**             | 7 koşullu alt kontrol: ilerleme, kod incelemesi, paranoyak inceleme, QA, güvenlik, tasarım, sadeleştirme    |
+| **⑥ Retro**              | Zorunlu kilometre taşı özeti — dersler kaydedilir, kararlar belgelenir                                      |
 
 `/auto` tüm aşamaları kesintisiz çalıştırır. Bir aşama başarısız olursa harnessed durur ve `harnessed resume` ile devam edebilirsiniz.
 

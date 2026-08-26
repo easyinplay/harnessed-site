@@ -61,15 +61,15 @@ flowchart LR
 
 `/verify` neyin değiştiğine göre en fazla 7 alt kontrol dağıtır:
 
-| Kontrol | Ne zaman tetiklenir |
-|---------|---------------------|
-| `verify-progress` | her zaman (UAT kabulü + durum eşitleme) |
-| `verify-code-review` | her zaman (çok agent’lı paralel fan-out) |
-| `verify-paranoid` | kritik modül ya da PR öncesi |
-| `verify-qa` | UI değişikliği var |
-| `verify-security` | auth ya da gizli anahtarlara dokunuldu |
-| `verify-design` | tasarım değişikliği var |
-| `verify-simplify` | her zaman en son (gereksiz mantığı kaldırır) |
+| Kontrol              | Ne zaman tetiklenir                          |
+| -------------------- | -------------------------------------------- |
+| `verify-progress`    | her zaman (UAT kabulü + durum eşitleme)      |
+| `verify-code-review` | her zaman (çok agent’lı paralel fan-out)     |
+| `verify-paranoid`    | kritik modül ya da PR öncesi                 |
+| `verify-qa`          | UI değişikliği var                           |
+| `verify-security`    | auth ya da gizli anahtarlara dokunuldu       |
+| `verify-design`      | tasarım değişikliği var                      |
+| `verify-simplify`    | her zaman en son (gereksiz mantığı kaldırır) |
 
 ## `.planning/` altında kalıcılaşan üretimler
 

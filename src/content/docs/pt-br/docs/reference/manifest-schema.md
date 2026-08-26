@@ -15,15 +15,15 @@ schema_version: harnessed.workflow.v3
 
 ```typescript
 interface Manifest {
-  schema_version: 'harnessed.workflow.v3'
-  name: string                    // identificador único do pack
-  version: string                 // semver (ex.: "4.3.0")
-  description: string             // descrição em um parágrafo
-  install?: InstallStep[]         // passos para instalar dependências upstream
-  capability?: Capability         // capabilities que este pack contribui
-  delegates_to?: SubWorkflowRef[] // para workflows orquestradores
-  disciplines_applied?: string[]  // regras transversais (ex.: "karpathy")
-  tools_available?: string[]      // ferramentas que este workflow pode invocar
+  schema_version: "harnessed.workflow.v3";
+  name: string; // identificador único do pack
+  version: string; // semver (ex.: "4.3.0")
+  description: string; // descrição em um parágrafo
+  install?: InstallStep[]; // passos para instalar dependências upstream
+  capability?: Capability; // capabilities que este pack contribui
+  delegates_to?: SubWorkflowRef[]; // para workflows orquestradores
+  disciplines_applied?: string[]; // regras transversais (ex.: "karpathy")
+  tools_available?: string[]; // ferramentas que este workflow pode invocar
 }
 ```
 
@@ -31,9 +31,9 @@ interface Manifest {
 
 ```typescript
 type InstallStep =
-  | { npm: string }               // npm install -g <package>
-  | { git: string }               // git clone <url>
-  | { script: string }            // executa um comando shell arbitrário
+  | { npm: string } // npm install -g <package>
+  | { git: string } // git clone <url>
+  | { script: string }; // executa um comando shell arbitrário
 ```
 
 Exemplo:
@@ -50,9 +50,9 @@ install:
 
 ```typescript
 interface Capability {
-  skills?: string[]    // skills de comando de barra contribuídos
-  workflows?: string[] // nomes de workflow contribuídos
-  mcp?: string[]       // nomes de servidores MCP registrados
+  skills?: string[]; // skills de comando de barra contribuídos
+  workflows?: string[]; // nomes de workflow contribuídos
+  mcp?: string[]; // nomes de servidores MCP registrados
 }
 ```
 
@@ -79,10 +79,10 @@ Para workflows master e super-master que fazem spawn de subworkflows:
 
 ```typescript
 interface SubWorkflowRef {
-  name: string    // nome do subworkflow
-  order: number   // ordem de execução (a partir de 0)
-  mode: 'serial' | 'parallel'
-  gate?: string   // chave de julgamento que precisa ser true para este subworkflow disparar
+  name: string; // nome do subworkflow
+  order: number; // ordem de execução (a partir de 0)
+  mode: "serial" | "parallel";
+  gate?: string; // chave de julgamento que precisa ser true para este subworkflow disparar
 }
 ```
 

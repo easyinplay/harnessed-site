@@ -15,15 +15,15 @@ schema_version: harnessed.workflow.v3
 
 ```typescript
 interface Manifest {
-  schema_version: 'harnessed.workflow.v3'
-  name: string                    // 唯一的套件識別碼
-  version: string                 // semver（如 "4.3.0"）
-  description: string             // 一段話描述
-  install?: InstallStep[]         // 安裝上游相依的步驟
-  capability?: Capability         // 此套件貢獻的能力
-  delegates_to?: SubWorkflowRef[] // 用於編排器工作流
-  disciplines_applied?: string[]  // 橫切規則（如 "karpathy"）
-  tools_available?: string[]      // 此工作流可呼叫的工具
+  schema_version: "harnessed.workflow.v3";
+  name: string; // 唯一的套件識別碼
+  version: string; // semver（如 "4.3.0"）
+  description: string; // 一段話描述
+  install?: InstallStep[]; // 安裝上游相依的步驟
+  capability?: Capability; // 此套件貢獻的能力
+  delegates_to?: SubWorkflowRef[]; // 用於編排器工作流
+  disciplines_applied?: string[]; // 橫切規則（如 "karpathy"）
+  tools_available?: string[]; // 此工作流可呼叫的工具
 }
 ```
 
@@ -31,9 +31,9 @@ interface Manifest {
 
 ```typescript
 type InstallStep =
-  | { npm: string }               // npm install -g <package>
-  | { git: string }               // git clone <url>
-  | { script: string }            // 執行任意 shell 指令
+  | { npm: string } // npm install -g <package>
+  | { git: string } // git clone <url>
+  | { script: string }; // 執行任意 shell 指令
 ```
 
 範例：
@@ -50,9 +50,9 @@ install:
 
 ```typescript
 interface Capability {
-  skills?: string[]    // 貢獻的斜線命令 skills
-  workflows?: string[] // 貢獻的工作流名稱
-  mcp?: string[]       // 註冊的 MCP 伺服器名稱
+  skills?: string[]; // 貢獻的斜線命令 skills
+  workflows?: string[]; // 貢獻的工作流名稱
+  mcp?: string[]; // 註冊的 MCP 伺服器名稱
 }
 ```
 
@@ -79,10 +79,10 @@ capability:
 
 ```typescript
 interface SubWorkflowRef {
-  name: string    // 子工作流名稱
-  order: number   // 執行順序（從 0 開始）
-  mode: 'serial' | 'parallel'
-  gate?: string   // 必須為 true 才觸發此子工作流的判斷鍵
+  name: string; // 子工作流名稱
+  order: number; // 執行順序（從 0 開始）
+  mode: "serial" | "parallel";
+  gate?: string; // 必須為 true 才觸發此子工作流的判斷鍵
 }
 ```
 

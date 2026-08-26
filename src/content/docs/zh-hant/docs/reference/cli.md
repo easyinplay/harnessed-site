@@ -3,7 +3,7 @@ title: CLI 命令
 description: harnessed 全部 CLI 子命令與參數。
 ---
 
-> **v4.0 執行模型。** harnessed 是 *orchestration brain + prompt library*（決策大腦 + prompt 庫），不是執行引擎。斜線命令體（由 `harnessed setup` 產生）透過三個秒級純函式 CLI 驅動 **CC-native subagent spawn** —— `harnessed gates`（哪些子工作流觸發）、`harnessed prompt`（子工作流的 spawn-ready prompt）、`harnessed checkpoint`（記錄進度）。實際的 spawn、Agent Teams、ralph-loop、釐清往返都由 Claude Code main session 用原生工具執行。`harnessed run` 僅保留給 CI／headless 情境。
+> **v4.0 執行模型。** harnessed 是 _orchestration brain + prompt library_（決策大腦 + prompt 庫），不是執行引擎。斜線命令體（由 `harnessed setup` 產生）透過三個秒級純函式 CLI 驅動 **CC-native subagent spawn** —— `harnessed gates`（哪些子工作流觸發）、`harnessed prompt`（子工作流的 spawn-ready prompt）、`harnessed checkpoint`（記錄進度）。實際的 spawn、Agent Teams、ralph-loop、釐清往返都由 Claude Code main session 用原生工具執行。`harnessed run` 僅保留給 CI／headless 情境。
 
 三個 orchestration CLI 如何驅動 CC-native spawn：
 
@@ -50,10 +50,10 @@ harnessed setup [選項]
 
 **參數：**
 
-| 參數 | 說明 |
-|------|------|
+| 參數                 | 說明                                                     |
+| -------------------- | -------------------------------------------------------- |
 | `--user-lang <code>` | 覆寫偵測到的語言。接受 `en`、`zh-Hans`、`zh-CN`、`zh-TW` |
-| `--dry-run` | 僅預覽 —— 印出將寫入的內容，不改動磁碟 |
+| `--dry-run`          | 僅預覽 —— 印出將寫入的內容，不改動磁碟                   |
 
 **退出碼：** `0` = 成功，`1` = 檔案系統錯誤，`2` = 找不到含 SKILL.md 的工作流。
 
@@ -98,12 +98,12 @@ harnessed research --query "..." --model sonnet      # subagent model：haiku | 
 harnessed research --query "..." --non-interactive   # 跳過所有提示（CI／腳本）
 ```
 
-| 參數 | 說明 |
-|------|------|
-| `--query <text>` | research prompt（**必填**）|
-| `--dry-run` | 僅預覽 —— 印出 `{ workflow, yamlPath, gateContext }` envelope，不 spawn |
-| `--model <model>` | subagent model：`haiku` \| `sonnet` \| `opus` |
-| `--non-interactive` | 跳過所有提示（CI／腳本）|
+| 參數                | 說明                                                                    |
+| ------------------- | ----------------------------------------------------------------------- |
+| `--query <text>`    | research prompt（**必填**）                                             |
+| `--dry-run`         | 僅預覽 —— 印出 `{ workflow, yamlPath, gateContext }` envelope，不 spawn |
+| `--model <model>`   | subagent model：`haiku` \| `sonnet` \| `opus`                           |
+| `--non-interactive` | 跳過所有提示（CI／腳本）                                                |
 
 **退出碼：** `0` = workflow 完成 · `1` = workflow 執行時失敗 · `2` = 用法錯誤（缺 `--query` 或找不到 workflow yaml）。
 
@@ -123,12 +123,12 @@ harnessed manifest-add <upstream> --non-interactive   # CI：WARN-only dry-run�
 
 成功時把答案寫入 `manifests/<category>/<name>.ee5-answers.json`。
 
-| 參數 | 說明 |
-|------|------|
-| `--category <cat>` | 清單類別：`skill-packs`（預設）\| `tools` |
-| `--name <name>` | 短轉接器名（預設取 `<upstream>` basename）|
-| `--dry-run` | 僅預覽 —— 印出答案 JSON，不寫入 |
-| `--non-interactive` | CI／腳本 —— WARN-only，什麼都不寫 |
+| 參數                | 說明                                       |
+| ------------------- | ------------------------------------------ |
+| `--category <cat>`  | 清單類別：`skill-packs`（預設）\| `tools`  |
+| `--name <name>`     | 短轉接器名（預設取 `<upstream>` basename） |
+| `--dry-run`         | 僅預覽 —— 印出答案 JSON，不寫入            |
+| `--non-interactive` | CI／腳本 —— WARN-only，什麼都不寫          |
 
 **退出碼：** `0` = gate 通過（寫入或預覽）· `1` = 有答案留空。
 
@@ -379,7 +379,7 @@ harnessed audit                 # 清單 + 執行時兩層
 harnessed audit --skip-runtime  # 僅清單層檢查（離線／未初始化）
 ```
 
-**清單層：** repository URL 形狀（`https://…​.git`）、`signed_by` 佔位值（`unsigned` / `todo` / `tbd` / …），以及移動中的 `git_ref`（`HEAD` / `main` / `master` —— 屬 *error*：應 pin 到 SHA 或 tag）。**執行時層**（`--skip-runtime` 跳過）：origin-URL 竄改、`install.cmd` shell 注入 + npm 套件交叉核對、provenance gate。印出逐清單的 `✓ / ⚠ / ✗` 報告與 finding 統計。
+**清單層：** repository URL 形狀（`https://…​.git`）、`signed_by` 佔位值（`unsigned` / `todo` / `tbd` / …），以及移動中的 `git_ref`（`HEAD` / `main` / `master` —— 屬 _error_：應 pin 到 SHA 或 tag）。**執行時層**（`--skip-runtime` 跳過）：origin-URL 竄改、`install.cmd` shell 注入 + npm 套件交叉核對、provenance gate。印出逐清單的 `✓ / ⚠ / ✗` 報告與 finding 統計。
 
 **退出碼：** `0` = 無 error 級 finding（允許 warning）· `1` = 有一個或多個 error。
 
@@ -451,9 +451,9 @@ harnessed <command> --help   # 各命令的說明訊息
 
 ## 全域參數
 
-| 參數 | 說明 |
-|------|------|
+| 參數        | 說明           |
+| ----------- | -------------- |
 | `--version` | 印出版本並退出 |
-| `--help` | 印出說明並退出 |
+| `--help`    | 印出說明並退出 |
 
 原始碼位於 [harnessed 儲存庫](https://github.com/easyinplay/harnessed/tree/main/src/cli) 的 `src/cli.ts` 與 `src/cli/`。

@@ -33,14 +33,14 @@ Hoặc bắt đầu bằng một yêu cầu cụ thể:
 
 `/auto` là lệnh super-master của harnessed. Nó chạy trọn pipeline 6 giai đoạn:
 
-| Giai đoạn | Làm gì |
-|-----------|--------|
+| Giai đoạn                     | Làm gì                                                                                                  |
+| ----------------------------- | ------------------------------------------------------------------------------------------------------- |
 | **① Research** (có điều kiện) | Điều tra đa nguồn qua Tavily, Exa, ctx7 — kích hoạt nếu bạn trả lời "không" ở bước kiểm tra mức độ hiểu |
-| **② Discuss** | Gate làm rõ 3 tầng: phạm vi chiến lược, quyết định phase, mơ hồ ở subtask |
-| **③ Plan** | Review kiến trúc (có điều kiện) + lưu `task_plan.md` và `progress.md` vào `.planning/` |
-| **④ Task** | Vòng lặp tuần tự theo subtask: làm rõ → viết code → kiểm thử → bàn giao, có TDD cho logic cốt lõi |
-| **⑤ Verify** | 7 kiểm tra con có điều kiện: tiến độ, code review, review đa nghi, QA, bảo mật, thiết kế, đơn giản hóa |
-| **⑥ Retro** | Bản tóm tắt cột mốc bắt buộc — ghi lại bài học, lưu các quyết định |
+| **② Discuss**                 | Gate làm rõ 3 tầng: phạm vi chiến lược, quyết định phase, mơ hồ ở subtask                               |
+| **③ Plan**                    | Review kiến trúc (có điều kiện) + lưu `task_plan.md` và `progress.md` vào `.planning/`                  |
+| **④ Task**                    | Vòng lặp tuần tự theo subtask: làm rõ → viết code → kiểm thử → bàn giao, có TDD cho logic cốt lõi       |
+| **⑤ Verify**                  | 7 kiểm tra con có điều kiện: tiến độ, code review, review đa nghi, QA, bảo mật, thiết kế, đơn giản hóa  |
+| **⑥ Retro**                   | Bản tóm tắt cột mốc bắt buộc — ghi lại bài học, lưu các quyết định                                      |
 
 `/auto` chạy liên tục qua tất cả giai đoạn. Nếu một giai đoạn thất bại, harnessed dừng lại và bạn tiếp tục bằng `harnessed resume`.
 

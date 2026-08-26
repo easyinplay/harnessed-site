@@ -7,15 +7,15 @@ description: Discuss → Plan → Task → Verify → Ship พร้อม Resea
 
 ## ขั้นต่าง ๆ
 
-| # | ขั้น | คำสั่งสแลช | โหมด |
-|---|-----|-----------|------|
-| 0 | **Research** | `/research` | เลือกได้ — ทำงานเมื่อความเข้าใจยังไม่พอ |
-| 1 | **Discuss** | `/discuss` | บังคับ |
-| 2 | **Plan** | `/plan` | บังคับ |
-| 3 | **Task** | `/task` | บังคับ |
-| 4 | **Verify** | `/verify` | บังคับ |
-| 5 | **Ship** | `/ship` | ชัดเจน — ขั้นปล่อยรุ่น (ผู้ใช้เป็นคนเรียก) |
-| — | **Retro** | `/retro` | บังคับใน `/auto` เลือกได้เมื่อเรียกเดี่ยว |
+| #   | ขั้น         | คำสั่งสแลช  | โหมด                                       |
+| --- | ------------ | ----------- | ------------------------------------------ |
+| 0   | **Research** | `/research` | เลือกได้ — ทำงานเมื่อความเข้าใจยังไม่พอ    |
+| 1   | **Discuss**  | `/discuss`  | บังคับ                                     |
+| 2   | **Plan**     | `/plan`     | บังคับ                                     |
+| 3   | **Task**     | `/task`     | บังคับ                                     |
+| 4   | **Verify**   | `/verify`   | บังคับ                                     |
+| 5   | **Ship**     | `/ship`     | ชัดเจน — ขั้นปล่อยรุ่น (ผู้ใช้เป็นคนเรียก) |
+| —   | **Retro**    | `/retro`    | บังคับใน `/auto` เลือกได้เมื่อเรียกเดี่ยว  |
 
 **การเรียนรู้เป็นอัตโนมัติ ไม่ใช่ขั้นหนึ่ง** ทุก workflow ที่เสร็จจะต่อท้ายสัญญาณ failure/loop/reject ของตัวเองลงใน `.planning/LEARNINGS.md` จากนั้น inject hook จะฉีด learnings ที่เกี่ยวข้องเข้าสู่ session ถัดไป กลไกนี้เปิดอยู่ตลอดและ**ไม่**ขึ้นกับ Retro ที่เป็นตัวเลือก
 
@@ -102,7 +102,7 @@ graph TD
 /ship                               # รันแค่ ship (release-preflight → tag-ready)
 ```
 
-เมื่อข้าม *หลาย* phase คำสั่ง `harnessed advance` จะอนุมาน phase ถัดไปจากสถานะบนดิสก์ใน `.planning/` แล้วพิมพ์คำสั่งที่ควรรัน — ทำให้ driver loop ต่อหลาย phase ได้แบบไม่ต้องคุม (`while harnessed advance --json; do : ; done`) และหยุดที่ advance-gate เมื่อ phase ก่อนหน้ายังไม่เสร็จ ดูรายละเอียดที่หัวข้อ `harnessed advance` ใน [อ้างอิง CLI](../../reference/cli/)
+เมื่อข้าม _หลาย_ phase คำสั่ง `harnessed advance` จะอนุมาน phase ถัดไปจากสถานะบนดิสก์ใน `.planning/` แล้วพิมพ์คำสั่งที่ควรรัน — ทำให้ driver loop ต่อหลาย phase ได้แบบไม่ต้องคุม (`while harnessed advance --json; do : ; done`) และหยุดที่ advance-gate เมื่อ phase ก่อนหน้ายังไม่เสร็จ ดูรายละเอียดที่หัวข้อ `harnessed advance` ใน [อ้างอิง CLI](../../reference/cli/)
 
 การเรียก subworkflow แบบผ่าตัดจะข้าม master ไปเลย:
 

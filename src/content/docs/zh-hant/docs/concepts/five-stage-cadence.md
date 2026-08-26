@@ -7,15 +7,15 @@ description: Discuss → Plan → Task → Verify → Ship，可選 Research 與
 
 ## 階段
 
-| # | 階段 | 斜線命令 | 模式 |
-|---|------|----------|------|
-| 0 | **Research** | `/research` | 選用 —— 當理解還不清楚時觸發 |
-| 1 | **Discuss** | `/discuss` | 必要 |
-| 2 | **Plan** | `/plan` | 必要 |
-| 3 | **Task** | `/task` | 必要 |
-| 4 | **Verify** | `/verify` | 必要 |
-| 5 | **Ship** | `/ship` | 顯式 —— 發佈階段（使用者觸發） |
-| — | **Retro** | `/retro` | `/auto` 中強制，單獨呼叫則選用 |
+| #   | 階段         | 斜線命令    | 模式                           |
+| --- | ------------ | ----------- | ------------------------------ |
+| 0   | **Research** | `/research` | 選用 —— 當理解還不清楚時觸發   |
+| 1   | **Discuss**  | `/discuss`  | 必要                           |
+| 2   | **Plan**     | `/plan`     | 必要                           |
+| 3   | **Task**     | `/task`     | 必要                           |
+| 4   | **Verify**   | `/verify`   | 必要                           |
+| 5   | **Ship**     | `/ship`     | 顯式 —— 發佈階段（使用者觸發） |
+| —   | **Retro**    | `/retro`    | `/auto` 中強制，單獨呼叫則選用 |
 
 **學習是自動的，不是一個階段。** 每個完成的 workflow 會把它的 failure／loop／reject 訊號追加到 `.planning/LEARNINGS.md`；inject hook 再把相關 learnings 注入下一個 session。這是 always-on 的，**不**依賴選用的 Retro。
 

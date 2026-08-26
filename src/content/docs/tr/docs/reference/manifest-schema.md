@@ -15,15 +15,15 @@ schema_version: harnessed.workflow.v3
 
 ```typescript
 interface Manifest {
-  schema_version: 'harnessed.workflow.v3'
-  name: string                    // benzersiz paket tanımlayıcısı
-  version: string                 // semver (örn. "4.3.0")
-  description: string             // tek paragraflık açıklama
-  install?: InstallStep[]         // upstream bağımlılıkları kurma adımları
-  capability?: Capability         // bu paketin sağladığı capability’ler
-  delegates_to?: SubWorkflowRef[] // orkestratör iş akışları için
-  disciplines_applied?: string[]  // kesişen kurallar (örn. "karpathy")
-  tools_available?: string[]      // bu iş akışının çağırabileceği araçlar
+  schema_version: "harnessed.workflow.v3";
+  name: string; // benzersiz paket tanımlayıcısı
+  version: string; // semver (örn. "4.3.0")
+  description: string; // tek paragraflık açıklama
+  install?: InstallStep[]; // upstream bağımlılıkları kurma adımları
+  capability?: Capability; // bu paketin sağladığı capability’ler
+  delegates_to?: SubWorkflowRef[]; // orkestratör iş akışları için
+  disciplines_applied?: string[]; // kesişen kurallar (örn. "karpathy")
+  tools_available?: string[]; // bu iş akışının çağırabileceği araçlar
 }
 ```
 
@@ -31,9 +31,9 @@ interface Manifest {
 
 ```typescript
 type InstallStep =
-  | { npm: string }               // npm install -g <package>
-  | { git: string }               // git clone <url>
-  | { script: string }            // rastgele bir shell komutu çalıştır
+  | { npm: string } // npm install -g <package>
+  | { git: string } // git clone <url>
+  | { script: string }; // rastgele bir shell komutu çalıştır
 ```
 
 Örnek:
@@ -50,9 +50,9 @@ install:
 
 ```typescript
 interface Capability {
-  skills?: string[]    // sağlanan eğik çizgi komut skills’leri
-  workflows?: string[] // sağlanan iş akışı adları
-  mcp?: string[]       // kaydedilen MCP sunucu adları
+  skills?: string[]; // sağlanan eğik çizgi komut skills’leri
+  workflows?: string[]; // sağlanan iş akışı adları
+  mcp?: string[]; // kaydedilen MCP sunucu adları
 }
 ```
 
@@ -79,10 +79,10 @@ Alt iş akışlarını spawn eden master ve super-master iş akışları için:
 
 ```typescript
 interface SubWorkflowRef {
-  name: string    // alt iş akışı adı
-  order: number   // yürütme sırası (0’dan başlar)
-  mode: 'serial' | 'parallel'
-  gate?: string   // bu alt iş akışının tetiklenmesi için true olması gereken yargı anahtarı
+  name: string; // alt iş akışı adı
+  order: number; // yürütme sırası (0’dan başlar)
+  mode: "serial" | "parallel";
+  gate?: string; // bu alt iş akışının tetiklenmesi için true olması gereken yargı anahtarı
 }
 ```
 

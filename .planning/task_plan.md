@@ -11,15 +11,15 @@
 
 ## 已确认的版本约束（findings.md 有依据）
 
-| 包 | 现状 | 目标 | 约束 |
-|---|---|---|---|
-| astro | 4.16.19 | 7.2.7 | 内置 vite ^8.0.13，engines node >=22.12（本机 v24.19 ✓） |
-| @astrojs/starlight | 0.29.3 | 0.41.9 | peer astro ^7.0.2 |
-| @astrojs/sitemap | 3.1.6 | 3.7.3 | 无 peer 限制 |
-| astro-mermaid | 1.4.0 | 2.1.0 | peer astro >=4、mermaid ^11、新增 @mermaid-js/layout-elk ^0.2.0 |
-| @astrojs/tailwind | 5.1.5 | **移除** | peer 仅到 astro ^5，Astro 7 无路可走 |
-| tailwindcss | 3.4.19 | 4.x | 改用 @tailwindcss/vite@4.3.3（peer vite ^8 ✓） |
-| @astrojs/starlight-tailwind | 无 | 5.0.0 | peer starlight >=0.38 + tailwindcss ^4 |
+| 包                          | 现状    | 目标     | 约束                                                            |
+| --------------------------- | ------- | -------- | --------------------------------------------------------------- |
+| astro                       | 4.16.19 | 7.2.7    | 内置 vite ^8.0.13，engines node >=22.12（本机 v24.19 ✓）        |
+| @astrojs/starlight          | 0.29.3  | 0.41.9   | peer astro ^7.0.2                                               |
+| @astrojs/sitemap            | 3.1.6   | 3.7.3    | 无 peer 限制                                                    |
+| astro-mermaid               | 1.4.0   | 2.1.0    | peer astro >=4、mermaid ^11、新增 @mermaid-js/layout-elk ^0.2.0 |
+| @astrojs/tailwind           | 5.1.5   | **移除** | peer 仅到 astro ^5，Astro 7 无路可走                            |
+| tailwindcss                 | 3.4.19  | 4.x      | 改用 @tailwindcss/vite@4.3.3（peer vite ^8 ✓）                  |
+| @astrojs/starlight-tailwind | 无      | 5.0.0    | peer starlight >=0.38 + tailwindcss ^4                          |
 
 ## Phase 1 — Astro 7 + Tailwind 4 ✅ 2026-08-26
 
@@ -50,8 +50,8 @@
 每语 11 篇：index / getting-started×3 / concepts×4 / reference×3
 每语一个 commit，完成即 build 验收。
 
-- [x] zh-hant  - [x] ja  - [x] ko  - [x] pt-br
-- [x] tr  - [x] ru  - [x] vi  - [x] th
+- [x] zh-hant - [x] ja - [x] ko - [x] pt-br
+- [x] tr - [x] ru - [x] vi - [x] th
 
 ## 已完成（本轮之前）
 

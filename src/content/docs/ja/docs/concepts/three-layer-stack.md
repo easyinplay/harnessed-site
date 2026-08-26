@@ -7,11 +7,11 @@ description: BDD → SDD → TDD の 3 つの入れ子フィードバックル�
 
 ## 3 つのループ
 
-| 層 | Loop | 答える問い | 合成元（重なりあり） |
-|----|------|-----------|----------------------|
-| **① Behavior** | BDD | *何を*作るか、そして何をもって完了とするか | gstack `/office-hours` governance · GSD discuss · superpowers brainstorming → acceptance criteria |
-| **② Spec** | SDD | *どう*構造化するか | GSD plan-phase → requirements / design / tasks · contracts（Spec Kit / ECC patterns） |
-| **③ Implementation** | TDD | それは実際に*動く*のか | superpowers TDD red-green · subagent execution · GSD verify-work · ralph-loop completion |
+| 層                   | Loop | 答える問い                                 | 合成元（重なりあり）                                                                              |
+| -------------------- | ---- | ------------------------------------------ | ------------------------------------------------------------------------------------------------- |
+| **① Behavior**       | BDD  | *何を*作るか、そして何をもって完了とするか | gstack `/office-hours` governance · GSD discuss · superpowers brainstorming → acceptance criteria |
+| **② Spec**           | SDD  | *どう*構造化するか                         | GSD plan-phase → requirements / design / tasks · contracts（Spec Kit / ECC patterns）             |
+| **③ Implementation** | TDD  | それは実際に*動く*のか                     | superpowers TDD red-green · subagent execution · GSD verify-work · ralph-loop completion          |
 
 **ループは段階ではなく入れ子のレンズ（nested lenses）です。** Cucumber は BDD-outer + TDD-inner の二重ループを広めました。failing scenario が外側のループを開き、複数の内側 red-green TDD サイクルでそれを緑まで駆動します。GenAI 時代はその間に環をひとつ足しました —— Behavior と Implementation のあいだの明示的な SDD **spec** 環です。agent が実行するには frozen contract が要るからです。こうして上記の **triple-loop** ができます。
 
@@ -21,30 +21,30 @@ description: BDD → SDD → TDD の 3 つの入れ子フィードバックル�
 
 ### ① Behavior (BDD)
 
-| ノード | 役割 | 合成元 |
-|--------|------|--------|
-| **Clarify** | *何を*作るかを固め、曖昧さを洗い出す | gstack `/office-hours` + GSD discuss + superpowers brainstorming |
-| **Scenario** | 意図を acceptance criteria に変換 | GSD phase success criteria |
+| ノード       | 役割                                 | 合成元                                                           |
+| ------------ | ------------------------------------ | ---------------------------------------------------------------- |
+| **Clarify**  | *何を*作るかを固め、曖昧さを洗い出す | gstack `/office-hours` + GSD discuss + superpowers brainstorming |
+| **Scenario** | 意図を acceptance criteria に変換    | GSD phase success criteria                                       |
 
 外側のループは、scenario の acceptance criteria が書き出されるまで開いたままです。「完了」の定義はここで決まります —— どんな構造やコードよりも先に。
 
 ### ② Spec (SDD)
 
-| ノード | 役割 | 合成元 |
-|--------|------|--------|
-| **Spec** | requirements + design | GSD plan-phase + Spec Kit の三点セット（requirements / design / tasks） |
-| **Plan** | tasks + 依存 DAG | GSD `PLAN.md` + ECC の分解 |
-| **Contract** | インターフェースを frozen に | contract の慣習 |
+| ノード       | 役割                         | 合成元                                                                  |
+| ------------ | ---------------------------- | ----------------------------------------------------------------------- |
+| **Spec**     | requirements + design        | GSD plan-phase + Spec Kit の三点セット（requirements / design / tasks） |
+| **Plan**     | tasks + 依存 DAG             | GSD `PLAN.md` + ECC の分解                                              |
+| **Contract** | インターフェースを frozen に | contract の慣習                                                         |
 
 中間の環は「何を」を実行可能な構造へ変換します。その終了条件は **frozen contract** —— implementation 環がそれに対してテストを書くインターフェースです。
 
 ### ③ Implementation (TDD)
 
-| ノード | 役割 | 合成元 |
-|--------|------|--------|
-| **Test-first** | failing test（red gate） | superpowers TDD |
-| **Implement** | green まで駆動 | subagent execution |
-| **Verify** | refactor + タスク単位の完了 | GSD verify-work + ralph-loop completion |
+| ノード         | 役割                        | 合成元                                  |
+| -------------- | --------------------------- | --------------------------------------- |
+| **Test-first** | failing test（red gate）    | superpowers TDD                         |
+| **Implement**  | green まで駆動              | subagent execution                      |
+| **Verify**     | refactor + タスク単位の完了 | GSD verify-work + ralph-loop completion |
 
 内側の環は古典的な red → green → refactor サイクルそのもので、すべての contract が満たされるまでタスクごとに一周します。
 
@@ -52,14 +52,14 @@ description: BDD → SDD → TDD の 3 つの入れ子フィードバックル�
 
 2 つの関心事はどの単一ループにも属しません：
 
-| 関心事 | 役割 | 合成元 |
-|--------|------|--------|
-| **Review** | 品質 + セキュリティのゲート | gstack `/review` + `/cso` |
-| **Ship** | リリース準備 + 納品 | `release-preflight` + gstack `/ship` |
+| 関心事     | 役割                        | 合成元                               |
+| ---------- | --------------------------- | ------------------------------------ |
+| **Review** | 品質 + セキュリティのゲート | gstack `/review` + `/cso`            |
+| **Ship**   | リリース準備 + 納品         | `release-preflight` + gstack `/ship` |
 
 さらに 2 つの **discipline** が*すべての*層を貫きます：
 
-- **karpathy principles** —— *how* to code：最小限の実行可能な変更、外科手術的な編集、simplicity first。
+- **karpathy principles** —— _how_ to code：最小限の実行可能な変更、外科手術的な編集、simplicity first。
 - **mattpocock moves** —— オンデマンドのツール（`/zoom-out`、`/diagnose`、`/grill-with-docs`）を状況ごとに呼び出す。
 
 ## 戻り（GoBack）
@@ -122,11 +122,11 @@ graph TD
 
 三層スタックは*理論*です。[5 段階のリズム](/ja/docs/concepts/five-stage-cadence/) はその理論がコマンドラインで動く形です：
 
-| Loop（理論） | runtime の段階 |
-|--------------|----------------|
-| ① Behavior | **Discuss** |
-| ② Spec | **Plan** |
-| ③ Implementation | **Build**（Task） |
-| Cross-cutting | **Verify + Ship**（evidence gate） |
+| Loop（理論）     | runtime の段階                     |
+| ---------------- | ---------------------------------- |
+| ① Behavior       | **Discuss**                        |
+| ② Spec           | **Plan**                           |
+| ③ Implementation | **Build**（Task）                  |
+| Cross-cutting    | **Verify + Ship**（evidence gate） |
 
 upstream ツールを fork せずに*どう*繋ぎ合わせるかは [vendoring より合成](/ja/docs/concepts/composition/) を参照してください。

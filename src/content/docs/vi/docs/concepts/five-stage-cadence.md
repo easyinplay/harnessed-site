@@ -7,15 +7,15 @@ Nhịp 5 giai đoạn là phương pháp cốt lõi của harnessed: mọi tính
 
 ## Các giai đoạn
 
-| # | Giai đoạn | Lệnh gạch chéo | Chế độ |
-|---|-----------|----------------|--------|
-| 0 | **Research** | `/research` | tùy chọn — kích hoạt khi mức độ hiểu còn thiếu |
-| 1 | **Discuss** | `/discuss` | bắt buộc |
-| 2 | **Plan** | `/plan` | bắt buộc |
-| 3 | **Task** | `/task` | bắt buộc |
-| 4 | **Verify** | `/verify` | bắt buộc |
-| 5 | **Ship** | `/ship` | tường minh — giai đoạn phát hành (do người dùng kích hoạt) |
-| — | **Retro** | `/retro` | bắt buộc trong `/auto`, tùy chọn khi gọi riêng |
+| #   | Giai đoạn    | Lệnh gạch chéo | Chế độ                                                     |
+| --- | ------------ | -------------- | ---------------------------------------------------------- |
+| 0   | **Research** | `/research`    | tùy chọn — kích hoạt khi mức độ hiểu còn thiếu             |
+| 1   | **Discuss**  | `/discuss`     | bắt buộc                                                   |
+| 2   | **Plan**     | `/plan`        | bắt buộc                                                   |
+| 3   | **Task**     | `/task`        | bắt buộc                                                   |
+| 4   | **Verify**   | `/verify`      | bắt buộc                                                   |
+| 5   | **Ship**     | `/ship`        | tường minh — giai đoạn phát hành (do người dùng kích hoạt) |
+| —   | **Retro**    | `/retro`       | bắt buộc trong `/auto`, tùy chọn khi gọi riêng             |
 
 **Việc học là tự động, không phải một giai đoạn.** Mỗi workflow hoàn thành sẽ nối thêm tín hiệu failure/loop/reject của nó vào `.planning/LEARNINGS.md`; inject hook đưa các learnings liên quan vào session kế tiếp. Cơ chế này luôn bật và **không** phụ thuộc vào Retro tùy chọn.
 
@@ -102,7 +102,7 @@ graph TD
 /ship                               # chỉ chạy ship (release-preflight → tag-ready)
 ```
 
-Khi đi qua *nhiều* phase, `harnessed advance` suy ra phase kế tiếp từ trạng thái trên đĩa trong `.planning/` và in ra lệnh cần chạy — nhờ vậy một driver loop có thể nối nhiều phase mà không cần can thiệp (`while harnessed advance --json; do : ; done`), và dừng ở advance-gate khi một phase trước đó chưa hoàn tất. Chi tiết ở mục `harnessed advance` trong [Tham khảo CLI](../../reference/cli/).
+Khi đi qua _nhiều_ phase, `harnessed advance` suy ra phase kế tiếp từ trạng thái trên đĩa trong `.planning/` và in ra lệnh cần chạy — nhờ vậy một driver loop có thể nối nhiều phase mà không cần can thiệp (`while harnessed advance --json; do : ; done`), và dừng ở advance-gate khi một phase trước đó chưa hoàn tất. Chi tiết ở mục `harnessed advance` trong [Tham khảo CLI](../../reference/cli/).
 
 Các lời gọi subworkflow kiểu phẫu thuật bỏ qua hoàn toàn master:
 

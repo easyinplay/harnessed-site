@@ -7,15 +7,15 @@ description: Discuss → Plan → Task → Verify → Ship, isteğe bağlı Rese
 
 ## Aşamalar
 
-| # | Aşama | Eğik çizgi komutu | Mod |
-|---|-------|-------------------|-----|
-| 0 | **Research** | `/research` | isteğe bağlı — anlayış eksikse tetiklenir |
-| 1 | **Discuss** | `/discuss` | zorunlu |
-| 2 | **Plan** | `/plan` | zorunlu |
-| 3 | **Task** | `/task` | zorunlu |
-| 4 | **Verify** | `/verify` | zorunlu |
-| 5 | **Ship** | `/ship` | açık — yayın aşaması (kullanıcı tetikler) |
-| — | **Retro** | `/retro` | `/auto` içinde zorunlu, tek başına çağrıldığında isteğe bağlı |
+| #   | Aşama        | Eğik çizgi komutu | Mod                                                           |
+| --- | ------------ | ----------------- | ------------------------------------------------------------- |
+| 0   | **Research** | `/research`       | isteğe bağlı — anlayış eksikse tetiklenir                     |
+| 1   | **Discuss**  | `/discuss`        | zorunlu                                                       |
+| 2   | **Plan**     | `/plan`           | zorunlu                                                       |
+| 3   | **Task**     | `/task`           | zorunlu                                                       |
+| 4   | **Verify**   | `/verify`         | zorunlu                                                       |
+| 5   | **Ship**     | `/ship`           | açık — yayın aşaması (kullanıcı tetikler)                     |
+| —   | **Retro**    | `/retro`          | `/auto` içinde zorunlu, tek başına çağrıldığında isteğe bağlı |
 
 **Öğrenme bir aşama değil, otomatiktir.** Tamamlanan her workflow, kendi failure/loop/reject sinyallerini `.planning/LEARNINGS.md` dosyasına ekler; inject hook ilgili learnings’i bir sonraki session’a enjekte eder. Bu her zaman açıktır ve isteğe bağlı Retro’ya **bağlı değildir**.
 
@@ -102,7 +102,7 @@ graph TD
 /ship                                # yalnızca ship çalışır (release-preflight → tag-ready)
 ```
 
-*Birden çok* faz boyunca ilerlerken `harnessed advance`, sonraki fazı `.planning/` diskteki durumdan türetir ve çalıştırılacak komutu yazdırır — böylece bir driver loop birden çok fazı elle müdahale olmadan zincirleyebilir (`while harnessed advance --json; do : ; done`) ve önceki bir faz tamamlanmamışsa advance-gate’te durur. Ayrıntı için [CLI başvurusu](../../reference/cli/) içindeki `harnessed advance` maddesine bakın.
+_Birden çok_ faz boyunca ilerlerken `harnessed advance`, sonraki fazı `.planning/` diskteki durumdan türetir ve çalıştırılacak komutu yazdırır — böylece bir driver loop birden çok fazı elle müdahale olmadan zincirleyebilir (`while harnessed advance --json; do : ; done`) ve önceki bir faz tamamlanmamışsa advance-gate’te durur. Ayrıntı için [CLI başvurusu](../../reference/cli/) içindeki `harnessed advance` maddesine bakın.
 
 Cerrahi alt iş akışı çağrıları master’ı tamamen atlar:
 

@@ -7,15 +7,15 @@ description: Discuss → Plan → Task → Verify → Ship、任意の Research 
 
 ## 段階
 
-| # | 段階 | スラッシュコマンド | モード |
-|---|------|-------------------|--------|
-| 0 | **Research** | `/research` | 任意 —— 理解が不十分なときに発火 |
-| 1 | **Discuss** | `/discuss` | 必須 |
-| 2 | **Plan** | `/plan` | 必須 |
-| 3 | **Task** | `/task` | 必須 |
-| 4 | **Verify** | `/verify` | 必須 |
-| 5 | **Ship** | `/ship` | 明示 —— リリース段階（ユーザーが起動） |
-| — | **Retro** | `/retro` | `/auto` では必須、単独呼び出しでは任意 |
+| #   | 段階         | スラッシュコマンド | モード                                 |
+| --- | ------------ | ------------------ | -------------------------------------- |
+| 0   | **Research** | `/research`        | 任意 —— 理解が不十分なときに発火       |
+| 1   | **Discuss**  | `/discuss`         | 必須                                   |
+| 2   | **Plan**     | `/plan`            | 必須                                   |
+| 3   | **Task**     | `/task`            | 必須                                   |
+| 4   | **Verify**   | `/verify`          | 必須                                   |
+| 5   | **Ship**     | `/ship`            | 明示 —— リリース段階（ユーザーが起動） |
+| —   | **Retro**    | `/retro`           | `/auto` では必須、単独呼び出しでは任意 |
 
 **学習は段階ではなく自動です。** 完了した各 workflow は自分の failure／loop／reject シグナルを `.planning/LEARNINGS.md` に追記し、inject hook が関連する learnings を次の session に注入します。これは always-on であり、任意の Retro に**依存しません**。
 

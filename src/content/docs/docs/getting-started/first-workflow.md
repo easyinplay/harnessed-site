@@ -61,15 +61,15 @@ flowchart LR
 
 `/verify` dispatches up to 7 sub-checks based on what changed:
 
-| Check | Fires when |
-|-------|-----------|
-| `verify-progress` | always (UAT acceptance + state sync) |
+| Check                | Fires when                            |
+| -------------------- | ------------------------------------- |
+| `verify-progress`    | always (UAT acceptance + state sync)  |
 | `verify-code-review` | always (multi-agent parallel fan-out) |
-| `verify-paranoid` | critical module or pre-PR |
-| `verify-qa` | UI changes present |
-| `verify-security` | auth or secrets touched |
-| `verify-design` | design changes present |
-| `verify-simplify` | always last (removes redundant logic) |
+| `verify-paranoid`    | critical module or pre-PR             |
+| `verify-qa`          | UI changes present                    |
+| `verify-security`    | auth or secrets touched               |
+| `verify-design`      | design changes present                |
+| `verify-simplify`    | always last (removes redundant logic) |
 
 ## Artifacts persisted in `.planning/`
 

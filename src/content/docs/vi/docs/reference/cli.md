@@ -3,7 +3,7 @@ title: Lệnh CLI
 description: Toàn bộ subcommand và cờ của CLI harnessed.
 ---
 
-> **Mô hình thực thi v4.0.** harnessed là *orchestration brain + thư viện prompt*, không phải engine thực thi. Phần thân lệnh gạch chéo (do `harnessed setup` sinh ra) điều khiển **spawn CC-native subagent** thông qua ba CLI hàm thuần và nhanh — `harnessed gates` (subworkflow nào được kích hoạt), `harnessed prompt` (prompt sẵn sàng spawn cho một subworkflow) và `harnessed checkpoint` (ghi tiến độ). Việc spawn thực tế, Agent Teams, ralph-loop và các vòng làm rõ đều do main session của Claude Code thực hiện bằng công cụ gốc. `harnessed run` chỉ còn dành cho CI/headless.
+> **Mô hình thực thi v4.0.** harnessed là _orchestration brain + thư viện prompt_, không phải engine thực thi. Phần thân lệnh gạch chéo (do `harnessed setup` sinh ra) điều khiển **spawn CC-native subagent** thông qua ba CLI hàm thuần và nhanh — `harnessed gates` (subworkflow nào được kích hoạt), `harnessed prompt` (prompt sẵn sàng spawn cho một subworkflow) và `harnessed checkpoint` (ghi tiến độ). Việc spawn thực tế, Agent Teams, ralph-loop và các vòng làm rõ đều do main session của Claude Code thực hiện bằng công cụ gốc. `harnessed run` chỉ còn dành cho CI/headless.
 
 Ba CLI orchestration điều khiển spawn CC-native ra sao:
 
@@ -50,10 +50,10 @@ harnessed setup [tùy chọn]
 
 **Cờ:**
 
-| Cờ | Mô tả |
-|----|-------|
+| Cờ                   | Mô tả                                                              |
+| -------------------- | ------------------------------------------------------------------ |
 | `--user-lang <code>` | Ghi đè locale đã phát hiện. Nhận `en`, `zh-Hans`, `zh-CN`, `zh-TW` |
-| `--dry-run` | Chỉ xem trước — in ra những gì sẽ ghi, không đụng vào đĩa |
+| `--dry-run`          | Chỉ xem trước — in ra những gì sẽ ghi, không đụng vào đĩa          |
 
 **Mã thoát:** `0` = thành công, `1` = lỗi hệ thống tệp, `2` = không tìm thấy workflow có SKILL.md.
 
@@ -98,12 +98,12 @@ harnessed research --query "..." --model sonnet      # model của subagent: hai
 harnessed research --query "..." --non-interactive   # bỏ qua mọi lời nhắc (CI / script)
 ```
 
-| Cờ | Mô tả |
-|----|-------|
-| `--query <text>` | prompt cho research (**bắt buộc**) |
-| `--dry-run` | Chỉ xem trước — in `{ workflow, yamlPath, gateContext }`, không spawn |
-| `--model <model>` | model của subagent: `haiku` \| `sonnet` \| `opus` |
-| `--non-interactive` | Bỏ qua mọi lời nhắc (CI / script) |
+| Cờ                  | Mô tả                                                                 |
+| ------------------- | --------------------------------------------------------------------- |
+| `--query <text>`    | prompt cho research (**bắt buộc**)                                    |
+| `--dry-run`         | Chỉ xem trước — in `{ workflow, yamlPath, gateContext }`, không spawn |
+| `--model <model>`   | model của subagent: `haiku` \| `sonnet` \| `opus`                     |
+| `--non-interactive` | Bỏ qua mọi lời nhắc (CI / script)                                     |
 
 **Mã thoát:** `0` = workflow hoàn tất · `1` = workflow lỗi lúc chạy · `2` = sai cách dùng (thiếu `--query` hoặc không tìm thấy yaml của workflow).
 
@@ -123,12 +123,12 @@ harnessed manifest-add <upstream> --non-interactive   # CI: dry-run chỉ WARN, 
 
 Khi thành công, ghi câu trả lời vào `manifests/<category>/<name>.ee5-answers.json`.
 
-| Cờ | Mô tả |
-|----|-------|
-| `--category <cat>` | Hạng mục manifest: `skill-packs` (mặc định) \| `tools` |
-| `--name <name>` | Tên adapter ngắn (mặc định lấy basename của `<upstream>`) |
-| `--dry-run` | Chỉ xem trước — in JSON câu trả lời, không ghi |
-| `--non-interactive` | CI / script — chỉ WARN, không ghi gì |
+| Cờ                  | Mô tả                                                     |
+| ------------------- | --------------------------------------------------------- |
+| `--category <cat>`  | Hạng mục manifest: `skill-packs` (mặc định) \| `tools`    |
+| `--name <name>`     | Tên adapter ngắn (mặc định lấy basename của `<upstream>`) |
+| `--dry-run`         | Chỉ xem trước — in JSON câu trả lời, không ghi            |
+| `--non-interactive` | CI / script — chỉ WARN, không ghi gì                      |
 
 **Mã thoát:** `0` = qua gate (đã ghi hoặc xem trước) · `1` = có câu trả lời bỏ trống.
 
@@ -312,7 +312,7 @@ harnessed advance
 # → run /auto "phase 16 'rate limiter'"
 ```
 
-**advance-gate.** `advance` từ chối nhảy qua một phase trước đó *chưa hoàn tất* (gate "comet"): nếu phase kế tiếp suy ra được xếp trước con trỏ workflow, hoặc có sub thất bại đang chặn ledger, nó thoát với mã khác 0 và **không** in lệnh chạy. Dùng `--force` để ghi đè — nó ghi một ghi chú kiểm toán vào đầu ra rồi đi tiếp.
+**advance-gate.** `advance` từ chối nhảy qua một phase trước đó _chưa hoàn tất_ (gate "comet"): nếu phase kế tiếp suy ra được xếp trước con trỏ workflow, hoặc có sub thất bại đang chặn ledger, nó thoát với mã khác 0 và **không** in lệnh chạy. Dùng `--force` để ghi đè — nó ghi một ghi chú kiểm toán vào đầu ra rồi đi tiếp.
 
 ```bash
 harnessed advance --force   # ghi đè gate (ghi lại ghi chú kiểm toán)
@@ -379,11 +379,11 @@ harnessed audit                 # cả tầng manifest lẫn runtime
 harnessed audit --skip-runtime  # chỉ tầng manifest (ngoại tuyến / chưa khởi tạo)
 ```
 
-**Tầng manifest:** dạng URL repository (`https://…​.git`), giá trị giữ chỗ ở `signed_by` (`unsigned` / `todo` / `tbd` / …), và `git_ref` di động (`HEAD` / `main` / `master` — đây là *error*: phải pin vào SHA hoặc tag). **Tầng runtime** (bỏ qua bằng `--skip-runtime`): can thiệp origin-URL, tiêm shell trong `install.cmd` + đối chiếu chéo gói npm, gate provenance. In báo cáo `✓ / ⚠ / ✗` theo từng manifest và số lượng phát hiện.
+**Tầng manifest:** dạng URL repository (`https://…​.git`), giá trị giữ chỗ ở `signed_by` (`unsigned` / `todo` / `tbd` / …), và `git_ref` di động (`HEAD` / `main` / `master` — đây là _error_: phải pin vào SHA hoặc tag). **Tầng runtime** (bỏ qua bằng `--skip-runtime`): can thiệp origin-URL, tiêm shell trong `install.cmd` + đối chiếu chéo gói npm, gate provenance. In báo cáo `✓ / ⚠ / ✗` theo từng manifest và số lượng phát hiện.
 
 **Mã thoát:** `0` = không có phát hiện mức error (cho phép warning) · `1` = có một hoặc nhiều error.
 
-> **`audit` và `audit-log`** — `audit` *xác minh tính toàn vẹn của tệp manifest*; `audit-log` (bên dưới) *truy vấn nhật ký* các lượt định tuyến/cài đặt đã diễn ra. Hai mối quan tâm khác nhau.
+> **`audit` và `audit-log`** — `audit` _xác minh tính toàn vẹn của tệp manifest_; `audit-log` (bên dưới) _truy vấn nhật ký_ các lượt định tuyến/cài đặt đã diễn ra. Hai mối quan tâm khác nhau.
 
 ---
 
@@ -451,9 +451,9 @@ harnessed <command> --help   # trợ giúp theo từng lệnh
 
 ## Cờ toàn cục
 
-| Cờ | Mô tả |
-|----|-------|
+| Cờ          | Mô tả                  |
+| ----------- | ---------------------- |
 | `--version` | In phiên bản rồi thoát |
-| `--help` | In trợ giúp rồi thoát |
+| `--help`    | In trợ giúp rồi thoát  |
 
 Mã nguồn nằm ở `src/cli.ts` và `src/cli/` trong [repo harnessed](https://github.com/easyinplay/harnessed/tree/main/src/cli).

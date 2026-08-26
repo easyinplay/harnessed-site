@@ -3,7 +3,7 @@ title: CLI 명령
 description: harnessed의 모든 CLI 하위 명령과 플래그.
 ---
 
-> **v4.0 실행 모델.** harnessed는 실행 엔진이 아니라 *orchestration brain + prompt library*(판단 두뇌 + prompt 라이브러리)입니다. `harnessed setup`이 생성한 슬래시 명령 본문이 세 개의 빠른 순수 함수 CLI —— `harnessed gates`(어떤 서브워크플로가 발동하는가), `harnessed prompt`(서브워크플로의 spawn 준비된 prompt), `harnessed checkpoint`(진행 기록) —— 를 통해 **CC-native subagent spawn**을 구동합니다. 실제 spawn, Agent Teams, ralph-loop, 명확화 왕복은 Claude Code main session이 네이티브 도구로 수행합니다. `harnessed run`은 CI/headless 전용으로만 남아 있습니다.
+> **v4.0 실행 모델.** harnessed는 실행 엔진이 아니라 _orchestration brain + prompt library_(판단 두뇌 + prompt 라이브러리)입니다. `harnessed setup`이 생성한 슬래시 명령 본문이 세 개의 빠른 순수 함수 CLI —— `harnessed gates`(어떤 서브워크플로가 발동하는가), `harnessed prompt`(서브워크플로의 spawn 준비된 prompt), `harnessed checkpoint`(진행 기록) —— 를 통해 **CC-native subagent spawn**을 구동합니다. 실제 spawn, Agent Teams, ralph-loop, 명확화 왕복은 Claude Code main session이 네이티브 도구로 수행합니다. `harnessed run`은 CI/headless 전용으로만 남아 있습니다.
 
 세 개의 orchestration CLI가 CC-native spawn을 구동하는 흐름:
 
@@ -50,10 +50,10 @@ harnessed setup [옵션]
 
 **플래그:**
 
-| 플래그 | 설명 |
-|--------|------|
+| 플래그               | 설명                                                           |
+| -------------------- | -------------------------------------------------------------- |
 | `--user-lang <code>` | 감지된 로케일 덮어쓰기. `en`, `zh-Hans`, `zh-CN`, `zh-TW` 허용 |
-| `--dry-run` | 미리보기만 —— 기록할 내용을 출력하고 디스크는 변경하지 않음 |
+| `--dry-run`          | 미리보기만 —— 기록할 내용을 출력하고 디스크는 변경하지 않음    |
 
 **종료 코드:** `0` = 성공, `1` = 파일 시스템 오류, `2` = SKILL.md를 가진 워크플로를 찾지 못함.
 
@@ -98,12 +98,12 @@ harnessed research --query "..." --model sonnet      # subagent model: haiku | s
 harnessed research --query "..." --non-interactive   # 모든 프롬프트 건너뜀(CI / 스크립트)
 ```
 
-| 플래그 | 설명 |
-|--------|------|
-| `--query <text>` | research prompt(**필수**) |
-| `--dry-run` | 미리보기만 —— `{ workflow, yamlPath, gateContext }`를 출력하고 spawn하지 않음 |
-| `--model <model>` | subagent model: `haiku` \| `sonnet` \| `opus` |
-| `--non-interactive` | 모든 프롬프트 건너뜀(CI / 스크립트) |
+| 플래그              | 설명                                                                          |
+| ------------------- | ----------------------------------------------------------------------------- |
+| `--query <text>`    | research prompt(**필수**)                                                     |
+| `--dry-run`         | 미리보기만 —— `{ workflow, yamlPath, gateContext }`를 출력하고 spawn하지 않음 |
+| `--model <model>`   | subagent model: `haiku` \| `sonnet` \| `opus`                                 |
+| `--non-interactive` | 모든 프롬프트 건너뜀(CI / 스크립트)                                           |
 
 **종료 코드:** `0` = workflow 완료 · `1` = workflow 실행 실패 · `2` = 사용법 오류(`--query` 누락 또는 workflow yaml 없음).
 
@@ -123,12 +123,12 @@ harnessed manifest-add <upstream> --non-interactive   # CI: WARN 전용 dry-run,
 
 성공하면 답을 `manifests/<category>/<name>.ee5-answers.json`에 기록합니다.
 
-| 플래그 | 설명 |
-|--------|------|
-| `--category <cat>` | 매니페스트 카테고리: `skill-packs`(기본) \| `tools` |
-| `--name <name>` | 짧은 어댑터 이름(기본값은 `<upstream>` basename) |
-| `--dry-run` | 미리보기만 —— 답 JSON을 출력하고 기록하지 않음 |
-| `--non-interactive` | CI / 스크립트 —— WARN 전용, 아무것도 기록하지 않음 |
+| 플래그              | 설명                                                |
+| ------------------- | --------------------------------------------------- |
+| `--category <cat>`  | 매니페스트 카테고리: `skill-packs`(기본) \| `tools` |
+| `--name <name>`     | 짧은 어댑터 이름(기본값은 `<upstream>` basename)    |
+| `--dry-run`         | 미리보기만 —— 답 JSON을 출력하고 기록하지 않음      |
+| `--non-interactive` | CI / 스크립트 —— WARN 전용, 아무것도 기록하지 않음  |
 
 **종료 코드:** `0` = 게이트 통과(기록 또는 미리보기) · `1` = 빈 답이 있음.
 
@@ -312,7 +312,7 @@ harnessed advance
 # → run /auto "phase 16 'rate limiter'"
 ```
 
-**advance-gate.** `advance`는 앞선 *미완료* phase를 건너뛰는 것을 거부합니다("comet" 게이트). 유도된 다음 phase의 순서가 workflow pointer보다 앞서거나 실패한 sub가 ledger를 막고 있으면, 0이 아닌 값으로 종료하며 실행 명령을 **출력하지 않습니다**. `--force`로 덮어쓸 수 있습니다 —— 출력에 audit note를 남기고 계속합니다.
+**advance-gate.** `advance`는 앞선 _미완료_ phase를 건너뛰는 것을 거부합니다("comet" 게이트). 유도된 다음 phase의 순서가 workflow pointer보다 앞서거나 실패한 sub가 ledger를 막고 있으면, 0이 아닌 값으로 종료하며 실행 명령을 **출력하지 않습니다**. `--force`로 덮어쓸 수 있습니다 —— 출력에 audit note를 남기고 계속합니다.
 
 ```bash
 harnessed advance --force   # 게이트 덮어쓰기(audit note 기록)
@@ -379,7 +379,7 @@ harnessed audit                 # 매니페스트 + runtime 두 계층
 harnessed audit --skip-runtime  # 매니페스트 계층만(오프라인 / 미초기화)
 ```
 
-**매니페스트 계층:** repository URL 형태(`https://…​.git`), `signed_by` 자리표시자 값(`unsigned` / `todo` / `tbd` / …), 그리고 움직이는 `git_ref`(`HEAD` / `main` / `master` —— 이는 *error*: SHA나 태그에 pin해야 함). **runtime 계층**(`--skip-runtime`으로 생략): origin-URL 변조, `install.cmd` shell 주입 + npm 패키지 교차 확인, provenance 게이트. 매니페스트별 `✓ / ⚠ / ✗` 리포트와 finding 집계를 출력합니다.
+**매니페스트 계층:** repository URL 형태(`https://…​.git`), `signed_by` 자리표시자 값(`unsigned` / `todo` / `tbd` / …), 그리고 움직이는 `git_ref`(`HEAD` / `main` / `master` —— 이는 _error_: SHA나 태그에 pin해야 함). **runtime 계층**(`--skip-runtime`으로 생략): origin-URL 변조, `install.cmd` shell 주입 + npm 패키지 교차 확인, provenance 게이트. 매니페스트별 `✓ / ⚠ / ✗` 리포트와 finding 집계를 출력합니다.
 
 **종료 코드:** `0` = error 등급 finding 없음(warning 허용) · `1` = 하나 이상의 error.
 
@@ -451,9 +451,9 @@ harnessed <command> --help   # 명령별 도움말
 
 ## 전역 플래그
 
-| 플래그 | 설명 |
-|--------|------|
-| `--version` | 버전을 출력하고 종료 |
-| `--help` | 도움말을 출력하고 종료 |
+| 플래그      | 설명                   |
+| ----------- | ---------------------- |
+| `--version` | 버전을 출력하고 종료   |
+| `--help`    | 도움말을 출력하고 종료 |
 
 소스는 [harnessed 저장소](https://github.com/easyinplay/harnessed/tree/main/src/cli)의 `src/cli.ts`와 `src/cli/`에 있습니다.
