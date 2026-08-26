@@ -3,6 +3,7 @@ import '@fontsource/inter/400.css'
 import '@fontsource/inter/500.css'
 import '@fontsource/inter/600.css'
 import '../styles/global.css'
+import { locales, localeMeta, homeFor } from '../i18n'
 import type { Locale } from '../i18n'
 
 interface Props {
@@ -12,7 +13,9 @@ interface Props {
 }
 
 const { title, description, lang } = Astro.props
-const htmlLang = lang === 'zh-hans' ? 'zh-Hans' : 'en'
+const htmlLang = localeMeta[lang].htmlLang
+const site = 'https://harnessed.cc'
+const canonical = site + homeFor(lang)
 ---
 
 <!doctype html>
@@ -25,14 +28,19 @@ const htmlLang = lang === 'zh-hans' ? 'zh-Hans' : 'en'
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://harnessed.cc" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content={htmlLang.replace('-', '_')} />
     <meta property="og:image" content="/og-image.svg" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content="/og-image.svg" />
     <link rel="icon" href="/favicon.svg" />
-    <link rel="alternate" hreflang="en" href="https://harnessed.cc/" />
-    <link rel="alternate" hreflang="zh-Hans" href="https://harnessed.cc/zh-hans/" />
-    <link rel="alternate" hreflang="x-default" href="https://harnessed.cc/" />
+    <link rel="canonical" href={canonical} />
+    {
+      locales.map((l) => (
+        <link rel="alternate" hreflang={localeMeta[l].htmlLang} href={site + homeFor(l)} />
+      ))
+    }
+    <link rel="alternate" hreflang="x-default" href={`${site}/`} />
   </head>
   <body class="bg-[#0A0A0F] text-white font-sans antialiased min-h-screen">
     <slot />

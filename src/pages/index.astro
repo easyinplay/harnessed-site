@@ -1,20 +1,29 @@
 ---
 import Base from '../layouts/Base.astro'
 import PageBody from '../components/PageBody.astro'
+import { seo, localeMatchTable } from '../i18n'
+
+const meta = seo.en
+// Serialised prefix → locale table, longest prefix first (see i18n/index.ts).
+const matchTable = JSON.stringify(localeMatchTable)
 ---
 
-<Base
-  title="harnessed — AI coding harness package manager"
-  description="Compose Skills, MCP, and Workflows in one manifest. Install proven harness packs in a single command."
-  lang="en"
->
-  <script is:inline>
-    (function () {
+<Base title={meta.title} description={meta.description} lang="en">
+  <script is:inline define:vars={{ matchTable }}>
+    // A static site can't read Accept-Language server-side, so first-visit
+    // locale detection happens here, before paint. A manual pick (the
+    // harnessed_lang cookie set by the Nav switcher) always wins.
+    ;(function () {
       try {
         if (document.cookie.includes('harnessed_lang=')) return
         var lang = (navigator.language || '').toLowerCase()
-        if (lang.startsWith('zh')) {
-          location.replace('/zh-hans/')
+        if (!lang) return
+        var table = JSON.parse(matchTable)
+        for (var i = 0; i < table.length; i++) {
+          if (lang === table[i][0] || lang.startsWith(table[i][0] + '-')) {
+            location.replace('/' + table[i][1] + '/')
+            return
+          }
         }
       } catch (e) {}
     })()
