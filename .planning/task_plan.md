@@ -50,7 +50,7 @@
 每语 11 篇：index / getting-started×3 / concepts×4 / reference×3
 每语一个 commit，完成即 build 验收。
 
-- [ ] zh-hant  - [ ] ja  - [ ] ko  - [ ] pt-br
+- [x] zh-hant  - [ ] ja  - [ ] ko  - [ ] pt-br
 - [ ] tr  - [ ] ru  - [ ] vi  - [ ] th
 
 ## 已完成（本轮之前）
