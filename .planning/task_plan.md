@@ -51,7 +51,7 @@
 每语一个 commit，完成即 build 验收。
 
 - [x] zh-hant  - [x] ja  - [x] ko  - [x] pt-br
-- [x] tr  - [x] ru  - [x] vi  - [ ] th
+- [x] tr  - [x] ru  - [x] vi  - [x] th
 
 ## 已完成（本轮之前）
 
