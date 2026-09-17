@@ -195,7 +195,7 @@ harnessed run <master> --task "<spec>"
 
 ## `harnessed doctor`
 
-Diagnose the local harnessed + Claude Code install — a 14-check health report (Node, MCP scope/availability, jq, Windows bash, origin, gstack prefix, deprecations, token budget, Agent Teams env, planning-with-files, mattpocock-skills, CodeGraph, and update-available).
+Diagnose the local harnessed + Claude Code install — a 23-check health report (Node, MCP scope + servers (tavily/exa), jq, bun, Windows bash flavour, origin URL, gstack prefix, deprecated manifests, token budget, Agent Teams env, planning-with-files, mattpocock-skills, CodeGraph, GateGuard conflict, workflow skill integrity, update, install channel, stale hooks, ECC, per-turn inject pairing, plugin install freshness, `HARNESSED_OFF` ablation switch). `HARNESSED_OFF=1` turns every always-on harnessed hook into a no-op (a clean control arm for A/B runs, no uninstall needed); doctor warns while it is set.
 
 ```bash
 harnessed doctor
@@ -206,7 +206,7 @@ harnessed doctor --json   # machine-readable report
 
 ## `harnessed update`
 
-Keep harnessed (and, optionally, its upstream plugins) up to date. The 14th doctor check also surfaces "update available X→Y" passively. `update` is dual-channel — it detects how harnessed was installed and picks the matching flow.
+Keep harnessed (and, optionally, its upstream plugins) up to date. doctor's update check also surfaces "update available X→Y" passively. `update` is dual-channel — it detects how harnessed was installed and picks the matching flow.
 
 ```bash
 harnessed update                      # self-update + top CHANGELOG section + restart hint
@@ -431,11 +431,65 @@ harnessed rollback
 
 ---
 
+## `harnessed check-docs`
+
+Documentation-discipline gate over `.planning/` — STATE.md digest limit (100 lines by default), archive cadence, and ROADMAP pointers instead of inlined narrative. Exits `2` on a blocking violation, `1` when there are only advisory findings.
+
+```bash
+harnessed check-docs                       # human-readable report
+harnessed check-docs --json                # machine-readable
+harnessed check-docs --max-state-lines 120 # raise the STATE.md ceiling
+harnessed check-docs --hook                # PreToolUse mode: gate only `git commit`
+```
+
+---
+
+## `harnessed facts <master>`
+
+List the gate facts a master actually consumes — deterministic ones filled in, judgement calls left `null` with a one-line hint. Fill in the rest and feed the file to `harnessed gates --context-file`.
+
+```bash
+harnessed facts verify --out facts.json
+harnessed gates verify --context-file facts.json
+```
+
+---
+
+## `harnessed eval`
+
+Run the orchestrator-behavior regression trap suite: recorded scenarios replayed deterministically against goldens. This is a CI gate.
+
+```bash
+harnessed eval                     # run ./fixtures/eval
+harnessed eval --filter <substr>   # only scenarios whose name or dir matches
+harnessed eval --coverage          # judgments-trigger coverage matrix
+harnessed eval --update-golden     # re-record goldens — review the printed diff
+harnessed eval record              # turn a real run trajectory into a replayable scenario
+```
+
+---
+
+## `harnessed exempt-gateguard`
+
+Persist `GATEGUARD_EXEMPT_GLOBS=".planning/**"` into the harness settings env (backup first, atomic write). It resolves the dual-guard conflict between ECC's GateGuard hook and the harnessed evidence guard; doctor's GateGuard check points here.
+
+```bash
+harnessed exempt-gateguard
+```
+
+---
+
+## Hook entry points (internal)
+
+`harnessed inject-state` and `harnessed stop-hook` are run by the hooks `harnessed setup` registers, not by hand. `inject-state` prints the per-turn `<workflow-state>` block (`--invalidate` drops the per-session context cache on SessionStart); `stop-hook` auto-recovers corrupted tool-call output at the end of a turn. Compiled binaries register these subcommands directly, so the hooks need no host Node.
+
+---
+
 ## `harnessed --version`
 
 ```bash
 harnessed --version
-# → 4.32.20
+# → 4.43.0
 ```
 
 ---

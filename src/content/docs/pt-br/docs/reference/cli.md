@@ -195,7 +195,7 @@ harnessed run <master> --task "<spec>"
 
 ## `harnessed doctor`
 
-Diagnostica a instalação local de harnessed + Claude Code — 14 checagens de saúde (Node, escopo/disponibilidade de MCP, jq, bash no Windows, origin, prefixo do gstack, deprecations, orçamento de tokens, env de Agent Teams, planning-with-files, mattpocock-skills, CodeGraph, update-available).
+Diagnostica a instalação local de harnessed + Claude Code — um relatório de saúde com 23 verificações (Node, escopo e servidores MCP (tavily/exa), jq, bun, tipo de bash no Windows, URL de origin, prefixo do gstack, manifests descontinuados, orçamento de tokens, env do Agent Teams, planning-with-files, mattpocock-skills, CodeGraph, conflito com GateGuard, integridade das skills de workflow, update, canal de instalação, hooks obsoletos, ECC, pareamento da injeção por turno, atualidade da instalação de plugins, chave de ablação `HARNESSED_OFF`). `HARNESSED_OFF=1` transforma todos os hooks sempre ativos do harnessed em no-op (um grupo de controle limpo para comparações A/B, sem desinstalar); o doctor avisa enquanto ela estiver definida.
 
 ```bash
 harnessed doctor
@@ -206,7 +206,7 @@ harnessed doctor --json   # relatório legível por máquina
 
 ## `harnessed update`
 
-Mantém o harnessed (e opcionalmente os plugins upstream) atualizado. A 14ª checagem do doctor também avisa passivamente "update available X→Y". O `update` é de canal duplo — detecta como o harnessed foi instalado e segue o caminho correspondente.
+Mantém o harnessed (e, opcionalmente, seus plugins upstream) atualizado. A verificação de update do doctor também mostra passivamente "update available X→Y". O `update` é de dois canais — detecta como o harnessed foi instalado e segue o fluxo correspondente.
 
 ```bash
 harnessed update                      # autoatualização + seção de topo do CHANGELOG + aviso de reinício
@@ -431,11 +431,65 @@ harnessed rollback
 
 ---
 
+## `harnessed check-docs`
+
+Gate de disciplina de documentação sobre `.planning/` — limite de linhas do resumo em STATE.md (100 por padrão), cadência de arquivamento e ROADMAP com ponteiros em vez de narrativa embutida. Sai com `2` em violação bloqueante e `1` quando há apenas avisos.
+
+```bash
+harnessed check-docs                       # relatório legível
+harnessed check-docs --json                # legível por máquina
+harnessed check-docs --max-state-lines 120 # aumenta o teto do STATE.md
+harnessed check-docs --hook                # modo PreToolUse: controla apenas `git commit`
+```
+
+---
+
+## `harnessed facts <master>`
+
+Lista os gate facts que um master realmente consome — os determinísticos já preenchidos, os que exigem julgamento como `null` com uma dica de uma linha. Complete o restante e passe o arquivo para `harnessed gates --context-file`.
+
+```bash
+harnessed facts verify --out facts.json
+harnessed gates verify --context-file facts.json
+```
+
+---
+
+## `harnessed eval`
+
+Executa a suíte de traps de regressão do comportamento do orquestrador: cenários gravados reproduzidos de forma determinística contra goldens. É um gate de CI.
+
+```bash
+harnessed eval                     # executa ./fixtures/eval
+harnessed eval --filter <substr>   # só cenários cujo nome ou diretório corresponde
+harnessed eval --coverage          # matriz de cobertura dos triggers de judgments
+harnessed eval --update-golden     # regrava os goldens — revise o diff exibido
+harnessed eval record              # transforma a trajetória de uma execução real em cenário reproduzível
+```
+
+---
+
+## `harnessed exempt-gateguard`
+
+Persiste `GATEGUARD_EXEMPT_GLOBS=".planning/**"` no env das configurações do harness (backup primeiro, escrita atômica). Resolve o conflito de guarda dupla entre o hook GateGuard do ECC e a evidence guard do harnessed; a verificação de GateGuard do doctor aponta para cá.
+
+```bash
+harnessed exempt-gateguard
+```
+
+---
+
+## Pontos de entrada de hooks (internos)
+
+`harnessed inject-state` e `harnessed stop-hook` são executados pelos hooks que o `harnessed setup` registra, não manualmente. `inject-state` imprime o bloco `<workflow-state>` de cada turno (`--invalidate` descarta o cache de contexto da sessão no SessionStart); `stop-hook` recupera automaticamente saídas de chamadas de ferramenta corrompidas ao fim do turno. Binários compilados registram esses subcomandos diretamente, então os hooks não precisam do Node do host.
+
+---
+
 ## `harnessed --version`
 
 ```bash
 harnessed --version
-# → 4.32.20
+# → 4.43.0
 ```
 
 ---

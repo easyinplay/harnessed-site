@@ -3,7 +3,7 @@ import type { Dict } from "./en";
 const zhHant: Dict = {
   promoBar: {
     items: [
-      "v4.32.20 —— 雙通道發佈（npm + 單檔二進位）· ed25519 簽章自動更新與回滾 · 編排回歸 trap 套件",
+      "v4.43.0 —— schema「宣告了卻無人求值」閘門 · 外部程式碼審查 39 項整改 · Windows 安全 spawn 與 codex 外掛偵測",
       "Subagent → Agent Teams 自動路由，依子任務決策",
       "已裝配 ECC · Superpowers · GSD · gstack",
       "Apache-2.0 · Node 22+ · 跨平台",
@@ -16,7 +16,7 @@ const zhHant: Dict = {
     npm: "npm",
   },
   hero: {
-    versionPill: "v4.32.20 · 裝配 100+ 項 capability",
+    versionPill: "v4.43.0 · 裝配 100+ 項 capability",
     h1: "AI 編程 harness 的套件管理器",
     positioning:
       "不只是套件管理器，更是裝配編排器 —— 把開源生態中最優秀的元件，用「三層堆疊」(BDD → SDD → TDD) 方法論編排成一個可執行的 engine。",
@@ -193,10 +193,11 @@ const zhHant: Dict = {
   },
   communityStats: {
     heading: "加入 harness 生態",
+    npmDownloadsLabel: "npm 總下載量",
     stats: [
       { value: "100+", label: "已裝配 capability (ECC · Superpowers · GSD · gstack)" },
-      { value: "28", label: "已發佈工作流" },
-      { value: "v4.32.20", label: "最新版本 · Apache-2.0" },
+      { value: "29", label: "已發佈工作流" },
+      { value: "v4.43.0", label: "最新版本 · Apache-2.0" },
     ],
     links: {
       discussions: "GitHub Discussions →",

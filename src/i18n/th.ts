@@ -3,7 +3,7 @@ import type { Dict } from "./en";
 const th: Dict = {
   promoBar: {
     items: [
-      "v4.32.20 — ส่งมอบสองช่องทาง (npm + ไบนารีไฟล์เดียว) · อัปเดตตัวเองและย้อนกลับด้วยลายเซ็น ed25519 · ชุด trap ทดสอบ regression ของ orchestration",
+      "v4.43.0 — gate สำหรับฟิลด์ schema ที่ประกาศไว้แต่ไม่เคยถูกประเมิน · แก้ไขผลรีวิวโค้ดภายนอก 39 รายการ · spawn ที่ปลอดภัยบน Windows และการตรวจจับปลั๊กอิน codex",
       "Subagent กำหนดเส้นทางอัตโนมัติ → Agent Teams ตัดสินใจรายงานย่อย",
       "ประกอบจาก ECC · Superpowers · GSD · gstack",
       "Apache-2.0 · Node 22+ · ข้ามแพลตฟอร์ม",
@@ -16,7 +16,7 @@ const th: Dict = {
     npm: "npm",
   },
   hero: {
-    versionPill: "v4.32.20 · ประกอบแล้ว 100+ capability",
+    versionPill: "v4.43.0 · ประกอบแล้ว 100+ capability",
     h1: "ตัวจัดการแพ็กเกจสำหรับ harness เขียนโค้ดด้วย AI",
     positioning:
       "มากกว่าตัวจัดการแพ็กเกจ — นี่คือ orchestrator สำหรับการประกอบ มันรวมสิ่งที่ดีที่สุดของระบบนิเวศโอเพนซอร์สให้เป็น engine เดียวที่รันได้จริง โดยเดินสายด้วยระเบียบวิธีสามชั้น BDD → SDD → TDD",
@@ -193,10 +193,11 @@ const th: Dict = {
   },
   communityStats: {
     heading: "เข้าร่วมระบบนิเวศ harness",
+    npmDownloadsLabel: "ยอดดาวน์โหลดรวมบน npm",
     stats: [
       { value: "100+", label: "capability ที่ประกอบแล้ว (ECC · Superpowers · GSD · gstack)" },
-      { value: "28", label: "workflow ที่ปล่อยแล้ว" },
-      { value: "v4.32.20", label: "รุ่นล่าสุด · Apache-2.0" },
+      { value: "29", label: "workflow ที่ปล่อยแล้ว" },
+      { value: "v4.43.0", label: "รุ่นล่าสุด · Apache-2.0" },
     ],
     links: {
       discussions: "GitHub Discussions →",

@@ -18,5 +18,9 @@ pnpm preview    # serve dist/
 
 ## Deploy
 
-Push to main. GitHub Actions builds + publishes to GitHub Pages.
-Custom domain configured via `public/CNAME` → harnessed.cc.
+Push to main. Cloudflare Workers Builds runs `pnpm run build` and deploys `dist/` as a
+static-assets Worker (`wrangler.jsonc`) serving harnessed.cc. The build status shows up
+as the "Workers Builds: harnessed-site" check on each commit.
+
+The homepage npm download total is fetched from api.npmjs.org at build time and refreshed
+in the browser on load (`src/lib/npmDownloads.ts`), so it stays current between deploys.

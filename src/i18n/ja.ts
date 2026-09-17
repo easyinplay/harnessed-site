@@ -3,7 +3,7 @@ import type { Dict } from "./en";
 const ja: Dict = {
   promoBar: {
     items: [
-      "v4.32.20 — デュアルチャネル配信（npm + 単一ファイルバイナリ）· ed25519 署名付き自動更新とロールバック · オーケストレーション回帰 trap スイート",
+      "v4.43.0 — 宣言されたまま評価されない schema フィールドを検出するゲート · 外部コードレビュー 39 件に対応 · Windows で安全な spawn と codex プラグイン検出",
       "Subagent → Agent Teams への自動ルーティング、サブタスクごとに判断",
       "ECC · Superpowers · GSD · gstack を合成",
       "Apache-2.0 · Node 22+ · クロスプラットフォーム",
@@ -16,7 +16,7 @@ const ja: Dict = {
     npm: "npm",
   },
   hero: {
-    versionPill: "v4.32.20 · 100+ の capability を合成",
+    versionPill: "v4.43.0 · 100+ の capability を合成",
     h1: "AI コーディング harness のパッケージマネージャー",
     positioning:
       "単なるパッケージマネージャーではなく、合成オーケストレーターです。オープンソースエコシステムの best を 1 つの実行可能な engine にまとめ、三層メソドロジー（BDD → SDD → TDD）で配線します。",
@@ -203,10 +203,11 @@ const ja: Dict = {
   },
   communityStats: {
     heading: "harness エコシステムに参加する",
+    npmDownloadsLabel: "npm 累計ダウンロード数",
     stats: [
       { value: "100+", label: "合成済み capability（ECC · Superpowers · GSD · gstack）" },
-      { value: "28", label: "出荷済みワークフロー" },
-      { value: "v4.32.20", label: "最新リリース · Apache-2.0" },
+      { value: "29", label: "出荷済みワークフロー" },
+      { value: "v4.43.0", label: "最新リリース · Apache-2.0" },
     ],
     links: {
       discussions: "GitHub Discussions →",

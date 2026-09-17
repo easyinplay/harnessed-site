@@ -18,7 +18,7 @@ Verify the install:
 
 ```bash
 harnessed --version
-# → 4.32.20
+# → 4.43.0
 ```
 
 ## Standalone binary (no Node.js)

@@ -18,7 +18,7 @@ Verifique a instalação:
 
 ```bash
 harnessed --version
-# → 4.32.20
+# → 4.43.0
 ```
 
 ## Binário autônomo (sem Node.js)

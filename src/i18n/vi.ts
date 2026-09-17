@@ -3,7 +3,7 @@ import type { Dict } from "./en";
 const vi: Dict = {
   promoBar: {
     items: [
-      "v4.32.20 — phân phối hai kênh (npm + binary một tệp) · tự cập nhật và rollback ký ed25519 · bộ trap kiểm thử hồi quy orchestration",
+      "v4.43.0 — gate cho các trường schema được khai báo nhưng không bao giờ được đánh giá · khắc phục 39 phát hiện từ review mã bên ngoài · spawn an toàn trên Windows và phát hiện plugin codex",
       "Subagent tự động định tuyến → Agent Teams, quyết định theo từng subtask",
       "Kết hợp ECC · Superpowers · GSD · gstack",
       "Apache-2.0 · Node 22+ · Đa nền tảng",
@@ -16,7 +16,7 @@ const vi: Dict = {
     npm: "npm",
   },
   hero: {
-    versionPill: "v4.32.20 · đã kết hợp 100+ capability",
+    versionPill: "v4.43.0 · đã kết hợp 100+ capability",
     h1: "Trình quản lý gói cho các harness lập trình AI",
     positioning:
       "Không chỉ là trình quản lý gói — đây là một orchestrator kết hợp. Nó lắp ghép những gì tốt nhất của hệ sinh thái mã nguồn mở thành một engine chạy được duy nhất, nối dây bằng phương pháp ba tầng BDD → SDD → TDD.",
@@ -197,10 +197,11 @@ const vi: Dict = {
   },
   communityStats: {
     heading: "Tham gia hệ sinh thái harness",
+    npmDownloadsLabel: "Tổng lượt tải npm",
     stats: [
       { value: "100+", label: "Capability đã kết hợp (ECC · Superpowers · GSD · gstack)" },
-      { value: "28", label: "Workflow đã phát hành" },
-      { value: "v4.32.20", label: "Bản mới nhất · Apache-2.0" },
+      { value: "29", label: "Workflow đã phát hành" },
+      { value: "v4.43.0", label: "Bản mới nhất · Apache-2.0" },
     ],
     links: {
       discussions: "GitHub Discussions →",

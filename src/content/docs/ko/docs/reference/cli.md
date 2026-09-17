@@ -195,7 +195,7 @@ harnessed run <master> --task "<spec>"
 
 ## `harnessed doctor`
 
-로컬 harnessed + Claude Code 설치를 진단합니다 —— 14가지 헬스 체크(Node, MCP scope/가용성, jq, Windows bash, origin, gstack prefix, deprecations, token budget, Agent Teams env, planning-with-files, mattpocock-skills, CodeGraph, update-available).
+로컬 harnessed + Claude Code 설치를 진단합니다 — 23개 항목 헬스 체크(Node, MCP scope와 서버(tavily/exa), jq, bun, Windows bash 종류, origin URL, gstack prefix, 폐기된 manifest, token budget, Agent Teams env, planning-with-files, mattpocock-skills, CodeGraph, GateGuard 충돌, 워크플로 skill 무결성, update, 설치 채널, 오래된 hook, ECC, 턴별 주입 페어링, 플러그인 설치 최신성, `HARNESSED_OFF` ablation 스위치). `HARNESSED_OFF=1`은 harnessed의 상시 hook을 모두 no-op으로 만듭니다(제거하지 않고 A/B 비교용 깨끗한 대조군 확보). 설정되어 있는 동안 doctor가 경고합니다.
 
 ```bash
 harnessed doctor
@@ -206,7 +206,7 @@ harnessed doctor --json   # 기계가 읽는 리포트
 
 ## `harnessed update`
 
-harnessed(및 선택적으로 upstream 플러그인)를 최신으로 유지합니다. 14번째 doctor check도 "update available X→Y"를 수동적으로 알려 줍니다. `update`는 듀얼 채널로, harnessed의 설치 방식을 자동 감지해 해당 경로를 따릅니다.
+harnessed(및 선택적으로 upstream 플러그인)를 최신 상태로 유지합니다. doctor의 update 체크도 "update available X→Y"를 수동적으로 알려 줍니다. `update`는 듀얼 채널로, harnessed 설치 방식을 감지해 맞는 흐름을 따릅니다.
 
 ```bash
 harnessed update                      # 자체 업그레이드 + CHANGELOG 상단 섹션 + 재시작 안내
@@ -431,11 +431,65 @@ harnessed rollback
 
 ---
 
+## `harnessed check-docs`
+
+`.planning/`에 대한 문서 규율 게이트 — STATE.md 요약 줄 수 상한(기본 100줄), 아카이브 주기, ROADMAP은 서술을 넣지 않고 포인터만. 차단 위반이 있으면 종료 코드 `2`, 권고만 있으면 `1`.
+
+```bash
+harnessed check-docs                       # 사람이 읽는 보고서
+harnessed check-docs --json                # 기계 판독용
+harnessed check-docs --max-state-lines 120 # STATE.md 상한 상향
+harnessed check-docs --hook                # PreToolUse 모드: `git commit`만 게이트
+```
+
+---
+
+## `harnessed facts <master>`
+
+master가 실제로 사용하는 gate facts를 나열합니다 — 결정적인 값은 채우고, 판단이 필요한 값은 `null`과 한 줄 힌트로 남깁니다. 나머지를 채운 파일을 `harnessed gates --context-file`에 넘기세요.
+
+```bash
+harnessed facts verify --out facts.json
+harnessed gates verify --context-file facts.json
+```
+
+---
+
+## `harnessed eval`
+
+오케스트레이터 동작 회귀 trap 스위트를 실행합니다. 녹화된 시나리오를 golden에 대해 결정적으로 재생하는 CI 게이트입니다.
+
+```bash
+harnessed eval                     # ./fixtures/eval 실행
+harnessed eval --filter <substr>   # 이름이나 디렉터리가 일치하는 시나리오만
+harnessed eval --coverage          # judgments trigger 커버리지 매트릭스
+harnessed eval --update-golden     # golden 재녹화 — 출력된 diff를 검토
+harnessed eval record              # 실제 실행 궤적을 재생 가능한 시나리오로 변환
+```
+
+---
+
+## `harnessed exempt-gateguard`
+
+`GATEGUARD_EXEMPT_GLOBS=".planning/**"`를 harness settings env에 영구 저장합니다(먼저 백업, 원자적 쓰기). ECC의 GateGuard hook과 harnessed evidence guard의 이중 가드 충돌을 해결하며, doctor의 GateGuard 체크가 이 명령을 안내합니다.
+
+```bash
+harnessed exempt-gateguard
+```
+
+---
+
+## Hook 진입점(내부용)
+
+`harnessed inject-state`와 `harnessed stop-hook`은 `harnessed setup`이 등록한 hook이 실행하며 직접 쓰는 명령이 아닙니다. `inject-state`는 턴마다 `<workflow-state>` 블록을 출력하고(`--invalidate`는 SessionStart 시 세션 컨텍스트 캐시를 비움), `stop-hook`은 턴이 끝날 때 손상된 도구 호출 출력을 자동 복구합니다. 컴파일된 바이너리는 이 하위 명령을 직접 등록하므로 hook에 호스트 Node가 필요 없습니다.
+
+---
+
 ## `harnessed --version`
 
 ```bash
 harnessed --version
-# → 4.32.20
+# → 4.43.0
 ```
 
 ---

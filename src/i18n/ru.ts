@@ -3,7 +3,7 @@ import type { Dict } from "./en";
 const ru: Dict = {
   promoBar: {
     items: [
-      "v4.32.20 — двухканальная поставка (npm + однофайловый бинарник) · самообновление и откат с подписью ed25519 · набор regression trap для оркестрации",
+      "v4.43.0 — gate для полей schema, которые объявлены, но нигде не вычисляются · исправлены 39 замечаний внешнего код-ревью · безопасный spawn на Windows и обнаружение плагинов codex",
       "Автоматическая маршрутизация subagent → Agent Teams, решение по каждой подзадаче",
       "Собрано из ECC · Superpowers · GSD · gstack",
       "Apache-2.0 · Node 22+ · Кроссплатформенно",
@@ -16,7 +16,7 @@ const ru: Dict = {
     npm: "npm",
   },
   hero: {
-    versionPill: "v4.32.20 · собрано 100+ capability",
+    versionPill: "v4.43.0 · собрано 100+ capability",
     h1: "Пакетный менеджер для AI-харнессов разработки",
     positioning:
       "Больше чем пакетный менеджер — оркестратор композиции. Он собирает лучшее из открытой экосистемы в один исполняемый engine, связывая всё трёхслойной методологией BDD → SDD → TDD.",
@@ -201,10 +201,11 @@ const ru: Dict = {
   },
   communityStats: {
     heading: "Присоединяйтесь к экосистеме harness",
+    npmDownloadsLabel: "Всего загрузок с npm",
     stats: [
       { value: "100+", label: "Собранных capability (ECC · Superpowers · GSD · gstack)" },
-      { value: "28", label: "Выпущенных workflow" },
-      { value: "v4.32.20", label: "Последний релиз · Apache-2.0" },
+      { value: "29", label: "Выпущенных workflow" },
+      { value: "v4.43.0", label: "Последний релиз · Apache-2.0" },
     ],
     links: {
       discussions: "GitHub Discussions →",

@@ -195,7 +195,7 @@ harnessed run <master> --task "<spec>"
 
 ## `harnessed doctor`
 
-Yerel harnessed + Claude Code kurulumunu teşhis eder — 14 sağlık kontrolü (Node, MCP kapsam/erişilebilirlik, jq, Windows bash, origin, gstack öneki, deprecations, token bütçesi, Agent Teams env, planning-with-files, mattpocock-skills, CodeGraph, update-available).
+Yerel harnessed + Claude Code kurulumunu teşhis eder — 23 kontrollü bir sağlık raporu (Node, MCP kapsamı ve sunucuları (tavily/exa), jq, bun, Windows bash türü, origin URL, gstack öneki, kullanımdan kaldırılmış manifest'ler, token bütçesi, Agent Teams env, planning-with-files, mattpocock-skills, CodeGraph, GateGuard çakışması, iş akışı skill bütünlüğü, update, kurulum kanalı, eskimiş hook'lar, ECC, tur başına enjeksiyon eşleşmesi, eklenti kurulum güncelliği, `HARNESSED_OFF` ablasyon anahtarı). `HARNESSED_OFF=1`, harnessed'ın her zaman açık tüm hook'larını no-op yapar (kaldırmadan A/B karşılaştırması için temiz bir kontrol grubu); ayarlı olduğu sürece doctor uyarı verir.
 
 ```bash
 harnessed doctor
@@ -206,7 +206,7 @@ harnessed doctor --json   # makine tarafından okunabilir rapor
 
 ## `harnessed update`
 
-harnessed’ı (ve isteğe bağlı olarak upstream eklentileri) güncel tutar. 14. doctor kontrolü de pasif olarak "update available X→Y" uyarısı verir. `update` çift kanallıdır — harnessed’ın nasıl kurulduğunu otomatik algılar ve ilgili yolu izler.
+harnessed'ı (ve isteğe bağlı olarak upstream eklentilerini) güncel tutar. doctor'ın update kontrolü de "update available X→Y" bilgisini pasif olarak gösterir. `update` çift kanallıdır — harnessed'ın nasıl kurulduğunu algılar ve uygun akışı izler.
 
 ```bash
 harnessed update                      # kendini yükselt + CHANGELOG üst bölümü + yeniden başlatma uyarısı
@@ -431,11 +431,65 @@ harnessed rollback
 
 ---
 
+## `harnessed check-docs`
+
+`.planning/` için dokümantasyon disiplini gate'i — STATE.md özet satır sınırı (varsayılan 100), arşivleme sıklığı ve ROADMAP'te gömülü anlatı yerine işaretçiler. Engelleyici bir ihlalde `2`, yalnızca tavsiye niteliğinde bulgular varsa `1` ile çıkar.
+
+```bash
+harnessed check-docs                       # insan tarafından okunabilir rapor
+harnessed check-docs --json                # makine tarafından okunabilir
+harnessed check-docs --max-state-lines 120 # STATE.md tavanını yükselt
+harnessed check-docs --hook                # PreToolUse modu: yalnızca `git commit`'i denetler
+```
+
+---
+
+## `harnessed facts <master>`
+
+Bir master'ın gerçekten kullandığı gate facts'i listeler — deterministik olanlar doldurulur, muhakeme gerektirenler tek satırlık bir ipucuyla `null` bırakılır. Kalanını doldurup dosyayı `harnessed gates --context-file`'a verin.
+
+```bash
+harnessed facts verify --out facts.json
+harnessed gates verify --context-file facts.json
+```
+
+---
+
+## `harnessed eval`
+
+Orkestratör davranışı için regresyon trap paketini çalıştırır: kaydedilmiş senaryolar golden'lara karşı deterministik olarak yeniden oynatılır. Bu bir CI gate'idir.
+
+```bash
+harnessed eval                     # ./fixtures/eval'i çalıştır
+harnessed eval --filter <substr>   # yalnızca adı veya dizini eşleşen senaryolar
+harnessed eval --coverage          # judgments trigger kapsam matrisi
+harnessed eval --update-golden     # golden'ları yeniden kaydet — yazdırılan diff'i inceleyin
+harnessed eval record              # gerçek bir çalıştırmanın izini yeniden oynatılabilir senaryoya dönüştür
+```
+
+---
+
+## `harnessed exempt-gateguard`
+
+`GATEGUARD_EXEMPT_GLOBS=".planning/**"` değerini harness ayarlarının env'ine kalıcı olarak yazar (önce yedek, atomik yazma). ECC'nin GateGuard hook'u ile harnessed evidence guard arasındaki çift koruma çakışmasını çözer; doctor'ın GateGuard kontrolü buraya yönlendirir.
+
+```bash
+harnessed exempt-gateguard
+```
+
+---
+
+## Hook giriş noktaları (dahili)
+
+`harnessed inject-state` ve `harnessed stop-hook`, `harnessed setup`'ın kaydettiği hook'lar tarafından çalıştırılır; elle kullanılmaz. `inject-state` her turda `<workflow-state>` bloğunu yazdırır (`--invalidate`, SessionStart'ta oturumun bağlam önbelleğini temizler); `stop-hook` tur sonunda bozuk araç çağrısı çıktısını otomatik olarak onarır. Derlenmiş ikili dosyalar bu alt komutları doğrudan kaydeder, böylece hook'lar ana makinede Node gerektirmez.
+
+---
+
 ## `harnessed --version`
 
 ```bash
 harnessed --version
-# → 4.32.20
+# → 4.43.0
 ```
 
 ---

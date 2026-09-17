@@ -18,7 +18,7 @@ npm install -g harnessed
 
 ```bash
 harnessed --version
-# → 4.32.20
+# → 4.43.0
 ```
 
 ## ไบนารีไฟล์เดียวแบบสแตนด์อโลน (ไม่ต้องมี Node.js)

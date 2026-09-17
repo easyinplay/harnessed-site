@@ -195,7 +195,7 @@ harnessed run <master> --task "<spec>"
 
 ## `harnessed doctor`
 
-วินิจฉัยการติดตั้ง harnessed + Claude Code ในเครื่อง — ตรวจสุขภาพ 14 รายการ (Node, ขอบเขต/ความพร้อมใช้ของ MCP, jq, bash บน Windows, origin, คำนำหน้าของ gstack, deprecations, งบ token, env ของ Agent Teams, planning-with-files, mattpocock-skills, CodeGraph, update-available)
+วินิจฉัยการติดตั้ง harnessed + Claude Code ในเครื่อง — ตรวจสุขภาพ 23 รายการ (Node, ขอบเขตและเซิร์ฟเวอร์ MCP (tavily/exa), jq, bun, ชนิดของ bash บน Windows, origin URL, คำนำหน้าของ gstack, manifest ที่เลิกใช้, งบ token, env ของ Agent Teams, planning-with-files, mattpocock-skills, CodeGraph, ความขัดแย้งกับ GateGuard, ความสมบูรณ์ของ skill ในเวิร์กโฟลว์, update, ช่องทางการติดตั้ง, hook ที่ล้าสมัย, ECC, การจับคู่การฉีดต่อเทิร์น, ความใหม่ของการติดตั้งปลั๊กอิน, สวิตช์ ablation `HARNESSED_OFF`) `HARNESSED_OFF=1` ทำให้ hook ที่ทำงานตลอดของ harnessed ทั้งหมดไม่ทำอะไรเลย (ได้กลุ่มควบคุมที่สะอาดสำหรับการเปรียบเทียบ A/B โดยไม่ต้องถอนการติดตั้ง) และ doctor จะเตือนระหว่างที่ตั้งค่านี้ไว้
 
 ```bash
 harnessed doctor
@@ -206,7 +206,7 @@ harnessed doctor --json   # รายงานสำหรับเครื่�
 
 ## `harnessed update`
 
-ทำให้ harnessed (และปลั๊กอิน upstream หากต้องการ) ทันสมัยอยู่เสมอ การตรวจข้อที่ 14 ของ doctor ก็บอกแบบเงียบ ๆ ว่า "update available X→Y" `update` เป็นแบบสองช่องทาง — มันตรวจเองว่า harnessed ถูกติดตั้งด้วยวิธีใดแล้วเดินตามเส้นทางนั้น
+ทำให้ harnessed (และปลั๊กอิน upstream หากต้องการ) ทันสมัยอยู่เสมอ การตรวจ update ของ doctor ก็บอกแบบเงียบ ๆ ว่า "update available X→Y" `update` เป็นแบบสองช่องทาง — มันตรวจเองว่า harnessed ถูกติดตั้งด้วยวิธีใดแล้วเดินตามเส้นทางนั้น
 
 ```bash
 harnessed update                      # อัปเกรดตัวเอง + ส่วนบนของ CHANGELOG + เตือนให้รีสตาร์ต
@@ -431,11 +431,65 @@ harnessed rollback
 
 ---
 
+## `harnessed check-docs`
+
+gate วินัยเอกสารสำหรับ `.planning/` — จำกัดจำนวนบรรทัดของสรุป STATE.md (ค่าเริ่มต้น 100 บรรทัด), รอบการเก็บถาวร และ ROADMAP ที่ใส่เพียงตัวชี้แทนการเล่าเรื่องแบบฝัง ออกด้วยรหัส `2` เมื่อมีการละเมิดที่ต้องหยุด และ `1` เมื่อมีเพียงคำแนะนำ
+
+```bash
+harnessed check-docs                       # รายงานสำหรับคนอ่าน
+harnessed check-docs --json                # สำหรับเครื่องอ่าน
+harnessed check-docs --max-state-lines 120 # เพิ่มเพดานของ STATE.md
+harnessed check-docs --hook                # โหมด PreToolUse: ตรวจเฉพาะ `git commit`
+```
+
+---
+
+## `harnessed facts <master>`
+
+แสดง gate facts ที่ master ใช้จริง — ค่าที่กำหนดได้แน่นอนจะถูกเติมให้ ค่าที่ต้องใช้วิจารณญาณจะเป็น `null` พร้อมคำใบ้หนึ่งบรรทัด เติมส่วนที่เหลือแล้วส่งไฟล์ให้ `harnessed gates --context-file`
+
+```bash
+harnessed facts verify --out facts.json
+harnessed gates verify --context-file facts.json
+```
+
+---
+
+## `harnessed eval`
+
+รันชุด trap สำหรับ regression ของพฤติกรรม orchestrator: เล่นซ้ำสถานการณ์ที่บันทึกไว้แบบกำหนดผลได้แน่นอนเทียบกับ golden ใช้เป็น gate ใน CI
+
+```bash
+harnessed eval                     # รัน ./fixtures/eval
+harnessed eval --filter <substr>   # เฉพาะสถานการณ์ที่ชื่อหรือไดเรกทอรีตรงกัน
+harnessed eval --coverage          # เมทริกซ์ความครอบคลุมของ trigger ใน judgments
+harnessed eval --update-golden     # บันทึก golden ใหม่ — ตรวจ diff ที่พิมพ์ออกมา
+harnessed eval record              # แปลงเส้นทางการรันจริงเป็นสถานการณ์ที่เล่นซ้ำได้
+```
+
+---
+
+## `harnessed exempt-gateguard`
+
+บันทึก `GATEGUARD_EXEMPT_GLOBS=".planning/**"` ลงใน env ของ settings ของ harness อย่างถาวร (สำรองก่อน เขียนแบบ atomic) เพื่อแก้ความขัดแย้งของตัวป้องกันสองชั้นระหว่าง hook GateGuard ของ ECC กับ evidence guard ของ harnessed โดยการตรวจ GateGuard ของ doctor จะชี้มาที่คำสั่งนี้
+
+```bash
+harnessed exempt-gateguard
+```
+
+---
+
+## จุดเข้าของ hook (ภายใน)
+
+`harnessed inject-state` และ `harnessed stop-hook` ถูกเรียกโดย hook ที่ `harnessed setup` ลงทะเบียนไว้ ไม่ได้มีไว้ให้รันเอง `inject-state` พิมพ์บล็อก `<workflow-state>` ในแต่ละเทิร์น (`--invalidate` ล้างแคชบริบทของเซสชันเมื่อ SessionStart) ส่วน `stop-hook` กู้คืนผลลัพธ์การเรียกเครื่องมือที่เสียหายโดยอัตโนมัติเมื่อจบเทิร์น ไบนารีที่คอมไพล์แล้วลงทะเบียนคำสั่งย่อยเหล่านี้โดยตรง hook จึงไม่ต้องใช้ Node บนเครื่อง
+
+---
+
 ## `harnessed --version`
 
 ```bash
 harnessed --version
-# → 4.32.20
+# → 4.43.0
 ```
 
 ---

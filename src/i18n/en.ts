@@ -1,7 +1,7 @@
 const en = {
   promoBar: {
     items: [
-      "v4.32.20 — dual-channel delivery (npm + single-file binary) · ed25519-signed self-update & rollback · orchestration regression trap suite",
+      "v4.43.0 — gate for schema fields declared but never evaluated · 39-finding external code review remediated · Windows-safe spawn & codex plugin detection",
       "Auto-routed subagents → Agent Teams, decided per subtask",
       "Composing ECC · Superpowers · GSD · gstack",
       "Apache-2.0 · Node 22+ · Cross-platform",
@@ -14,7 +14,7 @@ const en = {
     npm: "npm",
   },
   hero: {
-    versionPill: "v4.32.20 · 100+ capabilities composed",
+    versionPill: "v4.43.0 · 100+ capabilities composed",
     h1: "The package manager for AI coding harnesses",
     positioning:
       "More than a package manager — a composition orchestrator. It assembles the best of the open-source ecosystem into one executable engine, wired by the three-layer BDD → SDD → TDD methodology.",
@@ -197,10 +197,11 @@ const en = {
   },
   communityStats: {
     heading: "Join the harness ecosystem",
+    npmDownloadsLabel: "Total npm downloads",
     stats: [
       { value: "100+", label: "Capabilities composed (ECC · Superpowers · GSD · gstack)" },
-      { value: "28", label: "Workflows shipped" },
-      { value: "v4.32.20", label: "Latest release · Apache-2.0" },
+      { value: "29", label: "Workflows shipped" },
+      { value: "v4.43.0", label: "Latest release · Apache-2.0" },
     ],
     links: {
       discussions: "GitHub Discussions →",

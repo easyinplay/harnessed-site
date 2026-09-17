@@ -1,6 +1,7 @@
 ---
-import { t } from '../i18n'
+import { t, localeMeta } from '../i18n'
 import type { Locale } from '../i18n'
+import { fetchTotalDownloads, formatCount } from '../lib/npmDownloads'
 
 interface Props {
   lang: Locale
@@ -8,6 +9,12 @@ interface Props {
 
 const { lang } = Astro.props
 const dict = t(lang)
+const htmlLang = localeMeta[lang].htmlLang
+
+// Baked at build time so the number renders without JavaScript; the script below
+// refreshes it in the browser. A failed fetch (offline build) shows a dash.
+const downloads = await fetchTotalDownloads()
+const downloadsText = downloads === null ? '—' : formatCount(downloads, htmlLang)
 ---
 
 <section class="py-24">
@@ -16,7 +23,21 @@ const dict = t(lang)
       {dict.communityStats.heading}
     </h2>
 
-    <div class="mt-14 grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div class="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <a
+        data-fade
+        href="https://www.npmjs.com/package/harnessed"
+        class="block bg-[#15151D] border border-violet-400/10 rounded-xl p-8 text-center hover:border-violet-400/30 transition-colors"
+      >
+        <div
+          class="text-[40px] font-medium text-white tabular-nums"
+          data-npm-downloads
+          data-lang={htmlLang}
+        >
+          {downloadsText}
+        </div>
+        <div class="text-zinc-400 text-sm mt-2">{dict.communityStats.npmDownloadsLabel}</div>
+      </a>
       {dict.communityStats.stats.map((stat) => (
         <div data-fade class="bg-[#15151D] border border-violet-400/10 rounded-xl p-8 text-center">
           <div class="text-[40px] font-medium text-white">{stat.value}</div>
@@ -49,3 +70,15 @@ const dict = t(lang)
     </div>
   </div>
 </section>
+
+<script>
+  import { fetchTotalDownloads, formatCount } from '../lib/npmDownloads'
+
+  const el = document.querySelector<HTMLElement>('[data-npm-downloads]')
+  if (el) {
+    fetchTotalDownloads().then((n) => {
+      // Keep the build-time number when the live fetch fails.
+      if (n !== null) el.textContent = formatCount(n, el.dataset.lang ?? 'en')
+    })
+  }
+</script>

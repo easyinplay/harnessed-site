@@ -18,7 +18,7 @@ Kiểm tra bản cài:
 
 ```bash
 harnessed --version
-# → 4.32.20
+# → 4.43.0
 ```
 
 ## Binary độc lập (không cần Node.js)

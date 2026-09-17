@@ -3,7 +3,7 @@ import type { Dict } from "./en";
 const ptBr: Dict = {
   promoBar: {
     items: [
-      "v4.32.20 — entrega em dois canais (npm + binário de arquivo único) · autoatualização e rollback assinados com ed25519 · suíte de traps de regressão de orquestração",
+      "v4.43.0 — gate para campos de schema declarados e nunca avaliados · 39 achados de code review externo corrigidos · spawn seguro no Windows e detecção de plugins do codex",
       "Subagents roteados automaticamente → Agent Teams, decidido por subtarefa",
       "Compondo ECC · Superpowers · GSD · gstack",
       "Apache-2.0 · Node 22+ · Multiplataforma",
@@ -16,7 +16,7 @@ const ptBr: Dict = {
     npm: "npm",
   },
   hero: {
-    versionPill: "v4.32.20 · 100+ capabilities compostas",
+    versionPill: "v4.43.0 · 100+ capabilities compostas",
     h1: "O gerenciador de pacotes para harnesses de programação com IA",
     positioning:
       "Mais que um gerenciador de pacotes — um orquestrador de composição. Ele monta o melhor do ecossistema open source em um único engine executável, conectado pela metodologia de três camadas BDD → SDD → TDD.",
@@ -204,10 +204,11 @@ const ptBr: Dict = {
   },
   communityStats: {
     heading: "Entre no ecossistema harness",
+    npmDownloadsLabel: "Downloads totais no npm",
     stats: [
       { value: "100+", label: "Capabilities compostas (ECC · Superpowers · GSD · gstack)" },
-      { value: "28", label: "Workflows entregues" },
-      { value: "v4.32.20", label: "Último release · Apache-2.0" },
+      { value: "29", label: "Workflows entregues" },
+      { value: "v4.43.0", label: "Último release · Apache-2.0" },
     ],
     links: {
       discussions: "GitHub Discussions →",

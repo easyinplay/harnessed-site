@@ -3,7 +3,7 @@ import type { Dict } from "./en";
 const ko: Dict = {
   promoBar: {
     items: [
-      "v4.32.20 — 듀얼 채널 배포(npm + 단일 파일 바이너리) · ed25519 서명 자동 업데이트 및 롤백 · 오케스트레이션 회귀 trap 스위트",
+      "v4.43.0 — 선언만 되고 평가되지 않는 schema 필드를 잡는 게이트 · 외부 코드 리뷰 39건 조치 · Windows 안전 spawn 및 codex 플러그인 감지",
       "Subagent → Agent Teams 자동 라우팅, 서브태스크 단위로 결정",
       "ECC · Superpowers · GSD · gstack 조합",
       "Apache-2.0 · Node 22+ · 크로스 플랫폼",
@@ -16,7 +16,7 @@ const ko: Dict = {
     npm: "npm",
   },
   hero: {
-    versionPill: "v4.32.20 · 100+ capability 조합",
+    versionPill: "v4.43.0 · 100+ capability 조합",
     h1: "AI 코딩 harness를 위한 패키지 매니저",
     positioning:
       "단순한 패키지 매니저가 아니라 조합 오케스트레이터입니다. 오픈소스 생태계의 최고 구성 요소를 하나의 실행 가능한 engine으로 조립하고, 3계층 BDD → SDD → TDD 방법론으로 연결합니다.",
@@ -196,10 +196,11 @@ const ko: Dict = {
   },
   communityStats: {
     heading: "harness 생태계에 합류하세요",
+    npmDownloadsLabel: "npm 누적 다운로드",
     stats: [
       { value: "100+", label: "조합된 capability (ECC · Superpowers · GSD · gstack)" },
-      { value: "28", label: "출시된 워크플로" },
-      { value: "v4.32.20", label: "최신 릴리스 · Apache-2.0" },
+      { value: "29", label: "출시된 워크플로" },
+      { value: "v4.43.0", label: "최신 릴리스 · Apache-2.0" },
     ],
     links: {
       discussions: "GitHub Discussions →",

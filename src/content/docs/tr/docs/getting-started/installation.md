@@ -18,7 +18,7 @@ Kurulumu doğrulayın:
 
 ```bash
 harnessed --version
-# → 4.32.20
+# → 4.43.0
 ```
 
 ## Bağımsız binary (Node.js gerekmez)

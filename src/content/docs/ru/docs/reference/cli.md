@@ -195,7 +195,7 @@ harnessed run <master> --task "<spec>"
 
 ## `harnessed doctor`
 
-Диагностирует локальную установку harnessed + Claude Code — 14 проверок здоровья (Node, область/доступность MCP, jq, bash в Windows, origin, префикс gstack, deprecations, бюджет токенов, env Agent Teams, planning-with-files, mattpocock-skills, CodeGraph, update-available).
+Диагностирует локальную установку harnessed + Claude Code — отчёт из 23 проверок (Node, scope и серверы MCP (tavily/exa), jq, bun, тип bash в Windows, origin URL, префикс gstack, устаревшие manifest, бюджет токенов, env Agent Teams, planning-with-files, mattpocock-skills, CodeGraph, конфликт с GateGuard, целостность skill воркфлоу, update, канал установки, устаревшие hook, ECC, парность инъекции на каждом ходе, свежесть установки плагинов, выключатель абляции `HARNESSED_OFF`). `HARNESSED_OFF=1` превращает все постоянно активные hook harnessed в no-op (чистая контрольная группа для A/B без удаления); пока переменная задана, doctor выводит предупреждение.
 
 ```bash
 harnessed doctor
@@ -206,7 +206,7 @@ harnessed doctor --json   # машиночитаемый отчёт
 
 ## `harnessed update`
 
-Держит harnessed (и, по желанию, upstream-плагины) в актуальном состоянии. Четырнадцатая проверка doctor тоже пассивно подсказывает «update available X→Y». `update` двухканальный — сам определяет, как установлен harnessed, и идёт соответствующим путём.
+Держит harnessed (и, по желанию, upstream-плагины) в актуальном состоянии. Проверка update в doctor тоже пассивно подсказывает «update available X→Y». `update` двухканальный — сам определяет, как установлен harnessed, и идёт соответствующим путём.
 
 ```bash
 harnessed update                      # самообновление + верхний раздел CHANGELOG + напоминание о перезапуске
@@ -431,11 +431,65 @@ harnessed rollback
 
 ---
 
+## `harnessed check-docs`
+
+Gate документационной дисциплины для `.planning/` — лимит строк дайджеста STATE.md (по умолчанию 100), ритм архивирования и указатели в ROADMAP вместо встроенного повествования. Код выхода `2` при блокирующем нарушении, `1` — если есть только рекомендации.
+
+```bash
+harnessed check-docs                       # отчёт для человека
+harnessed check-docs --json                # машиночитаемый вывод
+harnessed check-docs --max-state-lines 120 # поднять лимит STATE.md
+harnessed check-docs --hook                # режим PreToolUse: проверяет только `git commit`
+```
+
+---
+
+## `harnessed facts <master>`
+
+Показывает gate facts, которые master действительно использует: детерминированные заполнены, требующие суждения оставлены `null` с однострочной подсказкой. Заполните остальное и передайте файл в `harnessed gates --context-file`.
+
+```bash
+harnessed facts verify --out facts.json
+harnessed gates verify --context-file facts.json
+```
+
+---
+
+## `harnessed eval`
+
+Запускает набор регрессионных trap для поведения оркестратора: записанные сценарии детерминированно воспроизводятся против golden. Это gate в CI.
+
+```bash
+harnessed eval                     # запустить ./fixtures/eval
+harnessed eval --filter <substr>   # только сценарии, чьё имя или каталог совпадает
+harnessed eval --coverage          # матрица покрытия триггеров judgments
+harnessed eval --update-golden     # перезаписать golden — проверьте выведенный diff
+harnessed eval record              # превратить траекторию реального запуска в воспроизводимый сценарий
+```
+
+---
+
+## `harnessed exempt-gateguard`
+
+Сохраняет `GATEGUARD_EXEMPT_GLOBS=".planning/**"` в env настроек harness (сначала резервная копия, атомарная запись). Устраняет конфликт двух охранников — hook GateGuard из ECC и evidence guard harnessed; проверка GateGuard в doctor указывает сюда.
+
+```bash
+harnessed exempt-gateguard
+```
+
+---
+
+## Точки входа hook (внутренние)
+
+`harnessed inject-state` и `harnessed stop-hook` запускаются hook, которые регистрирует `harnessed setup`, а не вручную. `inject-state` выводит блок `<workflow-state>` на каждом ходе (`--invalidate` сбрасывает кэш контекста сессии при SessionStart); `stop-hook` в конце хода автоматически восстанавливает повреждённый вывод вызова инструмента. Скомпилированные бинарники регистрируют эти подкоманды напрямую, поэтому hook не нужен Node на хосте.
+
+---
+
 ## `harnessed --version`
 
 ```bash
 harnessed --version
-# → 4.32.20
+# → 4.43.0
 ```
 
 ---

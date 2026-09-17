@@ -18,7 +18,7 @@ npm install -g harnessed
 
 ```bash
 harnessed --version
-# → 4.32.20
+# → 4.43.0
 ```
 
 ## 单文件二进制(无需 Node.js)

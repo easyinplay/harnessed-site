@@ -195,7 +195,7 @@ harnessed run <master> --task "<spec>"
 
 ## `harnessed doctor`
 
-診斷本機 harnessed + Claude Code 安裝 —— 14 項健康檢查（Node、MCP scope／可用性、jq、Windows bash、origin、gstack prefix、deprecations、token budget、Agent Teams env、planning-with-files、mattpocock-skills、CodeGraph、update-available）。
+診斷本機 harnessed + Claude Code 安裝 —— 23 項健康檢查（Node、MCP scope 與伺服器（tavily/exa）、jq、bun、Windows bash 類型、origin URL、gstack prefix、已棄用 manifest、token budget、Agent Teams env、planning-with-files、mattpocock-skills、CodeGraph、GateGuard 衝突、工作流 skill 完整性、update、安裝通道、過時 hook、ECC、每回合注入配對、外掛安裝新鮮度、`HARNESSED_OFF` 消融開關）。`HARNESSED_OFF=1` 讓 harnessed 所有常駐 hook 變為空操作（A/B 對照時無需解除安裝即可得到乾淨的對照組）；設定期間 doctor 會給出警告。
 
 ```bash
 harnessed doctor
@@ -206,7 +206,7 @@ harnessed doctor --json   # 機器可讀報告
 
 ## `harnessed update`
 
-讓 harnessed（及選用的上游外掛）保持最新。第 14 項 doctor check 也會被動提示 "update available X→Y"。`update` 是雙通道的 —— 會自動偵測 harnessed 的安裝方式並走對應流程。
+保持 harnessed（及可選的上游外掛）最新。doctor 的 update 檢查也會被動提示 "update available X→Y"。`update` 是雙通道的 —— 自動偵測 harnessed 的安裝方式並走對應流程。
 
 ```bash
 harnessed update                      # 自我升級 + CHANGELOG 頂部小節 + 重啟提示
@@ -431,11 +431,65 @@ harnessed rollback
 
 ---
 
+## `harnessed check-docs`
+
+`.planning/` 的文件紀律閘門 —— STATE.md 摘要行數上限（預設 100 行）、歸檔節奏、ROADMAP 只放指標不內嵌敘事。存在阻斷性違規時結束碼 `2`，只有提示性問題時為 `1`。
+
+```bash
+harnessed check-docs                       # 人類可讀報告
+harnessed check-docs --json                # 機器可讀
+harnessed check-docs --max-state-lines 120 # 調高 STATE.md 行數上限
+harnessed check-docs --hook                # PreToolUse 模式：只攔截 `git commit`
+```
+
+---
+
+## `harnessed facts <master>`
+
+列出某個 master 實際使用的 gate facts —— 可確定的已自動填好，需要判斷的留為 `null` 並附一行提示。補齊後把檔案交給 `harnessed gates --context-file`。
+
+```bash
+harnessed facts verify --out facts.json
+harnessed gates verify --context-file facts.json
+```
+
+---
+
+## `harnessed eval`
+
+執行編排行為回歸 trap 套件：錄製好的情境對照 golden 做確定性重播，作為 CI 閘門。
+
+```bash
+harnessed eval                     # 執行 ./fixtures/eval
+harnessed eval --filter <substr>   # 只跑名稱或目錄相符的情境
+harnessed eval --coverage          # judgments trigger 覆蓋矩陣
+harnessed eval --update-golden     # 重新錄製 golden —— 審閱印出的 diff
+harnessed eval record              # 把一次真實執行軌跡變成可重播情境
+```
+
+---
+
+## `harnessed exempt-gateguard`
+
+把 `GATEGUARD_EXEMPT_GLOBS=".planning/**"` 持久化到 harness settings env（先備份、原子寫入），解決 ECC 的 GateGuard hook 與 harnessed evidence guard 的雙守衛衝突；doctor 的 GateGuard 檢查會指向這裡。
+
+```bash
+harnessed exempt-gateguard
+```
+
+---
+
+## Hook 入口（內部）
+
+`harnessed inject-state` 與 `harnessed stop-hook` 由 `harnessed setup` 註冊的 hook 呼叫，不需要手動執行。`inject-state` 輸出每回合的 `<workflow-state>` 區塊（`--invalidate` 在 SessionStart 時清除本工作階段的上下文快取）；`stop-hook` 在回合結束時自動修復損壞的工具呼叫輸出。編譯版二進位直接註冊這兩個子命令，hook 不依賴宿主 Node。
+
+---
+
 ## `harnessed --version`
 
 ```bash
 harnessed --version
-# → 4.32.20
+# → 4.43.0
 ```
 
 ---
