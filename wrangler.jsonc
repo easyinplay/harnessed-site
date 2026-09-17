@@ -1,0 +1,19 @@
+// Cloudflare Workers Builds deploy config — a static-assets-only Worker serving the
+// Astro build output.
+//
+// Without this file, `wrangler deploy` in Workers Builds falls into its autoconfig
+// path (installs wrangler, rewrites package.json scripts, runs `astro add
+// cloudflare`) and fails with "Missing entry-point to Worker script or to assets
+// directory" — every deploy since bc84d59 failed that way while the live site
+// stayed on an older build.
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "harnessed-site",
+  "compatibility_date": "2026-09-16",
+  "assets": {
+    "directory": "./dist",
+    // Matches the live behaviour: /docs/x → 307 → /docs/x/, unknown paths → 404.html.
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page"
+  }
+}
