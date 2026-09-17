@@ -11,7 +11,7 @@ description: BDD → SDD → TDD の 3 つの入れ子フィードバックル�
 | -------------------- | ---- | ------------------------------------------ | ------------------------------------------------------------------------------------------------- |
 | **① Behavior**       | BDD  | *何を*作るか、そして何をもって完了とするか | gstack `/office-hours` governance · GSD discuss · superpowers brainstorming → acceptance criteria |
 | **② Spec**           | SDD  | *どう*構造化するか                         | GSD plan-phase → requirements / design / tasks · contracts（Spec Kit / ECC patterns）             |
-| **③ Implementation** | TDD  | それは実際に*動く*のか                     | superpowers TDD red-green · subagent execution · GSD verify-work · ralph-loop completion          |
+| **③ Implementation** | TDD  | それは実際に*動く*のか                     | superpowers TDD red-green · subagent execution · GSD verify-work · harnessed completion gate          |
 
 **ループは段階ではなく入れ子のレンズ（nested lenses）です。** Cucumber は BDD-outer + TDD-inner の二重ループを広めました。failing scenario が外側のループを開き、複数の内側 red-green TDD サイクルでそれを緑まで駆動します。GenAI 時代はその間に環をひとつ足しました —— Behavior と Implementation のあいだの明示的な SDD **spec** 環です。agent が実行するには frozen contract が要るからです。こうして上記の **triple-loop** ができます。
 
@@ -44,7 +44,7 @@ description: BDD → SDD → TDD の 3 つの入れ子フィードバックル�
 | -------------- | --------------------------- | --------------------------------------- |
 | **Test-first** | failing test（red gate）    | superpowers TDD                         |
 | **Implement**  | green まで駆動              | subagent execution                      |
-| **Verify**     | refactor + タスク単位の完了 | GSD verify-work + ralph-loop completion |
+| **Verify**     | refactor + タスク単位の完了 | GSD verify-work + harnessed completion gate |
 
 内側の環は古典的な red → green → refactor サイクルそのもので、すべての contract が満たされるまでタスクごとに一周します。
 

@@ -11,7 +11,7 @@ description: BDD → SDD → TDD เป็นวงป้อนกลับส�
 | -------------------- | ---- | --------------------------------------- | ------------------------------------------------------------------------------------------------- |
 | **① Behavior**       | BDD  | จะสร้าง _อะไร_ และรู้ได้อย่างไรว่าเสร็จ | gstack `/office-hours` governance · GSD discuss · superpowers brainstorming → acceptance criteria |
 | **② Spec**           | SDD  | โครงสร้าง _เป็นอย่างไร_                 | GSD plan-phase → requirements / design / tasks · contracts (Spec Kit / ECC patterns)              |
-| **③ Implementation** | TDD  | มัน _ทำงานได้จริง_ หรือไม่              | superpowers TDD red-green · subagent execution · GSD verify-work · ralph-loop completion          |
+| **③ Implementation** | TDD  | มัน _ทำงานได้จริง_ หรือไม่              | superpowers TDD red-green · subagent execution · GSD verify-work · harnessed completion gate          |
 
 **วงเหล่านี้คือเลนส์ซ้อนกัน ไม่ใช่ขั้นตอน** Cucumber ทำให้วงคู่ BDD-นอก + TDD-ใน เป็นที่รู้จัก: scenario ที่ล้มเหลวจะเปิดวงนอก แล้วคุณดันมันไปสู่สีเขียวผ่านวง red-green TDD ด้านในหลายรอบ ยุค GenAI เพิ่มวงตรงกลางเข้ามา — วง **spec** ของ SDD ที่อยู่ระหว่าง Behavior กับ Implementation อย่างชัดเจน เพราะ agent ต้องมี contract ที่ถูกแช่แข็งจึงจะทำงานได้ นั่นจึงกลายเป็น **triple-loop** ข้างบน
 
@@ -44,7 +44,7 @@ description: BDD → SDD → TDD เป็นวงป้อนกลับส�
 | -------------- | -------------------------- | --------------------------------------- |
 | **Test-first** | เทสต์ที่ล้มเหลว (red gate) | superpowers TDD                         |
 | **Implement**  | ดันไปสู่สีเขียว            | subagent execution                      |
-| **Verify**     | refactor + จบงานรายชิ้น    | GSD verify-work + ralph-loop completion |
+| **Verify**     | refactor + จบงานรายชิ้น    | GSD verify-work + harnessed completion gate |
 
 วงในคือวง red → green → refactor แบบคลาสสิก วนหนึ่งรอบต่อหนึ่ง task จนกว่าทุก contract จะได้รับการตอบสนอง
 

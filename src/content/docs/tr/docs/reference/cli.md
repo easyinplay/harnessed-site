@@ -3,7 +3,7 @@ title: CLI komutları
 description: harnessed’ın tüm CLI alt komutları ve bayrakları.
 ---
 
-> **v4.0 yürütme modeli.** harnessed bir yürütme motoru değil, bir *orchestration brain + prompt kütüphanesi*dir. (`harnessed setup` tarafından üretilen) eğik çizgi komut gövdesi, üç hızlı saf fonksiyon CLI aracılığıyla **CC-native subagent spawn**’ı sürer — `harnessed gates` (hangi alt iş akışları tetiklenir), `harnessed prompt` (bir alt iş akışı için spawn’a hazır prompt) ve `harnessed checkpoint` (ilerlemeyi kaydeder). Asıl spawn, Agent Teams, ralph-loop ve netleştirme gidiş gelişleri Claude Code ana oturumunun yerel araçlarla yaptığı iştir. `harnessed run` yalnızca CI/headless için korunur.
+> **v4.0 yürütme modeli.** harnessed bir yürütme motoru değil, bir *orchestration brain + prompt kütüphanesi*dir. (`harnessed setup` tarafından üretilen) eğik çizgi komut gövdesi, üç hızlı saf fonksiyon CLI aracılığıyla **CC-native subagent spawn**’ı sürer — `harnessed gates` (hangi alt iş akışları tetiklenir), `harnessed prompt` (bir alt iş akışı için spawn’a hazır prompt) ve `harnessed checkpoint` (ilerlemeyi kaydeder). Asıl spawn, Agent Teams ve netleştirme gidiş gelişleri Claude Code ana oturumunun yerel araçlarla yaptığı iştir. `harnessed run` yalnızca CI/headless için korunur.
 
 Üç orkestrasyon CLI’sı CC-native spawn’ı nasıl sürer:
 
@@ -11,7 +11,7 @@ description: harnessed’ın tüm CLI alt komutları ve bayrakları.
 flowchart LR
   M["CC main session<br/>slash-command body"] --> G["harnessed gates<br/>which subs fire"]
   G --> P["harnessed prompt<br/>spawn-ready prompt"]
-  P --> S["native Task/Agent spawn<br/>wrapped in ralph-loop"]
+  P --> S["native Task/Agent spawn<br/>+ harnessed completion gate"]
   S --> C["harnessed checkpoint<br/>record progress"]
   C -. "status --recover after compaction" .-> M
 ```
@@ -171,7 +171,7 @@ harnessed prompt plan-phase --task "add OAuth login" --json
 # → JSON: { prompt, max_iterations, model }
 ```
 
-Ana oturum bu `prompt`’u yerel bir `Task` spawn’ına verir (dışta ralph-loop plugin’i); `max_iterations` / `model` doğrudan iş akışı varsayılanlarından gelir.
+Ana oturum bu `prompt`’u yerel bir `Task` spawn’ına verir (dışta `harnessed checkpoint complete`’i); `max_iterations` / `model` doğrudan iş akışı varsayılanlarından gelir.
 
 ### `harnessed checkpoint`
 

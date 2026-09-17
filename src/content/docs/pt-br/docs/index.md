@@ -27,7 +27,7 @@ flowchart LR
 - **[Instalação](/pt-br/docs/getting-started/installation/)** — instale o harnessed e rode o setup em 30 segundos
 - **[Início rápido](/pt-br/docs/getting-started/quickstart/)** — da instalação ao primeiro workflow em 60 segundos
 - **[Conceito de composição](/pt-br/docs/concepts/composition/)** — como o harnessed compõe ferramentas upstream sem fazer fork delas
-- **[Referência de workflows](/pt-br/docs/reference/workflows/)** — os 28 workflows componíveis entregues na release atual
+- **[Referência de workflows](/pt-br/docs/reference/workflows/)** — os 29 workflows componíveis entregues na release atual
 
 ## O que torna o harnessed diferente
 

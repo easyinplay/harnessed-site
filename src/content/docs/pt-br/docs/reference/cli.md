@@ -3,7 +3,7 @@ title: Comandos da CLI
 description: Todos os subcomandos e flags da CLI do harnessed.
 ---
 
-> **Modelo de execução v4.0.** O harnessed é um _orchestration brain + biblioteca de prompts_, não um motor de execução. O corpo do comando de barra (gerado por `harnessed setup`) dirige o **spawn de subagents CC-native** por meio de três CLIs puras e rápidas — `harnessed gates` (quais subworkflows disparam), `harnessed prompt` (prompt pronto para spawn de um subworkflow) e `harnessed checkpoint` (registro de progresso). O spawn em si, Agent Teams, ralph-loop e as idas e vindas de esclarecimento ficam com a sessão principal do Claude Code, usando ferramentas nativas. `harnessed run` permanece apenas para CI/headless.
+> **Modelo de execução v4.0.** O harnessed é um _orchestration brain + biblioteca de prompts_, não um motor de execução. O corpo do comando de barra (gerado por `harnessed setup`) dirige o **spawn de subagents CC-native** por meio de três CLIs puras e rápidas — `harnessed gates` (quais subworkflows disparam), `harnessed prompt` (prompt pronto para spawn de um subworkflow) e `harnessed checkpoint` (registro de progresso). O spawn em si, Agent Teams e as idas e vindas de esclarecimento ficam com a sessão principal do Claude Code, usando ferramentas nativas. `harnessed run` permanece apenas para CI/headless.
 
 Como as três CLIs de orquestração dirigem o spawn CC-native:
 
@@ -11,7 +11,7 @@ Como as três CLIs de orquestração dirigem o spawn CC-native:
 flowchart LR
   M["CC main session<br/>slash-command body"] --> G["harnessed gates<br/>which subs fire"]
   G --> P["harnessed prompt<br/>spawn-ready prompt"]
-  P --> S["native Task/Agent spawn<br/>wrapped in ralph-loop"]
+  P --> S["native Task/Agent spawn<br/>+ harnessed completion gate"]
   S --> C["harnessed checkpoint<br/>record progress"]
   C -. "status --recover after compaction" .-> M
 ```
@@ -171,7 +171,7 @@ harnessed prompt plan-phase --task "add OAuth login" --json
 # → JSON: { prompt, max_iterations, model }
 ```
 
-A sessão principal alimenta esse `prompt` em um spawn nativo de `Task` (por fora, o plugin ralph-loop); `max_iterations` / `model` vêm direto dos padrões do workflow.
+A sessão principal alimenta esse `prompt` em um spawn nativo de `Task` (por fora, o plugin `harnessed checkpoint complete`); `max_iterations` / `model` vêm direto dos padrões do workflow.
 
 ### `harnessed checkpoint`
 

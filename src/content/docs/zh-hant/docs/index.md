@@ -27,7 +27,7 @@ flowchart LR
 - **[安裝](/zh-hant/docs/getting-started/installation/)** — 30 秒內安裝 harnessed 並完成初始化
 - **[快速上手](/zh-hant/docs/getting-started/quickstart/)** — 60 秒內從安裝到第一個工作流
 - **[裝配主義概念](/zh-hant/docs/concepts/composition/)** — harnessed 如何在不 fork 上游的情況下裝配工具
-- **[工作流參考](/zh-hant/docs/reference/workflows/)** — 目前版本隨附的全部 28 個可裝配工作流
+- **[工作流參考](/zh-hant/docs/reference/workflows/)** — 目前版本隨附的全部 29 個可裝配工作流
 
 ## harnessed 的差異化優勢
 

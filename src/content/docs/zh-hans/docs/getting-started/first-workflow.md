@@ -51,7 +51,7 @@ flowchart LR
 1. **澄清** —— 编码前验证规格，暴露歧义点
 2. **编码** —— 遵循 karpathy 原则（最小可行改动，外科手术式编辑）
 3. **测试** —— 核心逻辑 TDD：红灯 → 绿灯 → 重构
-4. **交付** —— `ralph-loop` 包装器确保输出逐字 `COMPLETE` 后才推进
+4. **交付** —— `harnessed checkpoint complete` 闸门要求输出逐字 `COMPLETE` 后才推进
 
 ## 阶段四 — Verify
 

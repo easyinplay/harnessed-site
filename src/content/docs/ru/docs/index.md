@@ -27,7 +27,7 @@ flowchart LR
 - **[Установка](/ru/docs/getting-started/installation/)** — установите harnessed и выполните setup за 30 секунд
 - **[Быстрый старт](/ru/docs/getting-started/quickstart/)** — от установки до первого workflow за 60 секунд
 - **[Концепция композиции](/ru/docs/concepts/composition/)** — как harnessed собирает upstream-инструменты, не форкая их
-- **[Справочник workflow](/ru/docs/reference/workflows/)** — все 28 составных workflow текущего релиза
+- **[Справочник workflow](/ru/docs/reference/workflows/)** — все 29 составных workflow текущего релиза
 
 ## Чем harnessed отличается
 

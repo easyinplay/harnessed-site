@@ -72,7 +72,7 @@ const th: Dict = {
         loop: "TDD",
         question: "มันทำงานได้จริงหรือไม่",
         composed:
-          "superpowers TDD red-green · subagent execution · GSD verify-work · ralph-loop completion",
+          "superpowers TDD red-green · subagent execution · GSD verify-work · harnessed completion gate",
       },
     ],
     nested: {
@@ -127,7 +127,7 @@ const th: Dict = {
     ],
     wrapper: {
       label: "wrapper ที่ตั้งฉาก",
-      name: "ralph-loop",
+      name: "harnessed checkpoint complete",
       body: "ห่อชั้นใดก็ได้ และบังคับให้ยึดคำสัญญาว่าเสร็จแบบ COMPLETE ตรงตัวอักษร",
     },
     footnote:
@@ -159,11 +159,10 @@ const th: Dict = {
       { cmd: "/discuss", scope: "stage gate", caps: "กลยุทธ์·เฟส·งานย่อย" },
       { cmd: "/plan", scope: "stage gate", caps: "สถาปัตยกรรม·เฟส" },
       { cmd: "/task", scope: "ต่อหนึ่งงานย่อย", caps: "ชี้แจง·เขียนโค้ด·ทดสอบ·ส่งมอบ" },
-      { cmd: "/verify", scope: "stage gate", caps: "ตรวจย่อยแบบมีเงื่อนไข 7 รายการ" },
+      { cmd: "/verify", scope: "stage gate", caps: "ตรวจย่อยแบบมีเงื่อนไข 11 รายการ" },
       { cmd: "/ship", scope: "stage gate", caps: "release-preflight·gstack-ship" },
       { cmd: "/retro", scope: "หลัง ship", caps: "gstack·บันทึกถาวร" },
       { cmd: "/tdd", scope: "วินัย", caps: "red-green-refactor" },
-      { cmd: "/ralph-loop", scope: "wrapper", caps: "คำสัญญาว่าเสร็จ" },
     ],
     githubLink: "ดู workflow ทั้งหมดบน GitHub →",
   },
@@ -227,7 +226,7 @@ const th: Dict = {
       },
       {
         q: "มัน spawn subagent ให้อัตโนมัติไหม",
-        a: "`harnessed setup` เปิด Agent Teams ให้อัตโนมัติ และ gate การทำงานขนานจะตัดสินชั้นของแต่ละงานย่อย: งานเล็กน้อยอยู่ใน session หลัก งานที่เป็นอิสระแตกออกเป็น subagent (≤ 3, context แยกจากกัน) ส่วนงานที่ต้องคุยกัน — ตกลง contract, ถกสมมติฐาน, ใช้ task list ร่วมกัน — จะยกระดับเป็น Agent Team จริง ๆ และ ralph-loop ห่อชั้นใดก็ได้เพื่อบังคับให้ยึด COMPLETE ตรงตัวอักษร",
+        a: "`harnessed setup` เปิด Agent Teams ให้อัตโนมัติ และ gate การทำงานขนานจะตัดสินชั้นของแต่ละงานย่อย: งานเล็กน้อยอยู่ใน session หลัก งานที่เป็นอิสระแตกออกเป็น subagent (≤ 3, context แยกจากกัน) ส่วนงานที่ต้องคุยกัน — ตกลง contract, ถกสมมติฐาน, ใช้ task list ร่วมกัน — จะยกระดับเป็น Agent Team จริง ๆ และ `harnessed checkpoint complete` ควบคุมชั้นใดก็ได้เพื่อบังคับให้ยึด COMPLETE ตรงตัวอักษร",
       },
       {
         q: "เขียน harness pack ของตัวเองได้ไหม",

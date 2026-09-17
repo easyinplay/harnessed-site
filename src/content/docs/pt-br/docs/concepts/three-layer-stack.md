@@ -11,7 +11,7 @@ A pilha de três camadas é a teoria do harnessed sobre _por que_ a cadência te
 | -------------------- | ---- | ---------------------------------------------- | ------------------------------------------------------------------------------------------------- |
 | **① Behavior**       | BDD  | _O que_ construir e como saber que está pronto | gstack `/office-hours` governance · GSD discuss · superpowers brainstorming → acceptance criteria |
 | **② Spec**           | SDD  | _Como_ está estruturado                        | GSD plan-phase → requirements / design / tasks · contracts (Spec Kit / ECC patterns)              |
-| **③ Implementation** | TDD  | Isso _funciona_ de fato                        | superpowers TDD red-green · subagent execution · GSD verify-work · ralph-loop completion          |
+| **③ Implementation** | TDD  | Isso _funciona_ de fato                        | superpowers TDD red-green · subagent execution · GSD verify-work · harnessed completion gate          |
 
 **Os loops são lentes aninhadas, não fases.** O Cucumber popularizou o loop duplo BDD-externo + TDD-interno: um scenario que falha abre o loop externo, e você o leva ao verde por meio de vários ciclos internos de red-green TDD. A era GenAI acrescentou um anel no meio — o anel explícito de **spec** do SDD entre Behavior e Implementation, porque agents precisam de um contrato congelado para executar. Isso forma o **triple-loop** acima.
 
@@ -44,7 +44,7 @@ O anel do meio converte o "o quê" em estrutura executável. Sua condição de s
 | -------------- | ------------------------------- | --------------------------------------- |
 | **Test-first** | teste que falha (red gate)      | superpowers TDD                         |
 | **Implement**  | levar ao verde                  | subagent execution                      |
-| **Verify**     | refactor + conclusão por tarefa | GSD verify-work + ralph-loop completion |
+| **Verify**     | refactor + conclusão por tarefa | GSD verify-work + harnessed completion gate |
 
 O anel interno é o clássico ciclo red → green → refactor, rodado uma vez por tarefa até que todos os contratos sejam satisfeitos.
 

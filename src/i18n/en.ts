@@ -70,7 +70,7 @@ const en = {
         loop: "TDD",
         question: "Does it actually work.",
         composed:
-          "superpowers TDD red-green · subagent execution · GSD verify-work · ralph-loop completion",
+          "superpowers TDD red-green · subagent execution · GSD verify-work · harnessed completion gate",
       },
     ],
     nested: {
@@ -131,7 +131,7 @@ const en = {
     ],
     wrapper: {
       label: "orthogonal wrapper",
-      name: "ralph-loop",
+      name: "harnessed checkpoint complete",
       body: "Wraps any tier and holds it to a verbatim COMPLETE completion-promise.",
     },
     footnote:
@@ -163,11 +163,10 @@ const en = {
       { cmd: "/discuss", scope: "stage gate", caps: "strategic·phase·subtask" },
       { cmd: "/plan", scope: "stage gate", caps: "architecture·phase" },
       { cmd: "/task", scope: "per-subtask", caps: "clarify·code·test·deliver" },
-      { cmd: "/verify", scope: "stage gate", caps: "7 sub conditional" },
+      { cmd: "/verify", scope: "stage gate", caps: "11 sub conditional" },
       { cmd: "/ship", scope: "stage gate", caps: "release-preflight·gstack-ship" },
       { cmd: "/retro", scope: "post-ship", caps: "gstack·persist" },
       { cmd: "/tdd", scope: "discipline", caps: "red-green-refactor" },
-      { cmd: "/ralph-loop", scope: "wrapper", caps: "completion-promise" },
     ],
     githubLink: "View all workflows on GitHub →",
   },
@@ -231,7 +230,7 @@ const en = {
       },
       {
         q: "Does it spawn subagents automatically?",
-        a: "`harnessed setup` auto-enables Agent Teams, and a parallelism gate decides the tier per subtask: trivial work stays in the main session, independent tasks fan out as subagents (≤ 3, isolated context), and work that needs cross-talk — contract alignment, hypothesis debate, shared task lists — escalates to a real Agent Team. ralph-loop can wrap any tier to hold it to a verbatim COMPLETE.",
+        a: "`harnessed setup` auto-enables Agent Teams, and a parallelism gate decides the tier per subtask: trivial work stays in the main session, independent tasks fan out as subagents (≤ 3, isolated context), and work that needs cross-talk — contract alignment, hypothesis debate, shared task lists — escalates to a real Agent Team. `harnessed checkpoint complete` gates any tier to hold it to a verbatim COMPLETE.",
       },
       {
         q: "Can I write my own harness pack?",

@@ -3,7 +3,7 @@ title: CLI 命令
 description: harnessed 全部 CLI 子命令與參數。
 ---
 
-> **v4.0 執行模型。** harnessed 是 _orchestration brain + prompt library_（決策大腦 + prompt 庫），不是執行引擎。斜線命令體（由 `harnessed setup` 產生）透過三個秒級純函式 CLI 驅動 **CC-native subagent spawn** —— `harnessed gates`（哪些子工作流觸發）、`harnessed prompt`（子工作流的 spawn-ready prompt）、`harnessed checkpoint`（記錄進度）。實際的 spawn、Agent Teams、ralph-loop、釐清往返都由 Claude Code main session 用原生工具執行。`harnessed run` 僅保留給 CI／headless 情境。
+> **v4.0 執行模型。** harnessed 是 _orchestration brain + prompt library_（決策大腦 + prompt 庫），不是執行引擎。斜線命令體（由 `harnessed setup` 產生）透過三個秒級純函式 CLI 驅動 **CC-native subagent spawn** —— `harnessed gates`（哪些子工作流觸發）、`harnessed prompt`（子工作流的 spawn-ready prompt）、`harnessed checkpoint`（記錄進度）。實際的 spawn、Agent Teams、釐清往返都由 Claude Code main session 用原生工具執行。`harnessed run` 僅保留給 CI／headless 情境。
 
 三個 orchestration CLI 如何驅動 CC-native spawn：
 
@@ -11,7 +11,7 @@ description: harnessed 全部 CLI 子命令與參數。
 flowchart LR
   M["CC main session<br/>slash-command body"] --> G["harnessed gates<br/>which subs fire"]
   G --> P["harnessed prompt<br/>spawn-ready prompt"]
-  P --> S["native Task/Agent spawn<br/>wrapped in ralph-loop"]
+  P --> S["native Task/Agent spawn<br/>+ harnessed completion gate"]
   S --> C["harnessed checkpoint<br/>record progress"]
   C -. "status --recover after compaction" .-> M
 ```
@@ -171,7 +171,7 @@ harnessed prompt plan-phase --task "add OAuth login" --json
 # → JSON: { prompt, max_iterations, model }
 ```
 
-main session 把 `prompt` 餵給原生 `Task` spawn（外層套 ralph-loop plugin）；`max_iterations` / `model` 直接取自工作流預設值。
+main session 把 `prompt` 餵給原生 `Task` spawn（外層套 `harnessed checkpoint complete`）；`max_iterations` / `model` 直接取自工作流預設值。
 
 ### `harnessed checkpoint`
 

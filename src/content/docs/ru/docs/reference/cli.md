@@ -3,7 +3,7 @@ title: Команды CLI
 description: Все подкоманды и флаги CLI harnessed.
 ---
 
-> **Модель исполнения v4.0.** harnessed — это _orchestration brain + библиотека промптов_, а не движок исполнения. Тело слеш-команды (сгенерированное `harnessed setup`) управляет **spawn CC-native subagent** через три быстрых чистых CLI — `harnessed gates` (какие подworkflow срабатывают), `harnessed prompt` (готовый к spawn промпт для подworkflow) и `harnessed checkpoint` (запись прогресса). Сам spawn, Agent Teams, ralph-loop и круги уточнений выполняет главная сессия Claude Code нативными инструментами. `harnessed run` оставлен только для CI/headless.
+> **Модель исполнения v4.0.** harnessed — это _orchestration brain + библиотека промптов_, а не движок исполнения. Тело слеш-команды (сгенерированное `harnessed setup`) управляет **spawn CC-native subagent** через три быстрых чистых CLI — `harnessed gates` (какие подworkflow срабатывают), `harnessed prompt` (готовый к spawn промпт для подworkflow) и `harnessed checkpoint` (запись прогресса). Сам spawn, Agent Teams и круги уточнений выполняет главная сессия Claude Code нативными инструментами. `harnessed run` оставлен только для CI/headless.
 
 Как три CLI оркестрации управляют CC-native spawn:
 
@@ -11,7 +11,7 @@ description: Все подкоманды и флаги CLI harnessed.
 flowchart LR
   M["CC main session<br/>slash-command body"] --> G["harnessed gates<br/>which subs fire"]
   G --> P["harnessed prompt<br/>spawn-ready prompt"]
-  P --> S["native Task/Agent spawn<br/>wrapped in ralph-loop"]
+  P --> S["native Task/Agent spawn<br/>+ harnessed completion gate"]
   S --> C["harnessed checkpoint<br/>record progress"]
   C -. "status --recover after compaction" .-> M
 ```
@@ -171,7 +171,7 @@ harnessed prompt plan-phase --task "add OAuth login" --json
 # → JSON: { prompt, max_iterations, model }
 ```
 
-Главная сессия передаёт этот `prompt` в нативный spawn `Task` (снаружи — плагин ralph-loop); `max_iterations` / `model` берутся прямо из значений workflow по умолчанию.
+Главная сессия передаёт этот `prompt` в нативный spawn `Task` (снаружи — плагин `harnessed checkpoint complete`); `max_iterations` / `model` берутся прямо из значений workflow по умолчанию.
 
 ### `harnessed checkpoint`
 

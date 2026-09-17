@@ -27,7 +27,7 @@ flowchart LR
 - **[การติดตั้ง](/th/docs/getting-started/installation/)** — ติดตั้ง harnessed และรัน setup ใน 30 วินาที
 - **[เริ่มใช้อย่างรวดเร็ว](/th/docs/getting-started/quickstart/)** — จากติดตั้งถึง workflow แรกใน 60 วินาที
 - **[แนวคิดการประกอบ](/th/docs/concepts/composition/)** — harnessed ประกอบเครื่องมือ upstream โดยไม่ fork ได้อย่างไร
-- **[อ้างอิง workflow](/th/docs/reference/workflows/)** — workflow ที่ประกอบได้ทั้ง 28 ตัวในรุ่นปัจจุบัน
+- **[อ้างอิง workflow](/th/docs/reference/workflows/)** — workflow ที่ประกอบได้ทั้ง 29 ตัวในรุ่นปัจจุบัน
 
 ## harnessed ต่างจากที่อื่นตรงไหน
 

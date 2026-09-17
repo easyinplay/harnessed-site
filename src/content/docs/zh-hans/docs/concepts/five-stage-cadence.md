@@ -47,7 +47,7 @@ description: Discuss → Plan → Task → Verify → Ship，可选 Research 与
 1. **澄清** —— 验证规格，暴露歧义，核对 `task_plan.md`
 2. **编码** —— karpathy 原则：最小可行改动，外科手术式编辑，不扩大范围
 3. **测试** —— 核心逻辑 TDD 红灯 → 绿灯 → 重构；CRUD / 明显实现可选
-4. **交付** —— `ralph-loop` 包装器确保逐字输出 `COMPLETE` 后才推进
+4. **交付** —— `harnessed checkpoint complete` 闸门要求逐字输出 `COMPLETE` 后才推进
 
 ### Verify —— 7 项条件子检查
 

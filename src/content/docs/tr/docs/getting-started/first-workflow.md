@@ -51,7 +51,7 @@ flowchart LR
 1. **Netleştir** — kod yazmadan önce spec’i doğrular, belirsizlikleri açığa çıkarır
 2. **Kodla** — karpathy ilkeleriyle uygular (mümkün olan en küçük değişiklik, cerrahi düzenlemeler)
 3. **Test et** — çekirdek mantıkta TDD: red → green → refactor
-4. **Teslim et** — `ralph-loop` sarmalayıcısı, devam etmeden önce birebir `COMPLETE` çıktısını garanti eder
+4. **Teslim et** — `harnessed checkpoint complete` gate'i, devam etmeden önce birebir `COMPLETE` çıktısını garanti eder
 
 ## Aşama 4 — Verify
 

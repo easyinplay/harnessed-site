@@ -3,7 +3,7 @@ title: CLI コマンド
 description: harnessed のすべての CLI サブコマンドとフラグ。
 ---
 
-> **v4.0 の実行モデル。** harnessed は実行エンジンではなく _orchestration brain + prompt library_（判断の頭脳 + prompt ライブラリ）です。`harnessed setup` が生成するスラッシュコマンドの本体が、3 つの高速な純関数 CLI —— `harnessed gates`（どのサブワークフローが発火するか）、`harnessed prompt`（サブワークフローの spawn-ready prompt）、`harnessed checkpoint`（進捗の記録）—— を通じて **CC-native subagent spawn** を駆動します。実際の spawn、Agent Teams、ralph-loop、明確化の往復は Claude Code の main session がネイティブツールで実行します。`harnessed run` は CI／headless 専用に残されています。
+> **v4.0 の実行モデル。** harnessed は実行エンジンではなく _orchestration brain + prompt library_（判断の頭脳 + prompt ライブラリ）です。`harnessed setup` が生成するスラッシュコマンドの本体が、3 つの高速な純関数 CLI —— `harnessed gates`（どのサブワークフローが発火するか）、`harnessed prompt`（サブワークフローの spawn-ready prompt）、`harnessed checkpoint`（進捗の記録）—— を通じて **CC-native subagent spawn** を駆動します。実際の spawn、Agent Teams、明確化の往復は Claude Code の main session がネイティブツールで実行します。`harnessed run` は CI／headless 専用に残されています。
 
 3 つの orchestration CLI が CC-native spawn を駆動する流れ：
 
@@ -11,7 +11,7 @@ description: harnessed のすべての CLI サブコマンドとフラグ。
 flowchart LR
   M["CC main session<br/>slash-command body"] --> G["harnessed gates<br/>which subs fire"]
   G --> P["harnessed prompt<br/>spawn-ready prompt"]
-  P --> S["native Task/Agent spawn<br/>wrapped in ralph-loop"]
+  P --> S["native Task/Agent spawn<br/>+ harnessed completion gate"]
   S --> C["harnessed checkpoint<br/>record progress"]
   C -. "status --recover after compaction" .-> M
 ```
@@ -171,7 +171,7 @@ harnessed prompt plan-phase --task "add OAuth login" --json
 # → JSON: { prompt, max_iterations, model }
 ```
 
-main session はこの `prompt` をネイティブの `Task` spawn に渡します（外側は ralph-loop plugin）。`max_iterations` / `model` はワークフローの既定値がそのまま入ります。
+main session はこの `prompt` をネイティブの `Task` spawn に渡します（外側は `harnessed checkpoint complete`）。`max_iterations` / `model` はワークフローの既定値がそのまま入ります。
 
 ### `harnessed checkpoint`
 

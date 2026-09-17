@@ -11,7 +11,7 @@ description: BDD → SDD → TDD как три вложенных цикла о�
 | -------------------- | ---- | ------------------------------------- | ------------------------------------------------------------------------------------------------- |
 | **① Behavior**       | BDD  | _Что_ строим и как понять, что готово | gstack `/office-hours` governance · GSD discuss · superpowers brainstorming → acceptance criteria |
 | **② Spec**           | SDD  | _Как_ это устроено                    | GSD plan-phase → requirements / design / tasks · contracts (Spec Kit / ECC patterns)              |
-| **③ Implementation** | TDD  | Оно и правда _работает_               | superpowers TDD red-green · subagent execution · GSD verify-work · ralph-loop completion          |
+| **③ Implementation** | TDD  | Оно и правда _работает_               | superpowers TDD red-green · subagent execution · GSD verify-work · harnessed completion gate          |
 
 **Циклы — это вложенные линзы, а не фазы.** Cucumber популяризовал двойной цикл BDD снаружи + TDD внутри: падающий scenario открывает внешний цикл, и вы доводите его до зелёного несколькими внутренними циклами red-green TDD. Эпоха GenAI добавила посередине ещё одно кольцо — явное кольцо **spec** из SDD между Behavior и Implementation, потому что агентам нужен замороженный contract, чтобы исполнять. Так получается **triple-loop** выше.
 
@@ -44,7 +44,7 @@ description: BDD → SDD → TDD как три вложенных цикла о�
 | -------------- | ------------------------------- | --------------------------------------- |
 | **Test-first** | падающий тест (red gate)        | superpowers TDD                         |
 | **Implement**  | довести до зелёного             | subagent execution                      |
-| **Verify**     | refactor + завершение по задаче | GSD verify-work + ralph-loop completion |
+| **Verify**     | refactor + завершение по задаче | GSD verify-work + harnessed completion gate |
 
 Внутреннее кольцо — классический цикл red → green → refactor, по одному проходу на задачу, пока не выполнены все contract.
 

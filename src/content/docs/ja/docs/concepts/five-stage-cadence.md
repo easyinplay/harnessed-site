@@ -47,7 +47,7 @@ Tavily、Exa、ctx7 によるマルチソース調査。`/auto` の中で理解�
 1. **明確化** —— 仕様を検証し、曖昧さを洗い出し、`task_plan.md` と突き合わせる
 2. **実装** —— karpathy 原則：最小限の実行可能な変更、外科手術的な編集、スコープを広げない
 3. **テスト** —— コアロジックは TDD red → green → refactor。CRUD や自明な実装では任意
-4. **納品** —— `ralph-loop` ラッパーが、逐語の `COMPLETE` が出るまで次に進ませない
+4. **納品** —— `harnessed checkpoint complete` ゲートが、逐語の `COMPLETE` なしに次へ進ませない
 
 ### Verify —— 7 つの条件付きサブチェック
 

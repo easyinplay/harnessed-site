@@ -3,7 +3,7 @@ title: CLI 명령
 description: harnessed의 모든 CLI 하위 명령과 플래그.
 ---
 
-> **v4.0 실행 모델.** harnessed는 실행 엔진이 아니라 _orchestration brain + prompt library_(판단 두뇌 + prompt 라이브러리)입니다. `harnessed setup`이 생성한 슬래시 명령 본문이 세 개의 빠른 순수 함수 CLI —— `harnessed gates`(어떤 서브워크플로가 발동하는가), `harnessed prompt`(서브워크플로의 spawn 준비된 prompt), `harnessed checkpoint`(진행 기록) —— 를 통해 **CC-native subagent spawn**을 구동합니다. 실제 spawn, Agent Teams, ralph-loop, 명확화 왕복은 Claude Code main session이 네이티브 도구로 수행합니다. `harnessed run`은 CI/headless 전용으로만 남아 있습니다.
+> **v4.0 실행 모델.** harnessed는 실행 엔진이 아니라 _orchestration brain + prompt library_(판단 두뇌 + prompt 라이브러리)입니다. `harnessed setup`이 생성한 슬래시 명령 본문이 세 개의 빠른 순수 함수 CLI —— `harnessed gates`(어떤 서브워크플로가 발동하는가), `harnessed prompt`(서브워크플로의 spawn 준비된 prompt), `harnessed checkpoint`(진행 기록) —— 를 통해 **CC-native subagent spawn**을 구동합니다. 실제 spawn, Agent Teams, 명확화 왕복은 Claude Code main session이 네이티브 도구로 수행합니다. `harnessed run`은 CI/headless 전용으로만 남아 있습니다.
 
 세 개의 orchestration CLI가 CC-native spawn을 구동하는 흐름:
 
@@ -11,7 +11,7 @@ description: harnessed의 모든 CLI 하위 명령과 플래그.
 flowchart LR
   M["CC main session<br/>slash-command body"] --> G["harnessed gates<br/>which subs fire"]
   G --> P["harnessed prompt<br/>spawn-ready prompt"]
-  P --> S["native Task/Agent spawn<br/>wrapped in ralph-loop"]
+  P --> S["native Task/Agent spawn<br/>+ harnessed completion gate"]
   S --> C["harnessed checkpoint<br/>record progress"]
   C -. "status --recover after compaction" .-> M
 ```
@@ -171,7 +171,7 @@ harnessed prompt plan-phase --task "add OAuth login" --json
 # → JSON: { prompt, max_iterations, model }
 ```
 
-main session은 이 `prompt`를 네이티브 `Task` spawn에 넘깁니다(바깥은 ralph-loop plugin). `max_iterations` / `model`은 워크플로 기본값이 그대로 들어갑니다.
+main session은 이 `prompt`를 네이티브 `Task` spawn에 넘깁니다(바깥은 `harnessed checkpoint complete`). `max_iterations` / `model`은 워크플로 기본값이 그대로 들어갑니다.
 
 ### `harnessed checkpoint`
 

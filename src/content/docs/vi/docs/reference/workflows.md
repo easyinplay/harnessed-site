@@ -1,11 +1,11 @@
 ---
 title: Tham khảo workflow
-description: Toàn bộ 28 workflow có thể kết hợp đi kèm bản phát hành hiện tại của harnessed.
+description: Toàn bộ 29 workflow có thể kết hợp đi kèm bản phát hành hiện tại của harnessed.
 ---
 
-harnessed cung cấp 28 workflow được phân tầng theo namespace: một super-master, năm master giai đoạn (Discuss · Plan · Task · Verify · Ship), 20 subworkflow và hai workflow độc lập.
+harnessed cung cấp 29 workflow được phân tầng theo namespace: một super-master, năm master giai đoạn (Discuss · Plan · Task · Verify · Ship), 21 subworkflow và hai workflow độc lập.
 
-28 workflow — một super-master tỏa ra năm stage master cùng các sub của chúng, thêm hai workflow độc lập:
+29 workflow — một super-master tỏa ra năm stage master cùng các sub của chúng, thêm hai workflow độc lập:
 
 ```mermaid
 flowchart TD
@@ -13,7 +13,7 @@ flowchart TD
   AUTO --> DIS["① /discuss · 3 subs"]
   AUTO --> PLA["② /plan · 2 subs"]
   AUTO --> TAS["③ /task · 4 subs"]
-  AUTO --> VER["④ /verify · 10 subs"]
+  AUTO --> VER["④ /verify · 11 subs"]
   AUTO --> SHI["⑤ /ship · 1 sub"]
   STA["standalones · /research · /retro"]
   DIS -.- STA
@@ -58,13 +58,13 @@ flowchart TD
 | `/task-clarify` | subworkflow      | Gate làm rõ lúc khởi động. Superpowers brainstorming + `/grill-with-docs` có điều kiện.                                                                  |
 | `/task-code`    | subworkflow      | Viết code theo 4 nguyên tắc karpathy. `/zoom-out` / `/improve-codebase-architecture` / `/diagnose` có điều kiện. Đồng bộ `progress.md` giữa các session. |
 | `/task-test`    | subworkflow      | TDD red → green → refactor. Superpowers TDD + `/diagnose` có điều kiện. Bắt buộc với logic cốt lõi.                                                      |
-| `/task-deliver` | subworkflow      | Wrapper SDK `ralph-loop`. Chạy tới khi có `COMPLETE` nguyên văn. Agent Teams có điều kiện khi cần phối hợp full-stack.                                   |
+| `/task-deliver` | subworkflow      | Gate hoàn thành của chính harnessed (`harnessed checkpoint complete`). Chạy tới khi có `COMPLETE` nguyên văn. Agent Teams có điều kiện khi cần phối hợp full-stack.                                   |
 
 ## Giai đoạn Verify
 
 | Lệnh                     | Phạm vi          | Capability                                                                                                                                      |
 | ------------------------ | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| `/verify`                | master giai đoạn | Phân phát tối đa 7 kiểm tra con theo cờ tình huống.                                                                                             |
+| `/verify`                | master giai đoạn | Phân phát tối đa 11 kiểm tra con theo cờ tình huống.                                                                                             |
 | `/verify-progress`       | subworkflow      | Luôn chạy đầu tiên. Kiểm tra tiêu chí nghiệm thu UAT + đồng bộ trạng thái GSD.                                                                  |
 | `/verify-code-review`    | subworkflow      | Fan-out song song nhiều subagent. Phát hiện có độ tin cậy cao.                                                                                  |
 | `/verify-paranoid`       | subworkflow      | Review của staff engineer đa nghi qua gstack `/review`. Bắt buộc với module trọng yếu trước PR.                                                 |
@@ -73,22 +73,16 @@ flowchart TD
 | `/verify-design`         | subworkflow      | Tính nhất quán design system qua gstack `/design-review` + ui-ux-pro-max + design-taste-frontend. Kích hoạt khi có thay đổi thiết kế.           |
 | `/verify-eval-review`    | subworkflow      | Kiểm toán độ phủ eval cho phase AI qua GSD `/gsd-eval-review`. Kích hoạt khi phase có bước AI/LLM (cặp với gsd-ai-integration-phase phía plan). |
 | `/verify-validate-phase` | subworkflow      | Lấp độ phủ yêu cầu→test theo Nyquist qua GSD `/gsd-validate-phase`. Kích hoạt khi cần kiểm toán độ phủ.                                         |
+| `/verify-second-opinion`  | sub-workflow | Ý kiến thứ hai từ mô hình khác về diff kể từ release tag gần nhất. Kích hoạt khi thay đổi chạm vào bề mặt mà engine thực sự đọc.                      |
 | `/verify-simplify`       | subworkflow      | Đơn giản hóa lần cuối qua `code-simplifier`. Luôn chạy sau cùng.                                                                                |
 | `/verify-multispec`      | subworkflow      | Agent Team bốn chuyên gia, Pattern C — chất vấn chéo qua SendMessage. Lối nâng cấp cho bản phát hành trọng yếu và PR refactor quy mô lớn.       |
 
-## Ship (giai đoạn ⑤)
+## Bộ bọc kỷ luật
 
-| Lệnh              | Phạm vi          | Capability                                                                                                                                                                                        |
-| ----------------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `/ship`           | master giai đoạn | Giai đoạn phát hành sau Verify. Chạy gate preflight trước, rồi ủy thác PR/deploy cho gstack `/ship`. Ranh giới deploy là tag-ready; việc publish thật do CI `publish.yml` thực hiện khi push tag. |
-| `/ship-preflight` | subworkflow      | Chạy `harnessed release-preflight` — gate chỉ đọc (CHANGELOG `[Unreleased]` / version / git-clean / tag-absent). Bất kỳ mục nào hỏng đều chặn phát hành.                                          |
+| Lệnh   | Phạm vi  | Năng lực                                                                                                    |
+| ------ | -------- | ------------------------------------------------------------------------------------------------------------- |
+| `/tdd` | kỷ luật  | Red → green → refactor. Ghép từ `superpowers:test-driven-development` của upstream (mattpocock `/tdd` dự phòng). |
 
-## Wrapper kỷ luật
-
-| Lệnh            | Phạm vi | Capability                                                                                                                  |
-| --------------- | ------- | --------------------------------------------------------------------------------------------------------------------------- |
-| `/tdd`          | kỷ luật | red → green → refactor. Bí danh của `superpowers:test-driven-development`. Cũng dùng được như wrapper kỷ luật độc lập.      |
-| `/ralph-loop`   | wrapper | Wrapper lời hứa hoàn thành. Chạy bất kỳ prompt nào tới khi có `COMPLETE` nguyên văn. Đã tích hợp sẵn trong `/task-deliver`. |
-| `/execute-task` | công cụ | Điểm vào thực thi task trực tiếp. Bỏ qua giai đoạn discuss/plan.                                                            |
+Cam kết hoàn thành không còn là bộ bọc từ upstream: từ 4.36.0 nó là gate của chính harnessed — `harnessed checkpoint complete <sub>` (ADR 0039), nên `/ralph-loop` và điểm vào `/execute-task` cũ đã bị bỏ.
 
 Toàn bộ định nghĩa workflow nằm ở `workflows/<name>/workflow.yaml` trong [repo harnessed](https://github.com/easyinplay/harnessed).

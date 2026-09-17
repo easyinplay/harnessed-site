@@ -51,7 +51,7 @@ flowchart LR
 1. **釐清** —— 編碼前驗證規格，攤開歧義點
 2. **編碼** —— 遵循 karpathy 原則（最小可行改動、外科手術式編輯）
 3. **測試** —— 核心邏輯 TDD：紅燈 → 綠燈 → 重構
-4. **交付** —— `ralph-loop` 包裝器確保輸出逐字 `COMPLETE` 後才推進
+4. **交付** —— `harnessed checkpoint complete` 閘門要求輸出逐字 `COMPLETE` 後才推進
 
 ## 階段四 — Verify
 

@@ -1,11 +1,11 @@
 ---
 title: 工作流參考
-description: 目前版本 harnessed 隨附的全部 28 個可裝配工作流。
+description: 目前版本 harnessed 隨附的全部 29 個可裝配工作流。
 ---
 
-harnessed 提供 28 個依命名空間分層的工作流：一個超級主控、五個階段主控（Discuss · Plan · Task · Verify · Ship）、20 個子工作流與兩個獨立工作流。
+harnessed 提供 29 個依命名空間分層的工作流：一個超級主控、五個階段主控（Discuss · Plan · Task · Verify · Ship）、21 個子工作流與兩個獨立工作流。
 
-28 個工作流 —— 一個超級主控扇出到五個 stage 主控及其 sub，外加兩個獨立工作流：
+29 個工作流 —— 一個超級主控扇出到五個 stage 主控及其 sub，外加兩個獨立工作流：
 
 ```mermaid
 flowchart TD
@@ -13,7 +13,7 @@ flowchart TD
   AUTO --> DIS["① /discuss · 3 subs"]
   AUTO --> PLA["② /plan · 2 subs"]
   AUTO --> TAS["③ /task · 4 subs"]
-  AUTO --> VER["④ /verify · 10 subs"]
+  AUTO --> VER["④ /verify · 11 subs"]
   AUTO --> SHI["⑤ /ship · 1 sub"]
   STA["standalones · /research · /retro"]
   DIS -.- STA
@@ -58,13 +58,13 @@ flowchart TD
 | `/task-clarify` | 子工作流 | 啟動釐清關卡。Superpowers brainstorming + `/grill-with-docs` 條件觸發。                                                        |
 | `/task-code`    | 子工作流 | 遵循 karpathy 四原則編碼。`/zoom-out`／`/improve-codebase-architecture`／`/diagnose` 條件觸發。跨 session `progress.md` 同步。 |
 | `/task-test`    | 子工作流 | TDD 紅燈 → 綠燈 → 重構。Superpowers TDD + `/diagnose` 條件觸發。核心邏輯強制。                                                 |
-| `/task-deliver` | 子工作流 | `ralph-loop` SDK 包裝器。執行到逐字輸出 `COMPLETE` 為止。全端協調時條件觸發 Agent Teams。                                      |
+| `/task-deliver` | 子工作流 | harnessed 自有完成閘門(`harnessed checkpoint complete`)。執行到逐字輸出 `COMPLETE` 為止。全端協調時條件觸發 Agent Teams。                                      |
 
 ## Verify 階段
 
 | 命令                     | 範圍     | 能力                                                                                                                              |
 | ------------------------ | -------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| `/verify`                | 階段主控 | 依場景旗標派送最多 7 項子檢查。                                                                                                   |
+| `/verify`                | 階段主控 | 依場景旗標派送最多 11 項子檢查。                                                                                                   |
 | `/verify-progress`       | 子工作流 | 一律第一個執行。UAT 驗收標準檢查 + GSD 狀態同步。                                                                                 |
 | `/verify-code-review`    | 子工作流 | 多 subagent 平行 fan-out。高信心度發現。                                                                                          |
 | `/verify-paranoid`       | 子工作流 | 透過 gstack `/review` 進行偏執工程師審查。關鍵模組 PR 前強制。                                                                    |
@@ -73,22 +73,16 @@ flowchart TD
 | `/verify-design`         | 子工作流 | 透過 gstack `/design-review` + ui-ux-pro-max + design-taste-frontend 進行設計系統一致性檢查。有設計變更時觸發。                   |
 | `/verify-eval-review`    | 子工作流 | 透過 GSD `/gsd-eval-review` 進行 AI 階段 eval 覆蓋率稽核。階段含 AI／LLM 階段時觸發（與 plan 側 gsd-ai-integration-phase 配對）。 |
 | `/verify-validate-phase` | 子工作流 | 透過 GSD `/gsd-validate-phase` 進行 Nyquist 需求→測試覆蓋率回填。需要覆蓋率稽核時觸發。                                           |
+| `/verify-second-opinion`  | 子工作流     | 對上一個 release tag 以來的 diff 做跨模型第二意見。當改動觸及引擎真正讀取的面時觸發。                                                              |
 | `/verify-simplify`       | 子工作流 | 透過 `code-simplifier` 進行最終簡化。一律最後執行。                                                                               |
 | `/verify-multispec`      | 子工作流 | 四專家 Agent Team Pattern C —— 互相 SendMessage 交叉審查。關鍵發佈／大規模重構 PR 的升級路徑。                                    |
 
-## Ship（第 ⑤ 階段）
-
-| 命令              | 範圍     | 能力                                                                                                                                                              |
-| ----------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `/ship`           | 階段主控 | Verify 之後的發佈階段。先跑 preflight 關卡，再把 PR／deploy 委派給 gstack `/ship`。Deploy 邊界 = tag-ready；實際 publish 由 `publish.yml` CI 在 tag push 時執行。 |
-| `/ship-preflight` | 子工作流 | 跑 `harnessed release-preflight` —— 唯讀關卡（CHANGELOG `[Unreleased]`／version／git-clean／tag-absent）。任一失敗則阻擋發版。                                    |
-
 ## 紀律包裝器
 
-| 命令            | 範圍   | 能力                                                                                         |
-| --------------- | ------ | -------------------------------------------------------------------------------------------- |
-| `/tdd`          | 紀律   | 紅燈 → 綠燈 → 重構。`superpowers:test-driven-development` 的別名。可作為獨立紀律包裝器使用。 |
-| `/ralph-loop`   | 包裝器 | 完成承諾包裝器。執行任意 prompt 直到輸出逐字 `COMPLETE`。已內建於 `/task-deliver`。          |
-| `/execute-task` | 工具   | 直接任務執行入口。跳過 discuss／plan 階段。                                                  |
+| 命令   | 範圍   | 能力                                                                               |
+| ------ | ------ | ---------------------------------------------------------------------------------- |
+| `/tdd` | 紀律   | Red → green → refactor。裝配上游 `superpowers:test-driven-development`(mattpocock `/tdd` 為備選)。 |
+
+完成承諾不再依賴上游包裝器:自 4.36.0 起由 harnessed 自有閘門 `harnessed checkpoint complete <sub>` 承擔(ADR 0039),因此 `/ralph-loop` 與舊的 `/execute-task` 入口已移除。
 
 所有工作流定義位於 [harnessed 儲存庫](https://github.com/easyinplay/harnessed) 的 `workflows/<name>/workflow.yaml`。

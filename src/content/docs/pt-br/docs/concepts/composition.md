@@ -59,11 +59,11 @@ Desde a v4.0, o harnessed é um **orchestration brain + biblioteca de prompts**,
 
 1. **Gate** — `harnessed gates discuss --task "<spec>"` retorna quais dos 3 gates de discussão disparam (strategic / phase / subtask) e se deve escalar para Agent Teams.
 2. **Prompt** — para cada gate que dispara, `harnessed prompt <sub> --json` emite um prompt pronto para spawn (corpo do role + checklist + disciplines aplicadas).
-3. **Spawn** — a sessão principal executa um spawn nativo de `Task` (embrulhado em ralph-loop), devolvendo qualquer `STATUS: NEEDS_CLARIFICATION` a você via `AskUserQuestion`.
+3. **Spawn** — a sessão principal executa um spawn nativo de `Task` (a promessa de conclusão é o gate próprio do harnessed, `harnessed checkpoint complete`), devolvendo qualquer `STATUS: NEEDS_CLARIFICATION` a você via `AskUserQuestion`.
 4. **Checkpoint** — `harnessed checkpoint complete <sub>` registra o progresso em `.planning/` para que a execução sobreviva à compactação.
 
 O harnessed contribui com as decisões (roteamento de gates, geração de prompt, ledger de progresso); a sessão principal faz o spawn de fato, a coordenação de Agent Teams e as idas e vindas de esclarecimento com as ferramentas nativas do Claude Code. (`harnessed run` mantém o antigo spawn em processo apenas para CI/headless.)
 
-É por isso que os 28 workflows do harnessed conseguem compor ECC, Superpowers, GSD e gstack ao mesmo tempo — a camada de composição abstrai as emendas.
+É por isso que os 29 workflows do harnessed conseguem compor ECC, Superpowers, GSD e gstack ao mesmo tempo — a camada de composição abstrai as emendas.
 
-Veja a [Referência de workflows](/pt-br/docs/reference/workflows/) para todos os 28 workflows e suas dependências upstream.
+Veja a [Referência de workflows](/pt-br/docs/reference/workflows/) para todos os 29 workflows e suas dependências upstream.

@@ -59,11 +59,11 @@ v4.0부터 harnessed는 실행 엔진이 아니라 **orchestration brain + promp
 
 1. **Gate** —— `harnessed gates discuss --task "<spec>"`가 세 개의 논의 게이트(strategic / phase / subtask) 중 무엇이 발동하는지, Agent Teams로 승격할지를 반환합니다.
 2. **Prompt** —— 발동한 각 게이트에 대해 `harnessed prompt <sub> --json`이 spawn 준비된 prompt(role 본문 + 체크리스트 + 적용된 disciplines)를 출력합니다.
-3. **Spawn** —— main session이 네이티브 `Task` spawn을 실행하고(ralph-loop로 감쌈), `STATUS: NEEDS_CLARIFICATION`은 `AskUserQuestion`으로 여러분에게 되돌립니다.
+3. **Spawn** —— main session이 네이티브 `Task` spawn을 실행하고(완료 약속은 harnessed 자체 게이트 `harnessed checkpoint complete`), `STATUS: NEEDS_CLARIFICATION`은 `AskUserQuestion`으로 여러분에게 되돌립니다.
 4. **Checkpoint** —— `harnessed checkpoint complete <sub>`가 진행 상황을 `.planning/`에 기록해 compaction 후에도 실행이 살아남게 합니다.
 
 harnessed는 결정(게이트 라우팅, prompt 생성, 진행 ledger)을 담당하고, 실제 spawn과 Agent Teams 조율, 명확화 왕복은 main session이 네이티브 Claude Code 도구로 수행합니다. (`harnessed run`은 CI/headless 전용으로 예전의 프로세스 내 spawn을 유지합니다.)
 
-harnessed의 28개 워크플로가 ECC, Superpowers, GSD, gstack을 동시에 조합할 수 있는 이유가 바로 이것입니다 —— 조합 계층이 이음매를 추상화합니다.
+harnessed의 29개 워크플로가 ECC, Superpowers, GSD, gstack을 동시에 조합할 수 있는 이유가 바로 이것입니다 —— 조합 계층이 이음매를 추상화합니다.
 
-28개 전체 워크플로와 upstream 의존성은 [워크플로 레퍼런스](/ko/docs/reference/workflows/)를 참고하세요.
+29개 전체 워크플로와 upstream 의존성은 [워크플로 레퍼런스](/ko/docs/reference/workflows/)를 참고하세요.

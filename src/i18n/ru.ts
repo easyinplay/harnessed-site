@@ -72,7 +72,7 @@ const ru: Dict = {
         loop: "TDD",
         question: "Работает ли это на самом деле.",
         composed:
-          "superpowers TDD red-green · subagent execution · GSD verify-work · ralph-loop completion",
+          "superpowers TDD red-green · subagent execution · GSD verify-work · harnessed completion gate",
       },
     ],
     nested: {
@@ -133,7 +133,7 @@ const ru: Dict = {
     ],
     wrapper: {
       label: "ортогональный wrapper",
-      name: "ralph-loop",
+      name: "harnessed checkpoint complete",
       body: "Оборачивает любой уровень и удерживает его на дословном обещании завершения COMPLETE.",
     },
     footnote:
@@ -166,11 +166,10 @@ const ru: Dict = {
       { cmd: "/discuss", scope: "stage gate", caps: "стратегия·фаза·подзадача" },
       { cmd: "/plan", scope: "stage gate", caps: "архитектура·фаза" },
       { cmd: "/task", scope: "на подзадачу", caps: "прояснить·написать·протестировать·сдать" },
-      { cmd: "/verify", scope: "stage gate", caps: "7 условных подпроверок" },
+      { cmd: "/verify", scope: "stage gate", caps: "11 условных подпроверок" },
       { cmd: "/ship", scope: "stage gate", caps: "release-preflight·gstack-ship" },
       { cmd: "/retro", scope: "после ship", caps: "gstack·сохранение" },
       { cmd: "/tdd", scope: "дисциплина", caps: "red-green-refactor" },
-      { cmd: "/ralph-loop", scope: "wrapper", caps: "обещание завершения" },
     ],
     githubLink: "Посмотреть все workflow на GitHub →",
   },
@@ -235,7 +234,7 @@ const ru: Dict = {
       },
       {
         q: "Он сам порождает subagent?",
-        a: "`harnessed setup` автоматически включает Agent Teams, а gate параллелизма выбирает уровень для каждой подзадачи: тривиальная работа остаётся в основной session, независимые задачи расходятся как subagent (≤ 3, изолированный context), а работа, требующая переписки — согласование контракта, спор о гипотезах, общий task list — поднимается до настоящей Agent Team. ralph-loop может обернуть любой уровень и удержать его на дословном COMPLETE.",
+        a: "`harnessed setup` автоматически включает Agent Teams, а gate параллелизма выбирает уровень для каждой подзадачи: тривиальная работа остаётся в основной session, независимые задачи расходятся как subagent (≤ 3, изолированный context), а работа, требующая переписки — согласование контракта, спор о гипотезах, общий task list — поднимается до настоящей Agent Team. `harnessed checkpoint complete` проверяет любой уровень и удержать его на дословном COMPLETE.",
       },
       {
         q: "Можно ли написать свой harness-пак?",

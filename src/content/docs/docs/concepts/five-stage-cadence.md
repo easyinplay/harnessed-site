@@ -47,7 +47,7 @@ Each gate declares transparently when it fires and when it skips.
 1. **Clarify** — verifies spec, surfaces ambiguities, checks against `task_plan.md`
 2. **Code** — karpathy principles: smallest viable change, surgical edits, no scope creep
 3. **Test** — TDD red → green → refactor for core logic; optional for CRUD / obvious implementations
-4. **Deliver** — `ralph-loop` wrapper ensures verbatim `COMPLETE` before advancing
+4. **Deliver** — the `harnessed checkpoint complete` gate requires a verbatim `COMPLETE` before advancing
 
 ### Verify — 7 conditional sub-checks
 

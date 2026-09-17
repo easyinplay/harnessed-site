@@ -11,7 +11,7 @@ The three-layer stack is harnessed's theory of _why_ the cadence is shaped the w
 | -------------------- | ---- | ------------------------------------------ | ------------------------------------------------------------------------------------------------- |
 | **① Behavior**       | BDD  | _What_ to build, and how we know it's done | gstack `/office-hours` governance · GSD discuss · superpowers brainstorming → acceptance criteria |
 | **② Spec**           | SDD  | _How_ it's structured                      | GSD plan-phase → requirements / design / tasks · contracts (Spec Kit / ECC patterns)              |
-| **③ Implementation** | TDD  | Does it actually _work_                    | superpowers TDD red-green · subagent execution · GSD verify-work · ralph-loop completion          |
+| **③ Implementation** | TDD  | Does it actually _work_                    | superpowers TDD red-green · subagent execution · GSD verify-work · harnessed completion gate          |
 
 **Loops are nested lenses, not phases.** Cucumber popularized the BDD-outer + TDD-inner double-loop: a failing scenario opens the outer loop, and you drive it green through many inner red-green TDD cycles. The GenAI era adds a middle ring — an explicit SDD **spec** loop between behavior and implementation, because an agent needs a frozen contract to execute against. That gives the **triple-loop** above.
 
@@ -44,7 +44,7 @@ The middle loop converts "what" into an executable structure. Its exit condition
 | -------------- | ------------------------------ | --------------------------------------- |
 | **Test-first** | Failing test (red gate)        | superpowers TDD                         |
 | **Implement**  | Drive to green                 | subagent execution                      |
-| **Verify**     | Refactor + per-task completion | GSD verify-work + ralph-loop completion |
+| **Verify**     | Refactor + per-task completion | GSD verify-work + harnessed completion gate |
 
 The inner loop is the classic red → green → refactor cycle, run once per task until every contract is satisfied.
 

@@ -11,7 +11,7 @@ description: BDD → SDD → TDD 세 개의 중첩 피드백 루프, 각각이 �
 | -------------------- | ---- | ------------------------------------------------ | ------------------------------------------------------------------------------------------------- |
 | **① Behavior**       | BDD  | _무엇을_ 만들 것인가, 무엇으로 완료를 판단하는가 | gstack `/office-hours` governance · GSD discuss · superpowers brainstorming → acceptance criteria |
 | **② Spec**           | SDD  | _어떻게_ 구조화할 것인가                         | GSD plan-phase → requirements / design / tasks · contracts(Spec Kit / ECC patterns)               |
-| **③ Implementation** | TDD  | 실제로 _동작하는가_                              | superpowers TDD red-green · subagent execution · GSD verify-work · ralph-loop completion          |
+| **③ Implementation** | TDD  | 실제로 _동작하는가_                              | superpowers TDD red-green · subagent execution · GSD verify-work · harnessed completion gate          |
 
 **루프는 단계가 아니라 중첩된 렌즈(nested lenses)입니다.** Cucumber는 BDD-outer + TDD-inner 이중 루프를 널리 퍼뜨렸습니다: failing scenario가 바깥 루프를 열고, 여러 번의 안쪽 red-green TDD 사이클로 그것을 녹색까지 밀어붙입니다. GenAI 시대는 그 사이에 고리를 하나 더했습니다 —— Behavior와 Implementation 사이의 명시적 SDD **spec** 고리인데, agent가 실행하려면 frozen contract가 필요하기 때문입니다. 이렇게 위의 **triple-loop**가 만들어집니다.
 
@@ -44,7 +44,7 @@ description: BDD → SDD → TDD 세 개의 중첩 피드백 루프, 각각이 �
 | -------------- | --------------------------- | --------------------------------------- |
 | **Test-first** | failing test(red gate)      | superpowers TDD                         |
 | **Implement**  | green까지 밀어붙임          | subagent execution                      |
-| **Verify**     | refactor + 태스크 단위 완료 | GSD verify-work + ralph-loop completion |
+| **Verify**     | refactor + 태스크 단위 완료 | GSD verify-work + harnessed completion gate |
 
 안쪽 고리는 고전적인 red → green → refactor 사이클 그대로이며, 모든 contract가 충족될 때까지 태스크마다 한 바퀴 돕니다.
 

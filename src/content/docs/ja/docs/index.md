@@ -27,7 +27,7 @@ flowchart LR
 - **[インストール](/ja/docs/getting-started/installation/)** — 30 秒で harnessed をインストールしてセットアップ
 - **[クイックスタート](/ja/docs/getting-started/quickstart/)** — インストールから最初のワークフローまで 60 秒
 - **[合成のコンセプト](/ja/docs/concepts/composition/)** — harnessed が upstream を fork せずに合成する仕組み
-- **[ワークフロー一覧](/ja/docs/reference/workflows/)** — 現行リリースに同梱される 28 個の合成可能なワークフロー
+- **[ワークフロー一覧](/ja/docs/reference/workflows/)** — 現行リリースに同梱される 29 個の合成可能なワークフロー
 
 ## harnessed が他と違うところ
 

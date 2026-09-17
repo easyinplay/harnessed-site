@@ -51,7 +51,7 @@ flowchart LR
 1. **Clarify** — verifies spec before writing code; surfaces ambiguities
 2. **Code** — implements with karpathy principles (smallest viable change, surgical edits)
 3. **Test** — TDD on core logic: red → green → refactor
-4. **Deliver** — `ralph-loop` wrapper ensures verbatim `COMPLETE` before moving on
+4. **Deliver** — the `harnessed checkpoint complete` gate requires a verbatim `COMPLETE` before moving on
 
 ## Stage 4 — Verify
 

@@ -72,7 +72,7 @@ const tr: Dict = {
         loop: "TDD",
         question: "Gerçekten çalışıyor mu.",
         composed:
-          "superpowers TDD red-green · subagent execution · GSD verify-work · ralph-loop completion",
+          "superpowers TDD red-green · subagent execution · GSD verify-work · harnessed completion gate",
       },
     ],
     nested: {
@@ -136,7 +136,7 @@ const tr: Dict = {
     ],
     wrapper: {
       label: "dik wrapper",
-      name: "ralph-loop",
+      name: "harnessed checkpoint complete",
       body: "Herhangi bir katmanı sarar ve onu birebir COMPLETE tamamlanma sözüne bağlı tutar.",
     },
     footnote:
@@ -169,11 +169,10 @@ const tr: Dict = {
       { cmd: "/discuss", scope: "aşama kapısı", caps: "stratejik·faz·alt görev" },
       { cmd: "/plan", scope: "aşama kapısı", caps: "mimari·faz" },
       { cmd: "/task", scope: "alt görev başına", caps: "netleştir·kodla·test et·teslim et" },
-      { cmd: "/verify", scope: "aşama kapısı", caps: "7 koşullu alt kontrol" },
+      { cmd: "/verify", scope: "aşama kapısı", caps: "11 koşullu alt kontrol" },
       { cmd: "/ship", scope: "aşama kapısı", caps: "release-preflight·gstack-ship" },
       { cmd: "/retro", scope: "ship sonrası", caps: "gstack·kalıcılaştırma" },
       { cmd: "/tdd", scope: "disiplin", caps: "red-green-refactor" },
-      { cmd: "/ralph-loop", scope: "wrapper", caps: "tamamlanma sözü" },
     ],
     githubLink: "Tüm iş akışlarını GitHub’da gör →",
   },
@@ -237,7 +236,7 @@ const tr: Dict = {
       },
       {
         q: "Subagent’ları otomatik olarak spawn ediyor mu?",
-        a: "`harnessed setup` Agent Teams’i otomatik açar ve bir paralellik kapısı alt görev başına katmana karar verir: önemsiz işler ana session’da kalır, bağımsız görevler subagent olarak açılır (≤ 3, izole context) ve iletişim gerektiren işler — contract hizalama, hipotez tartışması, paylaşılan task list’ler — gerçek bir Agent Team’e yükselir. ralph-loop herhangi bir katmanı sararak onu birebir COMPLETE’e bağlı tutabilir.",
+        a: "`harnessed setup` Agent Teams’i otomatik açar ve bir paralellik kapısı alt görev başına katmana karar verir: önemsiz işler ana session’da kalır, bağımsız görevler subagent olarak açılır (≤ 3, izole context) ve iletişim gerektiren işler — contract hizalama, hipotez tartışması, paylaşılan task list’ler — gerçek bir Agent Team’e yükselir. `harnessed checkpoint complete` herhangi bir katmanı denetleyerek onu birebir COMPLETE’e bağlı tutabilir.",
       },
       {
         q: "Kendi harness paketimi yazabilir miyim?",

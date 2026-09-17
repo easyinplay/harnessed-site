@@ -59,11 +59,11 @@ Từ v4.0, harnessed là **orchestration brain + thư viện prompt**, không ph
 
 1. **Gate** — `harnessed gates discuss --task "<spec>"` trả về gate thảo luận nào trong 3 gate được kích hoạt (strategic / phase / subtask) và có nên nâng lên Agent Teams hay không.
 2. **Prompt** — với mỗi gate được kích hoạt, `harnessed prompt <sub> --json` phát ra một prompt sẵn sàng spawn (thân role + checklist + các disciplines đã áp dụng).
-3. **Spawn** — main session chạy spawn `Task` gốc (bọc trong ralph-loop), chuyển mọi `STATUS: NEEDS_CLARIFICATION` về cho bạn qua `AskUserQuestion`.
+3. **Spawn** — main session chạy spawn `Task` gốc (cam kết hoàn thành do gate của chính harnessed đảm nhiệm: `harnessed checkpoint complete`), chuyển mọi `STATUS: NEEDS_CLARIFICATION` về cho bạn qua `AskUserQuestion`.
 4. **Checkpoint** — `harnessed checkpoint complete <sub>` ghi tiến độ vào `.planning/` để lần chạy sống sót qua compaction.
 
 harnessed đóng góp các quyết định (định tuyến gate, sinh prompt, ledger tiến độ); còn việc spawn thực tế, điều phối Agent Teams và các vòng làm rõ do main session thực hiện bằng công cụ gốc của Claude Code. (`harnessed run` giữ lại kiểu spawn trong tiến trình cũ, chỉ dành cho CI/headless.)
 
-Đó là lý do 28 workflow trong harnessed có thể kết hợp đồng thời ECC, Superpowers, GSD và gstack — lớp kết hợp trừu tượng hóa các đường nối.
+Đó là lý do 29 workflow trong harnessed có thể kết hợp đồng thời ECC, Superpowers, GSD và gstack — lớp kết hợp trừu tượng hóa các đường nối.
 
-Xem [Tham khảo workflow](/vi/docs/reference/workflows/) để biết cả 28 workflow và phụ thuộc upstream của chúng.
+Xem [Tham khảo workflow](/vi/docs/reference/workflows/) để biết cả 29 workflow và phụ thuộc upstream của chúng.

@@ -1,11 +1,11 @@
 ---
 title: อ้างอิง workflow
-description: workflow ที่ประกอบได้ทั้ง 28 ตัวที่มาพร้อม harnessed รุ่นปัจจุบัน
+description: workflow ที่ประกอบได้ทั้ง 29 ตัวที่มาพร้อม harnessed รุ่นปัจจุบัน
 ---
 
-harnessed ให้ workflow 28 ตัวที่จัดชั้นตาม namespace: super-master หนึ่งตัว, master ระดับขั้นห้าตัว (Discuss · Plan · Task · Verify · Ship), subworkflow 20 ตัว และ workflow อิสระสองตัว
+harnessed ให้ workflow 29 ตัวที่จัดชั้นตาม namespace: super-master หนึ่งตัว, master ระดับขั้นห้าตัว (Discuss · Plan · Task · Verify · Ship), subworkflow 20 ตัว และ workflow อิสระสองตัว
 
-28 workflow — super-master หนึ่งตัวแตกออกไปยัง stage master ห้าตัวและ sub ของแต่ละตัว บวก workflow อิสระอีกสองตัว:
+29 workflow — super-master หนึ่งตัวแตกออกไปยัง stage master ห้าตัวและ sub ของแต่ละตัว บวก workflow อิสระอีกสองตัว:
 
 ```mermaid
 flowchart TD
@@ -13,7 +13,7 @@ flowchart TD
   AUTO --> DIS["① /discuss · 3 subs"]
   AUTO --> PLA["② /plan · 2 subs"]
   AUTO --> TAS["③ /task · 4 subs"]
-  AUTO --> VER["④ /verify · 10 subs"]
+  AUTO --> VER["④ /verify · 11 subs"]
   AUTO --> SHI["⑤ /ship · 1 sub"]
   STA["standalones · /research · /retro"]
   DIS -.- STA
@@ -58,13 +58,13 @@ flowchart TD
 | `/task-clarify` | subworkflow      | ด่านชี้แจงตอนเริ่ม Superpowers brainstorming + `/grill-with-docs` แบบมีเงื่อนไข                                                             |
 | `/task-code`    | subworkflow      | เขียนโค้ดตามหลัก karpathy 4 ข้อ `/zoom-out` / `/improve-codebase-architecture` / `/diagnose` แบบมีเงื่อนไข ซิงก์ `progress.md` ข้าม session |
 | `/task-test`    | subworkflow      | TDD red → green → refactor Superpowers TDD + `/diagnose` แบบมีเงื่อนไข บังคับสำหรับตรรกะแกนกลาง                                             |
-| `/task-deliver` | subworkflow      | wrapper SDK `ralph-loop` รันจนกว่าจะได้ `COMPLETE` ตรงตัวอักษร Agent Teams แบบมีเงื่อนไขเมื่อต้องประสานงานแบบ full-stack                    |
+| `/task-deliver` | subworkflow      | gate ความสำเร็จของ harnessed เอง (`harnessed checkpoint complete`) รันจนกว่าจะได้ `COMPLETE` ตรงตัวอักษร Agent Teams แบบมีเงื่อนไขเมื่อต้องประสานงานแบบ full-stack                    |
 
 ## ขั้น Verify
 
 | คำสั่ง                   | ขอบเขต           | Capability                                                                                                                                               |
 | ------------------------ | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `/verify`                | master ระดับขั้น | แจกจ่ายการตรวจย่อยได้สูงสุด 7 รายการตามแฟล็กของสถานการณ์                                                                                                 |
+| `/verify`                | master ระดับขั้น | แจกจ่ายการตรวจย่อยได้สูงสุด 11 รายการตามแฟล็กของสถานการณ์                                                                                                 |
 | `/verify-progress`       | subworkflow      | ทำงานเป็นตัวแรกเสมอ ตรวจเกณฑ์การยอมรับ UAT + ซิงก์สถานะ GSD                                                                                              |
 | `/verify-code-review`    | subworkflow      | fan-out ขนานหลาย subagent ข้อค้นพบที่มั่นใจสูง                                                                                                           |
 | `/verify-paranoid`       | subworkflow      | รีวิวโดย staff engineer สายระแวงผ่าน gstack `/review` บังคับสำหรับโมดูลสำคัญก่อนเปิด PR                                                                  |
@@ -73,22 +73,16 @@ flowchart TD
 | `/verify-design`         | subworkflow      | ตรวจความสอดคล้องของ design system ผ่าน gstack `/design-review` + ui-ux-pro-max + design-taste-frontend ทำงานเมื่อมีการเปลี่ยนดีไซน์                      |
 | `/verify-eval-review`    | subworkflow      | ตรวจสอบความครอบคลุมของ eval สำหรับ phase ที่มี AI ผ่าน GSD `/gsd-eval-review` ทำงานเมื่อ phase มีขั้น AI/LLM (คู่กับ gsd-ai-integration-phase ฝั่ง plan) |
 | `/verify-validate-phase` | subworkflow      | เติมความครอบคลุม requirement→test ตาม Nyquist ผ่าน GSD `/gsd-validate-phase` ทำงานเมื่อจำเป็นต้องตรวจความครอบคลุม                                        |
+| `/verify-second-opinion`  | sub-workflow | ความเห็นที่สองข้ามโมเดลต่อ diff นับจาก release tag ล่าสุด ทำงานเมื่อการเปลี่ยนแปลงแตะส่วนที่เอนจินอ่านจริง                                          |
 | `/verify-simplify`       | subworkflow      | ทำให้เรียบง่ายครั้งสุดท้ายผ่าน `code-simplifier` ทำงานเป็นตัวสุดท้ายเสมอ                                                                                 |
 | `/verify-multispec`      | subworkflow      | Agent Team ผู้เชี่ยวชาญสี่คน Pattern C — ซักค้านกันผ่าน SendMessage เส้นทางยกระดับสำหรับการปล่อยรุ่นสำคัญและ PR รีแฟกเตอร์ขนาดใหญ่                       |
 
-## Ship (ขั้นที่ ⑤)
+## ตัวห่อหุ้มวินัย
 
-| คำสั่ง            | ขอบเขต           | Capability                                                                                                                                                                     |
-| ----------------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `/ship`           | master ระดับขั้น | ขั้นปล่อยรุ่นหลัง Verify รันด่าน preflight ก่อน แล้วมอบงาน PR/deploy ให้ gstack `/ship` ขอบเขตของ deploy คือ tag-ready ส่วนการ publish จริงทำโดย CI `publish.yml` ตอน push tag |
-| `/ship-preflight` | subworkflow      | รัน `harnessed release-preflight` — ด่านอ่านอย่างเดียว (CHANGELOG `[Unreleased]` / version / git-clean / tag-absent) ถ้าข้อใดไม่ผ่านจะบล็อกการปล่อยรุ่น                        |
+| คำสั่ง | ขอบเขต | ความสามารถ                                                                                   |
+| ------ | ------ | ---------------------------------------------------------------------------------------------- |
+| `/tdd` | วินัย  | Red → green → refactor ประกอบจาก `superpowers:test-driven-development` ของ upstream (mattpocock `/tdd` เป็นตัวสำรอง) |
 
-## wrapper เชิงวินัย
-
-| คำสั่ง          | ขอบเขต     | Capability                                                                                                      |
-| --------------- | ---------- | --------------------------------------------------------------------------------------------------------------- |
-| `/tdd`          | วินัย      | red → green → refactor ชื่อแทนของ `superpowers:test-driven-development` ใช้เป็น wrapper เชิงวินัยเดี่ยว ๆ ก็ได้ |
-| `/ralph-loop`   | wrapper    | wrapper คำสัญญาว่าเสร็จ รัน prompt ใดก็ได้จนกว่าจะได้ `COMPLETE` ตรงตัวอักษร ฝังอยู่ใน `/task-deliver` แล้ว     |
-| `/execute-task` | เครื่องมือ | จุดเข้าสำหรับรัน task ตรง ๆ ข้ามขั้น discuss/plan                                                               |
+คำมั่นเรื่องความสำเร็จไม่ใช่ตัวห่อหุ้มจาก upstream อีกต่อไป ตั้งแต่ 4.36.0 เป็น gate ของ harnessed เอง คือ `harnessed checkpoint complete <sub>` (ADR 0039) ด้วยเหตุนี้ `/ralph-loop` และจุดเข้าเดิม `/execute-task` จึงถูกยกเลิก
 
 นิยาม workflow ทั้งหมดอยู่ที่ `workflows/<name>/workflow.yaml` ใน [repo ของ harnessed](https://github.com/easyinplay/harnessed)

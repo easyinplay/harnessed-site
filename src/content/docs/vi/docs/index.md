@@ -27,7 +27,7 @@ flowchart LR
 - **[Cài đặt](/vi/docs/getting-started/installation/)** — cài harnessed và chạy setup trong 30 giây
 - **[Khởi động nhanh](/vi/docs/getting-started/quickstart/)** — từ cài đặt đến workflow đầu tiên trong 60 giây
 - **[Khái niệm kết hợp](/vi/docs/concepts/composition/)** — harnessed kết hợp công cụ upstream mà không fork chúng như thế nào
-- **[Tham khảo workflow](/vi/docs/reference/workflows/)** — toàn bộ 28 workflow có thể kết hợp trong bản phát hành hiện tại
+- **[Tham khảo workflow](/vi/docs/reference/workflows/)** — toàn bộ 29 workflow có thể kết hợp trong bản phát hành hiện tại
 
 ## Điều làm harnessed khác biệt
 

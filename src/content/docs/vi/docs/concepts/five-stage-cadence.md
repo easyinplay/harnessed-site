@@ -47,7 +47,7 @@ Mỗi gate đều nói rõ khi nào nó kích hoạt và khi nào bị bỏ qua.
 1. **Làm rõ** — xác minh spec, phơi bày mơ hồ, đối chiếu `task_plan.md`
 2. **Viết code** — nguyên tắc karpathy: thay đổi khả thi nhỏ nhất, chỉnh sửa như phẫu thuật, không nới phạm vi
 3. **Kiểm thử** — TDD red → green → refactor cho logic cốt lõi; tùy chọn với CRUD và các triển khai hiển nhiên
-4. **Bàn giao** — wrapper `ralph-loop` không cho đi tiếp nếu chưa có `COMPLETE` nguyên văn
+4. **Bàn giao** — gate `harnessed checkpoint complete` không cho đi tiếp nếu chưa có `COMPLETE` nguyên văn
 
 ### Verify — 7 kiểm tra con có điều kiện
 

@@ -47,7 +47,7 @@ Tavily, Exa, ctx7을 통한 다중 소스 조사. `/auto` 안에서 이해 확�
 1. **명확화** —— 스펙을 검증하고, 모호함을 드러내고, `task_plan.md`와 대조
 2. **구현** —— karpathy 원칙: 가장 작은 실행 가능한 변경, 외과적 편집, 범위 확대 금지
 3. **테스트** —— 핵심 로직은 TDD red → green → refactor. CRUD나 자명한 구현은 선택
-4. **전달** —— `ralph-loop` 래퍼가 문자 그대로의 `COMPLETE` 전에는 다음으로 넘기지 않음
+4. **전달** —— `harnessed checkpoint complete` 게이트가 문자 그대로의 `COMPLETE` 전에는 다음으로 넘기지 않음
 
 ### Verify —— 7가지 조건부 하위 검사
 

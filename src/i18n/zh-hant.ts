@@ -72,7 +72,7 @@ const zhHant: Dict = {
         loop: "TDD",
         question: "它是否真的跑得通。",
         composed:
-          "superpowers TDD red-green · subagent execution · GSD verify-work · ralph-loop completion",
+          "superpowers TDD red-green · subagent execution · GSD verify-work · harnessed completion gate",
       },
     ],
     nested: {
@@ -127,7 +127,7 @@ const zhHant: Dict = {
     ],
     wrapper: {
       label: "正交 wrapper",
-      name: "ralph-loop",
+      name: "harnessed checkpoint complete",
       body: "套在任一檔位外層，守住 verbatim COMPLETE 完成承諾。",
     },
     footnote:
@@ -159,11 +159,10 @@ const zhHant: Dict = {
       { cmd: "/discuss", scope: "階段關卡", caps: "策略·階段·子任務" },
       { cmd: "/plan", scope: "階段關卡", caps: "架構·階段" },
       { cmd: "/task", scope: "子任務級", caps: "釐清·編碼·測試·交付" },
-      { cmd: "/verify", scope: "階段關卡", caps: "七項條件檢查" },
+      { cmd: "/verify", scope: "階段關卡", caps: "十一項條件檢查" },
       { cmd: "/ship", scope: "階段關卡", caps: "release-preflight·gstack-ship" },
       { cmd: "/retro", scope: "ship 之後", caps: "gstack·持久化" },
       { cmd: "/tdd", scope: "紀律", caps: "red-green-refactor" },
-      { cmd: "/ralph-loop", scope: "包裝器", caps: "完成承諾" },
     ],
     githubLink: "在 GitHub 檢視全部工作流 →",
   },
@@ -227,7 +226,7 @@ const zhHant: Dict = {
       },
       {
         q: "它會自動 spawn subagent 嗎？",
-        a: "`harnessed setup` 自動啟用 Agent Teams，並由 parallelism gate 依子任務決定檔位：瑣碎任務留在主 session，獨立任務以 subagent fan-out（≤ 3、隔離 context），需要互通的任務 —— 對齊 contract、辯論假設、共享 task list —— 升級為真正的 Agent Team。ralph-loop 可套在任一檔位外層，守住 verbatim COMPLETE。",
+        a: "`harnessed setup` 自動啟用 Agent Teams，並由 parallelism gate 依子任務決定檔位：瑣碎任務留在主 session，獨立任務以 subagent fan-out（≤ 3、隔離 context），需要互通的任務 —— 對齊 contract、辯論假設、共享 task list —— 升級為真正的 Agent Team。`harnessed checkpoint complete` 可為任一檔位把關，守住 verbatim COMPLETE。",
       },
       {
         q: "可以寫自己的 harness 套件嗎？",

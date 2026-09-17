@@ -3,7 +3,7 @@ title: Lệnh CLI
 description: Toàn bộ subcommand và cờ của CLI harnessed.
 ---
 
-> **Mô hình thực thi v4.0.** harnessed là _orchestration brain + thư viện prompt_, không phải engine thực thi. Phần thân lệnh gạch chéo (do `harnessed setup` sinh ra) điều khiển **spawn CC-native subagent** thông qua ba CLI hàm thuần và nhanh — `harnessed gates` (subworkflow nào được kích hoạt), `harnessed prompt` (prompt sẵn sàng spawn cho một subworkflow) và `harnessed checkpoint` (ghi tiến độ). Việc spawn thực tế, Agent Teams, ralph-loop và các vòng làm rõ đều do main session của Claude Code thực hiện bằng công cụ gốc. `harnessed run` chỉ còn dành cho CI/headless.
+> **Mô hình thực thi v4.0.** harnessed là _orchestration brain + thư viện prompt_, không phải engine thực thi. Phần thân lệnh gạch chéo (do `harnessed setup` sinh ra) điều khiển **spawn CC-native subagent** thông qua ba CLI hàm thuần và nhanh — `harnessed gates` (subworkflow nào được kích hoạt), `harnessed prompt` (prompt sẵn sàng spawn cho một subworkflow) và `harnessed checkpoint` (ghi tiến độ). Việc spawn thực tế, Agent Teams và các vòng làm rõ đều do main session của Claude Code thực hiện bằng công cụ gốc. `harnessed run` chỉ còn dành cho CI/headless.
 
 Ba CLI orchestration điều khiển spawn CC-native ra sao:
 
@@ -11,7 +11,7 @@ Ba CLI orchestration điều khiển spawn CC-native ra sao:
 flowchart LR
   M["CC main session<br/>slash-command body"] --> G["harnessed gates<br/>which subs fire"]
   G --> P["harnessed prompt<br/>spawn-ready prompt"]
-  P --> S["native Task/Agent spawn<br/>wrapped in ralph-loop"]
+  P --> S["native Task/Agent spawn<br/>+ harnessed completion gate"]
   S --> C["harnessed checkpoint<br/>record progress"]
   C -. "status --recover after compaction" .-> M
 ```
@@ -171,7 +171,7 @@ harnessed prompt plan-phase --task "add OAuth login" --json
 # → JSON: { prompt, max_iterations, model }
 ```
 
-Main session đưa `prompt` này vào một spawn `Task` gốc (bên ngoài là plugin ralph-loop); `max_iterations` / `model` lấy thẳng từ giá trị mặc định của workflow.
+Main session đưa `prompt` này vào một spawn `Task` gốc (bên ngoài là plugin `harnessed checkpoint complete`); `max_iterations` / `model` lấy thẳng từ giá trị mặc định của workflow.
 
 ### `harnessed checkpoint`
 

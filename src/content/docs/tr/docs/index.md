@@ -27,7 +27,7 @@ flowchart LR
 - **[Kurulum](/tr/docs/getting-started/installation/)** — harnessed’ı kurun ve setup’ı 30 saniyede çalıştırın
 - **[Hızlı başlangıç](/tr/docs/getting-started/quickstart/)** — kurulumdan ilk iş akışına 60 saniyede
 - **[Kompozisyon kavramı](/tr/docs/concepts/composition/)** — harnessed upstream araçları fork etmeden nasıl birleştirir
-- **[İş akışı başvurusu](/tr/docs/reference/workflows/)** — mevcut sürümle gelen 28 birleştirilebilir iş akışının tamamı
+- **[İş akışı başvurusu](/tr/docs/reference/workflows/)** — mevcut sürümle gelen 29 birleştirilebilir iş akışının tamamı
 
 ## harnessed’ı farklı kılan ne
 

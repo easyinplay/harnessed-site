@@ -59,11 +59,11 @@ capability:
 
 1. **Gate** —— `harnessed gates discuss --task "<spec>"` 返回三个讨论关卡哪些触发（战略 / 阶段 / 子任务），以及是否升级到 Agent Teams。
 2. **Prompt** —— 对每个触发的关卡，`harnessed prompt <sub> --json` 输出 spawn-ready prompt（role 主体 + checklist + 已应用 disciplines）。
-3. **Spawn** —— main session 用原生 `Task` spawn（外层套 ralph-loop），把任何 `STATUS: NEEDS_CLARIFICATION` 通过 `AskUserQuestion` 回流给你。
+3. **Spawn** —— main session 用原生 `Task` spawn（完成承诺由 harnessed 自有闸门 `harnessed checkpoint complete` 把关），把任何 `STATUS: NEEDS_CLARIFICATION` 通过 `AskUserQuestion` 回流给你。
 4. **Checkpoint** —— `harnessed checkpoint complete <sub>` 把进度记录到 `.planning/`，使流程能在 compaction 后存活。
 
 harnessed 贡献决策（gate 路由、prompt 生成、进度 ledger）；实际的 spawn、Agent Teams 协调、澄清往返都由 main session 用 Claude Code 原生工具执行。（`harnessed run` 保留旧的进程内 spawn，仅用于 CI/headless。）
 
-这正是 harnessed 的 28 个工作流能够同时装配 ECC、Superpowers、GSD 和 gstack 的原因 —— 装配层抽象了各组件之间的接缝。
+这正是 harnessed 的 29 个工作流能够同时装配 ECC、Superpowers、GSD 和 gstack 的原因 —— 装配层抽象了各组件之间的接缝。
 
-完整的 28 个工作流及其上游依赖，请参阅[工作流参考](/zh-hans/docs/reference/workflows/)。
+完整的 29 个工作流及其上游依赖，请参阅[工作流参考](/zh-hans/docs/reference/workflows/)。

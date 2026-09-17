@@ -11,7 +11,7 @@ description: BDD → SDD → TDD; her biri açık kaynak ekosistemden birleştir
 | -------------------- | ---- | --------------------------------------------- | ------------------------------------------------------------------------------------------------- |
 | **① Behavior**       | BDD  | _Ne_ inşa edilecek ve bittiğini nasıl anlarız | gstack `/office-hours` governance · GSD discuss · superpowers brainstorming → acceptance criteria |
 | **② Spec**           | SDD  | _Nasıl_ yapılandırıldı                        | GSD plan-phase → requirements / design / tasks · contracts (Spec Kit / ECC patterns)              |
-| **③ Implementation** | TDD  | Gerçekten _çalışıyor mu_                      | superpowers TDD red-green · subagent execution · GSD verify-work · ralph-loop completion          |
+| **③ Implementation** | TDD  | Gerçekten _çalışıyor mu_                      | superpowers TDD red-green · subagent execution · GSD verify-work · harnessed completion gate          |
 
 **Döngüler aşama değil, iç içe merceklerdir.** Cucumber, BDD-dış + TDD-iç çift döngüsünü yaygınlaştırdı: başarısız bir scenario dış döngüyü açar, siz de birden çok iç red-green TDD döngüsüyle onu yeşile sürersiniz. GenAI çağı araya bir halka ekledi — Behavior ile Implementation arasında açık bir SDD **spec** halkası, çünkü agent’ların yürütmek için dondurulmuş bir contract’a ihtiyacı var. Böylece yukarıdaki **triple-loop** oluşur.
 
@@ -44,7 +44,7 @@ Orta halka "ne"yi yürütülebilir yapıya çevirir. Çıkış koşulu **donduru
 | -------------- | ---------------------------------- | --------------------------------------- |
 | **Test-first** | başarısız test (red gate)          | superpowers TDD                         |
 | **Implement**  | yeşile sür                         | subagent execution                      |
-| **Verify**     | refactor + görev bazında tamamlama | GSD verify-work + ralph-loop completion |
+| **Verify**     | refactor + görev bazında tamamlama | GSD verify-work + harnessed completion gate |
 
 İç halka klasik red → green → refactor döngüsüdür; tüm contract’lar karşılanana kadar her görev için bir tur döner.
 

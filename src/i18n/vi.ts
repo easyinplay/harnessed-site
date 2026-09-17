@@ -72,7 +72,7 @@ const vi: Dict = {
         loop: "TDD",
         question: "Nó có thực sự chạy được không.",
         composed:
-          "superpowers TDD red-green · subagent execution · GSD verify-work · ralph-loop completion",
+          "superpowers TDD red-green · subagent execution · GSD verify-work · harnessed completion gate",
       },
     ],
     nested: {
@@ -130,7 +130,7 @@ const vi: Dict = {
     ],
     wrapper: {
       label: "wrapper trực giao",
-      name: "ralph-loop",
+      name: "harnessed checkpoint complete",
       body: "Bọc bất kỳ tầng nào và giữ nó đúng với lời hứa hoàn thành COMPLETE nguyên văn.",
     },
     footnote:
@@ -163,11 +163,10 @@ const vi: Dict = {
       { cmd: "/discuss", scope: "stage gate", caps: "chiến lược·phase·subtask" },
       { cmd: "/plan", scope: "stage gate", caps: "kiến trúc·phase" },
       { cmd: "/task", scope: "theo subtask", caps: "làm rõ·viết code·kiểm thử·bàn giao" },
-      { cmd: "/verify", scope: "stage gate", caps: "7 kiểm tra con có điều kiện" },
+      { cmd: "/verify", scope: "stage gate", caps: "11 kiểm tra con có điều kiện" },
       { cmd: "/ship", scope: "stage gate", caps: "release-preflight·gstack-ship" },
       { cmd: "/retro", scope: "sau ship", caps: "gstack·lưu trữ" },
       { cmd: "/tdd", scope: "kỷ luật", caps: "red-green-refactor" },
-      { cmd: "/ralph-loop", scope: "wrapper", caps: "lời hứa hoàn thành" },
     ],
     githubLink: "Xem toàn bộ workflow trên GitHub →",
   },
@@ -231,7 +230,7 @@ const vi: Dict = {
       },
       {
         q: "Nó có tự spawn subagent không?",
-        a: "`harnessed setup` tự bật Agent Teams, và một gate song song quyết định tầng cho từng subtask: việc vụn vặt ở lại session chính, tác vụ độc lập tỏa ra thành subagent (≤ 3, context cách ly), còn việc cần trao đổi — thống nhất contract, tranh luận giả thuyết, dùng chung task list — được nâng lên thành một Agent Team thực thụ. ralph-loop có thể bọc bất kỳ tầng nào để giữ nó đúng với COMPLETE nguyên văn.",
+        a: "`harnessed setup` tự bật Agent Teams, và một gate song song quyết định tầng cho từng subtask: việc vụn vặt ở lại session chính, tác vụ độc lập tỏa ra thành subagent (≤ 3, context cách ly), còn việc cần trao đổi — thống nhất contract, tranh luận giả thuyết, dùng chung task list — được nâng lên thành một Agent Team thực thụ. `harnessed checkpoint complete` có thể kiểm soát bất kỳ tầng nào để giữ nó đúng với COMPLETE nguyên văn.",
       },
       {
         q: "Tôi có thể tự viết harness pack không?",

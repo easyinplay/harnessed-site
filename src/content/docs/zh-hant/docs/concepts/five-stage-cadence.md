@@ -47,7 +47,7 @@ description: Discuss → Plan → Task → Verify → Ship，可選 Research 與
 1. **釐清** —— 驗證規格、攤開歧義、核對 `task_plan.md`
 2. **編碼** —— karpathy 原則：最小可行改動、外科手術式編輯、不擴大範圍
 3. **測試** —— 核心邏輯 TDD 紅燈 → 綠燈 → 重構；CRUD／顯而易見的實作則為選用
-4. **交付** —— `ralph-loop` 包裝器確保逐字輸出 `COMPLETE` 後才推進
+4. **交付** —— `harnessed checkpoint complete` 閘門要求逐字輸出 `COMPLETE` 後才推進
 
 ### Verify —— 7 項條件子檢查
 

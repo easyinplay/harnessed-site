@@ -51,7 +51,7 @@ flowchart LR
 1. **명확화** —— 코드를 쓰기 전에 스펙을 검증하고 모호한 지점을 드러냄
 2. **구현** —— karpathy 원칙에 따름(가장 작은 실행 가능한 변경, 외과적 편집)
 3. **테스트** —— 핵심 로직은 TDD: red → green → refactor
-4. **전달** —— `ralph-loop` 래퍼가 문자 그대로의 `COMPLETE`가 나오기 전에는 다음으로 넘어가지 않게 함
+4. **전달** —— `harnessed checkpoint complete` 게이트가 문자 그대로의 `COMPLETE`가 나오기 전에는 다음으로 넘어가지 않게 함
 
 ## 4단계 — Verify
 

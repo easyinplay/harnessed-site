@@ -59,11 +59,11 @@ capability:
 
 1. **Gate** — `harnessed gates discuss --task "<spec>"` คืนค่าว่า gate การอภิปรายตัวใดใน 3 ตัวถูกกระตุ้น (strategic / phase / subtask) และควรยกระดับไป Agent Teams หรือไม่
 2. **Prompt** — สำหรับแต่ละ gate ที่ถูกกระตุ้น `harnessed prompt <sub> --json` จะปล่อย prompt ที่พร้อม spawn (เนื้อ role + checklist + disciplines ที่ใช้)
-3. **Spawn** — main session รัน spawn `Task` แบบเนทีฟ (ห่อด้วย ralph-loop) และส่ง `STATUS: NEEDS_CLARIFICATION` ใด ๆ กลับมาหาคุณผ่าน `AskUserQuestion`
+3. **Spawn** — main session รัน spawn `Task` แบบเนทีฟ (คำมั่นเรื่องความสำเร็จมาจาก gate ของ harnessed เอง คือ `harnessed checkpoint complete`) และส่ง `STATUS: NEEDS_CLARIFICATION` ใด ๆ กลับมาหาคุณผ่าน `AskUserQuestion`
 4. **Checkpoint** — `harnessed checkpoint complete <sub>` บันทึกความคืบหน้าลง `.planning/` เพื่อให้การรันรอดผ่าน compaction
 
 harnessed มีส่วนร่วมในการตัดสินใจ (การส่งต่อ gate, การสร้าง prompt, ledger ความคืบหน้า) ส่วนการ spawn จริง การประสาน Agent Teams และการวนถามเพื่อความชัดเจน เป็นงานของ main session ด้วยเครื่องมือเนทีฟของ Claude Code (`harnessed run` ยังเก็บการ spawn ในโปรเซสแบบเดิมไว้ สำหรับ CI/headless เท่านั้น)
 
-นี่คือเหตุผลที่ workflow ทั้ง 28 ตัวใน harnessed ประกอบ ECC, Superpowers, GSD และ gstack พร้อมกันได้ — ชั้นการประกอบทำให้รอยต่อกลายเป็นนามธรรม
+นี่คือเหตุผลที่ workflow ทั้ง 29 ตัวใน harnessed ประกอบ ECC, Superpowers, GSD และ gstack พร้อมกันได้ — ชั้นการประกอบทำให้รอยต่อกลายเป็นนามธรรม
 
-ดู workflow ทั้ง 28 ตัวและการพึ่งพา upstream ได้ที่ [อ้างอิง workflow](/th/docs/reference/workflows/)
+ดู workflow ทั้ง 29 ตัวและการพึ่งพา upstream ได้ที่ [อ้างอิง workflow](/th/docs/reference/workflows/)

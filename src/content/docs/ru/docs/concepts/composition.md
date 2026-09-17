@@ -59,11 +59,11 @@ capability:
 
 1. **Gate** — `harnessed gates discuss --task "<spec>"` возвращает, какие из трёх gate обсуждения срабатывают (strategic / phase / subtask) и нужно ли повышать до Agent Teams.
 2. **Prompt** — для каждого сработавшего gate `harnessed prompt <sub> --json` выдаёт готовый к spawn промпт (тело role + чек-лист + применённые disciplines).
-3. **Spawn** — главная сессия выполняет нативный spawn `Task` (обёрнутый в ralph-loop) и возвращает вам любой `STATUS: NEEDS_CLARIFICATION` через `AskUserQuestion`.
+3. **Spawn** — главная сессия выполняет нативный spawn `Task` (обещание завершения обеспечивает собственный gate harnessed — `harnessed checkpoint complete`) и возвращает вам любой `STATUS: NEEDS_CLARIFICATION` через `AskUserQuestion`.
 4. **Checkpoint** — `harnessed checkpoint complete <sub>` записывает прогресс в `.planning/`, чтобы запуск пережил compaction.
 
 harnessed отвечает за решения (маршрутизация gate, генерация промптов, ledger прогресса); сам spawn, координацию Agent Teams и круги уточнений выполняет главная сессия нативными инструментами Claude Code. (`harnessed run` сохраняет старый внутрипроцессный spawn только для CI/headless.)
 
-Именно поэтому 28 workflow в harnessed могут одновременно собирать ECC, Superpowers, GSD и gstack — слой композиции абстрагирует стыки.
+Именно поэтому 29 workflow в harnessed могут одновременно собирать ECC, Superpowers, GSD и gstack — слой композиции абстрагирует стыки.
 
-Все 28 workflow и их upstream-зависимости — в [Справочнике workflow](/ru/docs/reference/workflows/).
+Все 29 workflow и их upstream-зависимости — в [Справочнике workflow](/ru/docs/reference/workflows/).

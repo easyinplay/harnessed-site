@@ -11,7 +11,7 @@ Ngăn xếp ba tầng là lý thuyết của harnessed về việc _tại sao_ n
 | -------------------- | ---- | ------------------------------------- | ------------------------------------------------------------------------------------------------- |
 | **① Behavior**       | BDD  | Xây _cái gì_, và làm sao biết đã xong | gstack `/office-hours` governance · GSD discuss · superpowers brainstorming → acceptance criteria |
 | **② Spec**           | SDD  | Cấu trúc _ra sao_                     | GSD plan-phase → requirements / design / tasks · contracts (Spec Kit / ECC patterns)              |
-| **③ Implementation** | TDD  | Nó có thực sự _chạy được_ không       | superpowers TDD red-green · subagent execution · GSD verify-work · ralph-loop completion          |
+| **③ Implementation** | TDD  | Nó có thực sự _chạy được_ không       | superpowers TDD red-green · subagent execution · GSD verify-work · harnessed completion gate          |
 
 **Các vòng lặp là những thấu kính lồng nhau, không phải giai đoạn.** Cucumber phổ biến vòng lặp đôi BDD-ngoài + TDD-trong: một scenario thất bại mở vòng ngoài, và bạn đẩy nó tới xanh qua nhiều chu trình red-green TDD bên trong. Kỷ nguyên GenAI thêm một vòng ở giữa — vòng **spec** tường minh của SDD nằm giữa Behavior và Implementation, bởi agent cần một contract đã đóng băng để thực thi. Đó là **triple-loop** ở trên.
 
@@ -44,7 +44,7 @@ Vòng giữa chuyển "cái gì" thành cấu trúc chạy được. Điều ki�
 | -------------- | ----------------------------- | --------------------------------------- |
 | **Test-first** | test thất bại (red gate)      | superpowers TDD                         |
 | **Implement**  | đẩy tới xanh                  | subagent execution                      |
-| **Verify**     | refactor + hoàn tất theo task | GSD verify-work + ralph-loop completion |
+| **Verify**     | refactor + hoàn tất theo task | GSD verify-work + harnessed completion gate |
 
 Vòng trong chính là chu trình kinh điển red → green → refactor, chạy một lượt cho mỗi task cho tới khi mọi contract được thỏa mãn.
 

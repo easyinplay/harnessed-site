@@ -27,7 +27,7 @@ flowchart LR
 - **[설치](/ko/docs/getting-started/installation/)** — 30초 만에 harnessed 설치하고 setup 실행하기
 - **[빠른 시작](/ko/docs/getting-started/quickstart/)** — 설치부터 첫 워크플로까지 60초
 - **[조합 개념](/ko/docs/concepts/composition/)** — harnessed가 upstream을 fork하지 않고 조합하는 방식
-- **[워크플로 레퍼런스](/ko/docs/reference/workflows/)** — 현재 릴리스에 포함된 28개 조합 가능한 워크플로 전체
+- **[워크플로 레퍼런스](/ko/docs/reference/workflows/)** — 현재 릴리스에 포함된 29개 조합 가능한 워크플로 전체
 
 ## harnessed가 다른 점
 

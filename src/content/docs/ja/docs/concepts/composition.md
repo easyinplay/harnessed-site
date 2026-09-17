@@ -59,11 +59,11 @@ v4.0 以降、harnessed は実行エンジンではなく **orchestration brain 
 
 1. **Gate** —— `harnessed gates discuss --task "<spec>"` が、3 つの議論ゲート（strategic / phase / subtask）のどれが発火するか、Agent Teams に昇格すべきかを返します。
 2. **Prompt** —— 発火した各ゲートについて、`harnessed prompt <sub> --json` が spawn-ready な prompt（role 本体 + チェックリスト + 適用された disciplines）を出力します。
-3. **Spawn** —— main session がネイティブの `Task` spawn を実行し（ralph-loop でラップ）、`STATUS: NEEDS_CLARIFICATION` は `AskUserQuestion` であなたに戻します。
+3. **Spawn** —— main session がネイティブの `Task` spawn を実行し（完了保証は harnessed 自身のゲート `harnessed checkpoint complete`）、`STATUS: NEEDS_CLARIFICATION` は `AskUserQuestion` であなたに戻します。
 4. **Checkpoint** —— `harnessed checkpoint complete <sub>` が進捗を `.planning/` に記録し、compaction を越えて実行が生き延びるようにします。
 
 harnessed は判断（ゲートのルーティング、prompt 生成、進捗 ledger）を担い、実際の spawn、Agent Teams の調整、明確化の往復は main session がネイティブの Claude Code ツールで行います。（`harnessed run` は CI／headless 専用に、従来のプロセス内 spawn を残しています。）
 
-harnessed の 28 個のワークフローが ECC、Superpowers、GSD、gstack を同時に合成できるのはこのためです —— 合成層が継ぎ目を抽象化しています。
+harnessed の 29 個のワークフローが ECC、Superpowers、GSD、gstack を同時に合成できるのはこのためです —— 合成層が継ぎ目を抽象化しています。
 
-28 個すべてのワークフローと upstream 依存は[ワークフロー一覧](/ja/docs/reference/workflows/)を参照してください。
+29 個すべてのワークフローと upstream 依存は[ワークフロー一覧](/ja/docs/reference/workflows/)を参照してください。

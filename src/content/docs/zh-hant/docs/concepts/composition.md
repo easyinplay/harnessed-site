@@ -59,11 +59,11 @@ capability:
 
 1. **Gate** —— `harnessed gates discuss --task "<spec>"` 回傳三個討論關卡中哪些被觸發（策略／階段／子任務），以及是否升級到 Agent Teams。
 2. **Prompt** —— 對每個被觸發的關卡，`harnessed prompt <sub> --json` 輸出 spawn-ready prompt（role 主體 + checklist + 已套用的 disciplines）。
-3. **Spawn** —— main session 用原生 `Task` spawn（外層套 ralph-loop），並把任何 `STATUS: NEEDS_CLARIFICATION` 透過 `AskUserQuestion` 回流給你。
+3. **Spawn** —— main session 用原生 `Task` spawn（完成承諾由 harnessed 自有閘門 `harnessed checkpoint complete` 把關），並把任何 `STATUS: NEEDS_CLARIFICATION` 透過 `AskUserQuestion` 回流給你。
 4. **Checkpoint** —— `harnessed checkpoint complete <sub>` 把進度記錄到 `.planning/`，讓流程能在 compaction 之後存活。
 
 harnessed 貢獻決策（gate 路由、prompt 生成、進度 ledger）；實際的 spawn、Agent Teams 協調、釐清往返，都由 main session 用 Claude Code 原生工具執行。（`harnessed run` 保留舊的行程內 spawn，僅供 CI／headless 使用。）
 
-這正是 harnessed 的 28 個工作流能夠同時裝配 ECC、Superpowers、GSD 與 gstack 的原因 —— 裝配層抽象掉了各元件之間的接縫。
+這正是 harnessed 的 29 個工作流能夠同時裝配 ECC、Superpowers、GSD 與 gstack 的原因 —— 裝配層抽象掉了各元件之間的接縫。
 
-完整的 28 個工作流及其上游相依，請參閱[工作流參考](/zh-hant/docs/reference/workflows/)。
+完整的 29 個工作流及其上游相依，請參閱[工作流參考](/zh-hant/docs/reference/workflows/)。

@@ -59,11 +59,11 @@ v4.0’dan beri harnessed bir yürütme motoru değil, bir **orchestration brain
 
 1. **Gate** — `harnessed gates discuss --task "<spec>"`, üç tartışma kapısından hangilerinin tetiklendiğini (strategic / phase / subtask) ve Agent Teams’e yükseltilip yükseltilmeyeceğini döner.
 2. **Prompt** — tetiklenen her kapı için `harnessed prompt <sub> --json`, spawn’a hazır bir prompt üretir (role gövdesi + kontrol listesi + uygulanan disciplines).
-3. **Spawn** — ana oturum yerel bir `Task` spawn’ı çalıştırır (ralph-loop ile sarmalanmış) ve her `STATUS: NEEDS_CLARIFICATION` yanıtını `AskUserQuestion` ile size geri iletir.
+3. **Spawn** — ana oturum yerel bir `Task` spawn’ı çalıştırır (tamamlama vaadini harnessed'ın kendi gate'i `harnessed checkpoint complete` üstlenir) ve her `STATUS: NEEDS_CLARIFICATION` yanıtını `AskUserQuestion` ile size geri iletir.
 4. **Checkpoint** — `harnessed checkpoint complete <sub>`, ilerlemeyi `.planning/` altına kaydeder; böylece çalıştırma compaction’dan sağ çıkar.
 
 harnessed kararları üretir (kapı yönlendirmesi, prompt üretimi, ilerleme ledger’ı); asıl spawn, Agent Teams koordinasyonu ve netleştirme gidiş gelişleri ana oturumun yerel Claude Code araçlarıyla yaptığı iştir. (`harnessed run`, yalnızca CI/headless için eski süreç içi spawn’ı korur.)
 
-harnessed’ın 28 iş akışının ECC, Superpowers, GSD ve gstack’i aynı anda birleştirebilmesinin nedeni budur — kompozisyon katmanı dikiş yerlerini soyutlar.
+harnessed’ın 29 iş akışının ECC, Superpowers, GSD ve gstack’i aynı anda birleştirebilmesinin nedeni budur — kompozisyon katmanı dikiş yerlerini soyutlar.
 
-28 iş akışının tamamı ve upstream bağımlılıkları için [İş akışı başvurusu](/tr/docs/reference/workflows/) bölümüne bakın.
+29 iş akışının tamamı ve upstream bağımlılıkları için [İş akışı başvurusu](/tr/docs/reference/workflows/) bölümüne bakın.

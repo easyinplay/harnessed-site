@@ -51,7 +51,7 @@ flowchart LR
 1. **Esclarecer** — verifica a spec antes de escrever código; expõe ambiguidades
 2. **Codar** — implementa seguindo os princípios karpathy (menor mudança viável, edições cirúrgicas)
 3. **Testar** — TDD na lógica central: red → green → refactor
-4. **Entregar** — o wrapper `ralph-loop` garante um `COMPLETE` literal antes de seguir adiante
+4. **Entregar** — o gate `harnessed checkpoint complete` exige um `COMPLETE` literal antes de seguir adiante
 
 ## Estágio 4 — Verify
 

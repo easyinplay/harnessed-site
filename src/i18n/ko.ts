@@ -72,7 +72,7 @@ const ko: Dict = {
         loop: "TDD",
         question: "실제로 동작하는가.",
         composed:
-          "superpowers TDD red-green · subagent execution · GSD verify-work · ralph-loop completion",
+          "superpowers TDD red-green · subagent execution · GSD verify-work · harnessed completion gate",
       },
     ],
     nested: {
@@ -130,7 +130,7 @@ const ko: Dict = {
     ],
     wrapper: {
       label: "직교 wrapper",
-      name: "ralph-loop",
+      name: "harnessed checkpoint complete",
       body: "어떤 티어든 감싸서 verbatim COMPLETE 완료 약속을 지키게 합니다.",
     },
     footnote:
@@ -162,11 +162,10 @@ const ko: Dict = {
       { cmd: "/discuss", scope: "스테이지 게이트", caps: "전략·페이즈·서브태스크" },
       { cmd: "/plan", scope: "스테이지 게이트", caps: "아키텍처·페이즈" },
       { cmd: "/task", scope: "서브태스크 단위", caps: "명확화·구현·테스트·전달" },
-      { cmd: "/verify", scope: "스테이지 게이트", caps: "7가지 조건 검사" },
+      { cmd: "/verify", scope: "스테이지 게이트", caps: "11가지 조건 검사" },
       { cmd: "/ship", scope: "스테이지 게이트", caps: "release-preflight·gstack-ship" },
       { cmd: "/retro", scope: "ship 이후", caps: "gstack·영속화" },
       { cmd: "/tdd", scope: "규율", caps: "red-green-refactor" },
-      { cmd: "/ralph-loop", scope: "wrapper", caps: "완료 약속" },
     ],
     githubLink: "GitHub에서 전체 워크플로 보기 →",
   },
@@ -230,7 +229,7 @@ const ko: Dict = {
       },
       {
         q: "subagent를 자동으로 spawn하나요?",
-        a: "`harnessed setup`이 Agent Teams를 자동으로 켜고, parallelism gate가 서브태스크마다 티어를 정합니다. 사소한 작업은 메인 session에 남고, 독립적인 작업은 subagent로 fan-out되며(≤ 3, 격리된 context), 상호 통신이 필요한 작업 —— contract 정렬, 가설 토론, task list 공유 —— 은 진짜 Agent Team으로 승격합니다. ralph-loop는 어떤 티어든 감싸 verbatim COMPLETE를 지키게 할 수 있습니다.",
+        a: "`harnessed setup`이 Agent Teams를 자동으로 켜고, parallelism gate가 서브태스크마다 티어를 정합니다. 사소한 작업은 메인 session에 남고, 독립적인 작업은 subagent로 fan-out되며(≤ 3, 격리된 context), 상호 통신이 필요한 작업 —— contract 정렬, 가설 토론, task list 공유 —— 은 진짜 Agent Team으로 승격합니다. `harnessed checkpoint complete`는 어떤 티어에 대해서도 verbatim COMPLETE를 지키게 할 수 있습니다.",
       },
       {
         q: "직접 harness 팩을 만들 수 있나요?",

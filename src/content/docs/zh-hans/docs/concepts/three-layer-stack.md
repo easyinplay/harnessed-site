@@ -11,7 +11,7 @@ description: BDD → SDD → TDD 三个嵌套反馈回环，每个都由开源�
 | -------------------- | ---- | ------------------------ | ------------------------------------------------------------------------------------------------- |
 | **① Behavior**       | BDD  | 做*什么*，以及怎样算做完 | gstack `/office-hours` governance · GSD discuss · superpowers brainstorming → acceptance criteria |
 | **② Spec**           | SDD  | *怎样*组织结构           | GSD plan-phase → requirements / design / tasks · contracts（Spec Kit / ECC patterns）             |
-| **③ Implementation** | TDD  | 它是否真的能*跑通*       | superpowers TDD red-green · subagent execution · GSD verify-work · ralph-loop completion          |
+| **③ Implementation** | TDD  | 它是否真的能*跑通*       | superpowers TDD red-green · subagent execution · GSD verify-work · harnessed completion gate          |
 
 **loop 是嵌套的镜头（nested lenses），不是阶段。** Cucumber 推广了 BDD-outer + TDD-inner 双环：一个 failing scenario 打开外环，你通过多个内层 red-green TDD 循环把它驱动到绿。GenAI 时代加了一个中间环 —— Behavior 与 Implementation 之间显式的 SDD **spec** 环，因为 agent 需要一个 frozen contract 来执行。于是构成上面的**三层回环（triple-loop）**。
 
@@ -44,7 +44,7 @@ description: BDD → SDD → TDD 三个嵌套反馈回环，每个都由开源�
 | -------------- | ------------------------ | --------------------------------------- |
 | **Test-first** | failing test（red gate） | superpowers TDD                         |
 | **Implement**  | 驱动到 green             | subagent execution                      |
-| **Verify**     | refactor + 逐任务完成    | GSD verify-work + ralph-loop completion |
+| **Verify**     | refactor + 逐任务完成    | GSD verify-work + harnessed completion gate |
 
 内环就是经典的 red → green → refactor 循环，每个 task 跑一遍，直到所有 contract 都被满足。
 

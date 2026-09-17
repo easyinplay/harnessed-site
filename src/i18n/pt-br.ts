@@ -72,7 +72,7 @@ const ptBr: Dict = {
         loop: "TDD",
         question: "Funciona de fato.",
         composed:
-          "superpowers TDD red-green · subagent execution · GSD verify-work · ralph-loop completion",
+          "superpowers TDD red-green · subagent execution · GSD verify-work · harnessed completion gate",
       },
     ],
     nested: {
@@ -136,7 +136,7 @@ const ptBr: Dict = {
     ],
     wrapper: {
       label: "wrapper ortogonal",
-      name: "ralph-loop",
+      name: "harnessed checkpoint complete",
       body: "Envolve qualquer tier e o mantém preso a uma promessa de conclusão COMPLETE literal.",
     },
     footnote:
@@ -169,11 +169,10 @@ const ptBr: Dict = {
       { cmd: "/discuss", scope: "stage gate", caps: "estratégico·fase·subtarefa" },
       { cmd: "/plan", scope: "stage gate", caps: "arquitetura·fase" },
       { cmd: "/task", scope: "por subtarefa", caps: "esclarecer·codar·testar·entregar" },
-      { cmd: "/verify", scope: "stage gate", caps: "7 subverificações condicionais" },
+      { cmd: "/verify", scope: "stage gate", caps: "11 subverificações condicionais" },
       { cmd: "/ship", scope: "stage gate", caps: "release-preflight·gstack-ship" },
       { cmd: "/retro", scope: "pós-ship", caps: "gstack·persistência" },
       { cmd: "/tdd", scope: "disciplina", caps: "red-green-refactor" },
-      { cmd: "/ralph-loop", scope: "wrapper", caps: "promessa de conclusão" },
     ],
     githubLink: "Ver todos os workflows no GitHub →",
   },
@@ -238,7 +237,7 @@ const ptBr: Dict = {
       },
       {
         q: "Ele faz spawn de subagents automaticamente?",
-        a: "`harnessed setup` habilita Agent Teams automaticamente, e um gate de paralelismo decide o tier por subtarefa: trabalho trivial fica na sessão principal, tarefas independentes se abrem como subagents (≤ 3, contexto isolado) e trabalho que exige troca de mensagens — alinhamento de contrato, debate de hipóteses, task lists compartilhadas — escala para um Agent Team de verdade. O ralph-loop pode envolver qualquer tier para mantê-lo preso a um COMPLETE literal.",
+        a: "`harnessed setup` habilita Agent Teams automaticamente, e um gate de paralelismo decide o tier por subtarefa: trabalho trivial fica na sessão principal, tarefas independentes se abrem como subagents (≤ 3, contexto isolado) e trabalho que exige troca de mensagens — alinhamento de contrato, debate de hipóteses, task lists compartilhadas — escala para um Agent Team de verdade. O `harnessed checkpoint complete` pode controlar qualquer tier para mantê-lo preso a um COMPLETE literal.",
       },
       {
         q: "Posso escrever meu próprio harness pack?",

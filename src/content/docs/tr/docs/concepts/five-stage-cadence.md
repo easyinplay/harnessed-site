@@ -47,7 +47,7 @@ Her kapı, tetiklendiğinde de atlandığında da bunu şeffaf biçimde bildirir
 1. **Netleştir** — spec’i doğrula, belirsizlikleri açığa çıkar, `task_plan.md` ile karşılaştır
 2. **Kodla** — karpathy ilkeleri: mümkün olan en küçük değişiklik, cerrahi düzenlemeler, kapsamı büyütme
 3. **Test et** — çekirdek mantıkta TDD red → green → refactor; CRUD ve apaçık uygulamalarda isteğe bağlı
-4. **Teslim et** — `ralph-loop` sarmalayıcısı, devam etmeden önce birebir `COMPLETE` çıktısını şart koşar
+4. **Teslim et** — `harnessed checkpoint complete` gate'i, devam etmeden önce birebir `COMPLETE` çıktısını şart koşar
 
 ### Verify — 7 koşullu alt kontrol
 

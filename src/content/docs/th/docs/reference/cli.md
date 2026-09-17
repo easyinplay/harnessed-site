@@ -3,7 +3,7 @@ title: คำสั่ง CLI
 description: subcommand และแฟล็กทั้งหมดของ CLI harnessed
 ---
 
-> **โมเดลการทำงานของ v4.0** harnessed คือ _orchestration brain + คลัง prompt_ ไม่ใช่เอนจินรันงาน ส่วนเนื้อของคำสั่งสแลช (สร้างโดย `harnessed setup`) ขับ **การ spawn CC-native subagent** ผ่าน CLI ฟังก์ชันบริสุทธิ์ที่เร็วสามตัว — `harnessed gates` (subworkflow ตัวใดถูกกระตุ้น), `harnessed prompt` (prompt พร้อม spawn ของ subworkflow) และ `harnessed checkpoint` (บันทึกความคืบหน้า) ส่วนการ spawn จริง, Agent Teams, ralph-loop และการวนถามเพื่อความชัดเจน เป็นงานของ main session ของ Claude Code ด้วยเครื่องมือเนทีฟ `harnessed run` เหลือไว้สำหรับ CI/headless เท่านั้น
+> **โมเดลการทำงานของ v4.0** harnessed คือ _orchestration brain + คลัง prompt_ ไม่ใช่เอนจินรันงาน ส่วนเนื้อของคำสั่งสแลช (สร้างโดย `harnessed setup`) ขับ **การ spawn CC-native subagent** ผ่าน CLI ฟังก์ชันบริสุทธิ์ที่เร็วสามตัว — `harnessed gates` (subworkflow ตัวใดถูกกระตุ้น), `harnessed prompt` (prompt พร้อม spawn ของ subworkflow) และ `harnessed checkpoint` (บันทึกความคืบหน้า) ส่วนการ spawn จริง, Agent Teams และการวนถามเพื่อความชัดเจน เป็นงานของ main session ของ Claude Code ด้วยเครื่องมือเนทีฟ `harnessed run` เหลือไว้สำหรับ CI/headless เท่านั้น
 
 CLI orchestration สามตัวขับการ spawn CC-native อย่างไร:
 
@@ -11,7 +11,7 @@ CLI orchestration สามตัวขับการ spawn CC-native อย่
 flowchart LR
   M["CC main session<br/>slash-command body"] --> G["harnessed gates<br/>which subs fire"]
   G --> P["harnessed prompt<br/>spawn-ready prompt"]
-  P --> S["native Task/Agent spawn<br/>wrapped in ralph-loop"]
+  P --> S["native Task/Agent spawn<br/>+ harnessed completion gate"]
   S --> C["harnessed checkpoint<br/>record progress"]
   C -. "status --recover after compaction" .-> M
 ```
@@ -171,7 +171,7 @@ harnessed prompt plan-phase --task "add OAuth login" --json
 # → JSON: { prompt, max_iterations, model }
 ```
 
-main session ป้อน `prompt` นี้เข้าสู่การ spawn `Task` แบบเนทีฟ (ด้านนอกคือปลั๊กอิน ralph-loop) ส่วน `max_iterations` / `model` มาจากค่าเริ่มต้นของ workflow โดยตรง
+main session ป้อน `prompt` นี้เข้าสู่การ spawn `Task` แบบเนทีฟ (ด้านนอกคือปลั๊กอิน `harnessed checkpoint complete`) ส่วน `max_iterations` / `model` มาจากค่าเริ่มต้นของ workflow โดยตรง
 
 ### `harnessed checkpoint`
 

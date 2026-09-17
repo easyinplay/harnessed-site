@@ -51,7 +51,7 @@ flowchart LR
 1. **明確化** —— コードを書く前に仕様を検証し、曖昧さを洗い出す
 2. **実装** —— karpathy 原則に従う（最小限の実行可能な変更、外科手術的な編集）
 3. **テスト** —— コアロジックは TDD：red → green → refactor
-4. **納品** —— `ralph-loop` ラッパーが、逐語の `COMPLETE` が出るまで次に進ませない
+4. **納品** —— `harnessed checkpoint complete` ゲートが、逐語の `COMPLETE` が出るまで次に進ませない
 
 ## 段階 4 — Verify
 

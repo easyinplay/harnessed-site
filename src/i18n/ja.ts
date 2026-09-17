@@ -72,7 +72,7 @@ const ja: Dict = {
         loop: "TDD",
         question: "実際に動くのか。",
         composed:
-          "superpowers TDD red-green · subagent execution · GSD verify-work · ralph-loop completion",
+          "superpowers TDD red-green · subagent execution · GSD verify-work · harnessed completion gate",
       },
     ],
     nested: {
@@ -136,7 +136,7 @@ const ja: Dict = {
     ],
     wrapper: {
       label: "直交する wrapper",
-      name: "ralph-loop",
+      name: "harnessed checkpoint complete",
       body: "任意のティアを包み、verbatim の COMPLETE という完了約束を守らせます。",
     },
     footnote:
@@ -169,11 +169,10 @@ const ja: Dict = {
       { cmd: "/discuss", scope: "ステージゲート", caps: "戦略·フェーズ·サブタスク" },
       { cmd: "/plan", scope: "ステージゲート", caps: "アーキテクチャ·フェーズ" },
       { cmd: "/task", scope: "サブタスク単位", caps: "明確化·実装·テスト·納品" },
-      { cmd: "/verify", scope: "ステージゲート", caps: "7 つの条件チェック" },
+      { cmd: "/verify", scope: "ステージゲート", caps: "11 の条件チェック" },
       { cmd: "/ship", scope: "ステージゲート", caps: "release-preflight·gstack-ship" },
       { cmd: "/retro", scope: "ship 後", caps: "gstack·永続化" },
       { cmd: "/tdd", scope: "規律", caps: "red-green-refactor" },
-      { cmd: "/ralph-loop", scope: "wrapper", caps: "完了約束" },
     ],
     githubLink: "GitHub ですべてのワークフローを見る →",
   },
@@ -237,7 +236,7 @@ const ja: Dict = {
       },
       {
         q: "subagent は自動で spawn されますか？",
-        a: "`harnessed setup` が Agent Teams を自動で有効化し、parallelism gate がサブタスクごとにティアを決めます。些細な作業はメイン session に留まり、独立したタスクは subagent として fan-out され（≤ 3、隔離された context）、相互通信が要る作業 —— contract の擦り合わせ、仮説の議論、task list の共有 —— は本物の Agent Team に昇格します。ralph-loop はどのティアも包んで verbatim の COMPLETE を守らせられます。",
+        a: "`harnessed setup` が Agent Teams を自動で有効化し、parallelism gate がサブタスクごとにティアを決めます。些細な作業はメイン session に留まり、独立したタスクは subagent として fan-out され（≤ 3、隔離された context）、相互通信が要る作業 —— contract の擦り合わせ、仮説の議論、task list の共有 —— は本物の Agent Team に昇格します。`harnessed checkpoint complete` はどのティアに対しても verbatim の COMPLETE を守らせられます。",
       },
       {
         q: "自分で harness パックを書けますか？",

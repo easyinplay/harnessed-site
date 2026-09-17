@@ -51,7 +51,7 @@ flowchart LR
 1. **Làm rõ** — xác minh spec trước khi viết code; phơi bày điểm mơ hồ
 2. **Viết code** — triển khai theo nguyên tắc karpathy (thay đổi khả thi nhỏ nhất, chỉnh sửa như phẫu thuật)
 3. **Kiểm thử** — TDD cho logic cốt lõi: red → green → refactor
-4. **Bàn giao** — wrapper `ralph-loop` đảm bảo có `COMPLETE` nguyên văn trước khi đi tiếp
+4. **Bàn giao** — gate `harnessed checkpoint complete` đảm bảo có `COMPLETE` nguyên văn trước khi đi tiếp
 
 ## Giai đoạn 4 — Verify
 

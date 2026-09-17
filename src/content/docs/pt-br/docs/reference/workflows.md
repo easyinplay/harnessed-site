@@ -1,11 +1,11 @@
 ---
 title: Referência de workflows
-description: Os 28 workflows componíveis entregues na release atual do harnessed.
+description: Os 29 workflows componíveis entregues na release atual do harnessed.
 ---
 
-O harnessed traz 28 workflows organizados por namespace: um super-master, cinco masters de estágio (Discuss · Plan · Task · Verify · Ship), 20 subworkflows e dois workflows independentes.
+O harnessed traz 29 workflows organizados por namespace: um super-master, cinco masters de estágio (Discuss · Plan · Task · Verify · Ship), 21 subworkflows e dois workflows independentes.
 
-28 workflows — um super-master se abre nos cinco masters de estágio e seus subs, mais dois workflows independentes:
+29 workflows — um super-master se abre nos cinco masters de estágio e seus subs, mais dois workflows independentes:
 
 ```mermaid
 flowchart TD
@@ -13,7 +13,7 @@ flowchart TD
   AUTO --> DIS["① /discuss · 3 subs"]
   AUTO --> PLA["② /plan · 2 subs"]
   AUTO --> TAS["③ /task · 4 subs"]
-  AUTO --> VER["④ /verify · 10 subs"]
+  AUTO --> VER["④ /verify · 11 subs"]
   AUTO --> SHI["⑤ /ship · 1 sub"]
   STA["standalones · /research · /retro"]
   DIS -.- STA
@@ -58,13 +58,13 @@ flowchart TD
 | `/task-clarify` | subworkflow       | Gate de esclarecimento na largada. Superpowers brainstorming + `/grill-with-docs` condicionais.                                                                  |
 | `/task-code`    | subworkflow       | Implementa seguindo os 4 princípios karpathy. `/zoom-out` / `/improve-codebase-architecture` / `/diagnose` condicionais. Sincroniza `progress.md` entre sessões. |
 | `/task-test`    | subworkflow       | TDD red → green → refactor. Superpowers TDD + `/diagnose` condicionais. Obrigatório na lógica central.                                                           |
-| `/task-deliver` | subworkflow       | Wrapper do SDK `ralph-loop`. Roda até um `COMPLETE` literal. Agent Teams condicional para coordenação full-stack.                                                |
+| `/task-deliver` | subworkflow       | Gate de conclusão próprio do harnessed (`harnessed checkpoint complete`). Roda até um `COMPLETE` literal. Agent Teams condicional para coordenação full-stack.                                                |
 
 ## Estágio Verify
 
 | Comando                  | Escopo            | Capabilities                                                                                                                                                              |
 | ------------------------ | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `/verify`                | master de estágio | Distribui até 7 subverificações conforme as flags de cenário.                                                                                                             |
+| `/verify`                | master de estágio | Distribui até 11 subverificações conforme as flags de cenário.                                                                                                             |
 | `/verify-progress`       | subworkflow       | Sempre roda primeiro. Checagem de critérios de aceite de UAT + sincronização de estado do GSD.                                                                            |
 | `/verify-code-review`    | subworkflow       | Fan-out paralelo de vários subagents. Achados de alta confiança.                                                                                                          |
 | `/verify-paranoid`       | subworkflow       | Revisão do staff engineer paranoico via gstack `/review`. Obrigatório em módulos críticos antes do PR.                                                                    |
@@ -73,22 +73,16 @@ flowchart TD
 | `/verify-design`         | subworkflow       | Consistência do design system via gstack `/design-review` + ui-ux-pro-max + design-taste-frontend. Dispara com mudanças de design.                                        |
 | `/verify-eval-review`    | subworkflow       | Auditoria de cobertura de eval de fase de IA via GSD `/gsd-eval-review`. Dispara quando a fase inclui etapas de IA/LLM (par do gsd-ai-integration-phase no lado do plan). |
 | `/verify-validate-phase` | subworkflow       | Preenchimento de cobertura requisito→teste de Nyquist via GSD `/gsd-validate-phase`. Dispara quando é preciso auditar cobertura.                                          |
+| `/verify-second-opinion`  | sub-workflow | Segunda opinião entre modelos sobre o diff desde a última tag de release. Dispara quando a mudança toca a superfície que o motor realmente lê.        |
 | `/verify-simplify`       | subworkflow       | Simplificação final via `code-simplifier`. Sempre por último.                                                                                                             |
 | `/verify-multispec`      | subworkflow       | Agent Team de 4 especialistas, Pattern C — questionamento cruzado via SendMessage. Caminho de escalonamento para releases críticas e PRs de refatoração grande.           |
 
-## Ship (estágio ⑤)
-
-| Comando           | Escopo            | Capabilities                                                                                                                                                                                              |
-| ----------------- | ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `/ship`           | master de estágio | Estágio de release após o Verify. Roda o gate de preflight e então delega PR/deploy ao gstack `/ship`. A fronteira do deploy é tag-ready; o publish de fato é feito pelo CI `publish.yml` no push da tag. |
-| `/ship-preflight` | subworkflow       | Roda `harnessed release-preflight` — gate somente leitura (CHANGELOG `[Unreleased]` / version / git-clean / tag-absent). Qualquer falha bloqueia a release.                                               |
-
 ## Wrappers de disciplina
 
-| Comando         | Escopo     | Capabilities                                                                                                             |
-| --------------- | ---------- | ------------------------------------------------------------------------------------------------------------------------ |
-| `/tdd`          | disciplina | red → green → refactor. Alias de `superpowers:test-driven-development`. Também serve como wrapper de disciplina isolado. |
-| `/ralph-loop`   | wrapper    | Wrapper de promessa de conclusão. Roda qualquer prompt até sair um `COMPLETE` literal. Já embutido no `/task-deliver`.   |
-| `/execute-task` | ferramenta | Ponto de entrada para execução direta de tarefa. Pula os estágios discuss/plan.                                          |
+| Comando | Escopo     | Capacidades                                                                                                          |
+| ------- | ---------- | ---------------------------------------------------------------------------------------------------------------------- |
+| `/tdd`  | disciplina | Red → green → refactor. Composto do upstream `superpowers:test-driven-development` (mattpocock `/tdd` como alternativa). |
+
+A promessa de conclusão não é mais um wrapper upstream: desde a 4.36.0 ela é o gate próprio do harnessed, `harnessed checkpoint complete <sub>` (ADR 0039) — por isso `/ralph-loop` e o antigo ponto de entrada `/execute-task` deixaram de existir.
 
 Todas as definições de workflow estão em `workflows/<name>/workflow.yaml` no [repositório do harnessed](https://github.com/easyinplay/harnessed).

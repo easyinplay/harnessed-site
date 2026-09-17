@@ -47,7 +47,7 @@ Cada gate declara explicitamente quando dispara e quando é pulado.
 1. **Esclarecer** — valida a spec, expõe ambiguidades, confere contra `task_plan.md`
 2. **Codar** — princípios karpathy: menor mudança viável, edições cirúrgicas, sem ampliar escopo
 3. **Testar** — TDD red → green → refactor na lógica central; opcional para CRUD e implementações óbvias
-4. **Entregar** — o wrapper `ralph-loop` só libera a próxima etapa com um `COMPLETE` literal
+4. **Entregar** — o gate `harnessed checkpoint complete` só libera a próxima etapa com um `COMPLETE` literal
 
 ### Verify — 7 subverificações condicionais
 
