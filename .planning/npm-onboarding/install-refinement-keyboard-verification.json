@@ -1,0 +1,30 @@
+[
+  {
+    "locale": "en",
+    "viewport": "320x640",
+    "before": 0,
+    "active": true,
+    "focusVisible": true,
+    "scrollLeft": 2,
+    "scrollWidth": 623,
+    "clientWidth": 194,
+    "outline": "rgb(196, 181, 253) solid 2px",
+    "outlineWidth": "2px",
+    "nextFocus": "copy-btn",
+    "status": "PASS"
+  },
+  {
+    "locale": "zh-hans",
+    "viewport": "320x640",
+    "before": 0,
+    "active": true,
+    "focusVisible": true,
+    "scrollLeft": 2,
+    "scrollWidth": 623,
+    "clientWidth": 194,
+    "outline": "rgb(196, 181, 253) solid 2px",
+    "outlineWidth": "2px",
+    "nextFocus": "copy-btn",
+    "status": "PASS"
+  }
+]

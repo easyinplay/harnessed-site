@@ -5,20 +5,24 @@ const source = (name: string) => readFileSync(new URL(`./${name}.astro`, import.
 const template = (name: string) => source(name).split("---")[2].split("<script>")[0];
 
 describe("onboarding source layout contracts (not rendered DOM)", () => {
-  it("separates the installation controls with a localized heading and decorative rules", () => {
+  it("separates installation controls with a localized heading and one trailing rule", () => {
     const installation = template("Installation");
     expect(installation).toMatch(
       /id="installation-heading"[^>]*>\{copy\.install\}<\/h2>[\s\S]*role="tablist"/,
     );
-    expect(installation.match(/class="installation-rule" aria-hidden="true"/g)).toHaveLength(2);
+    expect(installation.match(/class="installation-rule" aria-hidden="true"/g)).toHaveLength(1);
+    expect(installation).toMatch(
+      /<h2 id="installation-heading">\{copy\.install\}<\/h2>\s*<span class="installation-rule"/,
+    );
     expect(source("Installation")).toMatch(/\.installation-heading h2\s*\{[^}]*font-size:\s*14px/);
   });
 
-  it("mounts installation inside Hero between tagline and the CTA", () => {
+  it("ends Hero content with installation after the tagline without the old bottom links", () => {
     expect(template("Hero")).toMatch(
-      /dict\.hero\.tagline[\s\S]*<Installation lang=\{lang\} \/>[\s\S]*href="#quickstart"/,
+      /dict\.hero\.tagline[\s\S]*<Installation lang=\{lang\} \/>\s*<\/div>\s*<\/div>\s*<\/section>/,
     );
     expect(template("Hero")).not.toContain("<InstallCommand");
+    expect(template("Hero")).not.toMatch(/href="#quickstart"|ctaGitHub|hero-meta/);
   });
 
   it("keeps WhyCards immediately before the unique Quickstart", () => {

@@ -35,23 +35,6 @@ const release = await releaseClient.get()
     <div class="hero-installation mt-6">
       <Installation lang={lang} />
     </div>
-
-    <div class="hero-actions mt-6 flex gap-4 justify-center flex-wrap">
-      <a
-        href="#quickstart"
-        class="bg-violet-600 hover:bg-violet-500 text-white px-6 py-3 rounded-full font-medium transition-colors"
-      >
-        {dict.hero.ctaStart}
-      </a>
-      <a
-        href="https://github.com/easyinplay/harnessed"
-        class="border border-violet-400/40 hover:bg-violet-400/10 text-zinc-200 px-6 py-3 rounded-full font-medium transition-colors"
-      >
-        {dict.hero.ctaGitHub}
-      </a>
-    </div>
-
-    <p class="hero-meta mt-4 text-zinc-500 text-sm">{dict.hero.meta}</p>
   </div>
 </section>
 
@@ -66,17 +49,14 @@ const release = await releaseClient.get()
     .hero-heading { font-size: 32px; line-height: 40px; margin-top: 16px; }
     .hero-positioning { font-size: 14px; line-height: 20px; }
     .hero-tagline { display: none; }
-    .hero-installation, .hero-actions { margin-top: 16px; }
+    .hero-installation { margin-top: 16px; }
   }
   @media (max-width: 480px) and (max-height: 740px) {
-    .hero-positioning, .hero-meta { display: none; }
-    .hero-actions { gap: 8px; }
-    .hero-actions a { padding-inline: 12px; }
+    .hero-positioning { display: none; }
   }
   @media (max-width: 480px) and (max-height: 680px) {
     .hero { padding-top: 12px; padding-bottom: 8px; }
     .hero-heading { font-size: 28px; line-height: 34px; margin-top: 8px; }
-    .hero-installation, .hero-actions { margin-top: 8px; }
-    .hero-actions a { padding-block: 8px; font-size: 14px; line-height: 20px; }
+    .hero-installation { margin-top: 8px; }
   }
 </style>

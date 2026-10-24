@@ -31,7 +31,7 @@ export const onboarding: Record<Locale, OnboardingCopy> = {
   vi: {
     heading: "Bắt đầu với harnessed",
     subheading: "Cài đặt, bắt đầu workflow và tiếp tục từ nơi đã dừng.",
-    install: "Cài đặt nhanh",
+    install: "Cài đặt harnessed",
     workflow: "Bắt đầu workflow đầu tiên",
     status: "Xem tiến độ và tiếp tục",
     recommended: "Khuyên dùng",
@@ -60,7 +60,7 @@ export const onboarding: Record<Locale, OnboardingCopy> = {
   th: {
     heading: "เริ่มต้นกับ harnessed",
     subheading: "ติดตั้ง เริ่ม workflow และทำต่อจากจุดที่หยุดไว้",
-    install: "ติดตั้งด่วน",
+    install: "ติดตั้ง harnessed",
     workflow: "เริ่ม workflow แรก",
     status: "ตรวจสอบความคืบหน้าและทำต่อ",
     recommended: "แนะนำ",
@@ -89,7 +89,7 @@ export const onboarding: Record<Locale, OnboardingCopy> = {
   "pt-br": {
     heading: "Comece com harnessed",
     subheading: "Instale, inicie um workflow e retome de onde parou.",
-    install: "Instalação rápida",
+    install: "Instalar harnessed",
     workflow: "Inicie seu primeiro workflow",
     status: "Confira o progresso e retome",
     recommended: "Recomendado",
@@ -119,7 +119,7 @@ export const onboarding: Record<Locale, OnboardingCopy> = {
   tr: {
     heading: "harnessed ile başlayın",
     subheading: "Kurun, workflow başlatın ve kaldığınız yerden devam edin.",
-    install: "Hızlı kurulum",
+    install: "harnessed kurulumu",
     workflow: "İlk workflow başlatın",
     status: "İlerlemeyi kontrol edin ve sürdürün",
     recommended: "Önerilen",
@@ -148,7 +148,7 @@ export const onboarding: Record<Locale, OnboardingCopy> = {
   ru: {
     heading: "Начните с harnessed",
     subheading: "Установите, запустите workflow и продолжайте с места остановки.",
-    install: "Быстрая установка",
+    install: "Установка harnessed",
     workflow: "Запустите первый workflow",
     status: "Проверьте прогресс и продолжите",
     recommended: "Рекомендуется",
@@ -177,7 +177,7 @@ export const onboarding: Record<Locale, OnboardingCopy> = {
   ja: {
     heading: "harnessed を始める",
     subheading: "インストール、ワークフローの開始、進捗確認と再開。",
-    install: "クイックインストール",
+    install: "harnessed をインストール",
     workflow: "最初のワークフローを開始",
     status: "進捗を確認して再開",
     recommended: "推奨",
@@ -207,7 +207,7 @@ export const onboarding: Record<Locale, OnboardingCopy> = {
   ko: {
     heading: "harnessed 시작하기",
     subheading: "설치하고 워크플로를 시작한 다음 진행 상황을 확인하고 재개하세요.",
-    install: "빠른 설치",
+    install: "harnessed 설치",
     workflow: "첫 워크플로 시작",
     status: "진행 상황 확인 및 재개",
     recommended: "권장",
@@ -236,7 +236,7 @@ export const onboarding: Record<Locale, OnboardingCopy> = {
   "zh-hans": {
     heading: "开始使用 harnessed",
     subheading: "安装、启动工作流，随时查看进度与续跑。",
-    install: "一键安装",
+    install: "安装 harnessed",
     workflow: "启动第一个工作流",
     status: "查看进度与续跑",
     recommended: "推荐",
@@ -265,7 +265,7 @@ export const onboarding: Record<Locale, OnboardingCopy> = {
   "zh-hant": {
     heading: "開始使用 harnessed",
     subheading: "安裝、啟動工作流程，隨時查看進度與續跑。",
-    install: "一鍵安裝",
+    install: "安裝 harnessed",
     workflow: "啟動第一個工作流程",
     status: "查看進度與續跑",
     recommended: "推薦",
@@ -294,7 +294,7 @@ export const onboarding: Record<Locale, OnboardingCopy> = {
   en: {
     heading: "Start with harnessed",
     subheading: "Install. Start a workflow. Pick up where you left off.",
-    install: "Quick install",
+    install: "Install harnessed",
     workflow: "Start your first workflow",
     status: "Check progress and resume",
     recommended: "Recommended",

@@ -14,7 +14,7 @@ const id = `install-${Math.random().toString(36).slice(2, 8)}`
 
 <div class="command-block" data-copy-block>
 <div class="command-row bg-[#15151D] border border-violet-400/10 rounded-lg px-4 py-3 font-mono text-sm text-zinc-200 flex items-start justify-between gap-3">
-  <code id={id} data-command-content>{cmd}</code>
+  <code id={id} data-command-content tabindex="0">{cmd}</code>
   <button
     type="button"
     class="copy-btn text-zinc-400 hover:text-violet-300 transition-colors shrink-0"
@@ -77,7 +77,12 @@ const id = `install-${Math.random().toString(36).slice(2, 8)}`
 <style>
   .command-block, .command-row { min-width: 0; max-width: 100%; }
   code { min-width: 0; white-space: pre-wrap; overflow-wrap: anywhere; line-height: 1.6; }
+  code:focus-visible { outline: 2px solid #c4b5fd; outline-offset: 2px; }
   .copy-btn { width: 2rem; height: 2rem; display: grid; place-items: center; border-radius: 4px; cursor: pointer; }
   .copy-btn:focus-visible { outline: 2px solid #c4b5fd; outline-offset: 2px; }
   .copy-feedback { display: block; min-height: 1rem; color: #c4b5fd; font-size: .6875rem; line-height: 1.45; margin-top: .125rem; overflow-wrap: anywhere; }
+  @media (max-width: 480px) and (max-height: 680px) {
+    :global(#installation) .command-row { padding-block: 8px; }
+    :global(#installation) code { flex: 1; width: 0; white-space: pre; overflow-x: auto; }
+  }
 </style>

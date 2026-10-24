@@ -26,27 +26,24 @@ describe("mobile Hero source contracts (not rendered dimensions)", () => {
     expect(hero).toContain("{dict.hero.tagline}");
   });
 
-  it("keeps four mobile tabs with readable notes and removes the panel height floor", () => {
+  it("keeps readable mobile tabs and removes the panel height floor", () => {
     const css = mobile("Installation");
-    expect(css).toMatch(
-      /\.install-tabs\s*\{[^}]*grid-template-columns:\s*repeat\(4, minmax\(0, 1fr\)\);[^}]*gap:\s*4px/,
-    );
     expect(css).toMatch(/\[role='tab'\]\s*\{[^}]*font-size:\s*12px;[^}]*padding:\s*8px 4px/);
     expect(css).toMatch(/\.tab-note\s*\{[^}]*font-size:\s*10px/);
     expect(css).toMatch(/\.method-note\s*\{[^}]*font-size:\s*12px;[^}]*line-height:\s*1\.45/);
     expect(css).toMatch(/\[role='tabpanel'\]\s*\{[^}]*min-height:\s*0/);
   });
 
-  it("prioritizes brand, installation and actions on short mobile screens without deleting copy", () => {
+  it("keeps brand, installation and positioning copy without the removed CTA or meta", () => {
     const hero = source("Hero");
     const short =
       hero.split("@media (max-width: 480px) and (max-height: 740px)")[1]?.split("@media")[0] ?? "";
-    expect(short).toMatch(/\.hero-positioning,\s*\.hero-meta\s*\{[^}]*display:\s*none/);
+    expect(short).toMatch(/\.hero-positioning\s*\{[^}]*display:\s*none/);
     expect(short).not.toMatch(/\.hero-heading\s*\{|\.hero-installation\s*\{/);
     expect(hero).toContain("{dict.hero.positioning}");
-    expect(hero).toContain("{dict.hero.meta}");
-    expect(hero).toContain("{dict.hero.ctaStart}");
-    expect(hero).toContain("{dict.hero.ctaGitHub}");
+    expect(hero).not.toMatch(/hero-actions|hero-meta|dict\.hero\.(meta|ctaStart|ctaGitHub)/);
+    expect(hero).toContain("data-release-link");
+    expect(hero).toContain("data-release-version");
   });
 
   it("keeps the next module discoverable on 640px-high phones with fixed type and spacing", () => {
@@ -55,10 +52,8 @@ describe("mobile Hero source contracts (not rendered dimensions)", () => {
     expect(compact).toMatch(
       /\.hero-heading\s*\{[^}]*font-size:\s*28px;[^}]*line-height:\s*34px;[^}]*margin-top:\s*8px/,
     );
-    expect(compact).toMatch(/\.hero-installation,\s*\.hero-actions\s*\{[^}]*margin-top:\s*8px/);
+    expect(compact).toMatch(/\.hero-installation\s*\{[^}]*margin-top:\s*8px/);
     expect(compact).toMatch(/\.hero\s*\{[^}]*padding-top:\s*12px;[^}]*padding-bottom:\s*8px/);
-    expect(compact).toMatch(
-      /\.hero-actions a\s*\{[^}]*padding-block:\s*8px;[^}]*font-size:\s*14px;[^}]*line-height:\s*20px/,
-    );
+    expect(compact).not.toContain("hero-actions");
   });
 });
