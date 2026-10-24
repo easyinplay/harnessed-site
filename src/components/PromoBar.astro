@@ -1,6 +1,7 @@
 ---
 import { t } from '../i18n'
 import type { Locale } from '../i18n'
+import { releaseClient } from '../lib/releases'
 
 interface Props {
   lang: Locale
@@ -8,13 +9,17 @@ interface Props {
 
 const { lang } = Astro.props
 const dict = t(lang)
+const release = await releaseClient.get()
 ---
 
 <div class="sticky top-0 z-50 h-9 bg-[#15151D]/95 backdrop-blur border-b border-violet-400/10 overflow-hidden flex items-center">
   <div class="promo-track flex items-center gap-0 whitespace-nowrap">
-    {[...dict.promoBar.items, ...dict.promoBar.items].map((item) => (
+    {[...dict.promoBar.items, ...dict.promoBar.items].map((item, index) => (
       <span class="text-xs text-zinc-400 px-6">
-        <span class="text-violet-400/60 mr-3" aria-hidden="true">•</span>{item}
+        <span class="text-violet-400/60 mr-3" aria-hidden="true">•</span>
+        {index % dict.promoBar.items.length === 0
+          ? <a href={release.url} data-release-link>{item} · <span data-release-version>v{release.version}</span></a>
+          : item}
       </span>
     ))}
   </div>

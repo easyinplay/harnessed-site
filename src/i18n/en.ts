@@ -1,10 +1,11 @@
+import { onboarding } from "./onboarding";
 const en = {
   promoBar: {
     items: [
-      "v4.43.0 — gate for schema fields declared but never evaluated · 39-finding external code review remediated · Windows-safe spawn & codex plugin detection",
+      onboarding["en"].latest,
       "Auto-routed subagents → Agent Teams, decided per subtask",
       "Composing ECC · Superpowers · GSD · gstack",
-      "Apache-2.0 · Node 22+ · Cross-platform",
+      onboarding["en"].meta,
       "Star us on GitHub →",
     ],
   },
@@ -14,7 +15,7 @@ const en = {
     npm: "npm",
   },
   hero: {
-    versionPill: "v4.43.0 · 100+ capabilities composed",
+    versionPill: "100+ capabilities composed",
     h1: "The package manager for AI coding harnesses",
     positioning:
       "More than a package manager — a composition orchestrator. It assembles the best of the open-source ecosystem into one executable engine, wired by the three-layer BDD → SDD → TDD methodology.",
@@ -22,7 +23,7 @@ const en = {
       "harnessed is an orchestration brain + prompt library, driving native subagent spawn through three fast, pure-function CLIs — `harnessed gates` (which sub-workflows fire), `harnessed prompt` (spawn-ready prompt for a sub), and `harnessed checkpoint` (record progress).",
     ctaStart: "Get Started",
     ctaGitHub: "View on GitHub",
-    meta: "Apache-2.0 · Node 22+ · Cross-platform",
+    meta: onboarding["en"].meta,
   },
   whyCards: {
     heading: "Why harnessed",
@@ -170,37 +171,14 @@ const en = {
     ],
     githubLink: "View all workflows on GitHub →",
   },
-  quickstart: {
-    heading: "Get started in 60 seconds",
-    subheading: "No config files. No manual scaffolding. Just three commands.",
-    steps: [
-      {
-        num: "1",
-        title: "Install",
-        cmd: "npm install -g harnessed",
-        caption: "Pulls the latest stable from npm.",
-      },
-      {
-        num: "2",
-        title: "Setup",
-        cmd: "harnessed setup",
-        caption: "Auto-enables Agent Teams, user locale, and MCP discovery.",
-      },
-      {
-        num: "3",
-        title: "Compose",
-        cmd: "/auto research a new feature",
-        caption: "Run inside your AI coding agent. The 6-stage pipeline takes over.",
-      },
-    ],
-  },
+  quickstart: onboarding["en"],
   communityStats: {
+    latestLabel: "Latest release · Apache-2.0",
     heading: "Join the harness ecosystem",
     npmDownloadsLabel: "Total npm downloads",
     stats: [
       { value: "100+", label: "Capabilities composed (ECC · Superpowers · GSD · gstack)" },
       { value: "29", label: "Workflows shipped" },
-      { value: "v4.43.0", label: "Latest release · Apache-2.0" },
     ],
     links: {
       discussions: "GitHub Discussions →",

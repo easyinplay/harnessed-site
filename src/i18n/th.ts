@@ -1,12 +1,13 @@
+import { onboarding } from "./onboarding";
 import type { Dict } from "./en";
 
 const th: Dict = {
   promoBar: {
     items: [
-      "v4.43.0 — gate สำหรับฟิลด์ schema ที่ประกาศไว้แต่ไม่เคยถูกประเมิน · แก้ไขผลรีวิวโค้ดภายนอก 39 รายการ · spawn ที่ปลอดภัยบน Windows และการตรวจจับปลั๊กอิน codex",
+      onboarding["th"].latest,
       "Subagent กำหนดเส้นทางอัตโนมัติ → Agent Teams ตัดสินใจรายงานย่อย",
       "ประกอบจาก ECC · Superpowers · GSD · gstack",
-      "Apache-2.0 · Node 22+ · ข้ามแพลตฟอร์ม",
+      onboarding["th"].meta,
       "กดดาวให้เราบน GitHub →",
     ],
   },
@@ -16,7 +17,7 @@ const th: Dict = {
     npm: "npm",
   },
   hero: {
-    versionPill: "v4.43.0 · ประกอบแล้ว 100+ capability",
+    versionPill: "ประกอบแล้ว 100+ capability",
     h1: "ตัวจัดการแพ็กเกจสำหรับ harness เขียนโค้ดด้วย AI",
     positioning:
       "มากกว่าตัวจัดการแพ็กเกจ — นี่คือ orchestrator สำหรับการประกอบ มันรวมสิ่งที่ดีที่สุดของระบบนิเวศโอเพนซอร์สให้เป็น engine เดียวที่รันได้จริง โดยเดินสายด้วยระเบียบวิธีสามชั้น BDD → SDD → TDD",
@@ -24,7 +25,7 @@ const th: Dict = {
       "harnessed คือ orchestration brain + คลัง prompt ที่ขับเคลื่อน native subagent spawn ผ่าน CLI ฟังก์ชันบริสุทธิ์ที่เร็วสามตัว — `harnessed gates` (sub-workflow ใดถูกกระตุ้น), `harnessed prompt` (prompt พร้อม spawn สำหรับ sub) และ `harnessed checkpoint` (บันทึกความคืบหน้า)",
     ctaStart: "เริ่มต้นใช้งาน",
     ctaGitHub: "ดูบน GitHub",
-    meta: "Apache-2.0 · Node 22+ · ข้ามแพลตฟอร์ม",
+    meta: onboarding["th"].meta,
   },
   whyCards: {
     heading: "ทำไมต้อง harnessed",
@@ -166,37 +167,14 @@ const th: Dict = {
     ],
     githubLink: "ดู workflow ทั้งหมดบน GitHub →",
   },
-  quickstart: {
-    heading: "เริ่มได้ใน 60 วินาที",
-    subheading: "ไม่มีไฟล์คอนฟิก ไม่ต้องวางโครงเอง แค่สามคำสั่ง",
-    steps: [
-      {
-        num: "1",
-        title: "ติดตั้ง",
-        cmd: "npm install -g harnessed",
-        caption: "ดึงเวอร์ชันเสถียรล่าสุดจาก npm",
-      },
-      {
-        num: "2",
-        title: "ตั้งค่า",
-        cmd: "harnessed setup",
-        caption: "เปิด Agent Teams, locale ของผู้ใช้ และการค้นหา MCP ให้อัตโนมัติ",
-      },
-      {
-        num: "3",
-        title: "ประกอบ",
-        cmd: "/auto research a new feature",
-        caption: "รันภายใน agent เขียนโค้ด AI ของคุณ แล้วไปป์ไลน์ 6 ขั้นจะรับช่วงต่อ",
-      },
-    ],
-  },
+  quickstart: onboarding["th"],
   communityStats: {
+    latestLabel: "รุ่นล่าสุด · Apache-2.0",
     heading: "เข้าร่วมระบบนิเวศ harness",
     npmDownloadsLabel: "ยอดดาวน์โหลดรวมบน npm",
     stats: [
       { value: "100+", label: "capability ที่ประกอบแล้ว (ECC · Superpowers · GSD · gstack)" },
       { value: "29", label: "workflow ที่ปล่อยแล้ว" },
-      { value: "v4.43.0", label: "รุ่นล่าสุด · Apache-2.0" },
     ],
     links: {
       discussions: "GitHub Discussions →",

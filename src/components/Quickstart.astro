@@ -2,37 +2,124 @@
 import InstallCommand from './InstallCommand.astro'
 import { t } from '../i18n'
 import type { Locale } from '../i18n'
+import { commands } from '../lib/onboarding'
 
-interface Props {
-  lang: Locale
-}
-
+interface Props { lang: Locale }
 const { lang } = Astro.props
-const dict = t(lang)
+const copy = t(lang).quickstart
 ---
 
-<section id="quickstart" data-fade class="py-24 bg-[#0F0F15]">
+<section id="quickstart" data-fade class="quickstart py-24 bg-[#0F0F15]">
   <div class="max-w-4xl mx-auto px-6">
-    <h2 class="text-[32px] leading-[42px] font-medium text-white text-center">
-      {dict.quickstart.heading}
-    </h2>
-    <p class="mt-3 text-zinc-400 text-center">
-      {dict.quickstart.subheading}
-    </p>
+    <h2 class="text-[32px] leading-[42px] font-medium text-white text-center">{copy.heading}</h2>
+    <p class="mt-3 text-zinc-400 text-center">{copy.workflow} · {copy.status}</p>
 
-    <div class="mt-14 space-y-8">
-      {dict.quickstart.steps.map((step) => (
-        <div class="flex items-start gap-6">
-          <div class="size-10 rounded-full bg-violet-600 text-white font-semibold flex items-center justify-center shrink-0">
-            {step.num}
+    <ol class="steps mt-14">
+      <li class="step">
+        <span class="step-number" aria-hidden="true">1</span>
+        <div class="step-content">
+          <h3>{copy.workflow}</h3>
+          <fieldset class="host-choice">
+            <legend>{copy.host}</legend>
+            <div class="host-options">
+              <label><input type="radio" name="quickstart-host" value="claude" checked />Claude Code</label>
+              <label><input type="radio" name="quickstart-host" value="codex" />Codex</label>
+            </div>
+          </fieldset>
+          <p class="method-note workflow-note">{copy.firstWorkflow}</p>
+          <p class="setup-label" data-workflow-host>Claude Code</p>
+          <div data-workflow-command data-prompt={copy.prompt}>
+            <InstallCommand lang={lang} cmd={`${commands.workflow.claude} "${copy.prompt}"`} />
           </div>
-          <div class="flex-1 min-w-0">
-            <h3 class="text-[20px] font-medium text-white mb-3">{step.title}</h3>
-            <InstallCommand cmd={step.cmd} />
-            <p class="mt-3 text-zinc-500 text-sm">{step.caption}</p>
-          </div>
+          <p class="method-note">{copy.readiness}</p>
         </div>
-      ))}
-    </div>
+      </li>
+      <li class="step">
+        <span class="step-number" aria-hidden="true">2</span>
+        <div class="step-content">
+          <h3>{copy.status}</h3>
+          <p class="method-note workflow-note">{copy.progress}</p>
+          <div data-status-command><InstallCommand lang={lang} cmd={commands.status} /></div>
+          <div class="mt-3" data-resume-command><InstallCommand lang={lang} cmd={commands.resume} /></div>
+        </div>
+      </li>
+    </ol>
   </div>
 </section>
+
+<script>
+  import { commands, defaultInstallMethod, runtimeCommand, tabIndexForKey } from '../lib/onboarding'
+  import type { InstallMethod, Host } from '../lib/onboarding'
+
+  const installationRoot = document.querySelector<HTMLElement>('#installation')
+  const quickstartRoot = document.querySelector<HTMLElement>('#quickstart')
+  if (installationRoot && quickstartRoot) {
+    const tabs = [...installationRoot.querySelectorAll<HTMLButtonElement>('[data-install-tab]')]
+    let method: InstallMethod = defaultInstallMethod(navigator.platform || navigator.userAgent)
+    let host: Host = 'claude'
+    const updateCommands = () => {
+      const workflow = quickstartRoot.querySelector('[data-workflow-command] [data-command-content]')
+      const workflowHost = quickstartRoot.querySelector('[data-workflow-host]')
+      const status = quickstartRoot.querySelector('[data-status-command] [data-command-content]')
+      const resume = quickstartRoot.querySelector('[data-resume-command] [data-command-content]')
+      if (workflow) workflow.textContent = `${commands.workflow[host]} "${quickstartRoot.querySelector<HTMLElement>('[data-prompt]')?.dataset.prompt ?? ''}"`
+      if (workflowHost) workflowHost.textContent = host === 'claude' ? 'Claude Code' : 'Codex'
+      if (status) status.textContent = runtimeCommand(method, commands.status)
+      if (resume) resume.textContent = runtimeCommand(method, commands.resume)
+    }
+    const selectMethod = (next: InstallMethod) => {
+      method = next
+      tabs.forEach((tab) => {
+        const active = tab.dataset.installTab === method
+        tab.setAttribute('aria-selected', String(active))
+        tab.tabIndex = active ? 0 : -1
+      })
+      installationRoot.querySelectorAll<HTMLElement>('[data-install-panel]').forEach((panel) => {
+        panel.hidden = panel.dataset.installPanel !== method
+      })
+      updateCommands()
+    }
+    tabs.forEach((tab, index) => {
+      tab.addEventListener('click', () => selectMethod(tab.dataset.installTab as InstallMethod))
+      tab.addEventListener('keydown', (event) => {
+        const next = tabIndexForKey(event.key, index, tabs.length)
+        if (next === null) return
+        event.preventDefault()
+        selectMethod(tabs[next].dataset.installTab as InstallMethod)
+        tabs[next].focus()
+      })
+    })
+    quickstartRoot.querySelectorAll<HTMLInputElement>('[name="quickstart-host"]').forEach((input) => {
+      input.addEventListener('change', () => {
+        if (!input.checked) return
+        host = input.value as Host
+        updateCommands()
+      })
+    })
+    selectMethod(method)
+  }
+</script>
+
+<style>
+  .quickstart { scroll-margin-top: 116px; }
+  .steps { list-style: none; padding: 0; }
+  .step { display: grid; grid-template-columns: 2.5rem minmax(0, 1fr); gap: 1.5rem; padding-block: 2rem; border-bottom: 1px solid #ffffff12; }
+  .step:first-child { padding-top: 0; }
+  .step:last-child { border-bottom: 0; padding-bottom: 0; }
+  .step-number { width: 2.5rem; height: 2.5rem; border-radius: 50%; background: #7c3aed; display: grid; place-items: center; color: white; font-weight: 600; }
+  .step-content { min-width: 0; }
+  h3 { color: white; font-size: 1.25rem; line-height: 1.5; font-weight: 500; margin-bottom: 1rem; overflow-wrap: anywhere; }
+  .method-note { color: #a1a1aa; font-size: .875rem; line-height: 1.65; margin-top: .75rem; overflow-wrap: anywhere; }
+  .workflow-note { margin: 0 0 1rem; }
+  .host-choice { margin: 1.25rem 0 1rem; }
+  legend, .setup-label { color: #d4d4d8; font-size: .875rem; margin-bottom: .625rem; }
+  .host-options { display: flex; flex-wrap: wrap; gap: .5rem 1.25rem; }
+  .host-options label { display: inline-flex; align-items: center; gap: .5rem; min-height: 2rem; color: #e4e4e7; font-size: .875rem; cursor: pointer; }
+  input { accent-color: #a78bfa; }
+  input:focus-visible { outline: 2px solid #c4b5fd; outline-offset: 3px; }
+  @media (max-width: 480px) {
+    .step { grid-template-columns: 1.75rem minmax(0, 1fr); gap: .75rem; }
+    .step-number { width: 1.75rem; height: 1.75rem; font-size: .875rem; }
+    h3 { font-size: 1.125rem; }
+  }
+</style>

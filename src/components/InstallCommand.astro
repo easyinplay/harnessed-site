@@ -1,20 +1,29 @@
 ---
+import { t } from '../i18n'
+import type { Locale } from '../i18n'
+
 interface Props {
-  cmd?: string
+  cmd: string
+  lang?: Locale
 }
 
-const { cmd = 'npm install -g harnessed && harnessed setup' } = Astro.props
+const { cmd, lang = 'en' } = Astro.props
+const copy = t(lang).quickstart
 const id = `install-${Math.random().toString(36).slice(2, 8)}`
 ---
 
-<div class="bg-[#15151D] border border-violet-400/10 rounded-xl px-5 py-4 font-mono text-sm text-zinc-200 flex items-center justify-between gap-4 max-w-xl mx-auto">
-  <span>
-    <span class="text-violet-400 select-none">$ </span><span id={id}>{cmd}</span>
-  </span>
+<div class="command-block" data-copy-block>
+<div class="command-row bg-[#15151D] border border-violet-400/10 rounded-lg px-4 py-3 font-mono text-sm text-zinc-200 flex items-start justify-between gap-3">
+  <code id={id} data-command-content>{cmd}</code>
   <button
+    type="button"
     class="copy-btn text-zinc-400 hover:text-violet-300 transition-colors shrink-0"
     data-target={id}
-    aria-label="Copy command"
+    aria-label={copy.copy}
+    title={copy.copy}
+    data-copy={copy.copy}
+    data-copied={copy.copied}
+    data-copy-failed={copy.copyFailed}
   >
     <svg class="copy-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <rect x="5" y="5" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
@@ -25,15 +34,20 @@ const id = `install-${Math.random().toString(36).slice(2, 8)}`
     </svg>
   </button>
 </div>
+<span class="copy-feedback" role="status" aria-live="polite" aria-atomic="true"></span>
+</div>
 
 <script>
   document.querySelectorAll<HTMLButtonElement>('.copy-btn').forEach((btn) => {
+    let reset: ReturnType<typeof setTimeout>
     btn.addEventListener('click', async () => {
       const targetId = btn.dataset.target
       if (!targetId) return
       const el = document.getElementById(targetId)
       if (!el) return
       const text = el.textContent ?? ''
+      const feedback = btn.closest('[data-copy-block]')?.querySelector('.copy-feedback')
+      clearTimeout(reset)
       try {
         await navigator.clipboard.writeText(text)
         const copyIcon = btn.querySelector<SVGElement>('.copy-icon')
@@ -41,14 +55,29 @@ const id = `install-${Math.random().toString(36).slice(2, 8)}`
         if (copyIcon && checkIcon) {
           copyIcon.classList.add('hidden')
           checkIcon.classList.remove('hidden')
-          setTimeout(() => {
+          if (feedback) feedback.textContent = btn.dataset.copied ?? ''
+          btn.title = btn.dataset.copied ?? ''
+          reset = setTimeout(() => {
             copyIcon.classList.remove('hidden')
             checkIcon.classList.add('hidden')
+            if (feedback) feedback.textContent = ''
+            btn.title = btn.dataset.copy ?? ''
           }, 1500)
         }
       } catch {
-        // clipboard write failed silently
+        btn.querySelector('.copy-icon')?.classList.remove('hidden')
+        btn.querySelector('.check-icon')?.classList.add('hidden')
+        if (feedback) feedback.textContent = btn.dataset.copyFailed ?? ''
+        btn.title = btn.dataset.copyFailed ?? ''
       }
     })
   })
 </script>
+
+<style>
+  .command-block, .command-row { min-width: 0; max-width: 100%; }
+  code { min-width: 0; white-space: pre-wrap; overflow-wrap: anywhere; line-height: 1.6; }
+  .copy-btn { width: 2rem; height: 2rem; display: grid; place-items: center; border-radius: 4px; cursor: pointer; }
+  .copy-btn:focus-visible { outline: 2px solid #c4b5fd; outline-offset: 2px; }
+  .copy-feedback { display: block; min-height: 1rem; color: #c4b5fd; font-size: .6875rem; line-height: 1.45; margin-top: .125rem; overflow-wrap: anywhere; }
+</style>

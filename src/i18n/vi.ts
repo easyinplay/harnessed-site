@@ -1,12 +1,13 @@
+import { onboarding } from "./onboarding";
 import type { Dict } from "./en";
 
 const vi: Dict = {
   promoBar: {
     items: [
-      "v4.43.0 — gate cho các trường schema được khai báo nhưng không bao giờ được đánh giá · khắc phục 39 phát hiện từ review mã bên ngoài · spawn an toàn trên Windows và phát hiện plugin codex",
+      onboarding["vi"].latest,
       "Subagent tự động định tuyến → Agent Teams, quyết định theo từng subtask",
       "Kết hợp ECC · Superpowers · GSD · gstack",
-      "Apache-2.0 · Node 22+ · Đa nền tảng",
+      onboarding["vi"].meta,
       "Tặng sao trên GitHub →",
     ],
   },
@@ -16,7 +17,7 @@ const vi: Dict = {
     npm: "npm",
   },
   hero: {
-    versionPill: "v4.43.0 · đã kết hợp 100+ capability",
+    versionPill: "đã kết hợp 100+ capability",
     h1: "Trình quản lý gói cho các harness lập trình AI",
     positioning:
       "Không chỉ là trình quản lý gói — đây là một orchestrator kết hợp. Nó lắp ghép những gì tốt nhất của hệ sinh thái mã nguồn mở thành một engine chạy được duy nhất, nối dây bằng phương pháp ba tầng BDD → SDD → TDD.",
@@ -24,7 +25,7 @@ const vi: Dict = {
       "harnessed là orchestration brain + thư viện prompt, điều khiển native subagent spawn qua ba CLI hàm thuần và nhanh — `harnessed gates` (sub-workflow nào được kích hoạt), `harnessed prompt` (prompt sẵn sàng spawn cho một sub) và `harnessed checkpoint` (ghi lại tiến độ).",
     ctaStart: "Bắt đầu",
     ctaGitHub: "Xem trên GitHub",
-    meta: "Apache-2.0 · Node 22+ · Đa nền tảng",
+    meta: onboarding["vi"].meta,
   },
   whyCards: {
     heading: "Vì sao chọn harnessed",
@@ -170,37 +171,14 @@ const vi: Dict = {
     ],
     githubLink: "Xem toàn bộ workflow trên GitHub →",
   },
-  quickstart: {
-    heading: "Bắt đầu trong 60 giây",
-    subheading: "Không file cấu hình. Không dựng khung thủ công. Chỉ ba lệnh.",
-    steps: [
-      {
-        num: "1",
-        title: "Cài đặt",
-        cmd: "npm install -g harnessed",
-        caption: "Kéo bản ổn định mới nhất từ npm.",
-      },
-      {
-        num: "2",
-        title: "Thiết lập",
-        cmd: "harnessed setup",
-        caption: "Tự bật Agent Teams, locale người dùng và khám phá MCP.",
-      },
-      {
-        num: "3",
-        title: "Kết hợp",
-        cmd: "/auto research a new feature",
-        caption: "Chạy bên trong agent lập trình AI của bạn. Pipeline 6 giai đoạn sẽ tiếp quản.",
-      },
-    ],
-  },
+  quickstart: onboarding["vi"],
   communityStats: {
+    latestLabel: "Bản mới nhất · Apache-2.0",
     heading: "Tham gia hệ sinh thái harness",
     npmDownloadsLabel: "Tổng lượt tải npm",
     stats: [
       { value: "100+", label: "Capability đã kết hợp (ECC · Superpowers · GSD · gstack)" },
       { value: "29", label: "Workflow đã phát hành" },
-      { value: "v4.43.0", label: "Bản mới nhất · Apache-2.0" },
     ],
     links: {
       discussions: "GitHub Discussions →",

@@ -2,6 +2,7 @@
 import { t, localeMeta } from '../i18n'
 import type { Locale } from '../i18n'
 import { fetchTotalDownloads, formatCount } from '../lib/npmDownloads'
+import { releaseClient } from '../lib/releases'
 
 interface Props {
   lang: Locale
@@ -15,6 +16,7 @@ const htmlLang = localeMeta[lang].htmlLang
 // refreshes it in the browser. A failed fetch (offline build) shows a dash.
 const downloads = await fetchTotalDownloads()
 const downloadsText = downloads === null ? '—' : formatCount(downloads, htmlLang)
+const release = await releaseClient.get()
 ---
 
 <section class="py-24">
@@ -44,6 +46,10 @@ const downloadsText = downloads === null ? '—' : formatCount(downloads, htmlLa
           <div class="text-zinc-400 text-sm mt-2">{stat.label}</div>
         </div>
       ))}
+      <a data-fade href={release.url} data-release-link class="block bg-[#15151D] border border-violet-400/10 rounded-xl p-8 text-center hover:border-violet-400/30 transition-colors min-w-0">
+        <div class="text-[32px] font-medium text-white break-words" data-release-version>v{release.version}</div>
+        <div class="text-zinc-400 text-sm mt-2">{dict.communityStats.latestLabel}</div>
+      </a>
     </div>
 
     <div class="mt-10 text-center">

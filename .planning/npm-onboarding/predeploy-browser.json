@@ -1,0 +1,47 @@
+{
+  "ok": true,
+  "base": "http://127.0.0.1:4322",
+  "releaseMetadata": "mock v4.49.2 for deterministic predeploy UI checks",
+  "checks": [
+    {
+      "viewport": "desktop-en",
+      "heading": "Quick install",
+      "stableBunCompatibility": true,
+      "combinedSetup": true,
+      "layout": true,
+      "keyboard": true,
+      "copy": true,
+      "errors": []
+    },
+    {
+      "viewport": "desktop-zh",
+      "heading": "一键安装",
+      "stableBunCompatibility": true,
+      "combinedSetup": true,
+      "layout": true,
+      "keyboard": true,
+      "copy": true,
+      "errors": []
+    },
+    {
+      "viewport": "mobile-en",
+      "heading": "Quick install",
+      "stableBunCompatibility": true,
+      "combinedSetup": true,
+      "layout": true,
+      "keyboard": true,
+      "copy": true,
+      "errors": []
+    },
+    {
+      "viewport": "mobile-zh",
+      "heading": "一键安装",
+      "stableBunCompatibility": true,
+      "combinedSetup": true,
+      "layout": true,
+      "keyboard": true,
+      "copy": true,
+      "errors": []
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+---
+import InstallCommand from './InstallCommand.astro'
+import { t } from '../i18n'
+import type { Locale } from '../i18n'
+import { installCommand, installMethods } from '../lib/onboarding'
+
+interface Props { lang: Locale }
+const { lang } = Astro.props
+const copy = t(lang).quickstart
+const labels = { unix: 'macOS / Linux', windows: 'Windows', bun: 'Bun', npm: 'npm' }
+---
+
+<div id="installation" class="installation">
+  <div class="installation-heading">
+    <span class="installation-rule" aria-hidden="true"></span><h2 id="installation-heading">{copy.install}</h2><span class="installation-rule" aria-hidden="true"></span>
+  </div>
+  <div role="tablist" aria-label={copy.method} class="install-tabs">
+    {installMethods.map((method, index) => (
+      <button type="button" role="tab" id={`install-tab-${method}`}
+        aria-controls={`install-panel-${method}`} aria-selected={index === 0 ? 'true' : 'false'}
+        tabindex={index === 0 ? 0 : -1} data-install-tab={method}>
+        <span>{labels[method]}</span>
+        <span class="tab-note">{index < 2 ? copy.recommended : method === 'bun' ? copy.secondary : copy.compatibility}</span>
+      </button>
+    ))}
+  </div>
+  {installMethods.map((method, index) => (
+    <div role="tabpanel" id={`install-panel-${method}`} aria-labelledby={`install-tab-${method}`}
+      tabindex="0" hidden={index !== 0} data-install-panel={method}>
+      <InstallCommand lang={lang} cmd={installCommand(method)} />
+      <p class="method-note">{copy[method]}</p>
+    </div>
+  ))}
+</div>
+
+<style>
+  .installation { min-width: 0; text-align: left; }
+  .installation-heading { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+  .installation-heading h2 { margin: 0; font-size: 14px; line-height: 20px; font-weight: 500; color: #d4d4d8; white-space: nowrap; }
+  .installation-rule { flex: 1; min-width: 0; height: 1px; background: #ffffff1f; }
+  .install-tabs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .375rem; margin-bottom: 1rem; }
+  [role='tab'] { min-width: 0; padding: .625rem .5rem; border-bottom: 2px solid #ffffff12; text-align: left; color: #a1a1aa; font-size: .875rem; cursor: pointer; overflow-wrap: anywhere; }
+  [role='tab'][aria-selected='true'] { color: #fff; border-color: #a78bfa; background: #a78bfa0d; }
+  .tab-note { display: block; font-size: .6875rem; line-height: 1.4; margin-top: .25rem; color: #a78bfa; }
+  [role='tabpanel'] { min-height: 9rem; }
+  [hidden] { display: none !important; }
+  .method-note { color: #a1a1aa; font-size: .875rem; line-height: 1.65; margin-top: .75rem; overflow-wrap: anywhere; }
+  button:focus-visible, [role='tabpanel']:focus-visible { outline: 2px solid #c4b5fd; outline-offset: 3px; }
+  @media (max-width: 480px) {
+    .installation-heading { gap: 8px; margin-bottom: 6px; }
+    .installation-heading h2 { font-size: 12px; line-height: 18px; }
+    .install-tabs { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 4px; }
+    [role='tab'] { font-size: 12px; padding: 8px 4px; }
+    .tab-note { font-size: 10px; }
+    .method-note { font-size: 12px; line-height: 1.45; }
+    [role='tabpanel'] { min-height: 0; }
+  }
+</style>

@@ -1,12 +1,13 @@
+import { onboarding } from "./onboarding";
 import type { Dict } from "./en";
 
 const ptBr: Dict = {
   promoBar: {
     items: [
-      "v4.43.0 — gate para campos de schema declarados e nunca avaliados · 39 achados de code review externo corrigidos · spawn seguro no Windows e detecção de plugins do codex",
+      onboarding["pt-br"].latest,
       "Subagents roteados automaticamente → Agent Teams, decidido por subtarefa",
       "Compondo ECC · Superpowers · GSD · gstack",
-      "Apache-2.0 · Node 22+ · Multiplataforma",
+      onboarding["pt-br"].meta,
       "Dê uma estrela no GitHub →",
     ],
   },
@@ -16,7 +17,7 @@ const ptBr: Dict = {
     npm: "npm",
   },
   hero: {
-    versionPill: "v4.43.0 · 100+ capabilities compostas",
+    versionPill: "100+ capabilities compostas",
     h1: "O gerenciador de pacotes para harnesses de programação com IA",
     positioning:
       "Mais que um gerenciador de pacotes — um orquestrador de composição. Ele monta o melhor do ecossistema open source em um único engine executável, conectado pela metodologia de três camadas BDD → SDD → TDD.",
@@ -24,7 +25,7 @@ const ptBr: Dict = {
       "harnessed é um orchestration brain + biblioteca de prompts, que dispara o spawn nativo de subagents por meio de três CLIs rápidas e puras — `harnessed gates` (quais subworkflows disparam), `harnessed prompt` (prompt pronto para spawn de um sub) e `harnessed checkpoint` (registro de progresso).",
     ctaStart: "Começar",
     ctaGitHub: "Ver no GitHub",
-    meta: "Apache-2.0 · Node 22+ · Multiplataforma",
+    meta: onboarding["pt-br"].meta,
   },
   whyCards: {
     heading: "Por que harnessed",
@@ -176,38 +177,14 @@ const ptBr: Dict = {
     ],
     githubLink: "Ver todos os workflows no GitHub →",
   },
-  quickstart: {
-    heading: "Comece em 60 segundos",
-    subheading: "Sem arquivos de configuração. Sem scaffolding manual. Só três comandos.",
-    steps: [
-      {
-        num: "1",
-        title: "Instalar",
-        cmd: "npm install -g harnessed",
-        caption: "Baixa a última versão estável do npm.",
-      },
-      {
-        num: "2",
-        title: "Configurar",
-        cmd: "harnessed setup",
-        caption: "Habilita automaticamente Agent Teams, locale do usuário e descoberta de MCP.",
-      },
-      {
-        num: "3",
-        title: "Compor",
-        cmd: "/auto research a new feature",
-        caption:
-          "Rode dentro do seu agent de programação com IA. O pipeline de 6 estágios assume daí.",
-      },
-    ],
-  },
+  quickstart: onboarding["pt-br"],
   communityStats: {
+    latestLabel: "Último release · Apache-2.0",
     heading: "Entre no ecossistema harness",
     npmDownloadsLabel: "Downloads totais no npm",
     stats: [
       { value: "100+", label: "Capabilities compostas (ECC · Superpowers · GSD · gstack)" },
       { value: "29", label: "Workflows entregues" },
-      { value: "v4.43.0", label: "Último release · Apache-2.0" },
     ],
     links: {
       discussions: "GitHub Discussions →",

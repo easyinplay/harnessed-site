@@ -1,80 +1,99 @@
 ---
 title: 安装
-description: 30 秒内安装 harnessed 并完成初始化。
+description: 选择 standalone、Bun 或 npm，再初始化 Claude Code 或 Codex。
 ---
 
-## 前提条件
+## Standalone (推荐)
 
-- **Node.js 22+** — harnessed 使用 ESM，需要 Node 22 或更高版本
-- **一个 AI 编程 agent** — harnessed 在其内运行。Claude Code 是主要目标（先从 [anthropic.com/claude/code](https://anthropic.com/claude/code) 安装）；Codex 等其他 harness 通过跨 harness 平台层支持
+Standalone 二进制内置运行时，**harnessed 本身**无需另装 Node.js 或 Bun。
+上游工具和编程 agent 仍可能需要 Node.js、Bun、Git、其他依赖及授权。
 
-## 安装
-
-```bash
-npm install -g harnessed
-```
-
-验证安装结果：
-
-```bash
-harnessed --version
-# → 4.43.0
-```
-
-## 单文件二进制(无需 Node.js)
-
-没有 Node.js?可改装自包含的单文件二进制 —— 按平台分发,通过 `harnessed update` 自更新:
-
-**macOS / Linux**
+### macOS arm64 / Linux x64
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/easyinplay/harnessed/main/install.sh | bash
 ```
 
-安装到 `~/.local/bin/harnessed`。unix 上绝不自动改 PATH —— 若 `~/.local/bin` 不在 PATH 中,安装器会打印对应 shell 的精确添加片段。
+安装到 `~/.local/bin/harnessed`。如果该目录不在 PATH 中，按安装器打印的
+shell 提示配置，再按需打开新终端。
 
-**Windows (PowerShell)**
+### Windows x64 (PowerShell)
 
 ```powershell
 irm https://raw.githubusercontent.com/easyinplay/harnessed/main/install.ps1 | iex
 ```
 
-安装到 `%LOCALAPPDATA%\harnessed\bin\harnessed.exe`。交互式会话在幂等的用户级 PATH 追加前会先征得同意;非交互(CI / 管道)则打印手动操作说明。
+安装到 `%LOCALAPPDATA%\harnessed\bin\harnessed.exe`。交互式安装会先征求同意，
+再更新用户级 PATH；非交互式安装打印手动操作提示。按需打开新终端。
 
-两个安装器均从 GitHub releases 下载平台资产并校验其 `.sha256`。二进制与 npm 通道运行同一套 CLI —— 下文全部内容同样适用。二进制如何自更新(ed25519 签名)与回滚,见 [`harnessed update`](/zh-hans/docs/reference/cli/#harnessed-update)。
+两个安装器均从 GitHub releases 下载平台资产并校验 `.sha256`。
+交互式安装器会征求同意后提供 setup。遵循交互提示与 PATH 指引；
+若已成功初始化，无需再次执行 setup。
+其他架构请使用下面的 package 通道。二进制更新和回滚见
+[`harnessed update`](/zh-hans/docs/reference/cli/#harnessed-update)。
 
-## 运行初始化
+## Bun (次选)
 
-```bash
-harnessed setup
-```
-
-Setup 自动完成四个步骤：
-
-1. **启用 Agent Teams** — 将 `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1` 写入 `~/.claude/settings.json`，使多智能体模式（Pattern A 全栈三路、Pattern C 专家审查）开箱即用
-2. **设置用户语言** — 检测操作系统语言并写入 `env.HARNESSED_USER_LANG`（zh-* → `zh-Hans`，其他 → `en`）；可通过 `--user-lang` 覆盖
-3. **安装工作流 skills** — 将每个 `workflows/<name>/SKILL.md` 复制到 `~/.claude/skills/<name>/`，使斜杠命令在 Claude Code 中可用
-4. **处理基础清单** — 依次处理 `manifests/tools/*.yaml` 和 `manifests/skill-packs/*.yaml`，注册上游工具依赖
-
-Setup 完成后，`/auto`、`/discuss`、`/plan`、`/task`、`/verify` 等斜杠命令在任何 Claude Code 会话中均可使用。
-
-## 可选参数
+需要已有 Bun。4.x 的 first-party hooks 仍使用 Node transport，需要 **Node.js 22+**，
+即使 harnessed 本身使用 Bun 运行时。使用显式 Bun 运行时完成安装与初始化：
 
 ```bash
-harnessed setup --user-lang zh-Hans   # 无论操作系统语言如何，强制使用中文
-harnessed setup --user-lang en        # 强制使用英文
-harnessed setup --dry-run             # 预览将写入的内容，不修改磁盘
+bun install -g harnessed && bun run --bun harnessed setup
 ```
 
-完整参数列表请参阅 [CLI 命令](/zh-hans/docs/reference/cli/)。
+裸 `harnessed` package shim 仍可能带有 Node shebang，请保留显式 `bun run --bun`。
+运行时不代表安装管理器；Bun 管理的包使用跨 harnessed 版本兼容的 Bun 原生更新命令：
 
-## Windows 注意事项
-
-PowerShell 5.x 不支持 `&&` 链式调用，请使用 `;` 或两行分开执行：
-
-```powershell
-npm install -g harnessed
-harnessed setup
+```bash
+bun add -g harnessed@latest
 ```
 
-PowerShell 7+、bash、zsh 和 cmd.exe 均支持单行写法。
+## npm (兼容通道)
+
+需要 **Node.js 22+**，无需 Bun。
+
+```bash
+npm install -g harnessed && harnessed setup
+```
+
+以上链式命令使用 `&&` (Windows 需 PowerShell 7+)。
+
+## 高级宿主覆盖
+
+Claude Code 或 Codex 需单独安装。默认 `harnessed setup` 使用宿主探测，
+不要求 `--platform`。当两个环境存在歧义时，当前 CLI 优先 Claude Code，
+不会推断用户想用哪个。仅在需要时显式覆盖，不是必须再做一次初始化。
+
+**Claude Code**，使用 standalone 或 npm：
+
+```bash
+harnessed setup --platform claude
+```
+
+**Codex**，使用 standalone 或 npm：
+
+```bash
+harnessed setup --platform codex
+```
+
+**Bun**，显式选择运行时：
+
+```bash
+bun run --bun harnessed setup --platform claude
+```
+
+或选择 Codex：
+
+```bash
+bun run --bun harnessed setup --platform codex
+```
+
+Setup 安装对应宿主的 workflow skills 并处理上游 manifests。
+Claude Code 的配置与 Codex 集成不同；安装完成不代表初始化成功，也不代表上游已就绪。
+启动工作流前，请检查 setup 输出、权限要求和上游阻塞项。
+
+可用 `--dry-run` 预览修改，用 `--user-lang zh-Hans` / `--user-lang en` 指定语言。
+完整参数见 [CLI 命令](/zh-hans/docs/reference/cli/)。PowerShell 5.x 请分行执行安装与 setup，
+确认安装成功后再初始化。
+
+接下来按[三步快速上手](/zh-hans/docs/getting-started/quickstart/)启动工作流。

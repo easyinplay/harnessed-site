@@ -1,12 +1,13 @@
+import { onboarding } from "./onboarding";
 import type { Dict } from "./en";
 
 const ko: Dict = {
   promoBar: {
     items: [
-      "v4.43.0 — 선언만 되고 평가되지 않는 schema 필드를 잡는 게이트 · 외부 코드 리뷰 39건 조치 · Windows 안전 spawn 및 codex 플러그인 감지",
+      onboarding["ko"].latest,
       "Subagent → Agent Teams 자동 라우팅, 서브태스크 단위로 결정",
       "ECC · Superpowers · GSD · gstack 조합",
-      "Apache-2.0 · Node 22+ · 크로스 플랫폼",
+      onboarding["ko"].meta,
       "GitHub에서 스타 눌러주세요 →",
     ],
   },
@@ -16,7 +17,7 @@ const ko: Dict = {
     npm: "npm",
   },
   hero: {
-    versionPill: "v4.43.0 · 100+ capability 조합",
+    versionPill: "100+ capability 조합",
     h1: "AI 코딩 harness를 위한 패키지 매니저",
     positioning:
       "단순한 패키지 매니저가 아니라 조합 오케스트레이터입니다. 오픈소스 생태계의 최고 구성 요소를 하나의 실행 가능한 engine으로 조립하고, 3계층 BDD → SDD → TDD 방법론으로 연결합니다.",
@@ -24,7 +25,7 @@ const ko: Dict = {
       "harnessed는 orchestration brain + prompt library입니다. 세 개의 빠른 순수 함수 CLI —— `harnessed gates`(어떤 하위 워크플로가 발동하는지), `harnessed prompt`(하위 워크플로용 spawn-ready prompt), `harnessed checkpoint`(진행 상황 기록) —— 로 native subagent spawn을 구동합니다.",
     ctaStart: "시작하기",
     ctaGitHub: "GitHub에서 보기",
-    meta: "Apache-2.0 · Node 22+ · 크로스 플랫폼",
+    meta: onboarding["ko"].meta,
   },
   whyCards: {
     heading: "harnessed를 쓰는 이유",
@@ -169,37 +170,14 @@ const ko: Dict = {
     ],
     githubLink: "GitHub에서 전체 워크플로 보기 →",
   },
-  quickstart: {
-    heading: "60초 만에 시작하기",
-    subheading: "설정 파일 없음. 수동 스캐폴딩 없음. 명령 세 개면 끝.",
-    steps: [
-      {
-        num: "1",
-        title: "설치",
-        cmd: "npm install -g harnessed",
-        caption: "npm에서 최신 안정 버전을 받아옵니다.",
-      },
-      {
-        num: "2",
-        title: "초기 설정",
-        cmd: "harnessed setup",
-        caption: "Agent Teams, 사용자 로케일, MCP 디스커버리를 자동으로 켭니다.",
-      },
-      {
-        num: "3",
-        title: "조합",
-        cmd: "/auto research a new feature",
-        caption: "AI 코딩 agent 안에서 실행하세요. 6단계 파이프라인이 이어받습니다.",
-      },
-    ],
-  },
+  quickstart: onboarding["ko"],
   communityStats: {
+    latestLabel: "최신 릴리스 · Apache-2.0",
     heading: "harness 생태계에 합류하세요",
     npmDownloadsLabel: "npm 누적 다운로드",
     stats: [
       { value: "100+", label: "조합된 capability (ECC · Superpowers · GSD · gstack)" },
       { value: "29", label: "출시된 워크플로" },
-      { value: "v4.43.0", label: "최신 릴리스 · Apache-2.0" },
     ],
     links: {
       discussions: "GitHub Discussions →",

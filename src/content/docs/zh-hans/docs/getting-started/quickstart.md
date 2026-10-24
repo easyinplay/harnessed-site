@@ -1,47 +1,95 @@
 ---
 title: 快速上手
-description: 60 秒内从安装到第一个工作流。
+description: 安装 harnessed、启动第一个工作流，再查看进度或续跑。
 ---
 
-## 第一步 — 安装与初始化
+## 1. 安装 harnessed 并初始化 agent
+
+优先选择 standalone。它内置 harnessed 本身需要的运行时，上游工具仍有独立的前提条件。
+
+**macOS arm64 / Linux x64**，在终端执行：
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/easyinplay/harnessed/main/install.sh | bash
+```
+
+**Windows x64**，在 PowerShell 执行：
+
+```powershell
+irm https://raw.githubusercontent.com/easyinplay/harnessed/main/install.ps1 | iex
+```
+
+遵循安装器交互提示与 PATH 指引。交互式安装器会征求同意后提供 setup；
+若已成功初始化，无需重复执行。
+
+Package 通道通过一条链完成安装与初始化：
+
+**Bun**：
+
+```bash
+bun install -g harnessed && bun run --bun harnessed setup
+```
+
+**npm**：
 
 ```bash
 npm install -g harnessed && harnessed setup
 ```
 
-全局安装 harnessed 并完成一键入门初始化：启用 Agent Teams、安装工作流 skills、处理基础清单。各步骤详情请参阅[安装](/zh-hans/docs/getting-started/installation/)。
+Windows 链式命令需要 PowerShell 7+。默认 setup 探测宿主，
+`--platform` 仅用于高级覆盖，不是必填参数。
+Bun 通道需要 Bun；4.x 的 first-party hooks 仍使用 Node transport，还需要 Node.js 22+。
+npm 通道需要 Node.js 22+，无需 Bun。
+平台支持范围、运行时边界和包更新方式见[安装](/zh-hans/docs/getting-started/installation/)。
 
-## 第二步 — 打开 Claude Code
+安装完成、初始化成功、上游就绪是独立检查。继续前请查看 setup 输出、权限要求和上游阻塞项。
 
-在任意项目目录下打开 Claude Code。斜杠命令现在全局可用，无需在特定项目中。
+## 2. 启动第一个工作流
 
-## 第三步 — 运行第一条命令
+初始化后，在项目目录打开所选 agent。下面是 **agent prompt**，不是 shell 命令。
 
-在 Claude Code 中输入：
+**Claude Code**：
 
-```
-/auto research how to add OAuth to my Express app
-```
-
-或者直接给出具体需求：
-
-```
-/auto "给我们的 Express API 添加限速中间件 —— 每 IP 每分钟 100 次请求，Redis 后端"
+```text
+/auto "为当前项目添加健康检查接口"
 ```
 
-## 接下来会发生什么
+**Codex**：
 
-`/auto` 是 harnessed 的超级主控命令，运行完整的六阶段流水线：
+```text
+$auto "为当前项目添加健康检查接口"
+```
 
-| 阶段                       | 说明                                                                           |
-| -------------------------- | ------------------------------------------------------------------------------ |
-| **① Research**（条件触发） | 通过 Tavily、Exa、ctx7 进行多源调研。当你回答"否"（不清楚需求）时触发          |
-| **② Discuss**              | 三层澄清关卡：战略范围、阶段决策、子任务歧义                                   |
-| **③ Plan**                 | 架构审查（条件触发）+ 将 `task_plan.md` 和 `progress.md` 持久化到 `.planning/` |
-| **④ Task**                 | 每个子任务的串行循环：澄清 → 编码 → 测试 → 交付，核心逻辑强制 TDD              |
-| **⑤ Verify**               | 最多 7 项条件子检查：进度、代码审查、偏执审查、QA、安全、设计、简化            |
-| **⑥ Retro**                | 强制里程碑总结 —— 沉淀经验教训，记录决策                                       |
+Codex 用 `$auto` 显式调用已安装的 `auto` skill。
+[官方 skills 文档](https://developers.openai.com/codex/skills/)
+说明 CLI/IDE 可用 `/skills` 或 `$` 选择 skill。如果列表中没有 `auto`，先检查所选宿主的 setup。
+不要把 Claude Code 的斜杠命令直接套到 Codex。
 
-`/auto` 持续运行所有阶段。如果某个阶段失败，harnessed 会停止，你可以用 `harnessed resume` 续跑。
+工作流按需协调调研、讨论、规划、执行、验证和回顾。
+上游权限或就绪关卡仍可能阻止执行，本指引不会绕过这些关卡。
 
-如需精细控制，可单独调用各阶段：`/discuss`、`/plan`、`/task`、`/verify`。动手实践请参阅[第一个工作流](/zh-hans/docs/getting-started/first-workflow/)。
+## 3. 查看进度与续跑
+
+在项目根目录的终端打开状态仪表盘：
+
+```bash
+harnessed
+```
+
+续跑中断的工作流：
+
+```bash
+harnessed resume
+```
+
+Bun package 通道继续显式选择运行时：
+
+```bash
+bun run --bun harnessed
+bun run --bun harnessed resume
+```
+
+运行时不代表安装管理器。Bun 管理的包使用跨 harnessed 版本兼容的 `bun add -g harnessed@latest` 更新，
+详情见[安装](/zh-hans/docs/getting-started/installation/)。上游依赖和权限仍需单独检查。
+
+阶段级操作和更长示例见[第一个工作流](/zh-hans/docs/getting-started/first-workflow/)。

@@ -1,12 +1,13 @@
+import { onboarding } from "./onboarding";
 import type { Dict } from "./en";
 
 const ru: Dict = {
   promoBar: {
     items: [
-      "v4.43.0 — gate для полей schema, которые объявлены, но нигде не вычисляются · исправлены 39 замечаний внешнего код-ревью · безопасный spawn на Windows и обнаружение плагинов codex",
+      onboarding["ru"].latest,
       "Автоматическая маршрутизация subagent → Agent Teams, решение по каждой подзадаче",
       "Собрано из ECC · Superpowers · GSD · gstack",
-      "Apache-2.0 · Node 22+ · Кроссплатформенно",
+      onboarding["ru"].meta,
       "Поставьте звезду на GitHub →",
     ],
   },
@@ -16,7 +17,7 @@ const ru: Dict = {
     npm: "npm",
   },
   hero: {
-    versionPill: "v4.43.0 · собрано 100+ capability",
+    versionPill: "собрано 100+ capability",
     h1: "Пакетный менеджер для AI-харнессов разработки",
     positioning:
       "Больше чем пакетный менеджер — оркестратор композиции. Он собирает лучшее из открытой экосистемы в один исполняемый engine, связывая всё трёхслойной методологией BDD → SDD → TDD.",
@@ -24,7 +25,7 @@ const ru: Dict = {
       "harnessed — это orchestration brain + библиотека промптов. Он запускает нативный spawn subagent через три быстрых чистых CLI: `harnessed gates` (какие подworkflow срабатывают), `harnessed prompt` (готовый к spawn промпт для подworkflow) и `harnessed checkpoint` (фиксация прогресса).",
     ctaStart: "Начать",
     ctaGitHub: "Открыть на GitHub",
-    meta: "Apache-2.0 · Node 22+ · Кроссплатформенно",
+    meta: onboarding["ru"].meta,
   },
   whyCards: {
     heading: "Почему harnessed",
@@ -173,38 +174,14 @@ const ru: Dict = {
     ],
     githubLink: "Посмотреть все workflow на GitHub →",
   },
-  quickstart: {
-    heading: "Старт за 60 секунд",
-    subheading: "Без конфигов. Без ручного скаффолдинга. Всего три команды.",
-    steps: [
-      {
-        num: "1",
-        title: "Установка",
-        cmd: "npm install -g harnessed",
-        caption: "Забирает последнюю стабильную версию из npm.",
-      },
-      {
-        num: "2",
-        title: "Настройка",
-        cmd: "harnessed setup",
-        caption: "Автоматически включает Agent Teams, локаль пользователя и обнаружение MCP.",
-      },
-      {
-        num: "3",
-        title: "Композиция",
-        cmd: "/auto research a new feature",
-        caption:
-          "Запустите внутри вашего AI-агента разработки. Конвейер из 6 стадий берёт дело на себя.",
-      },
-    ],
-  },
+  quickstart: onboarding["ru"],
   communityStats: {
+    latestLabel: "Последний релиз · Apache-2.0",
     heading: "Присоединяйтесь к экосистеме harness",
     npmDownloadsLabel: "Всего загрузок с npm",
     stats: [
       { value: "100+", label: "Собранных capability (ECC · Superpowers · GSD · gstack)" },
       { value: "29", label: "Выпущенных workflow" },
-      { value: "v4.43.0", label: "Последний релиз · Apache-2.0" },
     ],
     links: {
       discussions: "GitHub Discussions →",

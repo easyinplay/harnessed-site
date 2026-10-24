@@ -1,80 +1,106 @@
 ---
 title: Installation
-description: Install harnessed and run setup in 30 seconds.
+description: Choose standalone, Bun or npm, then set up Claude Code or Codex.
 ---
 
-## Prerequisites
+## Standalone (recommended)
 
-- **Node.js 22+** — harnessed uses ESM and requires Node 22 or newer
-- **An AI coding agent** — harnessed runs inside one. Claude Code is the primary target (install it from [anthropic.com/claude/code](https://anthropic.com/claude/code)); Codex and other harnesses are supported via the cross-harness platform layer
+harnessed includes its own runtime in the standalone binary. You do not need
+separate Node.js or Bun **for harnessed itself**. Upstream tools and your coding
+agent may still require Node.js, Bun, Git, other dependencies and authorization.
 
-## Install
-
-```bash
-npm install -g harnessed
-```
-
-Verify the install:
-
-```bash
-harnessed --version
-# → 4.43.0
-```
-
-## Standalone binary (no Node.js)
-
-No Node.js? Install the self-contained single-file binary instead — per-platform, self-updates via `harnessed update`:
-
-**macOS / Linux**
+### macOS arm64 / Linux x64
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/easyinplay/harnessed/main/install.sh | bash
 ```
 
-Installs to `~/.local/bin/harnessed`. PATH is never auto-edited on unix — if `~/.local/bin` is not on your PATH, the installer prints the exact per-shell snippet to add.
+Installs to `~/.local/bin/harnessed`. Follow the installer's per-shell PATH
+instructions if that directory is not already on PATH, then open a new terminal.
 
-**Windows (PowerShell)**
+### Windows x64 (PowerShell)
 
 ```powershell
 irm https://raw.githubusercontent.com/easyinplay/harnessed/main/install.ps1 | iex
 ```
 
-Installs to `%LOCALAPPDATA%\harnessed\bin\harnessed.exe`. Interactive sessions get a consent prompt before an idempotent user-scope PATH append; non-interactive runs print a manual instruction instead.
+Installs to `%LOCALAPPDATA%\harnessed\bin\harnessed.exe`. The installer requests
+consent before updating the user PATH in interactive sessions; otherwise it prints
+manual instructions. Open a new terminal when needed.
 
-Both installers download the platform asset from GitHub releases and verify its `.sha256` checksum. The binary and npm channels run the same CLI — everything below applies unchanged. See [`harnessed update`](/docs/reference/cli/#harnessed-update) for how the binary self-updates (ed25519-signed) and rolls back.
+Both installers download GitHub release assets and verify their `.sha256` checksum.
+Interactive installers offer setup after consent. Follow their prompts and PATH
+instructions; do not run setup again if it already completed successfully.
+For other architectures, choose the package routes below. See
+[`harnessed update`](/docs/reference/cli/#harnessed-update) for binary updates and rollback.
 
-## Run setup
+## Bun (secondary)
 
-```bash
-harnessed setup
-```
-
-Setup performs four steps automatically:
-
-1. **Enables Agent Teams** — writes `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1` to `~/.claude/settings.json` so multi-agent patterns (Pattern A full-stack, Pattern C specialist review) work out of the box
-2. **Sets user language** — detects OS locale and writes `env.HARNESSED_USER_LANG` (zh-* → `zh-Hans`, everything else → `en`); override with `--user-lang`
-3. **Installs workflow skills** — copies each `workflows/<name>/SKILL.md` to `~/.claude/skills/<name>/` so slash commands become available in Claude Code
-4. **Processes base manifests** — runs through `manifests/tools/*.yaml` and `manifests/skill-packs/*.yaml` to register upstream tool dependencies
-
-After setup, slash commands like `/auto`, `/discuss`, `/plan`, `/task`, and `/verify` are available in any Claude Code session.
-
-## Optional flags
+Requires an existing Bun installation. In 4.x, first-party hooks still use Node
+transport and require **Node.js 22+**, even when harnessed runs with Bun.
+Install and set up with the explicit Bun runtime:
 
 ```bash
-harnessed setup --user-lang zh-Hans   # force Chinese regardless of OS locale
-harnessed setup --user-lang en        # force English
-harnessed setup --dry-run             # preview what would be written — no disk changes
+bun install -g harnessed && bun run --bun harnessed setup
 ```
 
-See the full flag list in [CLI commands](/docs/reference/cli/).
+Keep `bun run --bun` explicit: a bare `harnessed` package shim may use a Node
+shebang. The runtime does not identify the install manager. For a Bun-managed
+package, use Bun's native update command, which works across harnessed versions:
 
-## Windows note
-
-PowerShell 5.x does not support `&&` chaining. Use `;` or two separate lines:
-
-```powershell
-npm install -g harnessed
-harnessed setup
+```bash
+bun add -g harnessed@latest
 ```
 
-PowerShell 7+, bash, zsh, and cmd.exe all support the single-line form.
+## npm (compatibility)
+
+Requires **Node.js 22+**; Bun is not required.
+
+```bash
+npm install -g harnessed && harnessed setup
+```
+
+These chains use `&&` (PowerShell 7+ on Windows).
+
+## Advanced host override
+
+Install Claude Code or Codex separately. Default `harnessed setup` uses host
+detection; no `--platform` flag is required. When both environments are ambiguous,
+the current CLI prefers Claude Code, not an inferred user preference. Use an
+explicit override only when needed, not as a second required setup step.
+
+**Claude Code**, with standalone or npm:
+
+```bash
+harnessed setup --platform claude
+```
+
+**Codex**, with standalone or npm:
+
+```bash
+harnessed setup --platform codex
+```
+
+**Bun**, with explicit runtime selection:
+
+```bash
+bun run --bun harnessed setup --platform claude
+```
+
+Or, for Codex:
+
+```bash
+bun run --bun harnessed setup --platform codex
+```
+
+Setup installs host-specific workflow skills and processes upstream manifests.
+Claude Code settings and Codex integration differ; installation alone is not proof
+of successful setup or upstream readiness. Review setup output, permissions and
+any upstream blockers before starting a workflow.
+
+Use `--dry-run` to preview setup changes, or `--user-lang zh-Hans` / `--user-lang en`
+to choose the language. See [CLI commands](/docs/reference/cli/) for all flags.
+For PowerShell 5.x, run the install and setup commands separately, checking that
+installation succeeded before setup.
+
+Continue with the [three-step Quickstart](/docs/getting-started/quickstart/).

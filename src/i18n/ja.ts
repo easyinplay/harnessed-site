@@ -1,12 +1,13 @@
+import { onboarding } from "./onboarding";
 import type { Dict } from "./en";
 
 const ja: Dict = {
   promoBar: {
     items: [
-      "v4.43.0 — 宣言されたまま評価されない schema フィールドを検出するゲート · 外部コードレビュー 39 件に対応 · Windows で安全な spawn と codex プラグイン検出",
+      onboarding["ja"].latest,
       "Subagent → Agent Teams への自動ルーティング、サブタスクごとに判断",
       "ECC · Superpowers · GSD · gstack を合成",
-      "Apache-2.0 · Node 22+ · クロスプラットフォーム",
+      onboarding["ja"].meta,
       "GitHub でスターをお願いします →",
     ],
   },
@@ -16,7 +17,7 @@ const ja: Dict = {
     npm: "npm",
   },
   hero: {
-    versionPill: "v4.43.0 · 100+ の capability を合成",
+    versionPill: "100+ の capability を合成",
     h1: "AI コーディング harness のパッケージマネージャー",
     positioning:
       "単なるパッケージマネージャーではなく、合成オーケストレーターです。オープンソースエコシステムの best を 1 つの実行可能な engine にまとめ、三層メソドロジー（BDD → SDD → TDD）で配線します。",
@@ -24,7 +25,7 @@ const ja: Dict = {
       "harnessed は orchestration brain + prompt library です。3 つの高速な純関数 CLI —— `harnessed gates`（どのサブワークフローが発火するか）、`harnessed prompt`（サブ用の spawn-ready prompt）、`harnessed checkpoint`（進捗の記録）—— を通じて native subagent spawn を駆動します。",
     ctaStart: "はじめる",
     ctaGitHub: "GitHub で見る",
-    meta: "Apache-2.0 · Node 22+ · クロスプラットフォーム",
+    meta: onboarding["ja"].meta,
   },
   whyCards: {
     heading: "harnessed を選ぶ理由",
@@ -176,37 +177,14 @@ const ja: Dict = {
     ],
     githubLink: "GitHub ですべてのワークフローを見る →",
   },
-  quickstart: {
-    heading: "60 秒ではじめる",
-    subheading: "設定ファイルなし。手動の足場作りなし。コマンド 3 つだけ。",
-    steps: [
-      {
-        num: "1",
-        title: "インストール",
-        cmd: "npm install -g harnessed",
-        caption: "npm から最新の安定版を取得します。",
-      },
-      {
-        num: "2",
-        title: "セットアップ",
-        cmd: "harnessed setup",
-        caption: "Agent Teams、ユーザーロケール、MCP ディスカバリーを自動で有効化します。",
-      },
-      {
-        num: "3",
-        title: "合成",
-        cmd: "/auto research a new feature",
-        caption: "AI コーディング agent の中で実行します。6 段階パイプラインが引き継ぎます。",
-      },
-    ],
-  },
+  quickstart: onboarding["ja"],
   communityStats: {
+    latestLabel: "最新リリース · Apache-2.0",
     heading: "harness エコシステムに参加する",
     npmDownloadsLabel: "npm 累計ダウンロード数",
     stats: [
       { value: "100+", label: "合成済み capability（ECC · Superpowers · GSD · gstack）" },
       { value: "29", label: "出荷済みワークフロー" },
-      { value: "v4.43.0", label: "最新リリース · Apache-2.0" },
     ],
     links: {
       discussions: "GitHub Discussions →",

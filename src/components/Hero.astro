@@ -1,7 +1,8 @@
 ---
-import InstallCommand from './InstallCommand.astro'
+import Installation from './Installation.astro'
 import { t } from '../i18n'
 import type { Locale } from '../i18n'
+import { releaseClient } from '../lib/releases'
 
 interface Props {
   lang: Locale
@@ -9,32 +10,33 @@ interface Props {
 
 const { lang } = Astro.props
 const dict = t(lang)
+const release = await releaseClient.get()
 ---
 
-<section class="relative min-h-[52vh] flex items-center justify-center pt-10 pb-6">
+<section class="hero relative min-h-[52vh] flex items-center justify-center pt-10 pb-6">
   <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,rgba(124,58,237,0.18),transparent_55%)]" aria-hidden="true"></div>
   <div class="max-w-4xl text-center mx-auto px-6">
-    <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-violet-400/10 border border-violet-400/20 text-violet-300 text-xs">
-      {dict.hero.versionPill}
-    </span>
+    <a href={release.url} data-release-link data-release-seed={JSON.stringify(release)} class="inline-flex flex-wrap justify-center items-center gap-2 px-3 py-1 rounded-full bg-violet-400/10 border border-violet-400/20 text-violet-300 text-xs">
+      <span data-release-version>v{release.version}</span><span aria-hidden="true">·</span>{dict.hero.versionPill}
+    </a>
 
-    <h1 class="mt-5 text-[38px] leading-[48px] font-medium text-white">
+    <h1 class="hero-heading mt-5 text-[38px] leading-[48px] font-medium text-white">
       {dict.hero.h1}
     </h1>
 
-    <p class="mt-3 text-base font-medium text-violet-300 max-w-2xl mx-auto">
+    <p class="hero-positioning mt-3 text-base font-medium text-violet-300 max-w-2xl mx-auto">
       {dict.hero.positioning}
     </p>
 
-    <p class="mt-3 text-sm text-zinc-400 max-w-2xl mx-auto">
+    <p class="hero-tagline mt-3 text-sm text-zinc-400 max-w-2xl mx-auto">
       {dict.hero.tagline}
     </p>
 
-    <div class="mt-6">
-      <InstallCommand />
+    <div class="hero-installation mt-6">
+      <Installation lang={lang} />
     </div>
 
-    <div class="mt-6 flex gap-4 justify-center flex-wrap">
+    <div class="hero-actions mt-6 flex gap-4 justify-center flex-wrap">
       <a
         href="#quickstart"
         class="bg-violet-600 hover:bg-violet-500 text-white px-6 py-3 rounded-full font-medium transition-colors"
@@ -49,6 +51,32 @@ const dict = t(lang)
       </a>
     </div>
 
-    <p class="mt-4 text-zinc-500 text-sm">{dict.hero.meta}</p>
+    <p class="hero-meta mt-4 text-zinc-500 text-sm">{dict.hero.meta}</p>
   </div>
 </section>
+
+<script>
+  import { refreshReleaseElements } from '../lib/releases'
+  void refreshReleaseElements()
+</script>
+
+<style>
+  @media (max-width: 480px) {
+    .hero { padding-top: 24px; padding-bottom: 16px; }
+    .hero-heading { font-size: 32px; line-height: 40px; margin-top: 16px; }
+    .hero-positioning { font-size: 14px; line-height: 20px; }
+    .hero-tagline { display: none; }
+    .hero-installation, .hero-actions { margin-top: 16px; }
+  }
+  @media (max-width: 480px) and (max-height: 740px) {
+    .hero-positioning, .hero-meta { display: none; }
+    .hero-actions { gap: 8px; }
+    .hero-actions a { padding-inline: 12px; }
+  }
+  @media (max-width: 480px) and (max-height: 680px) {
+    .hero { padding-top: 12px; padding-bottom: 8px; }
+    .hero-heading { font-size: 28px; line-height: 34px; margin-top: 8px; }
+    .hero-installation, .hero-actions { margin-top: 8px; }
+    .hero-actions a { padding-block: 8px; font-size: 14px; line-height: 20px; }
+  }
+</style>

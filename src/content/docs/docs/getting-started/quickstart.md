@@ -1,47 +1,102 @@
 ---
 title: Quickstart
-description: From install to first workflow in 60 seconds.
+description: Install harnessed, start your first workflow, and check progress or resume.
 ---
 
-## Step 1 — Install and setup
+## 1. Install harnessed and set up your agent
+
+Choose standalone first. It includes the runtime for harnessed itself; upstream
+tools have their own prerequisites.
+
+**macOS arm64 / Linux x64**, in your terminal:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/easyinplay/harnessed/main/install.sh | bash
+```
+
+**Windows x64**, in PowerShell:
+
+```powershell
+irm https://raw.githubusercontent.com/easyinplay/harnessed/main/install.ps1 | iex
+```
+
+Follow installer prompts and PATH instructions. Interactive installers offer setup
+after consent; do not repeat setup if it already succeeded.
+
+Alternative package routes install and set up in one chain:
+
+**Bun**:
+
+```bash
+bun install -g harnessed && bun run --bun harnessed setup
+```
+
+**npm**:
 
 ```bash
 npm install -g harnessed && harnessed setup
 ```
 
-This installs harnessed globally and runs one-shot onboarding: Agent Teams enabled, workflow skills installed, base manifests processed. See [Installation](/docs/getting-started/installation/) for what each step does.
+On Windows these chains require PowerShell 7+. Default setup detects the host;
+`--platform` is an advanced override, not a required flag.
+Bun needs Bun; in 4.x, first-party hooks still require Node.js 22+ for Node transport.
+npm needs Node.js 22+ but not Bun. See [Installation](/docs/getting-started/installation/)
+for supported platforms, runtime boundaries and package updates.
 
-## Step 2 — Open Claude Code
+Installation, successful setup and upstream readiness are separate. Review setup
+output, permissions and upstream blockers before continuing.
 
-Open Claude Code in any project directory. Slash commands are now available globally — you don't need to be in a specific project.
+## 2. Start your first workflow
 
-## Step 3 — Run your first command
+Open your chosen agent in the project after setup. These are **agent prompts**, not
+shell commands.
 
-Type this in Claude Code:
+**Claude Code**:
 
+```text
+/auto "add a health endpoint to this project"
 ```
-/auto research how to add OAuth to my Express app
+
+**Codex**:
+
+```text
+$auto "add a health endpoint to this project"
 ```
 
-Or start with a concrete requirement:
+Codex explicitly invokes the installed `auto` skill with `$auto`. Its
+[official skills documentation](https://developers.openai.com/codex/skills/)
+describes `/skills` or `$` to select a skill in CLI/IDE. If `auto` is not listed,
+check setup for the correct host before proceeding. Do not substitute Claude Code
+slash commands into Codex.
 
+The workflow coordinates research when needed, discussion, planning, execution,
+verification and a retrospective. Required upstream permissions or readiness gates
+can still stop execution; this guide does not bypass them.
+
+## 3. Check progress and resume
+
+In a terminal at your project root, open the status dashboard:
+
+```bash
+harnessed
 ```
-/auto "add a rate limiter to our Express API — 100 req/min per IP, Redis-backed"
+
+Resume an interrupted workflow:
+
+```bash
+harnessed resume
 ```
 
-## What happens next
+For the Bun package route, preserve explicit runtime selection:
 
-`/auto` is harnessed's super-master command. It runs the full 6-stage pipeline:
+```bash
+bun run --bun harnessed
+bun run --bun harnessed resume
+```
 
-| Stage                        | What it does                                                                                           |
-| ---------------------------- | ------------------------------------------------------------------------------------------------------ |
-| **① Research** (conditional) | Multi-source investigation via Tavily, Exa, ctx7 — fires if you answer "no" to the understanding check |
-| **② Discuss**                | 3-layer clarification gates: strategic scope, phase decisions, subtask ambiguity                       |
-| **③ Plan**                   | Architecture review (conditional) + persists `task_plan.md` and `progress.md` in `.planning/`          |
-| **④ Task**                   | Per-subtask serial loop: clarify → code → test → deliver, with TDD on core logic                       |
-| **⑤ Verify**                 | 7 conditional sub-checks: progress, code review, paranoid review, QA, security, design, simplify       |
-| **⑥ Retro**                  | Mandatory milestone summary — lessons captured, decisions recorded                                     |
+Runtime selection does not identify the install manager. For Bun-managed package
+updates across harnessed versions, use `bun add -g harnessed@latest`;
+see [Installation](/docs/getting-started/installation/).
+Upstream dependencies and permissions remain separate checks.
 
-`/auto` runs all stages continuously. If a stage fails, harnessed stops and you can resume with `harnessed resume`.
-
-For fine-grained control, invoke individual stages: `/discuss`, `/plan`, `/task`, `/verify`. See [Your first workflow](/docs/getting-started/first-workflow/) for a hands-on walkthrough.
+For individual stages and a longer example, see [Your first workflow](/docs/getting-started/first-workflow/).

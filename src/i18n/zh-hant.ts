@@ -1,12 +1,13 @@
+import { onboarding } from "./onboarding";
 import type { Dict } from "./en";
 
 const zhHant: Dict = {
   promoBar: {
     items: [
-      "v4.43.0 —— schema「宣告了卻無人求值」閘門 · 外部程式碼審查 39 項整改 · Windows 安全 spawn 與 codex 外掛偵測",
+      onboarding["zh-hant"].latest,
       "Subagent → Agent Teams 自動路由，依子任務決策",
       "已裝配 ECC · Superpowers · GSD · gstack",
-      "Apache-2.0 · Node 22+ · 跨平台",
+      onboarding["zh-hant"].meta,
       "在 GitHub 給我們加星 →",
     ],
   },
@@ -16,7 +17,7 @@ const zhHant: Dict = {
     npm: "npm",
   },
   hero: {
-    versionPill: "v4.43.0 · 裝配 100+ 項 capability",
+    versionPill: "裝配 100+ 項 capability",
     h1: "AI 編程 harness 的套件管理器",
     positioning:
       "不只是套件管理器，更是裝配編排器 —— 把開源生態中最優秀的元件，用「三層堆疊」(BDD → SDD → TDD) 方法論編排成一個可執行的 engine。",
@@ -24,7 +25,7 @@ const zhHant: Dict = {
       "harnessed 是 orchestration brain + prompt library，透過三個秒級純函式 CLI 驅動 native subagent spawn —— harnessed gates（哪些子工作流觸發）、harnessed prompt（子工作流的 spawn-ready prompt）、harnessed checkpoint（記錄進度）。",
     ctaStart: "立即開始",
     ctaGitHub: "在 GitHub 檢視",
-    meta: "Apache-2.0 · Node 22+ · 跨平台",
+    meta: onboarding["zh-hant"].meta,
   },
   whyCards: {
     heading: "為什麼選擇 harnessed",
@@ -166,37 +167,14 @@ const zhHant: Dict = {
     ],
     githubLink: "在 GitHub 檢視全部工作流 →",
   },
-  quickstart: {
-    heading: "60 秒上手",
-    subheading: "不用設定檔，不用手動搭建，只要三條命令。",
-    steps: [
-      {
-        num: "1",
-        title: "安裝",
-        cmd: "npm install -g harnessed",
-        caption: "從 npm 拉取最新穩定版。",
-      },
-      {
-        num: "2",
-        title: "初始化",
-        cmd: "harnessed setup",
-        caption: "自動啟用 Agent Teams、使用者語系、MCP 探索。",
-      },
-      {
-        num: "3",
-        title: "裝配",
-        cmd: "/auto research a new feature",
-        caption: "在你的 AI 編程 agent 中執行，六階段管線自動接手。",
-      },
-    ],
-  },
+  quickstart: onboarding["zh-hant"],
   communityStats: {
+    latestLabel: "最新版本 · Apache-2.0",
     heading: "加入 harness 生態",
     npmDownloadsLabel: "npm 總下載量",
     stats: [
       { value: "100+", label: "已裝配 capability (ECC · Superpowers · GSD · gstack)" },
       { value: "29", label: "已發佈工作流" },
-      { value: "v4.43.0", label: "最新版本 · Apache-2.0" },
     ],
     links: {
       discussions: "GitHub Discussions →",

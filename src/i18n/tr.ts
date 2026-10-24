@@ -1,12 +1,13 @@
+import { onboarding } from "./onboarding";
 import type { Dict } from "./en";
 
 const tr: Dict = {
   promoBar: {
     items: [
-      "v4.43.0 — bildirilen ama hiç değerlendirilmeyen schema alanları için gate · harici kod incelemesindeki 39 bulgu giderildi · Windows'ta güvenli spawn ve codex eklenti tespiti",
+      onboarding["tr"].latest,
       "Otomatik yönlendirilen subagent → Agent Teams, alt görev başına karar",
       "ECC · Superpowers · GSD · gstack bir araya getirildi",
-      "Apache-2.0 · Node 22+ · Çoklu platform",
+      onboarding["tr"].meta,
       "GitHub’da yıldız verin →",
     ],
   },
@@ -16,7 +17,7 @@ const tr: Dict = {
     npm: "npm",
   },
   hero: {
-    versionPill: "v4.43.0 · 100+ capability birleştirildi",
+    versionPill: "100+ capability birleştirildi",
     h1: "Yapay zekâ kodlama harness’ları için paket yöneticisi",
     positioning:
       "Bir paket yöneticisinden fazlası — bir kompozisyon orkestratörü. Açık kaynak ekosistemin en iyisini tek bir çalıştırılabilir engine içinde birleştirir ve üç katmanlı BDD → SDD → TDD metodolojisiyle birbirine bağlar.",
@@ -24,7 +25,7 @@ const tr: Dict = {
       "harnessed bir orchestration brain + prompt kütüphanesidir; native subagent spawn’ı üç hızlı, saf fonksiyon CLI ile sürer — `harnessed gates` (hangi alt iş akışları tetiklenir), `harnessed prompt` (bir alt akış için spawn’a hazır prompt) ve `harnessed checkpoint` (ilerlemeyi kaydeder).",
     ctaStart: "Başla",
     ctaGitHub: "GitHub’da görüntüle",
-    meta: "Apache-2.0 · Node 22+ · Çoklu platform",
+    meta: onboarding["tr"].meta,
   },
   whyCards: {
     heading: "Neden harnessed",
@@ -176,37 +177,14 @@ const tr: Dict = {
     ],
     githubLink: "Tüm iş akışlarını GitHub’da gör →",
   },
-  quickstart: {
-    heading: "60 saniyede başlayın",
-    subheading: "Yapılandırma dosyası yok. Elle scaffolding yok. Sadece üç komut.",
-    steps: [
-      {
-        num: "1",
-        title: "Kur",
-        cmd: "npm install -g harnessed",
-        caption: "npm üzerinden en güncel kararlı sürümü çeker.",
-      },
-      {
-        num: "2",
-        title: "Ayarla",
-        cmd: "harnessed setup",
-        caption: "Agent Teams’i, kullanıcı yerel ayarını ve MCP keşfini otomatik açar.",
-      },
-      {
-        num: "3",
-        title: "Birleştir",
-        cmd: "/auto research a new feature",
-        caption: "Yapay zekâ kodlama agent’ınızın içinde çalıştırın. 6 aşamalı hat devralır.",
-      },
-    ],
-  },
+  quickstart: onboarding["tr"],
   communityStats: {
+    latestLabel: "Son sürüm · Apache-2.0",
     heading: "harness ekosistemine katılın",
     npmDownloadsLabel: "Toplam npm indirmesi",
     stats: [
       { value: "100+", label: "Birleştirilen capability (ECC · Superpowers · GSD · gstack)" },
       { value: "29", label: "Yayınlanan iş akışı" },
-      { value: "v4.43.0", label: "Son sürüm · Apache-2.0" },
     ],
     links: {
       discussions: "GitHub Discussions →",

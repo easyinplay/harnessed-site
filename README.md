@@ -1,6 +1,6 @@
 # harnessed-site
 
-Marketing site for [harnessed](https://github.com/easyinplay/harnessed). Astro 4 + Tailwind 3.
+Marketing site for [harnessed](https://github.com/easyinplay/harnessed), built with Astro, Starlight and Tailwind CSS.
 
 ## Dev
 
@@ -24,3 +24,6 @@ as the "Workers Builds: harnessed-site" check on each commit.
 
 The homepage npm download total is fetched from api.npmjs.org at build time and refreshed
 in the browser on load (`src/lib/npmDownloads.ts`), so it stays current between deploys.
+
+Product versions and release links share GitHub latest-stable metadata (`src/lib/releases.ts`),
+with bounded fetching, a 15-minute browser cache and a last-known-good fallback.
