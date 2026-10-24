@@ -34,15 +34,25 @@ irm https://raw.githubusercontent.com/easyinplay/harnessed/main/install.ps1 | ie
 
 ## Bun (次选)
 
-需要已有 Bun。4.x 的 first-party hooks 仍使用 Node transport，需要 **Node.js 22+**，
-即使 harnessed 本身使用 Bun 运行时。使用显式 Bun 运行时完成安装与初始化：
+需要已有 Bun。在 5.x 中，显式使用 Bun 运行 harnessed 时，本体及自有 first-party hooks
+无需另装 Node.js。上游工具和编程 agent 的依赖另行检查；
+该运行时支持不代表上游或真实模型工作流已就绪。使用显式 Bun 运行时完成安装与初始化：
 
 ```bash
 bun install -g harnessed && bun run --bun harnessed setup
 ```
 
 裸 `harnessed` package shim 仍可能带有 Node shebang，请保留显式 `bun run --bun`。
-运行时不代表安装管理器；Bun 管理的包使用跨 harnessed 版本兼容的 Bun 原生更新命令：
+运行时不代表安装管理器；即使使用 Bun 运行，更新默认仍使用 npm。
+对于 Bun 管理的 5.x 包，显式选择 Bun 运行时和更新管理器：
+
+```bash
+bun run --bun harnessed update --package-manager bun
+```
+
+### 旧版 4.x 升级备用方式
+
+升级旧版 4.x 安装时，可使用 Bun 原生命令作为备用方式，再遵循上面的 5.x 指引：
 
 ```bash
 bun add -g harnessed@latest

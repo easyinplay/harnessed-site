@@ -39,7 +39,9 @@ npm install -g harnessed && harnessed setup
 
 On Windows these chains require PowerShell 7+. Default setup detects the host;
 `--platform` is an advanced override, not a required flag.
-Bun needs Bun; in 4.x, first-party hooks still require Node.js 22+ for Node transport.
+Bun needs Bun. In 5.x, harnessed itself and its first-party hooks need no separate Node.js
+when explicitly run with Bun. A bare `harnessed` package shim may use a Node shebang;
+keep `bun run --bun` explicit. Check upstream prerequisites separately.
 npm needs Node.js 22+ but not Bun. See [Installation](/docs/getting-started/installation/)
 for supported platforms, runtime boundaries and package updates.
 
@@ -94,9 +96,25 @@ bun run --bun harnessed
 bun run --bun harnessed resume
 ```
 
-Runtime selection does not identify the install manager. For Bun-managed package
-updates across harnessed versions, use `bun add -g harnessed@latest`;
-see [Installation](/docs/getting-started/installation/).
-Upstream dependencies and permissions remain separate checks.
+Runtime selection does not identify the install manager;
+npm remains the default updater even when running on Bun. For Bun-managed 5.x
+package updates, explicitly select Bun:
+
+```bash
+bun run --bun harnessed update --package-manager bun
+```
+
+See [Installation](/docs/getting-started/installation/) for runtime boundaries.
+Upstream dependencies and permissions remain separate checks; this runtime support
+does not certify a full live-model workflow.
 
 For individual stages and a longer example, see [Your first workflow](/docs/getting-started/first-workflow/).
+
+### Legacy 4.x upgrade fallback
+
+When upgrading a legacy 4.x installation, use Bun's native command as a fallback
+before following the 5.x guidance above:
+
+```bash
+bun add -g harnessed@latest
+```

@@ -1,0 +1,439 @@
+{
+  "startedAt": "2026-10-24T16:21:35.734Z",
+  "base": "http://127.0.0.1:4323",
+  "maxAttempts": 2,
+  "maxDurationMs": 240000,
+  "executable": "C:/Users/easyi/AppData/Local/ms-playwright/chromium-1247/chrome-win64/chrome.exe",
+  "mocks": false,
+  "metadataAPIRequired": false,
+  "visualInspection": {
+    "method": "Four screenshots opened individually with view_image after browser cleanup",
+    "status": "PASS",
+    "screenshots": [
+      "bun5-local-r1-en-1440.png",
+      "bun5-local-r1-en-390.png",
+      "bun5-local-r1-zh-hans-1440.png",
+      "bun5-local-r1-zh-hans-390.png"
+    ],
+    "observations": "New Bun copy and unchanged install/setup chain fully visible; natural mobile line wrapping; no changed-region clipping, incoherent overlap or horizontal overflow. Existing mobile tab wrapping preserved."
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "cases": [
+        {
+          "locale": "en",
+          "width": 1440,
+          "height": 1000,
+          "pageErrors": [],
+          "requestFailures": [
+            {
+              "url": "https://cloudflareinsights.com/cdn-cgi/rum",
+              "error": "net::ERR_FAILED"
+            },
+            {
+              "url": "https://cloudflareinsights.com/cdn-cgi/rum",
+              "error": "net::ERR_ABORTED"
+            }
+          ],
+          "checks": {
+            "http200": true,
+            "locale": true,
+            "bunSelected": true,
+            "exactNewCopyAndOwnedUpstreamBoundary": true,
+            "noLegacyWarningOrUpdater": true,
+            "combinedInstallSetupUnchanged": true,
+            "noPageOrChangedRegionOverflow": true,
+            "noChangedRegionOverlapOrClipping": true,
+            "docsExplicitUpdaterAndSeparateLegacyHeading": true,
+            "noPageErrors": true
+          },
+          "httpStatus": 200,
+          "home": {
+            "htmlLang": "en",
+            "selected": "true",
+            "hidden": false,
+            "copy": "Requires Bun. Run with --bun; harnessed itself and its first-party hooks need no separate Node.js. Check upstream prerequisites separately.",
+            "command": "bun install -g harnessed && bun run --bun harnessed setup",
+            "root": {
+              "x": 296,
+              "y": 463,
+              "right": 1144,
+              "bottom": 698,
+              "width": 848,
+              "height": 235
+            },
+            "panel": {
+              "x": 296,
+              "y": 554,
+              "right": 1144,
+              "bottom": 698,
+              "width": 848,
+              "height": 144
+            },
+            "note": {
+              "x": 296,
+              "y": 642,
+              "right": 1144,
+              "bottom": 688.1875,
+              "width": 848,
+              "height": 46.1875
+            },
+            "boxes": [
+              {
+                "x": 296,
+                "y": 463,
+                "right": 1144,
+                "bottom": 483,
+                "width": 848,
+                "height": 20
+              },
+              {
+                "x": 296,
+                "y": 495,
+                "right": 1144,
+                "bottom": 538,
+                "width": 848,
+                "height": 43
+              },
+              {
+                "x": 296,
+                "y": 554,
+                "right": 1144,
+                "bottom": 612,
+                "width": 848,
+                "height": 58
+              },
+              {
+                "x": 296,
+                "y": 642,
+                "right": 1144,
+                "bottom": 688.1875,
+                "width": 848,
+                "height": 46.1875
+              }
+            ],
+            "pageOverflow": false,
+            "regionOverflow": false,
+            "regionOverlaps": false,
+            "codeCopyOverlap": false,
+            "textClipped": false
+          },
+          "screenshot": "bun5-local-r1-en-1440.png",
+          "docs": {
+            "legacyHeading": "Legacy 4.x upgrade fallback",
+            "exactUpdater": true,
+            "exactLegacyFallback": true,
+            "separateOrder": true,
+            "npmDefault": true,
+            "bareShimCaveat": true,
+            "httpStatus": 200
+          }
+        },
+        {
+          "locale": "en",
+          "width": 390,
+          "height": 844,
+          "pageErrors": [],
+          "requestFailures": [],
+          "checks": {
+            "http200": true,
+            "locale": true,
+            "bunSelected": true,
+            "exactNewCopyAndOwnedUpstreamBoundary": true,
+            "noLegacyWarningOrUpdater": true,
+            "combinedInstallSetupUnchanged": true,
+            "noPageOrChangedRegionOverflow": true,
+            "noChangedRegionOverlapOrClipping": true,
+            "noPageErrors": true
+          },
+          "httpStatus": 200,
+          "home": {
+            "htmlLang": "en",
+            "selected": "true",
+            "hidden": false,
+            "copy": "Requires Bun. Run with --bun; harnessed itself and its first-party hooks need no separate Node.js. Check upstream prerequisites separately.",
+            "command": "bun install -g harnessed && bun run --bun harnessed setup",
+            "root": {
+              "x": 24,
+              "y": 415,
+              "right": 366,
+              "bottom": 683.953125,
+              "width": 342,
+              "height": 268.953125
+            },
+            "panel": {
+              "x": 24,
+              "y": 531,
+              "right": 366,
+              "bottom": 683.953125,
+              "width": 342,
+              "height": 152.953125
+            },
+            "note": {
+              "x": 24,
+              "y": 631.78125,
+              "right": 366,
+              "bottom": 683.953125,
+              "width": 342,
+              "height": 52.171875
+            },
+            "boxes": [
+              {
+                "x": 24,
+                "y": 415,
+                "right": 366,
+                "bottom": 433,
+                "width": 342,
+                "height": 18
+              },
+              {
+                "x": 24,
+                "y": 439,
+                "right": 366,
+                "bottom": 515,
+                "width": 342,
+                "height": 76
+              },
+              {
+                "x": 24,
+                "y": 531,
+                "right": 366,
+                "bottom": 601.78125,
+                "width": 342,
+                "height": 70.78125
+              },
+              {
+                "x": 24,
+                "y": 631.78125,
+                "right": 366,
+                "bottom": 683.953125,
+                "width": 342,
+                "height": 52.171875
+              }
+            ],
+            "pageOverflow": false,
+            "regionOverflow": false,
+            "regionOverlaps": false,
+            "codeCopyOverlap": false,
+            "textClipped": false
+          },
+          "screenshot": "bun5-local-r1-en-390.png"
+        },
+        {
+          "locale": "zh-hans",
+          "width": 1440,
+          "height": 1000,
+          "pageErrors": [],
+          "requestFailures": [
+            {
+              "url": "https://cloudflareinsights.com/cdn-cgi/rum",
+              "error": "net::ERR_FAILED"
+            },
+            {
+              "url": "https://cloudflareinsights.com/cdn-cgi/rum",
+              "error": "net::ERR_ABORTED"
+            }
+          ],
+          "checks": {
+            "http200": true,
+            "locale": true,
+            "bunSelected": true,
+            "exactNewCopyAndOwnedUpstreamBoundary": true,
+            "noLegacyWarningOrUpdater": true,
+            "combinedInstallSetupUnchanged": true,
+            "noPageOrChangedRegionOverflow": true,
+            "noChangedRegionOverlapOrClipping": true,
+            "docsExplicitUpdaterAndSeparateLegacyHeading": true,
+            "noPageErrors": true
+          },
+          "httpStatus": 200,
+          "home": {
+            "htmlLang": "zh-Hans",
+            "selected": "true",
+            "hidden": false,
+            "copy": "需要 Bun。使用 --bun 运行；harnessed 本体及自有 hooks 无需另装 Node.js。上游组件依赖另行检查。",
+            "command": "bun install -g harnessed && bun run --bun harnessed setup",
+            "root": {
+              "x": 384,
+              "y": 391,
+              "right": 1056,
+              "bottom": 626,
+              "width": 672,
+              "height": 235
+            },
+            "panel": {
+              "x": 384,
+              "y": 482,
+              "right": 1056,
+              "bottom": 626,
+              "width": 672,
+              "height": 144
+            },
+            "note": {
+              "x": 384,
+              "y": 570,
+              "right": 1056,
+              "bottom": 593.09375,
+              "width": 672,
+              "height": 23.09375
+            },
+            "boxes": [
+              {
+                "x": 384,
+                "y": 391,
+                "right": 1056,
+                "bottom": 411,
+                "width": 672,
+                "height": 20
+              },
+              {
+                "x": 384,
+                "y": 423,
+                "right": 1056,
+                "bottom": 466,
+                "width": 672,
+                "height": 43
+              },
+              {
+                "x": 384,
+                "y": 482,
+                "right": 1056,
+                "bottom": 540,
+                "width": 672,
+                "height": 58
+              },
+              {
+                "x": 384,
+                "y": 570,
+                "right": 1056,
+                "bottom": 593.09375,
+                "width": 672,
+                "height": 23.09375
+              }
+            ],
+            "pageOverflow": false,
+            "regionOverflow": false,
+            "regionOverlaps": false,
+            "codeCopyOverlap": false,
+            "textClipped": false
+          },
+          "screenshot": "bun5-local-r1-zh-hans-1440.png",
+          "docs": {
+            "legacyHeading": "旧版 4.x 升级备用方式",
+            "exactUpdater": true,
+            "exactLegacyFallback": true,
+            "separateOrder": true,
+            "npmDefault": true,
+            "bareShimCaveat": true,
+            "httpStatus": 200
+          }
+        },
+        {
+          "locale": "zh-hans",
+          "width": 390,
+          "height": 844,
+          "pageErrors": [],
+          "requestFailures": [],
+          "checks": {
+            "http200": true,
+            "locale": true,
+            "bunSelected": true,
+            "exactNewCopyAndOwnedUpstreamBoundary": true,
+            "noLegacyWarningOrUpdater": true,
+            "combinedInstallSetupUnchanged": true,
+            "noPageOrChangedRegionOverflow": true,
+            "noChangedRegionOverlapOrClipping": true,
+            "noPageErrors": true
+          },
+          "httpStatus": 200,
+          "home": {
+            "htmlLang": "zh-Hans",
+            "selected": "true",
+            "hidden": false,
+            "copy": "需要 Bun。使用 --bun 运行；harnessed 本体及自有 hooks 无需另装 Node.js。上游组件依赖另行检查。",
+            "command": "bun install -g harnessed && bun run --bun harnessed setup",
+            "root": {
+              "x": 24,
+              "y": 335,
+              "right": 366,
+              "bottom": 586.5625,
+              "width": 342,
+              "height": 251.5625
+            },
+            "panel": {
+              "x": 24,
+              "y": 451,
+              "right": 366,
+              "bottom": 586.5625,
+              "width": 342,
+              "height": 135.5625
+            },
+            "note": {
+              "x": 24,
+              "y": 551.78125,
+              "right": 366,
+              "bottom": 586.5625,
+              "width": 342,
+              "height": 34.78125
+            },
+            "boxes": [
+              {
+                "x": 24,
+                "y": 335,
+                "right": 366,
+                "bottom": 353,
+                "width": 342,
+                "height": 18
+              },
+              {
+                "x": 24,
+                "y": 359,
+                "right": 366,
+                "bottom": 435,
+                "width": 342,
+                "height": 76
+              },
+              {
+                "x": 24,
+                "y": 451,
+                "right": 366,
+                "bottom": 521.78125,
+                "width": 342,
+                "height": 70.78125
+              },
+              {
+                "x": 24,
+                "y": 551.78125,
+                "right": 366,
+                "bottom": 586.5625,
+                "width": 342,
+                "height": 34.78125
+              }
+            ],
+            "pageOverflow": false,
+            "regionOverflow": false,
+            "regionOverlaps": false,
+            "codeCopyOverlap": false,
+            "textClipped": false
+          },
+          "screenshot": "bun5-local-r1-zh-hans-390.png"
+        }
+      ],
+      "failures": []
+    }
+  ],
+  "status": "PASS",
+  "setupDiagnostics": [
+    "web-testing.md: 找不到路径“C:/Users/easyi/.codex/rules/web-testing.md”，因为该路径不存在。",
+    "ego-browser/SKILL.md: 找不到路径“C:/Users/easyi/.agents/skills/ego-browser/SKILL.md”，因为该路径不存在。"
+  ],
+  "cleanup": {
+    "contextsCreated": 4,
+    "contextsClosed": 4,
+    "browserClosed": true,
+    "previewStopped": false
+  },
+  "finishedAt": "2026-10-24T16:21:43.186Z",
+  "elapsedMs": 7452
+}

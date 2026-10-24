@@ -43,7 +43,7 @@ export const onboarding: Record<Locale, OnboardingCopy> = {
     unix: "Standalone cho macOS arm64 / Linux x64. Đã kèm runtime; riêng harnessed không cần cài thêm Node.js hay Bun. Làm theo lời nhắc và hướng dẫn PATH của trình cài đặt; kiểm tra upstream riêng.",
     windows:
       "Standalone cho Windows x64 (PowerShell). Đã kèm runtime; riêng harnessed không cần cài thêm Node.js hay Bun. Làm theo lời nhắc và hướng dẫn PATH của trình cài đặt; kiểm tra upstream riêng.",
-    bun: "Cần Bun. Trong 4.x, hooks vẫn cần Node.js 22+; chạy với --bun. Cập nhật bằng bun add -g harnessed@latest.",
+    bun: "Cần Bun. Chạy với --bun; harnessed và hooks do dự án cung cấp không cần cài riêng Node.js. Kiểm tra các yêu cầu của upstream riêng.",
     npm: "Cần Node.js 22+. Không cần Bun. Dùng được trên nền tảng chưa có binary standalone.",
     readiness:
       "Cài đặt, setup thành công và upstream sẵn sàng là các kiểm tra riêng. Upstream có thể cần Node.js, Bun, Git, phụ thuộc khác và cấp quyền.",
@@ -72,7 +72,7 @@ export const onboarding: Record<Locale, OnboardingCopy> = {
     unix: "Standalone สำหรับ macOS arm64 / Linux x64 มี runtime ในตัว harnessed เองไม่ต้องติดตั้ง Node.js หรือ Bun แยก ทำตามข้อความและคำแนะนำ PATH ของตัวติดตั้ง ตรวจสอบความพร้อมของ upstream แยกต่างหาก",
     windows:
       "Standalone สำหรับ Windows x64 (PowerShell) มี runtime ในตัว harnessed เองไม่ต้องติดตั้ง Node.js หรือ Bun แยก ทำตามข้อความและคำแนะนำ PATH ของตัวติดตั้ง ตรวจสอบความพร้อมของ upstream แยกต่างหาก",
-    bun: "ต้องมี Bun ใน 4.x hooks ยังต้องใช้ Node.js 22+ รันด้วย --bun อัปเดตด้วย bun add -g harnessed@latest",
+    bun: "ต้องมี Bun รันด้วย --bun ตัว harnessed และ hooks ของโครงการไม่ต้องติดตั้ง Node.js แยก ตรวจสอบข้อกำหนดของ upstream แยกต่างหาก",
     npm: "ต้องมี Node.js 22+ ไม่ต้องมี Bun ใช้ได้บนแพลตฟอร์มที่ไม่มีไบนารี standalone",
     readiness:
       "การติดตั้งสำเร็จ การ setup สำเร็จ และความพร้อมของ upstream เป็นคนละขั้นตอน upstream อาจต้องใช้ Node.js, Bun, Git เครื่องมืออื่นและการอนุญาต",
@@ -101,7 +101,7 @@ export const onboarding: Record<Locale, OnboardingCopy> = {
     unix: "Standalone para macOS arm64 / Linux x64. Runtime incluído; o próprio harnessed não exige Node.js nem Bun separados. Siga as perguntas e instruções de PATH do instalador; verifique os upstreams separadamente.",
     windows:
       "Standalone para Windows x64 (PowerShell). Runtime incluído; o próprio harnessed não exige Node.js nem Bun separados. Siga as perguntas e instruções de PATH do instalador; verifique os upstreams separadamente.",
-    bun: "Requer Bun. Na 4.x, os hooks ainda precisam de Node.js 22+; execute com --bun. Atualize com bun add -g harnessed@latest.",
+    bun: "Requer Bun. Execute com --bun; o harnessed e seus próprios hooks não precisam de Node.js separado. Verifique os pré-requisitos dos componentes upstream separadamente.",
     npm: "Requer Node.js 22+. Bun não é necessário. Funciona em plataformas sem binário standalone.",
     readiness:
       "Instalação, sucesso do setup e prontidão dos upstreams são verificações separadas. Upstreams podem exigir Node.js, Bun, Git, outras dependências e autorização.",
@@ -131,7 +131,7 @@ export const onboarding: Record<Locale, OnboardingCopy> = {
     unix: "macOS arm64 / Linux x64 için standalone. Runtime dahildir; harnessed için ayrıca Node.js veya Bun gerekmez. Kurucunun sorularını ve PATH talimatlarını izleyin; upstream hazırlığını ayrıca kontrol edin.",
     windows:
       "Windows x64 (PowerShell) için standalone. Runtime dahildir; harnessed için ayrıca Node.js veya Bun gerekmez. Kurucunun sorularını ve PATH talimatlarını izleyin; upstream hazırlığını ayrıca kontrol edin.",
-    bun: "Bun gerekir. 4.x hooks için hâlâ Node.js 22+ gerekir; çalıştırırken --bun kullanın. Güncelleme: bun add -g harnessed@latest.",
+    bun: "Bun gerekir. --bun ile çalıştırın; harnessed ve kendi hooks bileşenleri ayrıca Node.js gerektirmez. Upstream bileşenlerin ön koşullarını ayrıca kontrol edin.",
     npm: "Node.js 22+ gerekir. Bun gerekmez. Standalone binary olmayan platformlarda da çalışır.",
     readiness:
       "Kurulum, başarılı setup ve upstream hazırlığı ayrı kontrollerdir. Upstream araçları Node.js, Bun, Git, başka bağımlılıklar ve yetkilendirme gerektirebilir.",
@@ -160,7 +160,7 @@ export const onboarding: Record<Locale, OnboardingCopy> = {
     unix: "Standalone для macOS arm64 / Linux x64. Среда выполнения встроена; самому harnessed не нужны отдельные Node.js или Bun. Следуйте запросам установщика и инструкциям PATH; готовность upstream проверяется отдельно.",
     windows:
       "Standalone для Windows x64 (PowerShell). Среда выполнения встроена; самому harnessed не нужны отдельные Node.js или Bun. Следуйте запросам установщика и инструкциям PATH; готовность upstream проверяется отдельно.",
-    bun: "Требуется Bun. В 4.x hooks всё ещё требуют Node.js 22+; запускайте с --bun. Обновление: bun add -g harnessed@latest.",
+    bun: "Требуется Bun. Запускайте с --bun; сам harnessed и его собственные hooks не требуют отдельной установки Node.js. Требования upstream-компонентов проверяйте отдельно.",
     npm: "Требуется Node.js 22+. Bun не нужен. Подходит для платформ без standalone-бинарника.",
     readiness:
       "Установка, успешный setup и готовность upstream проверяются отдельно. Upstream могут требовать Node.js, Bun, Git, другие зависимости и авторизацию.",
@@ -189,7 +189,7 @@ export const onboarding: Record<Locale, OnboardingCopy> = {
     unix: "macOS arm64 / Linux x64 用 standalone。実行環境を内蔵し、harnessed 自体に別途 Node.js や Bun は不要です。インストーラーの確認と PATH 案内に従い、上流ツールの準備状況は別途確認してください。",
     windows:
       "Windows x64 (PowerShell) 用 standalone。実行環境を内蔵し、harnessed 自体に別途 Node.js や Bun は不要です。インストーラーの確認と PATH 案内に従い、上流ツールの準備状況は別途確認してください。",
-    bun: "Bun が必要です。4.x の hooks には Node.js 22+ も必要です。実行には --bun、更新には bun add -g harnessed@latest を使用してください。",
+    bun: "Bun が必要です。--bun で実行すれば、harnessed 本体と独自の hooks に Node.js を別途インストールする必要はありません。上流コンポーネントの前提条件は個別に確認してください。",
     npm: "Node.js 22+ が必要です。Bun は不要です。standalone のないプラットフォームでも利用できます。",
     readiness:
       "インストール、セットアップ成功、上流ツールの準備完了は別々の確認です。上流には Node.js、Bun、Git、その他の依存関係や認証が必要な場合があります。",
@@ -219,7 +219,7 @@ export const onboarding: Record<Locale, OnboardingCopy> = {
     unix: "macOS arm64 / Linux x64용 standalone입니다. 런타임이 포함되어 harnessed 자체에는 별도 Node.js나 Bun이 필요 없습니다. 설치 프로그램의 질문과 PATH 안내를 따르고 업스트림 준비는 별도로 확인하세요.",
     windows:
       "Windows x64 (PowerShell)용 standalone입니다. 런타임이 포함되어 harnessed 자체에는 별도 Node.js나 Bun이 필요 없습니다. 설치 프로그램의 질문과 PATH 안내를 따르고 업스트림 준비는 별도로 확인하세요.",
-    bun: "Bun이 필요합니다. 4.x의 hooks에는 Node.js 22+도 필요합니다. 실행에는 --bun, 업데이트에는 bun add -g harnessed@latest를 사용하세요.",
+    bun: "Bun이 필요합니다. --bun으로 실행하면 harnessed 자체와 자체 hooks에는 Node.js를 별도로 설치할 필요가 없습니다. 업스트림 구성 요소의 사전 요구 사항은 따로 확인하세요.",
     npm: "Node.js 22+가 필요하며 Bun은 필요 없습니다. standalone 바이너리가 없는 플랫폼에서도 사용할 수 있습니다.",
     readiness:
       "설치 완료, 설정 성공, 업스트림 준비 완료는 별도 확인 항목입니다. 업스트림에는 Node.js, Bun, Git, 다른 의존성과 인증이 필요할 수 있습니다.",
@@ -248,7 +248,7 @@ export const onboarding: Record<Locale, OnboardingCopy> = {
     unix: "适用于 macOS arm64 / Linux x64。内置运行时，harnessed 本身无需另装 Node.js 或 Bun。遵循安装器交互提示与 PATH 指引；上游就绪需单独检查。",
     windows:
       "适用于 Windows x64 (PowerShell)。内置运行时，harnessed 本身无需另装 Node.js 或 Bun。遵循安装器交互提示与 PATH 指引；上游就绪需单独检查。",
-    bun: "需要 Bun。4.x 的 hooks 还需 Node.js 22+；运行时使用 --bun。更新用 bun add -g harnessed@latest。",
+    bun: "需要 Bun。使用 --bun 运行；harnessed 本体及自有 hooks 无需另装 Node.js。上游组件依赖另行检查。",
     npm: "需要 Node.js 22+，无需 Bun。适用于没有 standalone 二进制的平台。",
     readiness:
       "安装完成、初始化成功、上游就绪是三个独立检查。上游工具仍可能需要 Node.js、Bun、Git、其他依赖及授权。",
@@ -277,7 +277,7 @@ export const onboarding: Record<Locale, OnboardingCopy> = {
     unix: "適用於 macOS arm64 / Linux x64。內建執行環境，harnessed 本身無需另裝 Node.js 或 Bun。遵循安裝器互動提示與 PATH 指引；上游就緒需另外檢查。",
     windows:
       "適用於 Windows x64 (PowerShell)。內建執行環境，harnessed 本身無需另裝 Node.js 或 Bun。遵循安裝器互動提示與 PATH 指引；上游就緒需另外檢查。",
-    bun: "需要 Bun。4.x 的 hooks 仍需 Node.js 22+；執行時使用 --bun。更新用 bun add -g harnessed@latest。",
+    bun: "需要 Bun。使用 --bun 執行；harnessed 本體及自有 hooks 無需另裝 Node.js。上游元件相依項另行檢查。",
     npm: "需要 Node.js 22+，無需 Bun。適用於沒有 standalone 二進位檔的平台。",
     readiness:
       "安裝完成、初始化成功、上游就緒是三個獨立檢查。上游工具仍可能需要 Node.js、Bun、Git、其他相依項及授權。",
@@ -306,7 +306,7 @@ export const onboarding: Record<Locale, OnboardingCopy> = {
     unix: "Standalone for macOS arm64 / Linux x64. Bundled runtime; no separate Node.js or Bun for harnessed itself. Follow installer prompts and PATH instructions; check upstream readiness separately.",
     windows:
       "Standalone for Windows x64 (PowerShell). Bundled runtime; no separate Node.js or Bun for harnessed itself. Follow installer prompts and PATH instructions; check upstream readiness separately.",
-    bun: "Requires Bun. 4.x hooks still need Node.js 22+; run with --bun. Update with bun add -g harnessed@latest.",
+    bun: "Requires Bun. Run with --bun; harnessed itself and its first-party hooks need no separate Node.js. Check upstream prerequisites separately.",
     npm: "Requires Node.js 22+. Bun is not required. Works on platforms without a standalone binary.",
     readiness:
       "Installation, successful setup and upstream readiness are separate checks. Upstream tools may need Node.js, Bun, Git or other dependencies and authorization.",

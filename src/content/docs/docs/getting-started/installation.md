@@ -36,8 +36,10 @@ For other architectures, choose the package routes below. See
 
 ## Bun (secondary)
 
-Requires an existing Bun installation. In 4.x, first-party hooks still use Node
-transport and require **Node.js 22+**, even when harnessed runs with Bun.
+Requires an existing Bun installation. In 5.x, harnessed itself and its
+first-party hooks need no separate Node.js when explicitly run with Bun.
+Upstream tools and your coding agent have separate prerequisites; this runtime
+support does not establish upstream or live-model readiness.
 Install and set up with the explicit Bun runtime:
 
 ```bash
@@ -45,8 +47,18 @@ bun install -g harnessed && bun run --bun harnessed setup
 ```
 
 Keep `bun run --bun` explicit: a bare `harnessed` package shim may use a Node
-shebang. The runtime does not identify the install manager. For a Bun-managed
-package, use Bun's native update command, which works across harnessed versions:
+shebang. Runtime selection does not identify the install manager;
+npm remains the default updater even when running on Bun. For a Bun-managed
+5.x package, explicitly select Bun for both runtime and updates:
+
+```bash
+bun run --bun harnessed update --package-manager bun
+```
+
+### Legacy 4.x upgrade fallback
+
+When upgrading a legacy 4.x installation, use Bun's native command as a fallback
+before following the 5.x guidance above:
 
 ```bash
 bun add -g harnessed@latest

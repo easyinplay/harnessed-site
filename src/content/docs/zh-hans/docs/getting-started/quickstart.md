@@ -38,7 +38,9 @@ npm install -g harnessed && harnessed setup
 
 Windows 链式命令需要 PowerShell 7+。默认 setup 探测宿主，
 `--platform` 仅用于高级覆盖，不是必填参数。
-Bun 通道需要 Bun；4.x 的 first-party hooks 仍使用 Node transport，还需要 Node.js 22+。
+Bun 通道需要 Bun。在 5.x 中，显式使用 Bun 运行 harnessed 时，本体及自有 first-party hooks
+无需另装 Node.js。裸 `harnessed` package shim 仍可能带有 Node shebang，
+请保留显式 `bun run --bun`。上游组件依赖另行检查。
 npm 通道需要 Node.js 22+，无需 Bun。
 平台支持范围、运行时边界和包更新方式见[安装](/zh-hans/docs/getting-started/installation/)。
 
@@ -89,7 +91,22 @@ bun run --bun harnessed
 bun run --bun harnessed resume
 ```
 
-运行时不代表安装管理器。Bun 管理的包使用跨 harnessed 版本兼容的 `bun add -g harnessed@latest` 更新，
-详情见[安装](/zh-hans/docs/getting-started/installation/)。上游依赖和权限仍需单独检查。
+运行时不代表安装管理器；即使使用 Bun 运行，更新默认仍使用 npm。
+对于 Bun 管理的 5.x 包，更新时显式选择 Bun：
+
+```bash
+bun run --bun harnessed update --package-manager bun
+```
+
+运行时边界见[安装](/zh-hans/docs/getting-started/installation/)。上游依赖和权限仍需单独检查；
+该运行时支持不代表完整真实模型工作流已经认证。
 
 阶段级操作和更长示例见[第一个工作流](/zh-hans/docs/getting-started/first-workflow/)。
+
+### 旧版 4.x 升级备用方式
+
+升级旧版 4.x 安装时，可使用 Bun 原生命令作为备用方式，再遵循上面的 5.x 指引：
+
+```bash
+bun add -g harnessed@latest
+```
