@@ -1,0 +1,787 @@
+{
+  "startedAt": "2026-10-24T14:38:34.660Z",
+  "commit": "12155326561de991207f69dd553de8a8f1e1922b",
+  "maxDurationMs": 480000,
+  "pollIntervalMs": 16000,
+  "mocks": "none: real network, components and browser",
+  "polls": [
+    {
+      "at": "2026-10-24T14:41:23.263Z",
+      "httpStatus": 200,
+      "heading": "安装 harnessed",
+      "hero": true,
+      "oldElements": 0
+    }
+  ],
+  "rounds": [
+    {
+      "round": 1,
+      "cases": [
+        {
+          "locale": "en",
+          "width": 1440,
+          "height": 1000,
+          "apiResponses": [
+            {
+              "url": "https://api.github.com/repos/easyinplay/harnessed/releases/latest",
+              "status": 200,
+              "rateLimitRemaining": "34",
+              "tagName": "v5.0.0"
+            }
+          ],
+          "requestFailures": [],
+          "pageErrors": [],
+          "httpStatus": 200,
+          "cacheStatus": "MISS",
+          "htmlLang": "en",
+          "heading": {
+            "text": "Install harnessed",
+            "x": 296,
+            "y": 463,
+            "right": 409.921875,
+            "bottom": 483,
+            "width": 113.921875,
+            "height": 20
+          },
+          "installation": {
+            "x": 296,
+            "y": 463,
+            "right": 1144,
+            "bottom": 698,
+            "width": 848,
+            "height": 235,
+            "scrollWidth": 848,
+            "clientWidth": 848
+          },
+          "hero": {
+            "x": 0,
+            "y": 100,
+            "right": 1440,
+            "bottom": 722,
+            "width": 1440,
+            "height": 622,
+            "scrollWidth": 1440,
+            "clientWidth": 1440
+          },
+          "rules": [
+            {
+              "x": 421.921875,
+              "y": 472.5,
+              "right": 1144,
+              "bottom": 473.5,
+              "width": 722.078125,
+              "height": 1,
+              "decorative": "true"
+            }
+          ],
+          "tabs": [
+            {
+              "text": "macOS / Linux (Recommended)",
+              "x": 296,
+              "y": 495,
+              "right": 554.71875,
+              "bottom": 538,
+              "width": 258.71875,
+              "height": 43,
+              "clientWidth": 259,
+              "scrollWidth": 259,
+              "name": {
+                "x": 304,
+                "y": 507,
+                "right": 400.234375,
+                "bottom": 524,
+                "width": 96.234375,
+                "height": 17
+              },
+              "note": {
+                "x": 400.234375,
+                "y": 510,
+                "right": 489.640625,
+                "bottom": 524,
+                "width": 89.40625,
+                "height": 14
+              }
+            },
+            {
+              "text": "Windows (Recommended)",
+              "x": 560.71875,
+              "y": 495,
+              "right": 784.25,
+              "bottom": 538,
+              "width": 223.53125,
+              "height": 43,
+              "clientWidth": 224,
+              "scrollWidth": 224,
+              "name": {
+                "x": 568.71875,
+                "y": 507,
+                "right": 629.75,
+                "bottom": 524,
+                "width": 61.03125,
+                "height": 17
+              },
+              "note": {
+                "x": 629.75,
+                "y": 510,
+                "right": 719.15625,
+                "bottom": 524,
+                "width": 89.40625,
+                "height": 14
+              }
+            },
+            {
+              "text": "Bun (Secondary)",
+              "x": 790.25,
+              "y": 495,
+              "right": 956.421875,
+              "bottom": 538,
+              "width": 166.171875,
+              "height": 43,
+              "clientWidth": 166,
+              "scrollWidth": 166,
+              "name": {
+                "x": 798.25,
+                "y": 507,
+                "right": 823.96875,
+                "bottom": 524,
+                "width": 25.71875,
+                "height": 17
+              },
+              "note": {
+                "x": 823.96875,
+                "y": 510,
+                "right": 891.34375,
+                "bottom": 524,
+                "width": 67.375,
+                "height": 14
+              }
+            },
+            {
+              "text": "npm (Compatibility)",
+              "x": 962.421875,
+              "y": 495,
+              "right": 1144,
+              "bottom": 538,
+              "width": 181.578125,
+              "height": 43,
+              "clientWidth": 182,
+              "scrollWidth": 182,
+              "name": {
+                "x": 970.421875,
+                "y": 507,
+                "right": 999.53125,
+                "bottom": 524,
+                "width": 29.109375,
+                "height": 17
+              },
+              "note": {
+                "x": 999.53125,
+                "y": 510,
+                "right": 1078.921875,
+                "bottom": 524,
+                "width": 79.390625,
+                "height": 14
+              }
+            }
+          ],
+          "commands": {
+            "unix": "curl -fsSL https://raw.githubusercontent.com/easyinplay/harnessed/main/install.sh | bash",
+            "windows": "irm https://raw.githubusercontent.com/easyinplay/harnessed/main/install.ps1 | iex",
+            "bun": "bun install -g harnessed && bun run --bun harnessed setup",
+            "npm": "npm install -g harnessed && harnessed setup"
+          },
+          "removedCount": 0,
+          "heroLicense": false,
+          "heroLinks": 1,
+          "versions": [
+            "v5.0.0",
+            "v5.0.0",
+            "v5.0.0",
+            "v5.0.0"
+          ],
+          "releaseLinks": [
+            "https://github.com/easyinplay/harnessed/releases/tag/v5.0.0",
+            "https://github.com/easyinplay/harnessed/releases/tag/v5.0.0",
+            "https://github.com/easyinplay/harnessed/releases/tag/v5.0.0",
+            "https://github.com/easyinplay/harnessed/releases/tag/v5.0.0"
+          ],
+          "screenshot": "install-refinement-production-r1-en-1440.png"
+        },
+        {
+          "locale": "en",
+          "width": 390,
+          "height": 844,
+          "apiResponses": [
+            {
+              "url": "https://api.github.com/repos/easyinplay/harnessed/releases/latest",
+              "status": 200,
+              "rateLimitRemaining": "33",
+              "tagName": "v5.0.0"
+            }
+          ],
+          "requestFailures": [],
+          "pageErrors": [],
+          "httpStatus": 200,
+          "cacheStatus": "HIT",
+          "htmlLang": "en",
+          "heading": {
+            "text": "Install harnessed",
+            "x": 24,
+            "y": 415,
+            "right": 121.640625,
+            "bottom": 433,
+            "width": 97.640625,
+            "height": 18
+          },
+          "installation": {
+            "x": 24,
+            "y": 415,
+            "right": 366,
+            "bottom": 746.125,
+            "width": 342,
+            "height": 331.125,
+            "scrollWidth": 342,
+            "clientWidth": 342
+          },
+          "hero": {
+            "x": 0,
+            "y": 100,
+            "right": 390,
+            "bottom": 762.125,
+            "width": 390,
+            "height": 662.125,
+            "scrollWidth": 390,
+            "clientWidth": 390
+          },
+          "rules": [
+            {
+              "x": 129.640625,
+              "y": 423.5,
+              "right": 366,
+              "bottom": 424.5,
+              "width": 236.359375,
+              "height": 1,
+              "decorative": "true"
+            }
+          ],
+          "tabs": [
+            {
+              "text": "macOS / Linux (Recommended)",
+              "x": 24,
+              "y": 439,
+              "right": 208.078125,
+              "bottom": 475,
+              "width": 184.078125,
+              "height": 36,
+              "clientWidth": 184,
+              "scrollWidth": 184,
+              "name": {
+                "x": 28,
+                "y": 448,
+                "right": 110.484375,
+                "bottom": 463,
+                "width": 82.484375,
+                "height": 15
+              },
+              "note": {
+                "x": 110.484375,
+                "y": 450,
+                "right": 191.765625,
+                "bottom": 462,
+                "width": 81.28125,
+                "height": 12
+              }
+            },
+            {
+              "text": "Windows (Recommended)",
+              "x": 212.078125,
+              "y": 439,
+              "right": 366,
+              "bottom": 475,
+              "width": 153.921875,
+              "height": 36,
+              "clientWidth": 154,
+              "scrollWidth": 154,
+              "name": {
+                "x": 216.078125,
+                "y": 448,
+                "right": 268.390625,
+                "bottom": 463,
+                "width": 52.3125,
+                "height": 15
+              },
+              "note": {
+                "x": 268.390625,
+                "y": 450,
+                "right": 349.671875,
+                "bottom": 462,
+                "width": 81.28125,
+                "height": 12
+              }
+            },
+            {
+              "text": "Bun (Secondary)",
+              "x": 24,
+              "y": 479,
+              "right": 186.078125,
+              "bottom": 515,
+              "width": 162.078125,
+              "height": 36,
+              "clientWidth": 162,
+              "scrollWidth": 162,
+              "name": {
+                "x": 28,
+                "y": 488,
+                "right": 50.046875,
+                "bottom": 503,
+                "width": 22.046875,
+                "height": 15
+              },
+              "note": {
+                "x": 50.046875,
+                "y": 490,
+                "right": 111.296875,
+                "bottom": 502,
+                "width": 61.25,
+                "height": 12
+              }
+            },
+            {
+              "text": "npm (Compatibility)",
+              "x": 190.078125,
+              "y": 479,
+              "right": 366,
+              "bottom": 515,
+              "width": 175.921875,
+              "height": 36,
+              "clientWidth": 176,
+              "scrollWidth": 176,
+              "name": {
+                "x": 194.078125,
+                "y": 488,
+                "right": 219.03125,
+                "bottom": 503,
+                "width": 24.953125,
+                "height": 15
+              },
+              "note": {
+                "x": 219.03125,
+                "y": 490,
+                "right": 291.21875,
+                "bottom": 502,
+                "width": 72.1875,
+                "height": 12
+              }
+            }
+          ],
+          "commands": {
+            "unix": "curl -fsSL https://raw.githubusercontent.com/easyinplay/harnessed/main/install.sh | bash",
+            "windows": "irm https://raw.githubusercontent.com/easyinplay/harnessed/main/install.ps1 | iex",
+            "bun": "bun install -g harnessed && bun run --bun harnessed setup",
+            "npm": "npm install -g harnessed && harnessed setup"
+          },
+          "removedCount": 0,
+          "heroLicense": false,
+          "heroLinks": 1,
+          "versions": [
+            "v5.0.0",
+            "v5.0.0",
+            "v5.0.0",
+            "v5.0.0"
+          ],
+          "releaseLinks": [
+            "https://github.com/easyinplay/harnessed/releases/tag/v5.0.0",
+            "https://github.com/easyinplay/harnessed/releases/tag/v5.0.0",
+            "https://github.com/easyinplay/harnessed/releases/tag/v5.0.0",
+            "https://github.com/easyinplay/harnessed/releases/tag/v5.0.0"
+          ],
+          "screenshot": "install-refinement-production-r1-en-390.png"
+        },
+        {
+          "locale": "zh-hans",
+          "width": 1440,
+          "height": 1000,
+          "apiResponses": [
+            {
+              "url": "https://api.github.com/repos/easyinplay/harnessed/releases/latest",
+              "status": 200,
+              "rateLimitRemaining": "32",
+              "tagName": "v5.0.0"
+            }
+          ],
+          "requestFailures": [],
+          "pageErrors": [],
+          "httpStatus": 200,
+          "cacheStatus": "HIT",
+          "htmlLang": "zh-Hans",
+          "heading": {
+            "text": "安装 harnessed",
+            "x": 296,
+            "y": 391,
+            "right": 398.3125,
+            "bottom": 411,
+            "width": 102.3125,
+            "height": 20
+          },
+          "installation": {
+            "x": 296,
+            "y": 391,
+            "right": 1144,
+            "bottom": 626,
+            "width": 848,
+            "height": 235,
+            "scrollWidth": 848,
+            "clientWidth": 848
+          },
+          "hero": {
+            "x": 0,
+            "y": 100,
+            "right": 1440,
+            "bottom": 650,
+            "width": 1440,
+            "height": 550,
+            "scrollWidth": 1440,
+            "clientWidth": 1440
+          },
+          "rules": [
+            {
+              "x": 410.3125,
+              "y": 400.5,
+              "right": 1144,
+              "bottom": 401.5,
+              "width": 733.6875,
+              "height": 1,
+              "decorative": "true"
+            }
+          ],
+          "tabs": [
+            {
+              "text": "macOS / Linux（推荐）",
+              "x": 296,
+              "y": 423,
+              "right": 541.203125,
+              "bottom": 466,
+              "width": 245.203125,
+              "height": 43,
+              "clientWidth": 245,
+              "scrollWidth": 245,
+              "name": {
+                "x": 304,
+                "y": 435,
+                "right": 400.234375,
+                "bottom": 452,
+                "width": 96.234375,
+                "height": 17
+              },
+              "note": {
+                "x": 400.234375,
+                "y": 438,
+                "right": 444.234375,
+                "bottom": 452,
+                "width": 44,
+                "height": 14
+              }
+            },
+            {
+              "text": "Windows（推荐）",
+              "x": 547.203125,
+              "y": 423,
+              "right": 757.21875,
+              "bottom": 466,
+              "width": 210.015625,
+              "height": 43,
+              "clientWidth": 210,
+              "scrollWidth": 210,
+              "name": {
+                "x": 555.203125,
+                "y": 435,
+                "right": 616.234375,
+                "bottom": 452,
+                "width": 61.03125,
+                "height": 17
+              },
+              "note": {
+                "x": 616.234375,
+                "y": 438,
+                "right": 660.234375,
+                "bottom": 452,
+                "width": 44,
+                "height": 14
+              }
+            },
+            {
+              "text": "Bun（次选）",
+              "x": 763.21875,
+              "y": 423,
+              "right": 937.90625,
+              "bottom": 466,
+              "width": 174.6875,
+              "height": 43,
+              "clientWidth": 175,
+              "scrollWidth": 175,
+              "name": {
+                "x": 771.21875,
+                "y": 435,
+                "right": 796.9375,
+                "bottom": 452,
+                "width": 25.71875,
+                "height": 17
+              },
+              "note": {
+                "x": 796.9375,
+                "y": 438,
+                "right": 840.9375,
+                "bottom": 452,
+                "width": 44,
+                "height": 14
+              }
+            },
+            {
+              "text": "npm（兼容通道）",
+              "x": 943.90625,
+              "y": 423,
+              "right": 1144,
+              "bottom": 466,
+              "width": 200.09375,
+              "height": 43,
+              "clientWidth": 200,
+              "scrollWidth": 200,
+              "name": {
+                "x": 951.90625,
+                "y": 435,
+                "right": 981.015625,
+                "bottom": 452,
+                "width": 29.109375,
+                "height": 17
+              },
+              "note": {
+                "x": 981.015625,
+                "y": 438,
+                "right": 1047.015625,
+                "bottom": 452,
+                "width": 66,
+                "height": 14
+              }
+            }
+          ],
+          "commands": {
+            "unix": "curl -fsSL https://raw.githubusercontent.com/easyinplay/harnessed/main/install.sh | bash",
+            "windows": "irm https://raw.githubusercontent.com/easyinplay/harnessed/main/install.ps1 | iex",
+            "bun": "bun install -g harnessed && bun run --bun harnessed setup",
+            "npm": "npm install -g harnessed && harnessed setup"
+          },
+          "removedCount": 0,
+          "heroLicense": false,
+          "heroLinks": 1,
+          "versions": [
+            "v5.0.0",
+            "v5.0.0",
+            "v5.0.0",
+            "v5.0.0"
+          ],
+          "releaseLinks": [
+            "https://github.com/easyinplay/harnessed/releases/tag/v5.0.0",
+            "https://github.com/easyinplay/harnessed/releases/tag/v5.0.0",
+            "https://github.com/easyinplay/harnessed/releases/tag/v5.0.0",
+            "https://github.com/easyinplay/harnessed/releases/tag/v5.0.0"
+          ],
+          "screenshot": "install-refinement-production-r1-zh-hans-1440.png"
+        },
+        {
+          "locale": "zh-hans",
+          "width": 390,
+          "height": 844,
+          "apiResponses": [
+            {
+              "url": "https://api.github.com/repos/easyinplay/harnessed/releases/latest",
+              "status": 200,
+              "rateLimitRemaining": "31",
+              "tagName": "v5.0.0"
+            }
+          ],
+          "requestFailures": [],
+          "pageErrors": [],
+          "httpStatus": 200,
+          "cacheStatus": "HIT",
+          "htmlLang": "zh-Hans",
+          "heading": {
+            "text": "安装 harnessed",
+            "x": 24,
+            "y": 335,
+            "right": 111.6875,
+            "bottom": 353,
+            "width": 87.6875,
+            "height": 18
+          },
+          "installation": {
+            "x": 24,
+            "y": 335,
+            "right": 366,
+            "bottom": 648.734375,
+            "width": 342,
+            "height": 313.734375,
+            "scrollWidth": 342,
+            "clientWidth": 342
+          },
+          "hero": {
+            "x": 0,
+            "y": 100,
+            "right": 390,
+            "bottom": 664.734375,
+            "width": 390,
+            "height": 564.734375,
+            "scrollWidth": 390,
+            "clientWidth": 390
+          },
+          "rules": [
+            {
+              "x": 119.6875,
+              "y": 343.5,
+              "right": 366,
+              "bottom": 344.5,
+              "width": 246.3125,
+              "height": 1,
+              "decorative": "true"
+            }
+          ],
+          "tabs": [
+            {
+              "text": "macOS / Linux（推荐）",
+              "x": 24,
+              "y": 359,
+              "right": 165.53125,
+              "bottom": 395,
+              "width": 141.53125,
+              "height": 36,
+              "clientWidth": 142,
+              "scrollWidth": 142,
+              "name": {
+                "x": 28,
+                "y": 368,
+                "right": 110.484375,
+                "bottom": 383,
+                "width": 82.484375,
+                "height": 15
+              },
+              "note": {
+                "x": 110.484375,
+                "y": 370,
+                "right": 150.484375,
+                "bottom": 382,
+                "width": 40,
+                "height": 12
+              }
+            },
+            {
+              "text": "Windows（推荐）",
+              "x": 169.53125,
+              "y": 359,
+              "right": 280.90625,
+              "bottom": 395,
+              "width": 111.375,
+              "height": 36,
+              "clientWidth": 111,
+              "scrollWidth": 111,
+              "name": {
+                "x": 173.53125,
+                "y": 368,
+                "right": 225.84375,
+                "bottom": 383,
+                "width": 52.3125,
+                "height": 15
+              },
+              "note": {
+                "x": 225.84375,
+                "y": 370,
+                "right": 265.84375,
+                "bottom": 382,
+                "width": 40,
+                "height": 12
+              }
+            },
+            {
+              "text": "Bun（次选）",
+              "x": 284.90625,
+              "y": 359,
+              "right": 366,
+              "bottom": 395,
+              "width": 81.09375,
+              "height": 36,
+              "clientWidth": 81,
+              "scrollWidth": 81,
+              "name": {
+                "x": 288.90625,
+                "y": 368,
+                "right": 310.953125,
+                "bottom": 383,
+                "width": 22.046875,
+                "height": 15
+              },
+              "note": {
+                "x": 310.953125,
+                "y": 370,
+                "right": 350.953125,
+                "bottom": 382,
+                "width": 40,
+                "height": 12
+              }
+            },
+            {
+              "text": "npm（兼容通道）",
+              "x": 24,
+              "y": 399,
+              "right": 366,
+              "bottom": 435,
+              "width": 342,
+              "height": 36,
+              "clientWidth": 342,
+              "scrollWidth": 342,
+              "name": {
+                "x": 28,
+                "y": 408,
+                "right": 52.953125,
+                "bottom": 423,
+                "width": 24.953125,
+                "height": 15
+              },
+              "note": {
+                "x": 52.953125,
+                "y": 410,
+                "right": 112.953125,
+                "bottom": 422,
+                "width": 60,
+                "height": 12
+              }
+            }
+          ],
+          "commands": {
+            "unix": "curl -fsSL https://raw.githubusercontent.com/easyinplay/harnessed/main/install.sh | bash",
+            "windows": "irm https://raw.githubusercontent.com/easyinplay/harnessed/main/install.ps1 | iex",
+            "bun": "bun install -g harnessed && bun run --bun harnessed setup",
+            "npm": "npm install -g harnessed && harnessed setup"
+          },
+          "removedCount": 0,
+          "heroLicense": false,
+          "heroLinks": 1,
+          "versions": [
+            "v5.0.0",
+            "v5.0.0",
+            "v5.0.0",
+            "v5.0.0"
+          ],
+          "releaseLinks": [
+            "https://github.com/easyinplay/harnessed/releases/tag/v5.0.0",
+            "https://github.com/easyinplay/harnessed/releases/tag/v5.0.0",
+            "https://github.com/easyinplay/harnessed/releases/tag/v5.0.0",
+            "https://github.com/easyinplay/harnessed/releases/tag/v5.0.0"
+          ],
+          "screenshot": "install-refinement-production-r1-zh-hans-390.png"
+        }
+      ],
+      "failures": []
+    }
+  ],
+  "status": "PASS",
+  "finishedAt": "2026-10-24T14:41:58.792Z",
+  "elapsedMs": 204132
+}
