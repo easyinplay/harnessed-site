@@ -1,0 +1,231 @@
+{
+  "startedAt": "2026-10-26T23:20:17.497Z",
+  "base": "https://harnessed.cc",
+  "expectedVersion": "v5.0.1",
+  "expectedUrl": "https://github.com/easyinplay/harnessed/releases/tag/v5.0.1",
+  "executable": "C:/Users/easyi/AppData/Local/ms-playwright/chromium-1247/chrome-win64/chrome.exe",
+  "mocks": false,
+  "userProfile": false,
+  "directApi": {
+    "status": 200,
+    "tag_name": "v5.0.1",
+    "html_url": "https://github.com/easyinplay/harnessed/releases/tag/v5.0.1",
+    "draft": false,
+    "prerelease": false
+  },
+  "cases": [
+    {
+      "locale": "en",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pageErrors": [],
+      "requestFailures": [],
+      "metadataResponses": [
+        {
+          "status": 200,
+          "rateLimitRemaining": "55"
+        }
+      ],
+      "httpStatus": 200,
+      "initialVersions": [
+        "v5.0.0",
+        "v5.0.0",
+        "v5.0.0",
+        "v5.0.0"
+      ],
+      "final": {
+        "language": "en",
+        "versions": [
+          "v5.0.1",
+          "v5.0.1",
+          "v5.0.1",
+          "v5.0.1"
+        ],
+        "links": [
+          "https://github.com/easyinplay/harnessed/releases/tag/v5.0.1",
+          "https://github.com/easyinplay/harnessed/releases/tag/v5.0.1",
+          "https://github.com/easyinplay/harnessed/releases/tag/v5.0.1",
+          "https://github.com/easyinplay/harnessed/releases/tag/v5.0.1"
+        ],
+        "versionCount": 4,
+        "linkCount": 4,
+        "versionsExpected": true,
+        "linksExpected": true,
+        "documentOverflow": false
+      },
+      "observedTransition": true,
+      "screenshot": "release-5.0.1-site-en-1440.png",
+      "http200": true,
+      "languageCorrect": true,
+      "allVersionsExpected": true,
+      "allLinksExpected": true,
+      "transitionObserved": true,
+      "noDocumentOverflow": true,
+      "noPageErrors": true
+    },
+    {
+      "locale": "en",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pageErrors": [],
+      "requestFailures": [],
+      "metadataResponses": [
+        {
+          "status": 200,
+          "rateLimitRemaining": "54"
+        }
+      ],
+      "httpStatus": 200,
+      "initialVersions": [
+        "v5.0.0",
+        "v5.0.0",
+        "v5.0.0",
+        "v5.0.0"
+      ],
+      "final": {
+        "language": "en",
+        "versions": [
+          "v5.0.1",
+          "v5.0.1",
+          "v5.0.1",
+          "v5.0.1"
+        ],
+        "links": [
+          "https://github.com/easyinplay/harnessed/releases/tag/v5.0.1",
+          "https://github.com/easyinplay/harnessed/releases/tag/v5.0.1",
+          "https://github.com/easyinplay/harnessed/releases/tag/v5.0.1",
+          "https://github.com/easyinplay/harnessed/releases/tag/v5.0.1"
+        ],
+        "versionCount": 4,
+        "linkCount": 4,
+        "versionsExpected": true,
+        "linksExpected": true,
+        "documentOverflow": false
+      },
+      "observedTransition": true,
+      "screenshot": "release-5.0.1-site-en-390.png",
+      "http200": true,
+      "languageCorrect": true,
+      "allVersionsExpected": true,
+      "allLinksExpected": true,
+      "transitionObserved": true,
+      "noDocumentOverflow": true,
+      "noPageErrors": true
+    },
+    {
+      "locale": "zh-hans",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "pageErrors": [],
+      "requestFailures": [],
+      "metadataResponses": [
+        {
+          "status": 200,
+          "rateLimitRemaining": "53"
+        }
+      ],
+      "httpStatus": 200,
+      "initialVersions": [
+        "v5.0.0",
+        "v5.0.0",
+        "v5.0.0",
+        "v5.0.0"
+      ],
+      "final": {
+        "language": "zh-Hans",
+        "versions": [
+          "v5.0.1",
+          "v5.0.1",
+          "v5.0.1",
+          "v5.0.1"
+        ],
+        "links": [
+          "https://github.com/easyinplay/harnessed/releases/tag/v5.0.1",
+          "https://github.com/easyinplay/harnessed/releases/tag/v5.0.1",
+          "https://github.com/easyinplay/harnessed/releases/tag/v5.0.1",
+          "https://github.com/easyinplay/harnessed/releases/tag/v5.0.1"
+        ],
+        "versionCount": 4,
+        "linkCount": 4,
+        "versionsExpected": true,
+        "linksExpected": true,
+        "documentOverflow": false
+      },
+      "observedTransition": true,
+      "screenshot": "release-5.0.1-site-zh-hans-1440.png",
+      "http200": true,
+      "languageCorrect": true,
+      "allVersionsExpected": true,
+      "allLinksExpected": true,
+      "transitionObserved": true,
+      "noDocumentOverflow": true,
+      "noPageErrors": true
+    },
+    {
+      "locale": "zh-hans",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pageErrors": [],
+      "requestFailures": [],
+      "metadataResponses": [
+        {
+          "status": 200,
+          "rateLimitRemaining": "52"
+        }
+      ],
+      "httpStatus": 200,
+      "initialVersions": [
+        "v5.0.0",
+        "v5.0.0",
+        "v5.0.0",
+        "v5.0.0"
+      ],
+      "final": {
+        "language": "zh-Hans",
+        "versions": [
+          "v5.0.1",
+          "v5.0.1",
+          "v5.0.1",
+          "v5.0.1"
+        ],
+        "links": [
+          "https://github.com/easyinplay/harnessed/releases/tag/v5.0.1",
+          "https://github.com/easyinplay/harnessed/releases/tag/v5.0.1",
+          "https://github.com/easyinplay/harnessed/releases/tag/v5.0.1",
+          "https://github.com/easyinplay/harnessed/releases/tag/v5.0.1"
+        ],
+        "versionCount": 4,
+        "linkCount": 4,
+        "versionsExpected": true,
+        "linksExpected": true,
+        "documentOverflow": false
+      },
+      "observedTransition": true,
+      "screenshot": "release-5.0.1-site-zh-hans-390.png",
+      "http200": true,
+      "languageCorrect": true,
+      "allVersionsExpected": true,
+      "allLinksExpected": true,
+      "transitionObserved": true,
+      "noDocumentOverflow": true,
+      "noPageErrors": true
+    }
+  ],
+  "failures": [],
+  "cleanup": {
+    "contextsCreated": 4,
+    "contextsClosed": 4,
+    "browserClosed": true
+  },
+  "status": "PASS",
+  "finishedAt": "2026-10-26T23:20:24.824Z",
+  "elapsedMs": 7327
+}
